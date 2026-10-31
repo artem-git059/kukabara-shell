@@ -25,6 +25,33 @@ PanelWindow {
     readonly property string screenName: modelData.name
     readonly property var mine: Minimize.flights.filter(f => f.output === screenName)
 
+    // Keep the delegates alive when another flight is added or lands. Assigning a plain JS
+    // array to a Repeater's model rebuilds every delegate, and each one restarts its animation
+    // from the top: with several windows the ones still flying replay over and over (#130).
+    // A persistent ListModel adds and removes only what changed, by the flight's own key.
+    property bool flightsReady: false
+    onMineChanged: if (flightsReady) syncFlights()
+    Component.onCompleted: {
+        flightsReady = true;
+        syncFlights();
+    }
+    function syncFlights() {
+        const wanted = new Set(mine.map(f => f.key));
+        for (let i = flightModel.count - 1; i >= 0; --i)
+            if (!wanted.has(flightModel.get(i).flight.key))
+                flightModel.remove(i);
+        const existing = new Set();
+        for (let i = 0; i < flightModel.count; ++i)
+            existing.add(flightModel.get(i).flight.key);
+        for (const f of mine)
+            if (!existing.has(f.key))
+                flightModel.append({ "flight": f });
+    }
+    ListModel {
+        id: flightModel
+        dynamicRoles: true
+    }
+
     screen: modelData
     visible: mine.length > 0
     anchors {
@@ -41,17 +68,17 @@ PanelWindow {
     mask: Region {}
 
     Repeater {
-        model: win.mine
+        model: flightModel
 
         Item {
             id: fx
-            required property var modelData
+            required property var flight
             readonly property bool pixel: Minimize.effect === "pixel"
             readonly property bool genie: Minimize.effect === "genie"
             width: win.width
             height: win.height
             // where the window is, in this screen's coordinates
-            readonly property var home: [modelData.rect[0] - win.modelData.x, modelData.rect[1] - win.modelData.y, modelData.rect[2], modelData.rect[3]]
+            readonly property var home: [flight.rect[0] - win.modelData.x, flight.rect[1] - win.modelData.y, flight.rect[2], flight.rect[3]]
             property real t: 0                 // 0 at the window .. 1 in the Dock
             property var dock: [win.width / 2, win.height - GoldenGate.px(40), GoldenGate.px(48)]
 
@@ -62,7 +89,7 @@ PanelWindow {
                 return [win.width / 2, win.height - GoldenGate.px(40), GoldenGate.px(48)];
             }
             function place() {
-                dock = Minimize.slotOf(win.screenName, modelData.id) || fallback();
+                dock = Minimize.slotOf(win.screenName, flight.id) || fallback();
                 if (genie)
                     return;
                 const h = home, d = dock;
@@ -95,16 +122,16 @@ PanelWindow {
             readonly property real cell: pixel ? 1 + (Theme.u * 2 - 1) * Math.min(1, t * 3) : 1
             onTChanged: place()
             Component.onCompleted: {
-                t = modelData.back ? 1 : 0;
+                t = flight.back ? 1 : 0;
                 place();
                 run.from = t;
-                run.to = modelData.back ? 0 : 1;
+                run.to = flight.back ? 0 : 1;
                 run.start();
             }
 
             Image {
                 id: shot
-                source: fx.modelData.shot || ""
+                source: fx.flight.shot || ""
                 visible: false
                 smooth: !fx.pixel
                 mipmap: !fx.pixel
@@ -117,7 +144,7 @@ PanelWindow {
                 visible: !fx.genie
                 Image {
                     anchors.fill: parent
-                    source: fx.genie ? "" : fx.modelData.shot || ""
+                    source: fx.genie ? "" : fx.flight.shot || ""
                     fillMode: Image.Stretch
                     smooth: true
                     mipmap: true
@@ -160,8 +187,8 @@ PanelWindow {
                 duration: Minimize.flightMs
                 // Genie: even, as macOS pours it; Scale — away: slow start, fast into the Dock;
                 // back: fast out, settling at the window
-                easing.type: fx.genie ? Easing.InOutSine : fx.modelData.back ? Easing.OutCubic : Easing.InOutCubic
-                onFinished: Minimize.landed(fx.modelData.key)
+                easing.type: fx.genie ? Easing.InOutSine : fx.flight.back ? Easing.OutCubic : Easing.InOutCubic
+                onFinished: Minimize.landed(fx.flight.key)
             }
         }
     }
