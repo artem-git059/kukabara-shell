@@ -936,7 +936,7 @@ Singleton {
         const open = here.filter(w => !Minimize.isMinimized(w));
         if (open.length) {
             deskHidden[screen] = open.map(w => w.id);
-            open.forEach(w => Minimize.request(w.id, "menu"));
+            Minimize.minimizeMany(open.map(w => w.id), "menu");
         } else {
             const hid = here.filter(w => (deskHidden[screen] || []).includes(w.id));
             (hid.length ? hid : here).forEach(w => Minimize.restore(w.id, false, screen));

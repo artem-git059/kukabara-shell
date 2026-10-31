@@ -195,6 +195,115 @@ Singleton {
             }]);
         _next();
     }
+
+    // «Показать стол»: the whole desk at once. A flight waits for its snapshot, and asking niri
+    // to minimize the windows one by one took a snapshot and landed each in turn — the windows
+    // went in a visible cascade (#139). Here the snapshots are taken by grim ourselves, all at
+    // the same time, then every window flies and only after that niri puts them away together.
+    // Stock niri keeps the old way: there the queue has its own snapshots and hidden workspace.
+    function minimizeMany(ids, source) {
+        if (!Niri.nativeMinimize) {
+            for (const id of ids)
+                request(id, source || "menu");
+            return;
+        }
+        const jobs = [];
+        for (const id of ids) {
+            const w = Niri.windows.find(x => x.id === id);
+            if (!w || isMinimized(w) || _queue.some(q => q.id === id))
+                continue;
+            const ws = Niri.workspaceById(w.workspace_id);
+            if (!ws)
+                continue;
+            requested(id, source || "menu");
+            const rect = ws.is_active ? rectOf(w, ws.output) : null;
+            const o = Object.assign({}, origin);
+            o[id] = {
+                "ws": ws.id,
+                "output": ws.output,
+                "rect": rect
+            };
+            origin = o;
+            jobs.push({
+                "id": id,
+                "output": ws.output,
+                "rect": rect
+            });
+        }
+        if (!jobs.length)
+            return;
+        // off-screen windows (another column of the scrolling layout) have nothing to show:
+        // they go at once, with no flight
+        const want = canFly ? jobs.filter(q => q.rect) : [];
+        if (!want.length) {
+            _gone(jobs);
+            return;
+        }
+        const args = [dir];
+        const paths = [];
+        for (const q of want) {
+            const path = dir + "/" + q.id + "-" + Date.now() + ".png";
+            paths.push(path);
+            args.push(q.rect[0] + "," + q.rect[1] + " " + q.rect[2] + "x" + q.rect[3], path);
+        }
+        batchShots.jobs = jobs;
+        batchShots.paths = paths;
+        batchShots.results = want;
+        // every grim in its own process: in turn they take longer than the animation
+        batchShots.command = ["sh", "-c", 'mkdir -p "$1"; shift; while [ "$#" -ge 2 ]; do grim -g "$1" "$2" & shift 2; done; wait', "sh"].concat(args);
+        batchShots.running = true;
+    }
+    Process {
+        id: batchShots
+        property var jobs: []
+        property var paths: []
+        property var results: []
+        stderr: StdioCollector {
+            id: batchErr
+        }
+        onExited: code => {
+            if (code !== 0)
+                console.warn("angelOS minimize: batch snapshots:", batchErr.text);
+            const js = jobs, ps = paths, rs = results;
+            jobs = [];
+            paths = [];
+            results = [];
+            if (code === 0) {
+                const s = Object.assign({}, root.shots);
+                for (let i = 0; i < rs.length; ++i)
+                    s[rs[i].id] = "file://" + ps[i];
+                root.shots = s;
+            }
+            _flyMany(js);
+        }
+    }
+    function _flyMany(jobs) {
+        for (const q of jobs)
+            if (q.rect && shots[q.id])
+                fly(q.id, q.output, q.rect, false);
+        batchGo.jobs = jobs;
+        batchGo.restart();
+    }
+    // the snapshots are up over the windows a frame later; then they all go together
+    Timer {
+        id: batchGo
+        property var jobs: []
+        interval: 30
+        onTriggered: {
+            const js = jobs;
+            jobs = [];
+            _gone(js);
+        }
+    }
+    function _gone(jobs) {
+        for (const q of jobs) {
+            Niri.action("MinimizeWindow", {
+                "id": q.id,
+                "now": true
+            });
+            order = order.filter(x => x !== q.id).concat([q.id]);
+        }
+    }
     // the window on the screen, in the global logical coordinates grim takes
     function rectOf(w, output) {
         const s = Shell.screenByName(output);
