@@ -224,24 +224,54 @@ def file_manager1(did, b):
             shutil.move(str(f), b / f.name)
 
 
+def pid_alive(pid):
+    """the launch a stamp tells of is still running (after execvp the pid is the file manager's)"""
+    try:
+        os.kill(int(pid), 0)
+        return True
+    except (OSError, TypeError, ValueError):
+        return False
+
+
 def open_files(folder):
     folder = os.path.abspath(os.path.expanduser(folder or "~"))
     # the same folder again before the first window came up (a double press, a held key — #127):
-    # a file manager that starts slowly would open one window per press, all at once
+    # a file manager that starts slowly would open one window per press, all at once. The stamp
+    # keeps the pid of the launch, so a press whose window is already closed opens again even
+    # within the 1.5 s: «open, not what I wanted, close, open again» is a normal thing to do
+    # (#133). `gio` only asks the app to start and exits, so its stamp stays time-based (pid 0).
     last = Path(os.environ.get("XDG_RUNTIME_DIR") or "/tmp") / "angelos-open-files"
     try:
-        if time.time() - last.stat().st_mtime < 1.5 and last.read_text() == folder:
-            return
+        text = last.read_text()
     except OSError:
-        pass
+        text = None
+    rec = None
+    if text is not None:
+        try:
+            rec = json.loads(text)
+        except ValueError:
+            rec = {"pid": 0, "folder": text}  # an old stamp, the folder itself
+        if not isinstance(rec, dict):
+            rec = {"pid": 0, "folder": rec}
     try:
-        last.write_text(folder)
+        fresh = rec and time.time() - last.stat().st_mtime < 1.5
+    except OSError:
+        fresh = False
+    if fresh and rec.get("folder") == folder and (not rec.get("pid") or pid_alive(rec["pid"])):
+        return
+    try:
+        last.write_text(json.dumps({"pid": 0, "folder": folder}))
     except OSError:
         pass
     did = configured("inode/directory") or query("inode/directory")
     path = desktop_file(did) if did else None
     if path:
         os.execvp("gio", ["gio", "launch", str(path), folder])
+    # a file manager of our own: it is the launch, and the pid the stamp keeps is its own
+    try:
+        last.write_text(json.dumps({"pid": os.getpid(), "folder": folder}))
+    except OSError:
+        pass
     for fm in ("strata", "nautilus", "thunar", "dolphin", "nemo", "pcmanfm-qt", "pcmanfm"):
         if shutil.which(fm):
             os.execvp(fm, [fm, folder])
