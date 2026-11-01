@@ -15,6 +15,8 @@ Item {
 
     property bool emblemOnly: false
     property bool hell: false
+    // on the Aero skin's Start orb: the emblem in light, no wordmark, as Windows' orb holds its flag
+    property bool aero: false
     property int pixel: Theme.u
     readonly property var variants: ["classic", "angel", "windose", "hell", "chrome"]
     readonly property var emblemNames: ["heart", "pill", "star", "cd", "kitty"]
@@ -46,15 +48,18 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             bitmap: root.emblemRows
             pixel: root.pixel
-            ink: root.hell ? Theme.hellEdge : Theme.dark ? Theme.mix(Theme.accent, Theme.edge, 0.55) : Theme.edge
-            fill: root.hell ? Theme.hellBlood : Theme.accent
-            fill2: root.hell ? Theme.hellRim : Theme.accent2
+            ink: root.hell ? Theme.hellEdge : root.aero ? "#0a3357" : Theme.dark ? Theme.mix(Theme.accent, Theme.edge, 0.55) : Theme.edge
+            fill: root.hell ? Theme.hellBlood : root.aero ? "#f2fbff" : Theme.accent
+            fill2: root.hell ? Theme.hellRim : root.aero ? "#a8dcff" : Theme.accent2
             light: root.hell ? Theme.hellText : "#ffffff"
-            fill3: root.hell ? Theme.hellTextDim : root.redStar ? "#e0203a" : Theme.mix(Theme.accent3, Qt.color("#ffd84a"), 0.6)
+            fill3: root.hell ? Theme.hellTextDim : root.aero ? "#7fc8ff" : root.redStar ? "#e0203a" : Theme.mix(Theme.accent3, Qt.color("#ffd84a"), 0.6)
             bad: root.hell ? Theme.hellAccent : "#e0203a"
             palette: root.hell ? ({
                     "p": Theme.hex(Theme.hellTextDim),
                     "x": Theme.hex(Theme.hellBlood)
+                }) : root.aero ? ({
+                    "p": "#d9f1ff",
+                    "x": "#bfe4ff"
                 }) : ({
                     "p": Theme.hex(Theme.mix(Theme.accent, "#ffffff", 0.45)),
                     "x": Theme.hex(root.redStar ? Qt.color("#7a0a1e") : Theme.accent2)
