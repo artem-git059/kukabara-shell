@@ -494,6 +494,7 @@ NGO-стримом с чатом, который отвечает. В режим
 | `web-search` | `web …` в лаунчере: поисковики и любимые сайты |
 | `claude-companion` | что осталось от плана Claude, живые сессии Claude Code, `claude …` в лаунчере |
 | `codex-companion` | то же для OpenAI Codex: окна на 5 часов и неделю, токены за сегодня, живые сессии |
+| `opencode-companion` | OpenCode: живые сессии и токены за сегодня на панели, маскот на столе, `oc …` в лаунчере |
 | `osu-mini` | мини-osu под бит: пиксельные сердечки, комбо, ранги (`osu` в лаунчере) |
 | `nightlight` | тёплый экран вечером через `wlsunset` |
 | `stream-stats` | `stats.exe`: stress = CPU, darkness = RAM, love = аптайм |

@@ -493,6 +493,7 @@ install ([guide](.config/quickshell/angelos/docs/PLUGIN_STUDIO.md)).
 | `web-search` | `web …` in the launcher: search engines and favourite sites |
 | `claude-companion` | what is left of your Claude plan, live Claude Code sessions, `claude …` in the launcher |
 | `codex-companion` | the same for OpenAI Codex: 5-hour and weekly windows, today's tokens, live sessions |
+| `opencode-companion` | OpenCode: live sessions and today's tokens on the bar, a desktop mascot, `oc …` in the launcher |
 | `osu-mini` | a mini osu to the beat: pixel hearts, combos, ranks (`osu` in the launcher) |
 | `nightlight` | a warm screen in the evening through `wlsunset` |
 | `stream-stats` | `stats.exe`: stress = CPU, darkness = RAM, love = uptime |

@@ -21,6 +21,7 @@ Everything in this repository not listed here is © 2026 MixaDoDs under the MIT 
 | Lucide icons (a subset: the Golden Gate skin's line icons, as SVG path data) | `.config/quickshell/angelos/widgets/MacIcons.js` | ISC (the ones derived from Feather: MIT) — notices below | [lucide.dev](https://lucide.dev), lucide-static 1.52.0, unmodified paths |
 | The first run's intro: its sounds (recordings from Freesound; «Swan Lake», an HMV record from Wikimedia Commons) | `.config/quickshell/angelos/data/sounds/intro/` | CC0 / public domain — each listed in [`SOURCES.md`](.config/quickshell/angelos/data/sounds/intro/SOURCES.md) | their authors, named there; `voice/` is the author's own |
 | Claude Companion plugin (a port) | `.config/quickshell/angelos/plugins/claude-companion/` | MIT (below) | [lowcache/noctalia-claude-plugin](https://github.com/lowcache/noctalia-claude-plugin) |
+| OpenCode Companion plugin (a community plugin, unmodified) | `.config/quickshell/angelos/plugins/opencode-companion/` | MIT (below) | abubakir, 2026 |
 | Spicetify theme *Vantagraph Custom* and its extensions (the Spotify look of the author's system) | `.config/spicetify/Themes/vantagraph-custom/`, `.config/spicetify/Extensions/vantagraph-custom-*.js` | GNU AGPL v3 + its Section 7(b) attribution ([`LICENSE`](.config/spicetify/Themes/vantagraph-custom/LICENSE), [`NOTICE`](.config/spicetify/Themes/vantagraph-custom/NOTICE)) | **Miabeyefendi (Mustafa Ihsan Albayrak) - https://github.com/Miabeyefendi** — [Vantagraph-Custom](https://github.com/Miabeyefendi/Vantagraph-Custom). Our changes: `theme.js` — the wave animation capped at ~30 fps (2026-10-03, marked at the top of the file); `color.ini` — the author's colours. Its design/ and archive/ folders are left out. It is a separate work shipped alongside angelOS, under its own license |
 
 The SIL OFL 1.1 text with every font's copyright line: [`LICENSES/OFL-1.1.txt`](LICENSES/OFL-1.1.txt).
@@ -90,6 +91,32 @@ SOFTWARE.
 MIT License
 
 Copyright (c) 2026 lowcache
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### OpenCode Companion (a community plugin) — MIT
+
+```
+MIT License
+
+Copyright (c) 2026 abubakir
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
