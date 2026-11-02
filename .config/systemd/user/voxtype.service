@@ -2,6 +2,10 @@
 Description=Voxtype push-to-talk voice-to-text daemon
 # only in niri: in a KDE or GNOME session the 1.6 GB model stays out of memory
 ConditionEnvironment=XDG_CURRENT_DESKTOP=niri
+# no voice typing while a game runs (niri-game-mode keeps this flag): the daemon stops for
+# the game, and a crash there (a grabbed input device, the OOM killer) must not be restarted
+# by Restart=on-failure every RestartSec right through it. With the flag gone, a start works
+ConditionPathExists=!%t/niri-game-mode/game
 Documentation=https://voxtype.io
 PartOf=graphical-session.target
 After=graphical-session.target
