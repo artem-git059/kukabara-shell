@@ -778,11 +778,15 @@ button[aria-checked="true"][data-testid="add-button"] path {
   border-top: none !important;
 }
 
-/* volume bar: wider */
-[data-testid="volume-bar"],
-.vg-volume-bar {
-  min-width: 250px !important;
-  width: 250px !important;
+/* volume bar: wider, only while the window has room for it. Below Spotify's own
+   1200px breakpoint the right-hand buttons (queue, lyrics, devices) would be
+   pushed into the player controls, so the bar keeps Spotify's width there */
+@media (min-width: 1200px) {
+  [data-testid="volume-bar"],
+  .vg-volume-bar {
+    min-width: 250px !important;
+    width: 250px !important;
+  }
 }
 
 /* responsive */
