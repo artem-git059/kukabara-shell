@@ -33,7 +33,7 @@ USER = getpass.getuser()
 CONF = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config"))
 CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
 SHELL_DIR = CONF / "quickshell/angelos"
-DEFAULT_REPO = "https://github.com/MixaDoDs/AngelOS-Dotfiles"
+DEFAULT_REPO = "https://github.com/artem-git059/kukabara-shell"
 
 
 def run(cmd, timeout=15, env=None):

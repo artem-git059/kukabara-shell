@@ -507,7 +507,7 @@ JsonAdapter {
 
     property JsonObject updates: JsonObject {
         property string repo: ""            // "" = found automatically (installer marker, ~/AngelOS-Dotfiles)
-        property bool autoCheck: true       // look for updates once a day, never installs by itself
+        property bool autoCheck: false      // no daily dotfiles check: this fork is detached from the original angelOS repository (Settings → Updates still checks by hand)
         property string lastCheck: ""
         property int available: 0
         property int paperSeen: 0           // the release whose «what's new» paper was put away (ChangelogPaper)

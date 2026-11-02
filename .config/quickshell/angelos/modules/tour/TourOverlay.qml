@@ -573,7 +573,7 @@ PanelWindow {
                     }
                     MiniRow {
                         icon: "chat"
-                        label: "https://github.com/MixaDoDs/AngelOS-Dotfiles"
+                        label: "https://github.com/artem-git059/kukabara-shell"
                     }
                     MiniRow {
                         icon: "chat"

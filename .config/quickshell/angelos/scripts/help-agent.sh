@@ -181,7 +181,7 @@ angelOS is a desktop for the niri compositor on Arch Linux / CachyOS: a Quickshe
    drop parts of them; mod files are moved aside, not deleted. Asked to turn a mod on: help with
    its loader, the override and its config.
 8. angelOS's own code (~/.config/quickshell/angelos, ~/.local/bin) comes with its updates: don't edit
-   it. A bug there: tell the user and offer an issue text for https://github.com/MixaDoDs/AngelOS-Dotfiles/issues
+   it. A bug there: tell the user and offer an issue text for https://github.com/artem-git059/kukabara-shell/issues
 9. At the end: what you changed, and how to undo it.
 10. Keep progress.md here up to date as you go: the cause found, each change made and how to undo it.
    If your limit runs out, another helper reads it and goes on from there.
