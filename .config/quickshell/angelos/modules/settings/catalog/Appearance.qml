@@ -38,6 +38,13 @@ CatPage {
                 Config.settingsUi.lookAsked = true;
             }
         }
+        CatToggle {
+            present: Config.settingsUi.look === "p5"
+            label: I18n.t("Персонажи силуэтом в покое", "Characters as silhouettes at rest")
+            hint: I18n.t("в покое персонаж стоит тёмным силуэтом и оживает от курсора; выключи, чтобы он всегда был в цвете", "at rest the character stands as a flat silhouette and wakes when the pointer touches her; turn off to keep her in colour")
+            checked: Config.settingsUi.p5Silhouette
+            onToggled: c => Config.settingsUi.p5Silhouette = c
+        }
     }
     // what the whole desktop wears: angelOS classic, Win10, Windose, Stream, or Golden Gate (macOS 27)
     CatGroup {

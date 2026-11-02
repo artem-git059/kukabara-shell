@@ -880,6 +880,9 @@ JsonAdapter {
         // while P5 is being redone) | p5 (the P5 window over the desk); asked once (SettingsLookPrompt)
         property string look: "win11"
         property bool lookAsked: false
+        // the P5 window's character stands as a flat silhouette at rest (restSolid) and
+        // wakes into her colours; off: always in colour (issue #132)
+        property bool p5Silhouette: true
         property bool skinChosen: false     // the look was picked (the wizard, or the banner on the settings home)
         property var usage: ({})            // page id -> visits; "Everyday" on the home page follows it
         property var searchHistory: []      // what was searched and opened, newest first: [{q, title, page, icon}] (SettingsView: a click into the empty search shows it)
