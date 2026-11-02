@@ -120,16 +120,19 @@ PanelWindow {
         color: win.hell ? "transparent" : Theme.panel
         hell: win.hell
         outline: false
+        // Aero's taskbar is glass edge to edge: no rounded ends at the screen's corners
+        radius: 0
 
         Rectangle {
             // a thin see-through line on the side facing the desktop, like Windows 11's: it
-            // parts the wallpaper from the bar without standing out (the text colour, faint)
+            // parts the wallpaper from the bar without standing out (the text colour, faint).
+            // Aero: the lit rim of the glass instead, brighter, as Win7's taskbar had
             visible: !win.hell
             width: win.vertical ? Theme.u : parent.width
             height: win.vertical ? parent.height : Theme.u
             x: win.edge === "left" ? box.width - box.inset - Theme.u : -box.inset
             y: win.edge === "top" ? box.height - box.inset - Theme.u : -box.inset
-            color: Qt.alpha(Theme.text, Theme.dark ? 0.13 : 0.16)
+            color: Theme.aeroLook ? Theme.aeroRim : Qt.alpha(Theme.text, Theme.dark ? 0.13 : 0.16)
         }
         // hell: the ground, the plates under the widgets, the rim on top
         HellBarFrame {

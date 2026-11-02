@@ -23,14 +23,17 @@ Item {
     // colours and the Hell wordmark, still
     readonly property bool hellish: Angel.demon && !!Config.y2k.hellStart
     readonly property bool capsule: Config.bar.startButtonStyle === "capsule"
+    // Aero's Start orb (Theme.aeroLook): a glass ball with the emblem, not the bevelled face
+    // or the XP capsule — the skin's own button, as Windows 7 had
+    readonly property bool aero: Theme.aeroLook && !root.hellish
     readonly property bool open: Shell.startScreen !== "" && Shell.startScreen === screenName
 
-    implicitWidth: capsule ? cap.implicitWidth : btn.implicitWidth
-    implicitHeight: btn.implicitHeight
+    implicitWidth: aero ? orb.implicitWidth : capsule ? cap.implicitWidth : btn.implicitWidth
+    implicitHeight: aero ? orb.implicitHeight : btn.implicitHeight
 
     PxButton {
         id: btn
-        visible: !root.capsule
+        visible: !root.capsule && !root.aero
         anchors.fill: parent
         // screen readers (widgets/A11y.js): what this icon is
         Accessible.name: I18n.t("Пуск", "Start")
@@ -58,12 +61,116 @@ Item {
         onClicked: Shell.toggleStart(root.screenName)
     }
 
+    // Aero's Start orb: a blue glass ball, lit from above, the emblem in white — it glows as
+    // the pointer comes near and stays lit while Start is open
+    Item {
+        id: orb
+        visible: root.aero
+        anchors.fill: parent
+        implicitWidth: root.implicitHeight + Theme.u * 7
+        implicitHeight: Math.max(Theme.u * 15, Math.round(Theme.sizeTitle * 1.6))
+        readonly property bool hover: orbMouse.containsMouse
+        readonly property int d: Math.max(Theme.u * 8, Math.min(width - Theme.u * 4, height - Theme.u * 2))
+
+        Rectangle {
+            anchors.centerIn: ball
+            width: ball.width + Theme.u * 4
+            height: width
+            radius: width / 2
+            color: Theme.aeroGlow
+            opacity: orb.hover || root.open ? 0.95 : 0.45
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: Motion.ms(160)
+                }
+            }
+        }
+        Rectangle {
+            id: ball
+            anchors.centerIn: orb
+            width: orb.d
+            height: width
+            radius: width / 2
+            gradient: Gradient {
+                orientation: Gradient.Vertical
+                GradientStop {
+                    position: 0
+                    color: "#eaf9ff"
+                }
+                GradientStop {
+                    position: 0.14
+                    color: "#b8e6ff"
+                }
+                GradientStop {
+                    position: 0.52
+                    color: "#4fb2ee"
+                }
+                GradientStop {
+                    position: 0.8
+                    color: "#1668a6"
+                }
+                GradientStop {
+                    position: 1
+                    color: "#082f4f"
+                }
+            }
+            border.width: 1
+            border.color: Qt.rgba(1, 1, 1, 0.72)
+            scale: orb.hover ? 1.035 : 1
+            Behavior on scale {
+                NumberAnimation {
+                    duration: Motion.ms(140)
+                    easing.type: Easing.OutCubic
+                }
+            }
+            // the light caught on the top of the sphere
+            Rectangle {
+                x: 2
+                y: 2
+                width: parent.width - 4
+                height: parent.height * 0.46
+                radius: width / 2
+                gradient: Gradient {
+                    orientation: Gradient.Vertical
+                    GradientStop {
+                        position: 0
+                        color: Qt.rgba(1, 1, 1, 0.68)
+                    }
+                    GradientStop {
+                        position: 1
+                        color: "transparent"
+                    }
+                }
+            }
+            AngelLogo {
+                anchors.centerIn: parent
+                anchors.verticalCenterOffset: -Math.max(1, Theme.u * 0.2)
+                emblemOnly: true
+                aero: true
+                pixel: Math.max(1, Math.round(Theme.u * 0.9))
+            }
+        }
+        MouseArea {
+            id: orbMouse
+            anchors.fill: parent
+            hoverEnabled: true
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
+            cursorShape: Qt.PointingHandCursor
+            Accessible.role: Accessible.Button
+            Accessible.name: I18n.t("Пуск", "Start")
+            onClicked: e => {
+                if (e.button === Qt.LeftButton)
+                    Shell.toggleStart(root.screenName);
+            }
+        }
+    }
+
     // The capsule: a square left end, a stepped round right end, a one-pixel outline, a light
     // bevel top-left and a dark one bottom-right, the face in whole-pixel bands (no smooth
     // gradients). Drawn row by row so every edge lands on the art-pixel grid.
     Item {
         id: cap
-        visible: root.capsule
+        visible: root.capsule && !root.aero
         anchors.fill: parent
 
         Accessible.role: Accessible.Button

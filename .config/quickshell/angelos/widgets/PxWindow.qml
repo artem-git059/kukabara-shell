@@ -16,9 +16,11 @@ Item {
     property string skin: Config.settingsUi.skin === "windose" ? "windose" : ""
     readonly property bool windose: skin === "windose" && !hell
     readonly property bool streamSkin: skin === "stream" && !hell
+    // the Aero skin's glass window (Theme.aeroLook): a lit blue title bar, rounded glass
+    readonly property bool aero: !hell && Theme.aeroLook
     readonly property string settingsSkin: windose ? "windose" : streamSkin ? "stream" : "classic"
     // the window by day: the title a solid plate, a rule of the outline's colour under it
-    readonly property bool zine: Theme.zine && !hell && !windose && !streamSkin
+    readonly property bool zine: Theme.zine && !hell && !windose && !streamSkin && !aero
     property bool flamesLive: true         // (kept for plugins: hell's rim is still now, HellAmbient moves it)
     property bool trim: true               // hell's rim (a copy drawn over its twin leaves it to it)
 
@@ -65,9 +67,30 @@ Item {
         y: frame.inset + Theme.u
         width: root.width - 2 * x
         height: root.titleHeight
-        color: root.windose ? Theme.windoseRose : root.streamSkin ? Theme.streamPanel : root.hell ? (root.active ? Theme.mix(Theme.hellFaceAlt, Theme.hellRim, 0.25) : Theme.hellFace) : root.active ? (root.zine ? Theme.title1 : Theme.menuHeader) : Theme.faceAlt
-        // Windose: the candy gradient from pink to lilac
-        gradient: root.windose ? candy : null
+        color: root.aero ? "transparent" : root.windose ? Theme.windoseRose : root.streamSkin ? Theme.streamPanel : root.hell ? (root.active ? Theme.mix(Theme.hellFaceAlt, Theme.hellRim, 0.25) : Theme.hellFace) : root.active ? (root.zine ? Theme.title1 : Theme.menuHeader) : Theme.faceAlt
+        // Windose: the candy gradient from pink to lilac; Aero: the glass of a lit title bar
+        gradient: root.aero ? aeroTitle : root.windose ? candy : null
+        radius: root.aero ? Theme.aeroTitleRadius : 0
+        topLeftRadius: root.aero ? Theme.aeroTitleRadius : 0
+        topRightRadius: root.aero ? Theme.aeroTitleRadius : 0
+        bottomLeftRadius: 0
+        bottomRightRadius: 0
+        Gradient {
+            id: aeroTitle
+            orientation: Gradient.Vertical
+            GradientStop {
+                position: 0
+                color: Theme.aeroTitleHi
+            }
+            GradientStop {
+                position: 0.52
+                color: Theme.aeroTitleMid
+            }
+            GradientStop {
+                position: 1
+                color: Theme.aeroTitleLo
+            }
+        }
         Gradient {
             id: candy
             orientation: Gradient.Horizontal
@@ -79,6 +102,16 @@ Item {
                 position: 1
                 color: Theme.windoseLavender
             }
+        }
+        // Aero's gleam: the white line catching the top edge of the glass
+        Rectangle {
+            visible: root.aero
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: 1
+            height: 1
+            color: Qt.alpha("#ffffff", 0.55)
         }
 
         MouseArea {
@@ -97,11 +130,11 @@ Item {
             PxIcon {
                 name: root.icon
                 anchors.verticalCenter: parent.verticalCenter
-                ink: root.hell ? Theme.hellEdge : root.windose ? Theme.windoseInk : Theme.edge
-                fill: root.hell ? Theme.hellTextDim : root.windose ? Theme.windoseSticker : "#ffffff"
-                light: root.hell ? Theme.hellText : root.windose ? Theme.windoseLavender : Theme.accent3
-                fill2: root.hell ? Theme.hellRim : root.windose ? Theme.windoseRose : "#ffffff"
-                body: root.hell ? Theme.hellFace : root.windose ? Theme.windoseSticker : "#ffffff"
+                ink: root.aero ? Theme.aeroTitleText : root.hell ? Theme.hellEdge : root.windose ? Theme.windoseInk : Theme.edge
+                fill: root.aero ? "#dff2ff" : root.hell ? Theme.hellTextDim : root.windose ? Theme.windoseSticker : "#ffffff"
+                light: root.aero ? "#ffffff" : root.hell ? Theme.hellText : root.windose ? Theme.windoseLavender : Theme.accent3
+                fill2: root.aero ? "#9fd8ff" : root.hell ? Theme.hellRim : root.windose ? Theme.windoseRose : "#ffffff"
+                body: root.aero ? "#1a4f78" : root.hell ? Theme.hellFace : root.windose ? Theme.windoseSticker : "#ffffff"
                 bad: root.hell ? Theme.hellAccent : Theme.danger
             }
             // stream: the red LIVE pill before the title
@@ -127,10 +160,10 @@ Item {
                 readonly property bool gothic: root.hell && Theme.latin(root.title)
                 font.family: gothic ? Theme.fontHell : root.compact ? Theme.fontBody : Theme.fontTitle
                 font.pixelSize: gothic ? Theme.hellPx(Theme.fs) : root.compact ? Theme.sizeBody : Theme.sizeTitle
-                font.bold: root.windose
-                color: root.windose ? Theme.text : root.streamSkin ? Theme.streamText : root.hell ? Theme.hellText : root.zine && root.active ? Theme.titleText : Theme.text
+                font.bold: root.windose || root.aero
+                color: root.aero ? Theme.aeroTitleText : root.windose ? Theme.text : root.streamSkin ? Theme.streamText : root.hell ? Theme.hellText : root.zine && root.active ? Theme.titleText : Theme.text
                 style: Text.Normal
-                styleColor: Qt.alpha(Theme.edge, 0.55)
+                styleColor: root.aero ? Qt.alpha("#000000", 0.4) : Qt.alpha(Theme.edge, 0.55)
                 anchors.verticalCenter: parent.verticalCenter
                 width: Math.min(implicitWidth, bar.width - buttons.width - Theme.u * 30)
                 elide: Text.ElideRight
@@ -145,7 +178,7 @@ Item {
             spacing: Theme.u * 2
 
             Row {
-                visible: root.decor && !root.compact
+                visible: root.decor && !root.compact && !root.aero
                 spacing: Theme.u
                 anchors.verticalCenter: parent.verticalCenter
                 rightPadding: Theme.u * 3
@@ -194,14 +227,14 @@ Item {
                         sunken: tbMouse.pressed
                         hell: root.hell
                         edgeColor: root.windose ? Theme.windoseLine : root.hell ? Theme.hellEdge : Theme.edge
-                        color: tbMouse.containsMouse && tb.modelData.id === "close" ? (root.hell ? Theme.hellBlood : Theme.danger) : root.windose ? Theme.windoseSticker : root.streamSkin ? Theme.streamBg : root.hell ? Theme.hellFace : Theme.face
+                        color: root.aero ? (tbMouse.containsMouse ? (tb.modelData.id === "close" ? Theme.danger : Qt.rgba(1, 1, 1, 0.22)) : Qt.rgba(1, 1, 1, 0.06)) : tbMouse.containsMouse && tb.modelData.id === "close" ? (root.hell ? Theme.hellBlood : Theme.danger) : root.windose ? Theme.windoseSticker : root.streamSkin ? Theme.streamBg : root.hell ? Theme.hellFace : Theme.face
                     }
                     PxIcon {
                         anchors.centerIn: parent
                         anchors.horizontalCenterOffset: tbMouse.pressed ? Theme.u : 0
                         name: tb.modelData.icon
                         pixel: Math.max(1, Math.floor(Theme.u * (root.compact ? 0.5 : 1)))
-                        ink: tbMouse.containsMouse && tb.modelData.id === "close" ? "#ffffff" : root.windose ? Theme.windoseInk : root.streamSkin ? Theme.streamText : root.hell ? Theme.hellText : (Theme.dark ? Theme.text : Theme.edge)
+                        ink: root.aero ? (tbMouse.containsMouse && tb.modelData.id === "close" ? "#ffffff" : Theme.aeroTitleText) : tbMouse.containsMouse && tb.modelData.id === "close" ? "#ffffff" : root.windose ? Theme.windoseInk : root.streamSkin ? Theme.streamText : root.hell ? Theme.hellText : (Theme.dark ? Theme.text : Theme.edge)
                     }
                     MouseArea {
                         id: tbMouse
