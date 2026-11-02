@@ -14,6 +14,7 @@ Item {
     readonly property var names: ({
             "classic": [I18n.t("Классика angelOS", "angelOS classic"), I18n.t("пиксельные окна Win98", "Win98 pixel windows")],
             "win10": ["Win10", I18n.t("классика с плитками Windows 10", "classic with Windows 10's tiles")],
+            "aero": ["Aero", I18n.t("стекло Windows 7", "Windows 7's glass")],
             "windose": ["Windose ♡", I18n.t("ОС из NEEDY GIRL OVERDOSE", "NEEDY GIRL OVERDOSE's OS")],
             "stream": [I18n.t("Стрим", "Stream"), I18n.t("как эфир Ame: LIVE и чат", "like Ame's stream: LIVE and chat")],
             "goldengate": ["Golden Gate", I18n.t("весь стол как macOS 27", "the whole desktop like macOS 27")]
@@ -98,6 +99,151 @@ Item {
                     width: parent.width * 0.12
                     height: Math.max(2, Theme.u)
                     color: Theme.accent
+                }
+            }
+        }
+        // aero: a glass desktop — a blue sky, a lit window, the glass taskbar and Start orb
+        Rectangle {
+            visible: root.skin === "aero"
+            anchors.fill: parent
+            radius: Math.max(2, Theme.aeroRadius / 2)
+            gradient: Gradient {
+                orientation: Gradient.Vertical
+                GradientStop {
+                    position: 0
+                    color: Theme.dark ? "#1f6fa8" : "#9fd4f2"
+                }
+                GradientStop {
+                    position: 0.62
+                    color: Theme.dark ? "#0d3554" : "#4f9fd2"
+                }
+                GradientStop {
+                    position: 1
+                    color: Theme.dark ? "#071b2c" : "#2b6f9e"
+                }
+            }
+            // the window
+            Rectangle {
+                x: parent.width * 0.08
+                y: parent.height * 0.12
+                width: parent.width * 0.62
+                height: parent.height * 0.6
+                radius: Math.max(2, Theme.aeroRadius / 2)
+                color: Qt.rgba(Theme.dark ? 0.06 : 0.55, Theme.dark ? 0.14 : 0.7, Theme.dark ? 0.23 : 0.85, 0.82)
+                border.width: 1
+                border.color: Theme.aeroRim
+                // the lit title bar
+                Rectangle {
+                    width: parent.width
+                    height: parent.height * 0.19
+                    topLeftRadius: parent.radius
+                    topRightRadius: parent.radius
+                    gradient: Gradient {
+                        orientation: Gradient.Vertical
+                        GradientStop {
+                            position: 0
+                            color: Theme.aeroTitleHi
+                        }
+                        GradientStop {
+                            position: 0.55
+                            color: Theme.aeroTitleMid
+                        }
+                        GradientStop {
+                            position: 1
+                            color: Theme.aeroTitleLo
+                        }
+                    }
+                    Row {
+                        anchors.right: parent.right
+                        anchors.rightMargin: Math.max(2, pic.width * 0.025)
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: Math.max(1, pic.width * 0.015)
+                        Repeater {
+                            model: 3
+                            Rectangle {
+                                required property int index
+                                width: Math.max(2, pic.width * 0.03)
+                                height: width
+                                radius: width / 2
+                                color: index === 2 ? Qt.rgba(1, 0.35, 0.3, 0.85) : Qt.rgba(1, 1, 1, 0.3)
+                            }
+                        }
+                    }
+                }
+                // the gloss caught on the glass
+                Rectangle {
+                    y: parent.height * 0.19
+                    width: parent.width
+                    height: parent.height * 0.22
+                    gradient: Gradient {
+                        orientation: Gradient.Vertical
+                        GradientStop {
+                            position: 0
+                            color: Qt.rgba(1, 1, 1, 0.26)
+                        }
+                        GradientStop {
+                            position: 1
+                            color: "transparent"
+                        }
+                    }
+                }
+            }
+            // the glass taskbar
+            Rectangle {
+                anchors.bottom: parent.bottom
+                width: parent.width
+                height: parent.height * 0.18
+                color: Qt.rgba(Theme.dark ? 0.03 : 0.1, Theme.dark ? 0.1 : 0.22, Theme.dark ? 0.18 : 0.35, 0.82)
+                border.width: 1
+                border.color: Qt.rgba(1, 1, 1, 0.28)
+                // the Start orb, glowing
+                Rectangle {
+                    x: parent.width * 0.03
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: parent.height * 0.72
+                    height: width
+                    radius: width / 2
+                    color: Theme.aeroGlow
+                    Rectangle {
+                        anchors.centerIn: parent
+                        width: parent.width * 0.86
+                        height: width
+                        radius: width / 2
+                        gradient: Gradient {
+                            orientation: Gradient.Vertical
+                            GradientStop {
+                                position: 0
+                                color: "#d9f1ff"
+                            }
+                            GradientStop {
+                                position: 0.45
+                                color: "#4bb8ff"
+                            }
+                            GradientStop {
+                                position: 1
+                                color: "#0b4a75"
+                            }
+                        }
+                        border.width: 1
+                        border.color: Qt.rgba(1, 1, 1, 0.7)
+                    }
+                }
+                Row {
+                    x: parent.width * 0.16
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: Math.max(2, pic.width * 0.025)
+                    Repeater {
+                        model: 5
+                        Rectangle {
+                            required property int index
+                            width: Math.max(2, pic.width * 0.055)
+                            height: width
+                            radius: Math.max(1, width * 0.15)
+                            color: index === 0 ? Qt.rgba(1, 1, 1, 0.42) : Qt.rgba(1, 1, 1, 0.2)
+                            border.width: 1
+                            border.color: Qt.rgba(1, 1, 1, 0.35)
+                        }
+                    }
                 }
             }
         }

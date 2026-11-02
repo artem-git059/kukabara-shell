@@ -552,10 +552,13 @@ PxBox {
         width: parent.width
         height: root.footerH
         color: Qt.alpha(Theme.menuHeader, 0.55)
+        // Aero: the glass pane's rounded foot, and a lit rim above the plate
+        bottomLeftRadius: Theme.aeroLook ? Theme.aeroTitleRadius : 0
+        bottomRightRadius: Theme.aeroLook ? Theme.aeroTitleRadius : 0
         Rectangle {
             width: parent.width
             height: root.iu
-            color: Theme.menuBorder
+            color: Theme.aeroLook ? Theme.aeroRimSoft : Theme.menuBorder
         }
         StartUser {
             visible: root.prefs.user

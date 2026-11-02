@@ -187,6 +187,26 @@ PxBox {
         width: parent.width
         height: root.px(27)
         color: root.prefs.accent ? Theme.mix(Theme.menuHeader, root.prefs.accentColor, 0.45) : Theme.menuHeader
+        // Aero: the brand band is the lit glass of a title bar, rounded with the pane
+        gradient: Theme.aeroLook ? aeroBrand : null
+        topLeftRadius: Theme.aeroLook ? Theme.aeroTitleRadius : 0
+        topRightRadius: Theme.aeroLook ? Theme.aeroTitleRadius : 0
+        Gradient {
+            id: aeroBrand
+            orientation: Gradient.Vertical
+            GradientStop {
+                position: 0
+                color: Theme.aeroTitleHi
+            }
+            GradientStop {
+                position: 0.55
+                color: Theme.aeroTitleMid
+            }
+            GradientStop {
+                position: 1
+                color: Theme.aeroTitleLo
+            }
+        }
         AngelLogo {
             x: Math.floor((parent.width - width) / 2)
             y: Math.floor((parent.height - height) / 2)

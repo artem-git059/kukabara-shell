@@ -81,8 +81,8 @@
 </div>
 
 ```bash
-git clone https://github.com/MixaDoDs/AngelOS-Dotfiles.git
-cd AngelOS-Dotfiles
+git clone https://github.com/artem-git059/kukabara-shell.git
+cd kukabara-shell
 ./install.sh
 ```
 

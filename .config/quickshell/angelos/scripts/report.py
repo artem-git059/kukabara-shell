@@ -4,14 +4,15 @@
   report.py [--out DIR] [--open] [--json]
 
 Collects versions (angelOS, Quickshell, Qt, niri, kernel, GPU), the shell's
-service state and restarts, what it costs (CPU, memory, helpers) and daemons
-running twice, the log of the running shell, the last Quickshell crash
-reports, the niri config check, plugins and the settings — with personal
-bits taken out: the home path and user name become ~ and <user>, launcher
-history, workspace names, plugin data and free texts are left out. Nothing is
-sent anywhere; the archive lands in ~/ (or --out) and the path is printed with
-the link for a new GitHub issue. --open shows it in the file manager and opens
-the issue form; --json prints {"archive", "issue"} for the settings page.
+service state and restarts, the login-to-shell chain (systemd-analyze), what it
+costs (CPU, memory, helpers) and daemons running twice, the log of the running
+shell, the last Quickshell crash reports, the niri config check, plugins and the
+settings — with personal bits taken out: the home path and user name become ~
+and <user>, launcher history, workspace names, plugin data and free texts are
+left out. Nothing is sent anywhere; the archive lands in ~/ (or --out) and the
+path is printed with the link for a new GitHub issue. --open shows it in the
+file manager and opens the issue form; --json prints {"archive", "issue"} for
+the settings page.
 """
 import argparse
 import datetime
@@ -32,7 +33,7 @@ USER = getpass.getuser()
 CONF = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config"))
 CACHE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
 SHELL_DIR = CONF / "quickshell/angelos"
-DEFAULT_REPO = "https://github.com/MixaDoDs/AngelOS-Dotfiles"
+DEFAULT_REPO = "https://github.com/artem-git059/kukabara-shell"
 
 
 def run(cmd, timeout=15, env=None):
@@ -183,6 +184,16 @@ def load(seconds=2):
     return "\n".join(lines)
 
 
+def startup():
+    """The way from login to the shell. Issue #103: 15–20 s passed before angelos.service even
+    started, which the shell's own log cannot show; the user manager's chain can."""
+    lines = ["systemd-analyze --user critical-chain angelos.service", ""]
+    lines.append(run(["systemd-analyze", "--user", "critical-chain", "angelos.service"]))
+    lines += ["", "systemd-analyze --user blame", ""]
+    lines.append(run(["systemd-analyze", "--user", "blame"]))
+    return "\n".join(lines)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(Path.home()))
@@ -200,6 +211,7 @@ def main():
                              run(["journalctl", "--user", "-u", "angelos.service", "-n", "300", "--no-pager", "-o", "short-iso"])),
         "shell-log.txt": scrub(run([shutil.which("qs") or "qs", "log", "-c", "angelos", "--no-color", "-t", "4000"], timeout=20)),
         "load.txt": scrub(load()),
+        "startup.txt": scrub(startup()),
         "niri-validate.txt": scrub(run(["niri", "validate"])),
         "settings.json": settings(),
         "plugins.txt": scrub("\n".join(sorted(p.name for p in (CONF / "angelos/plugins").glob("*") if p.is_dir())) or "(none)"),

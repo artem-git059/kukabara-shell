@@ -152,7 +152,7 @@ Singleton {
         })
     readonly property string dayLookId: Config.appearance.dayLook in dayLooks ? Config.appearance.dayLook : "dusk"
     // the look on now: null at night, in the Golden Gate skin and for "scheme"
-    readonly property var dayLook: night || macLook || dayLookId === "scheme" ? null : dayLooks[dayLookId]
+    readonly property var dayLook: night || macLook || aeroLook || dayLookId === "scheme" ? null : dayLooks[dayLookId]
 
     function generated(isDark) {
         // the accent "from the wallpaper" is heaven's only: hell wears hell's own, one for every
@@ -503,6 +503,10 @@ Singleton {
     // Qt, the terminals, Telegram, Steam, the browsers, the shell's own pixel windows) looks like
     // a Mac too. services/GoldenGate takes its accent from here.
     readonly property bool macLook: Config.ready && Config.settingsUi.skin === "goldengate" && realm !== "hell"
+    // ---- the Aero skin (Config.settingsUi.skin "aero"): Windows 7's glass ----
+    // A palette of its own, as Golden Gate's — dark glass at night, frosted daylight by day —
+    // and the blue that every Aero surface glows in. Hell and Golden Gate keep their own.
+    readonly property bool aeroLook: Config.ready && Config.settingsUi.skin === "aero" && realm !== "hell" && !macLook
     // a palette with its own paper (a named scheme, a day look) over the legacy roles: what it
     // doesn't say — the outline, the shadow, the 16 colours — comes from what it does
     function baseOf(fl, isDark, isNight) {
@@ -579,7 +583,69 @@ Singleton {
             // Terminal.app's "Basic" colours
             ansi: ["#000000", "#990000", "#00a600", "#999900", "#0000b2", "#b200b2", "#00a6b2", "#bfbfbf", "#666666", "#e50000", "#00d900", "#e5e500", "#0000ff", "#e500e5", "#00e5e5", "#e5e5e5"]
         })
-    readonly property var base: macLook ? macBase : baseOf(flavor, dark, night)
+    // ---- Aero's palette: the glass of Windows 7's default Sky theme ----
+    // Dark: deep blue glass, a sky-blue accent, the title bar a lit gradient. Light: frosted
+    // daylight, white rims, the same blue. The wallpaper generated palette is ignored (as
+    // Golden Gate's is): Aero is Aero whatever is behind it.
+    readonly property var aeroBase: dark ? ({
+            desk: "#08131f",
+            face: "#0f2335",
+            faceAlt: "#17344e",
+            sunken: "#0a1a29",
+            text: "#eaf6ff",
+            textDim: "#91b3ce",
+            titleText: "#ffffff",
+            hi: "#5f97bf",
+            lo: "#050f19",
+            edge: "#03101b",
+            accent: "#4bb8ff",
+            accent2: "#1a7fd4",
+            accent3: "#9fe1ff",
+            accent4: "#c8ecff",
+            title1: "#0a3a5d",
+            title2: "#3d9ad8",
+            danger: "#ff5f5f",
+            ok: "#5fd68a",
+            selectText: "#ffffff",
+            shadow: "#00060d",
+            ansi: ["#0a1219", "#d85c5c", "#5fbf72", "#bdae55", "#4b8bd6", "#b06bc8", "#4bb8d6", "#c3d6e4", "#5f7d94", "#ff7d7d", "#8fe0a0", "#e8d77a", "#7db8ff", "#d99bea", "#8fe6ff", "#eaf6ff"]
+        }) : ({
+            desk: "#cfe3f2",
+            face: "#e6f3fc",
+            faceAlt: "#cfe5f7",
+            sunken: "#f7fcff",
+            text: "#0e2740",
+            textDim: "#567b96",
+            titleText: "#10304a",
+            hi: "#ffffff",
+            lo: "#9dbdd6",
+            edge: "#7aa0bd",
+            accent: "#1279c6",
+            accent2: "#0b5c9e",
+            accent3: "#47a8e8",
+            accent4: "#7cc4f2",
+            title1: "#b6dcf4",
+            title2: "#5ba7dd",
+            danger: "#d63a3a",
+            ok: "#1f9d57",
+            selectText: "#ffffff",
+            shadow: "#0b2233",
+            ansi: ["#0e2740", "#b83030", "#1f7d3f", "#967d14", "#1a5fa8", "#8a3f9e", "#12788f", "#8fa9bb", "#567b96", "#d05050", "#38a85c", "#c1a32c", "#3d86d6", "#a965bd", "#2fa9c4", "#0e2740"]
+        })
+    // Aero's glass: a rim of light on the edge, a gloss over the top, a soft blue glow under
+    // the floating surfaces; the radius is Win7's gentle one, not the pixel corner.
+    readonly property color aeroRim: dark ? Qt.rgba(0.76, 0.92, 1, 0.5) : Qt.rgba(1, 1, 1, 0.9)
+    readonly property color aeroRimSoft: dark ? Qt.rgba(0.55, 0.8, 1, 0.24) : Qt.rgba(0.22, 0.5, 0.72, 0.3)
+    readonly property color aeroGloss: Qt.rgba(1, 1, 1, dark ? 0.2 : 0.5)
+    readonly property color aeroGlow: Qt.alpha(accent, dark ? 0.4 : 0.24)
+    readonly property int aeroRadius: Math.max(4, Math.round(u * 2.5))
+    readonly property int aeroTitleRadius: Math.max(3, aeroRadius - 1)
+    // the title bar: lit from above, deep at the foot, with a white gleam along its top edge
+    readonly property color aeroTitleHi: dark ? "#63b9ea" : "#eef9ff"
+    readonly property color aeroTitleMid: dark ? "#2a7db8" : "#a8d3ef"
+    readonly property color aeroTitleLo: dark ? "#0a3354" : "#6aabda"
+    readonly property color aeroTitleText: dark ? "#ffffff" : "#0d2b42"
+    readonly property var base: macLook ? macBase : aeroLook ? aeroBase : baseOf(flavor, dark, night)
     readonly property color menuSurface: mix(face, accent, dark ? 0.08 : 0.04)
     readonly property color menuHeader: mix(faceAlt, accent, dark ? 0.16 : 0.10)
     readonly property color menuBorder: mix(faceAlt, accent, 0.32)
@@ -594,16 +660,16 @@ Singleton {
     readonly property color text: highContrast ? mix(base.text, dark ? "#ffffff" : "#000000", 0.6) : base.text
     readonly property color textDim: highContrast ? mix(base.textDim, text, 0.7) : base.textDim
     // on a window's title plate by day (PxWindow): the text colour if it reads there
-    readonly property color titleText: zine ? inkOn(title1) : base.text
+    readonly property color titleText: aeroLook ? aeroTitleText : zine ? inkOn(title1) : base.text
     readonly property color hi: base.hi
     readonly property color lo: highContrast ? mix(base.lo, dark ? "#ffffff" : "#000000", 0.35) : base.lo
     readonly property color edge: highContrast ? mix(base.edge, dark ? "#ffffff" : "#000000", 0.35) : base.edge
-    readonly property color accent: macLook ? macAccent : flavor.accent
-    readonly property color accent2: macLook ? macBase.accent2 : flavor.accent2
+    readonly property color accent: macLook ? macAccent : aeroLook ? aeroBase.accent : flavor.accent
+    readonly property color accent2: macLook ? macBase.accent2 : aeroLook ? aeroBase.accent2 : flavor.accent2
     readonly property color accent3: base.accent3
     readonly property color accent4: base.accent4
-    readonly property color title1: macLook ? macAccent : flavor.title1
-    readonly property color title2: macLook ? macBase.title2 : flavor.title2
+    readonly property color title1: macLook ? macAccent : aeroLook ? aeroBase.title1 : flavor.title1
+    readonly property color title2: macLook ? macBase.title2 : aeroLook ? aeroBase.title2 : flavor.title2
     readonly property color danger: base.danger
     readonly property color ok: base.ok
     readonly property color select: accent
@@ -611,7 +677,7 @@ Singleton {
     readonly property color selectText: zine ? (luminance(accent) > 0.3 ? "#17141f" : "#ffffff") : base.selectText
     readonly property color shadow: base.shadow
     // by day the interface is a zine: flat boxes (widgets/PxBox), an outline, a solid shadow
-    readonly property bool zine: !night && !macLook
+    readonly property bool zine: !night && !macLook && !aeroLook
     readonly property real shadowAlpha: zine ? (dayLook && dayLook.shadowAlpha || 1) : dark ? 0.55 : 0.35
     // the Win10 skin (Config.settingsUi.skin "win10", the 2026-10-27 references): angelOS classic
     // with Windows 10's taskbar buttons, RetroUI's bubbles, hard shadows and striped progress, and
@@ -622,8 +688,9 @@ Singleton {
     readonly property color popShadow: win10 ? shadow : Qt.alpha(shadow, shadowAlpha)
     readonly property var ansi: base.ansi
 
-    // translucent panel background (blur shows through)
-    readonly property real panelAlpha: Math.min(dayLook && dayLook.alpha || 1, Config.appearance.blur ? Config.appearance.opacity : 1)
+    // translucent panel background (blur shows through). Aero is glass: the configured opacity,
+    // a little under opaque so the blur and the rim read but the blue tint still holds
+    readonly property real panelAlpha: aeroLook ? (Config.appearance.blur ? Math.min(Config.appearance.opacity, 0.88) : 0.94) : Math.min(dayLook && dayLook.alpha || 1, Config.appearance.blur ? Config.appearance.opacity : 1)
     readonly property color panel: Qt.alpha(face, panelAlpha)
     readonly property color panelAlt: Qt.alpha(faceAlt, panelAlpha)
 

@@ -43,9 +43,11 @@ say() { printf '» %s\n' "$*"; }
 # the messages in the shell's language (ANGELOS_LANG, Settings → Account), else the session's
 case "${ANGELOS_LANG:-${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}}" in ru*) UI=ru ;; *) UI=en ;; esac
 _() { if [[ "$UI" == ru ]]; then printf '%s' "$2"; else printf '%s' "$1"; fi; }
-OFFICIAL="https://github.com/MixaDoDs/AngelOS-Dotfiles"
-# the name before 2026-09-30: installs cloned from it keep it as their origin (GitHub redirects)
-LEGACY="https://github.com/MixaDoDs/PixelStreetArt_Dotfiles_Niri"
+# this fork is the only source an update may come from: the original angelOS repository
+# no longer feeds this system (kukabara-shell is the fork's name since 2026-11-02)
+OFFICIAL="https://github.com/artem-git059/kukabara-shell"
+# the fork's earlier name: installs cloned from it keep it as their origin (GitHub redirects)
+LEGACY="https://github.com/artem-git059/AngelOS-Dotfiles"
 STATE="${XDG_STATE_HOME:-$HOME/.local/state}/angelos"
 CONF="${XDG_CONFIG_HOME:-$HOME/.config}"
 TXN="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)/update-txn.py"

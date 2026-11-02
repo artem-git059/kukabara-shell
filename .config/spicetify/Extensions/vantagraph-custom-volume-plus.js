@@ -91,15 +91,33 @@
   const volumeBar = await waitForEl("[data-testid='volume-bar']");
   const sliderContainer = await waitForEl(".volume-bar__slider-container", volumeBar);
 
-  // 4. enforce 250px width
+  // 4. enforce 250px width while the window has room for it; below Spotify's own
+  //    1200px breakpoint give the width back (its layout keeps the right-hand
+  //    buttons out of the player controls only when the bar is not forced wide)
+  const wide = window.matchMedia("(min-width: 1200px)");
   function enforceBarWidth() {
-    volumeBar.style.setProperty("width", "250px", "important");
-    volumeBar.style.setProperty("min-width", "250px", "important");
-    volumeBar.style.setProperty("transition", "none", "important");
-    sliderContainer.style.setProperty("width", "100%", "important");
-    sliderContainer.style.setProperty("transition", "none", "important");
+    if (wide.matches) {
+      volumeBar.style.setProperty("width", "250px", "important");
+      volumeBar.style.setProperty("min-width", "250px", "important");
+      volumeBar.style.setProperty("transition", "none", "important");
+      sliderContainer.style.setProperty("width", "100%", "important");
+      sliderContainer.style.setProperty("transition", "none", "important");
+    } else {
+      // only our own inline values: whatever Spotify itself put there stays
+      if (volumeBar.style.getPropertyValue("width") === "250px")
+        volumeBar.style.removeProperty("width");
+      if (volumeBar.style.getPropertyValue("min-width") === "250px")
+        volumeBar.style.removeProperty("min-width");
+      if (volumeBar.style.getPropertyValue("transition") === "none")
+        volumeBar.style.removeProperty("transition");
+      if (sliderContainer.style.getPropertyValue("width") === "100%")
+        sliderContainer.style.removeProperty("width");
+      if (sliderContainer.style.getPropertyValue("transition") === "none")
+        sliderContainer.style.removeProperty("transition");
+    }
   }
   enforceBarWidth();
+  wide.addEventListener("change", enforceBarWidth);
   const barObserver = new MutationObserver(enforceBarWidth);
   barObserver.observe(volumeBar,       { attributes: true, attributeFilter: ["style"] });
   barObserver.observe(sliderContainer, { attributes: true, attributeFilter: ["style"] });

@@ -507,7 +507,7 @@ JsonAdapter {
 
     property JsonObject updates: JsonObject {
         property string repo: ""            // "" = found automatically (installer marker, ~/AngelOS-Dotfiles)
-        property bool autoCheck: true       // look for updates once a day, never installs by itself
+        property bool autoCheck: false      // no daily dotfiles check: this fork is detached from the original angelOS repository (Settings → Updates still checks by hand)
         property string lastCheck: ""
         property int available: 0
         property int paperSeen: 0           // the release whose «what's new» paper was put away (ChangelogPaper)
@@ -875,11 +875,14 @@ JsonAdapter {
         property string view: "win11"
         property bool win11Once: false      // an install still on the old default (sidebar) moved to win11 once
         property string viewPicked: ""      // the view picked in the setup wizard — the player's first choice, kept when changed later
-        property string skin: "classic"     // classic angelOS | win10 (classic + Windows 10 tiles, Theme.win10) | Windose desktop | stream studio | goldengate
+        property string skin: "classic"     // classic angelOS | win10 (classic + Windows 10 tiles, Theme.win10) | aero (Windows 7 glass, Theme.aeroLook) | Windose desktop | stream studio | goldengate
         // the Settings window's look (services/SettingsLook): win11 (the Windows 11 view, the default
         // while P5 is being redone) | p5 (the P5 window over the desk); asked once (SettingsLookPrompt)
         property string look: "win11"
         property bool lookAsked: false
+        // the P5 window's character stands as a flat silhouette at rest (restSolid) and
+        // wakes into her colours; off: always in colour (issue #132)
+        property bool p5Silhouette: true
         property bool skinChosen: false     // the look was picked (the wizard, or the banner on the settings home)
         property var usage: ({})            // page id -> visits; "Everyday" on the home page follows it
         property var searchHistory: []      // what was searched and opened, newest first: [{q, title, page, icon}] (SettingsView: a click into the empty search shows it)
