@@ -99,7 +99,8 @@ QtObject {
 
 Готовые примеры: `plugins/web-search` (префикс `web`, фавиконки, MRU),
 `plugins/claude-companion` (префикс `claude`), `plugins/codex-companion`
-(префикс `codex`) и `plugins/osu-mini` (`osu`).
+(префикс `codex`), `plugins/opencode-companion` (префикс `oc`, токены из
+локальной `opencode.db`) и `plugins/osu-mini` (`osu`).
 
 Имена файлов плагина не должны совпадать с синглтонами `qs.services`
 (`Sidebar`, `Idle`, `Fonts`, `Capture`, `MetaTap`, …): QML путает типы.
