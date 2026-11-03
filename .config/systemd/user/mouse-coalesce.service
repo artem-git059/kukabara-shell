@@ -1,6 +1,6 @@
 [Unit]
 ConditionEnvironment=XDG_CURRENT_DESKTOP=niri
-Description=angelOS: a fast mouse thinned down while niri-game-mode sees a game (gaming.mouseRate)
+Description=kukabara: a fast mouse thinned down while niri-game-mode sees a game (gaming.mouseRate)
 PartOf=graphical-session.target
 After=graphical-session.target
 

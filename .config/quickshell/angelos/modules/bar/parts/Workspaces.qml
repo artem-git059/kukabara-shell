@@ -153,7 +153,7 @@ Item {
                     anchors.fill: parent
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
-                    // on the focused screen through angelOS (animated transitions)
+                    // on the focused screen through kukabara (animated transitions)
                     onClicked: cell.modelData.output === Niri.focusedOutput ? WorkspaceAnim.go(String(cell.modelData.idx)) : Niri.focusWorkspace(cell.modelData.id)
                 }
             }

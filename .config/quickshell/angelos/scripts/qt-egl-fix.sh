@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# angelOS: smooth animations on the NVIDIA proprietary driver.
+# kukabara: smooth animations on the NVIDIA proprietary driver.
 #
 # Qt ≤ 6.11 turns the threaded render loop off on NVIDIA (QTBUG-95817) and Qt
 # Quick falls back to the "basic" loop: a 16 ms timer, no vsync, and every

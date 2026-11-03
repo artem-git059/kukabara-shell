@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
-# angelOS UI self-test, offscreen (no compositor, no windows on screen; runs in CI):
+# kukabara UI self-test, offscreen (no compositor, no windows on screen; runs in CI):
 #   every settings page in the simple view and in Expert, every preview scene,
 #   settings search speed, the helper's sprite rig, a right click into a window's
 #   corner pixel (the Qt crash RightClickGuard works around), plus static checks:
 #   every window has a RightClickGuard, no "X is not a type", binding loops, JS
 #   errors or missing images in the log.
 #
-#   scripts/test-ui.sh [angelOS dir]      exit 0 = all good
+#   scripts/test-ui.sh [kukabara dir]      exit 0 = all good
 #   ANGELOS_TEST_LOG=file keeps the full log, ANGELOS_TEST_SHOTS=dir saves pictures (Alt+Tab styles)
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/.."}" && pwd)"
-[[ -f "$DIR/shell.qml" && -f "$DIR/tests/ui/Driver.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" && -f "$DIR/tests/ui/Driver.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 fail=0
 ok()  { printf '  ✓ %s\n' "$*"; }
 bad() { printf '  ✕ %s\n' "$*"; fail=1; }
 
-# quickshell: the system one, else the local copy angelOS installs into ~/.local/opt
+# quickshell: the system one, else the local copy kukabara installs into ~/.local/opt
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"
 if [[ ! -x /usr/bin/quickshell && -x "$HOME/.local/opt/quickshell/usr/bin/quickshell" ]]; then
@@ -25,7 +25,7 @@ if [[ ! -x /usr/bin/quickshell && -x "$HOME/.local/opt/quickshell/usr/bin/quicks
 fi
 [[ -x "$QS" ]] || { echo "quickshell not found"; exit 2; }
 
-echo "» angelOS UI self-test: $DIR"
+echo "» kukabara UI self-test: $DIR"
 
 # the static checks (windows guarded, overlays' input, imports, .exe, python, the lens copy): the
 # same ones qml-check runs before every restart, so a change that breaks them is seen there first
@@ -34,7 +34,7 @@ if out=$("$DIR/scripts/static-checks.sh" "$DIR" 2>&1); then printf '%s\n' "$out"
 # the text-layout checks need real glyphs: with no system font at all (a bare CI
 # image) Russian labels have no width, and toggle-wrap fails for no visible reason
 if command -v fc-list >/dev/null && [[ -z "$(fc-list 2>/dev/null | head -n1)" ]]; then
-  bad "no system fonts (fc-list is empty): install noto-fonts, angelOS's Cyrillic fallback"
+  bad "no system fonts (fc-list is empty): install noto-fonts, kukabara's Cyrillic fallback"
 fi
 
 # a short runtime dir: Quickshell's IPC socket path must fit in 108 bytes
@@ -258,7 +258,7 @@ result keys "screenshot keys: IPC capture/captureOn/circle, classic, old \"circl
 result capture "screenshot saving: the part pixel-exact, month folder, clipboard, notification" "screenshot saving" 15
 result capture_regions "screenshot areas: windows, pictures side by side, text blocks, cards, shadows, edges to the pixel, < 400 ms" "screenshot areas" 10
 result island "island search: search and Lens in the island, ↗ hands the current page to the browser, browser when off" "island search" 15
-# Lens in angelOS's own window (tests/lens, offline): the page reader over pages made after the
+# Lens in kukabara's own window (tests/lens, offline): the page reader over pages made after the
 # spec, the window through every state
 # the stream's chat on screen (tests/streamchat, offline): a chat reader's log → the Halo, the cats
 result streamchat "stream chat: the follower, the Halo's capsule, paid and regular, the cats' queue" "stream chat" 15

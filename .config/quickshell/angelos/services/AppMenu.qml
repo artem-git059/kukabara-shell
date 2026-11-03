@@ -36,8 +36,8 @@ Singleton {
     readonly property int pid: window && window.pid ? window.pid : 0
     readonly property string appId: window ? String(window.app_id || "") : ""
     readonly property var entry: appId ? (DesktopEntries.byId(appId) || DesktopEntries.heuristicLookup(appId)) : null
-    // angelOS's own Settings window: macOS's System Settings here, with menus of its own
-    readonly property bool shellSettings: !!window && appId === "org.quickshell" && String(window.title || "").indexOf("angelOS") === 0
+    // kukabara's own Settings window: macOS's System Settings here, with menus of its own
+    readonly property bool shellSettings: !!window && appId === "org.quickshell" && String(window.title || "").indexOf("kukabara") === 0
     // no window in front (the desktop): the file manager's menus, as a Mac shows Finder's
     readonly property var filesEntry: {
         const d = DefaultApps.data && DefaultApps.data.files ? String(DefaultApps.data.files.current || "").replace(/\.desktop$/, "") : "";
@@ -492,7 +492,7 @@ Singleton {
         ].filter(m => m.items.length > 0);
     }
 
-    // angelOS's Settings as System Settings: View lists the panes like macOS's does. There can be
+    // kukabara's Settings as System Settings: View lists the panes like macOS's does. There can be
     // several Settings windows: the menus act on the one in front (SettingsView.windowActive)
     readonly property var settingsFront: Shell.settingsActive || Shell.settingsView || ({
             "settingsNav": Shell,

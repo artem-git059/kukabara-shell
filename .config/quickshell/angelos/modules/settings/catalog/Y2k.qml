@@ -31,7 +31,7 @@ CatPage {
         icon: "monitor"
         CatButton {
             label: I18n.t("Сейчас", "Now")
-            hint: StreamMode.active ? I18n.t("эфир: angelOS не лезет в кадр", "Live: angelOS stays out of the picture") : Config.stream.auto ? (StreamMode.obsUp ? I18n.t("OBS на связи, эфира нет", "OBS connected, not streaming") : StreamMode.obsAuth ? I18n.t("OBS просит пароль WebSocket — включи вход без пароля или сохрани пароль в OBS", "OBS wants a WebSocket password") : I18n.t("OBS не запущен или WebSocket-сервер выключен (Инструменты → Настройки WebSocket)", "OBS isn't running or its WebSocket server is off (Tools → WebSocket Server Settings)")) : I18n.t("выключен", "Off")
+            hint: StreamMode.active ? I18n.t("эфир: kukabara не лезет в кадр", "Live: kukabara stays out of the picture") : Config.stream.auto ? (StreamMode.obsUp ? I18n.t("OBS на связи, эфира нет", "OBS connected, not streaming") : StreamMode.obsAuth ? I18n.t("OBS просит пароль WebSocket — включи вход без пароля или сохрани пароль в OBS", "OBS wants a WebSocket password") : I18n.t("OBS не запущен или WebSocket-сервер выключен (Инструменты → Настройки WebSocket)", "OBS isn't running or its WebSocket server is off (Tools → WebSocket Server Settings)")) : I18n.t("выключен", "Off")
             icon: StreamMode.active ? "close" : "play"
             accent: !StreamMode.active
             confirm: true
@@ -79,7 +79,7 @@ CatPage {
         }
         CatToggle {
             label: I18n.t("Тишина", "Quiet")
-            hint: I18n.t("звуки angelOS не попадут в эфир", "angelOS sounds stay off the stream")
+            hint: I18n.t("звуки kukabara не попадут в эфир", "kukabara sounds stay off the stream")
             checked: Config.stream.mute
             onToggled: c => Config.stream.mute = c
         }
@@ -182,7 +182,7 @@ CatPage {
         CatToggle {
             present: !Privacy.nativeLook
             label: I18n.t("Плашка «Privacy ON» для зрителей", "«Privacy ON» plate for the viewers")
-            hint: I18n.t("Зрители видят плашку вместо окна. В OBS добавь «Захват окна» → «angelOS · Privacy для OBS».", "Viewers see a plate instead of the window. In OBS add Window Capture → angelOS · Privacy.")
+            hint: I18n.t("Зрители видят плашку вместо окна. В OBS добавь «Захват окна» → «kukabara · Privacy для OBS».", "Viewers see a plate instead of the window. In OBS add Window Capture → kukabara · Privacy.")
             checked: Config.stream.privacyPlates
             onToggled: c => Config.stream.privacyPlates = c
         }
@@ -449,7 +449,7 @@ CatPage {
         }
         CatCustom {
             label: I18n.t("Окно для OBS", "Window for OBS")
-            hint: (!StreamAngel.niriKeys ? I18n.t("нужна клавиша ниже: с ней niri прячет это окно с экрана. ", "Needs the key below: with it niri keeps the window off your screen. ") : StreamAngel.castOpen ? (Niri.castWindowId >= 0 ? I18n.t("открыто. ", "Open. ") : I18n.t("открывается… ", "Opening… ")) : I18n.t("откроется, когда запустится OBS. ", "Opens when OBS starts. ")) + I18n.t("Один раз в OBS: Источники → + → «Захват окна (PipeWire)» → «angelOS · ангел для OBS», поверх панели. Фон прозрачный.", "Once in OBS: Sources → + → Window Capture (PipeWire) → «angelOS · ангел для OBS», over the bar. The background is see-through.")
+            hint: (!StreamAngel.niriKeys ? I18n.t("нужна клавиша ниже: с ней niri прячет это окно с экрана. ", "Needs the key below: with it niri keeps the window off your screen. ") : StreamAngel.castOpen ? (Niri.castWindowId >= 0 ? I18n.t("открыто. ", "Open. ") : I18n.t("открывается… ", "Opening… ")) : I18n.t("откроется, когда запустится OBS. ", "Opens when OBS starts. ")) + I18n.t("Один раз в OBS: Источники → + → «Захват окна (PipeWire)» → «kukabara · ангел для OBS», поверх панели. Фон прозрачный.", "Once in OBS: Sources → + → Window Capture (PipeWire) → «kukabara · ангел для OBS», over the bar. The background is see-through.")
             CatBox {
             }
         }
@@ -567,8 +567,8 @@ CatPage {
         }
         CatButton {
             label: I18n.t("Блестящий курсор", "Glitter cursor")
-            hint: !Cursors.glitterOk ? Heaven.lockHint("cursor.glitter") : Cursors.theme === "angelOS-Glitter" ? I18n.t("стоит ♡ другие курсоры — выше", "In use ♡ other cursors are above") : I18n.t("angelOS Pixel с мерцающими искорками, во всех программах", "angelOS Pixel with twinkling sparks, in every app")
-            enabled: !Cursors.busy && Cursors.theme !== "angelOS-Glitter" && Cursors.glitterOk
+            hint: !Cursors.glitterOk ? Heaven.lockHint("cursor.glitter") : Cursors.theme === "kukabara-Glitter" ? I18n.t("стоит ♡ другие курсоры — выше", "In use ♡ other cursors are above") : I18n.t("kukabara Pixel с мерцающими искорками, во всех программах", "kukabara Pixel with twinkling sparks, in every app")
+            enabled: !Cursors.busy && Cursors.theme !== "kukabara-Glitter" && Cursors.glitterOk
             icon: "cursor"
             text: Cursors.busy ? I18n.t("Ставлю…", "Installing…") : I18n.t("Поставить", "Use it")
             onClicked: Cursors.install("glitter", true)
@@ -825,7 +825,7 @@ CatPage {
         icon: Angel.hellShown ? "fire" : "heart"
         CatCustom {
             label: I18n.t("Кто живёт в углу", "Who lives in the corner")
-            hint: Angel.demon ? I18n.t("Демоница. Путь наверх лежит вниз, через круги: её меню → «Спросить…» → «Искать выход», не чаще раза в 10 минут. Сейчас: круг ", "The demon. The way up lies down, through the circles: her menu → “Ask…” → “Seek the way out”, once per 10 minutes at most. Now: circle ") + Theme.roman(Story.circleN(Story.circle)) + " · " + Story.circleName(Story.circle) : I18n.t("Ангелочек. Схвати её мышкой и скинь вниз — провалится в ад, и придёт демоница: тёмные обои, пошлые шутки и пакости, которые показывают фишки angelOS.", "Angel. Grab her with the mouse and throw her down: she drops into hell and the demon comes — dark wallpaper, cheeky jokes and pranks that show off angelOS features.")
+            hint: Angel.demon ? I18n.t("Демоница. Путь наверх лежит вниз, через круги: её меню → «Спросить…» → «Искать выход», не чаще раза в 10 минут. Сейчас: круг ", "The demon. The way up lies down, through the circles: her menu → “Ask…” → “Seek the way out”, once per 10 minutes at most. Now: circle ") + Theme.roman(Story.circleN(Story.circle)) + " · " + Story.circleName(Story.circle) : I18n.t("Ангелочек. Схвати её мышкой и скинь вниз — провалится в ад, и придёт демоница: тёмные обои, пошлые шутки и пакости, которые показывают фишки kukabara.", "Angel. Grab her with the mouse and throw her down: she drops into hell and the demon comes — dark wallpaper, cheeky jokes and pranks that show off kukabara features.")
             CatBox {
                 PxIcon {
                     name: Angel.demon ? "fire" : "heart"
@@ -887,7 +887,7 @@ CatPage {
         icon: "speaker"
         // the sounds and her voice are set in one place: System sounds
         CatLink {
-            label: Angel.hellShown ? I18n.t("Звуки angelOS, голос ангела и демоницы", "angelOS sounds, the angel's and the demon's voice") : I18n.t("Звуки angelOS и голос ангела", "angelOS sounds and the angel's voice")
+            label: Angel.hellShown ? I18n.t("Звуки kukabara, голос ангела и демоницы", "kukabara sounds, the angel's and the demon's voice") : I18n.t("Звуки kukabara и голос ангела", "kukabara sounds and the angel's voice")
             hint: I18n.t("включить, набор, громкость, каждый звук отдельно", "on or off, the pack, the volume, every sound on its own")
             page: "sfx"
         }

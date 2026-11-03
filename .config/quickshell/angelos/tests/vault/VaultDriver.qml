@@ -58,7 +58,7 @@ Scope {
         id: win
         implicitWidth: 1000
         implicitHeight: 700
-        title: "angelOS vault test"
+        title: "kukabara vault test"
         SettingsView {
             id: view
             anchors.fill: parent

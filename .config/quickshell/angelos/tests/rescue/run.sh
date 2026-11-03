@@ -8,10 +8,10 @@
 #   failed     five failed starts of the service in a minute open `angelos rescue` in a
 #              terminal (once, and never after a clean stop); the rescue names the reason
 #
-#   tests/rescue/run.sh [angelOS dir]     exit 0 = all good
+#   tests/rescue/run.sh [kukabara dir]     exit 0 = all good
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" && -f "$DIR/bin/angelos" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" && -f "$DIR/bin/angelos" ]] || { echo "no kukabara in $DIR"; exit 2; }
 fail=0
 ok()  { printf '  ✓ %s\n' "$*"; }
 bad() { printf '  ✕ %s\n' "$*"; fail=1; }
@@ -154,7 +154,7 @@ why="$(env -i PATH="/usr/bin:/bin" HOME="$R/home" XDG_CONFIG_HOME="$R/home/.conf
 [[ "$why" == *"PxProgress.qml[27:5]"* && "$why" != *"Old.qml"* ]] && ok "the rescue names the last start's error" || bad "the rescue's reason: $why"
 screen="$(echo q | env -i PATH="/usr/bin:/bin" TERM=dumb HOME="$R/home" XDG_CONFIG_HOME="$R/home/.config" XDG_RUNTIME_DIR="$R/rt" \
   ANGELOS_UNIT=angelos-rescue-test.service ANGELOS_RESCUE_LOG="$R/log" bash "$DIR/scripts/rescue.sh" 2>&1)"
-[[ "$screen" == *"angelOS did not start"* && "$screen" == *"1) Try to start it again"* && "$screen" == *"PxProgress.qml"* ]] && ok "the rescue screen: what happened, the reason, what can be done (in the shell's language)" || bad "the rescue screen: $(printf '%s' "$screen" | head -5)"
+[[ "$screen" == *"kukabara did not start"* && "$screen" == *"1) Try to start it again"* && "$screen" == *"PxProgress.qml"* ]] && ok "the rescue screen: what happened, the reason, what can be done (in the shell's language)" || bad "the rescue screen: $(printf '%s' "$screen" | head -5)"
 
 if ((fail)); then echo "» RESCUE TEST FAILED"; exit 1; fi
 echo "» rescue test passed ♡"

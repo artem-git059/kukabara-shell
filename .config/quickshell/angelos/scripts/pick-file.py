@@ -11,7 +11,7 @@ usage: pick-file.py [OPTIONS] TITLE [FILTER_NAME PATTERN...]
                    not in ~ every time (the release wallpapers' six files from one folder)
 
 Prints the chosen file's path. Exit 1: cancelled. Exit 2: no file chooser at all (why on stderr).
-The avatar picker used zenity alone, which angelOS never installs: without it the button did
+The avatar picker used zenity alone, which kukabara never installs: without it the button did
 nothing at all.
 """
 import json

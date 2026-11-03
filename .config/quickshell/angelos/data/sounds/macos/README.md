@@ -2,7 +2,7 @@
 
 Original sounds for the Golden Gate skin, synthesised by `scripts/mac-sounds.py`
 (numpy waveforms, encoded by ffmpeg). No Apple sound or sample is used or shipped.
-They are original works of angelOS, dedicated to the public domain: CC0 1.0.
+They are original works of kukabara, dedicated to the public domain: CC0 1.0.
 
 | file             | plays when                                   |
 |------------------|----------------------------------------------|

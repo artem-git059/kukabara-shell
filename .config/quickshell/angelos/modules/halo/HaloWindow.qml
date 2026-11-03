@@ -648,7 +648,7 @@ PanelWindow {
         return line;
     }
     // the Halo's accent: the theme's, and while the song shows (pill or card) half the cover's
-    // colour in it — still AngelOS's palette, a shade per song (Settings → Halo → «Cover
+    // colour in it — still kukabara's palette, a shade per song (Settings → Halo → «Cover
     // colour»); pushed lighter / darker until it reads on the face (3:1). The signals keep their
     // own colours: the recording's red, the privacy dots, the rest's green, the errors
     readonly property bool songShown: !!main && main.kind === "music" && !!Halo.coverTint
@@ -1591,7 +1591,7 @@ PanelWindow {
         case "updated":
             return item.ok ? {
                 "icon": "check",
-                "text": I18n.t("angelOS обновлена", "angelOS updated")
+                "text": I18n.t("kukabara обновлена", "kukabara updated")
             } : {
                 "icon": "warn",
                 "text": I18n.t("Обновление не удалось", "The update failed"),

@@ -13,7 +13,7 @@ s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 try:
     s.connect(sock)
 except OSError as e:
-    sys.exit(f"angelOS: the admin helper is gone ({e})")
+    sys.exit(f"kukabara: the admin helper is gone ({e})")
 s.sendall((json.dumps({"argv": sys.argv[1:], "cwd": os.getcwd(), "lang": os.environ.get("LANG", "")}) + "\n").encode())
 tail = b""
 out = sys.stdout.buffer

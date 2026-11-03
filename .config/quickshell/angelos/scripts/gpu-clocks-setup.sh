@@ -31,7 +31,7 @@ tmp="$(mktemp)"
 trap 'rm -f -- "$tmp"' EXIT
 cat >"$tmp" <<'EOF'
 #!/bin/sh
-# angelOS (scripts/gpu-clocks-setup.sh): the NVIDIA graphics clock locked while a game runs
+# kukabara (scripts/gpu-clocks-setup.sh): the NVIDIA graphics clock locked while a game runs
 PATH=/usr/bin:/bin
 case "$1" in
   game)
@@ -46,7 +46,7 @@ esac
 EOF
 install -m 0755 -o root -g root "$tmp" "$HELPER"
 cat >"$tmp" <<EOF
-# angelOS (scripts/gpu-clocks-setup.sh): the game boost locks the video card's clocks
+# kukabara (scripts/gpu-clocks-setup.sh): the game boost locks the video card's clocks
 $SUDO_USER ALL=(root) NOPASSWD: $HELPER game, $HELPER reset
 EOF
 visudo -cqf "$tmp"

@@ -157,7 +157,7 @@ CatPage {
         icon: "chip"
         CatButton {
             text: I18n.t("Уведомление", "Notification")
-            onClicked: Quickshell.execDetached(["notify-send", "-a", "angelOS", I18n.t("Привет ♡", "Hello ♡"), I18n.t("тестовое уведомление", "test notification")])
+            onClicked: Quickshell.execDetached(["notify-send", "-a", "kukabara", I18n.t("Привет ♡", "Hello ♡"), I18n.t("тестовое уведомление", "test notification")])
         }
         CatButton {
             text: I18n.t("Громкость (OSD)", "Volume (OSD)")

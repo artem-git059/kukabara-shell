@@ -55,9 +55,9 @@ CatPage {
         if (m.role === "user")
             return {role: I18n.t("Ты", "You"), text: m.content};
         try {
-            return {role: "angelOS", text: JSON.parse(m.content).summary};
+            return {role: "kukabara", text: JSON.parse(m.content).summary};
         } catch (e) {
-            return {role: "angelOS", text: ""};
+            return {role: "kukabara", text: ""};
         }
     })
     function submit() {
@@ -466,7 +466,7 @@ CatPage {
                         PxText {
                             width: parent.width
                             wrapMode: Text.Wrap
-                            text: I18n.t("Нужен ключ API с отдельным балансом; запросы платные. Без ключа выбери «вход через браузер» — тогда хватит подписки Claude или ChatGPT. Ключ хранится локально в закрытом файле, отдельно от плагинов. Провайдер получает диалог и документацию angelOS.", "An API key uses separate, paid API billing. Without one, pick a browser sign-in provider — a Claude or ChatGPT subscription is enough. The key stays in a private local file, separate from plugins. The provider receives the conversation and angelOS documentation.")
+                            text: I18n.t("Нужен ключ API с отдельным балансом; запросы платные. Без ключа выбери «вход через браузер» — тогда хватит подписки Claude или ChatGPT. Ключ хранится локально в закрытом файле, отдельно от плагинов. Провайдер получает диалог и документацию kukabara.", "An API key uses separate, paid API billing. Without one, pick a browser sign-in provider — a Claude or ChatGPT subscription is enough. The key stays in a private local file, separate from plugins. The provider receives the conversation and kukabara documentation.")
                             dim: true
                         }
                     }

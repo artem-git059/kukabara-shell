@@ -159,14 +159,14 @@ Singleton {
     }
 
     function tell(summary, body) {
-        Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "video-x-generic", summary, body]);
+        Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "video-x-generic", summary, body]);
     }
     function failed(text, offerUpdate) {
         error = text;
         const k = job ? job.kind : "";
         const what = k === "grab" ? I18n.t("Видео не скачалось", "The video did not download") : k === "update" ? I18n.t("yt-dlp не обновился", "yt-dlp did not update") : k === "edit" ? I18n.t("Видео для монтажа не вышло", "The video for editing failed") : k === "wav" ? I18n.t("Звук не сохранился", "The sound was not saved") : k === "convert" ? I18n.t("Не всё сконвертировалось", "Not everything was converted") : I18n.t("Видео не сжалось", "The video was not squeezed");
         if (offerUpdate && !asker.running) {
-            asker.command = ["notify-send", "-a", "angelOS", "-i", "dialog-warning", "--wait", "-A", "update=" + I18n.t("Обновить систему и yt-dlp", "Update the system and yt-dlp"), what, text.slice(-400)];
+            asker.command = ["notify-send", "-a", "kukabara", "-i", "dialog-warning", "--wait", "-A", "update=" + I18n.t("Обновить систему и yt-dlp", "Update the system and yt-dlp"), what, text.slice(-400)];
             asker.running = true;
         } else
             tell(what, text.slice(-400));

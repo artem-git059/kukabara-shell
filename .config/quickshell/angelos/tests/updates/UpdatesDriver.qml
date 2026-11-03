@@ -41,7 +41,7 @@ Scope {
         id: win
         implicitWidth: 900
         implicitHeight: 1400
-        title: "angelOS updates test"
+        title: "kukabara updates test"
         color: Theme.desk
         Loader {
             id: pageLoader
@@ -171,7 +171,7 @@ Scope {
                 Updates.update();
             },
             "check": () => {
-                // pacman -Syu stopped before the snapshot: angelOS untouched, nothing to restore
+                // pacman -Syu stopped before the snapshot: kukabara untouched, nothing to restore
                 report("system-fails-state", Updates.lastRun === "failed" && Updates.failedStage === "system" && Updates.failure.indexOf("conflicting files") >= 0 && Updates.systemPackages === -1 && !Updates.needsRestart, state());
                 report("page-system-fails-next", shownText(Updates.nextStep("system").slice(0, 40)));
             }
@@ -180,7 +180,7 @@ Scope {
             "name": "update-qt",
             "run": () => Updates.update(),
             "check": () => {
-                // nothing new in angelOS, but Qt moved under the running shell: restart it
+                // nothing new in kukabara, but Qt moved under the running shell: restart it
                 report("system-qt-restart", Updates.lastRun === "ok" && Updates.systemPackages === 5 && Updates.needsRestart && Updates.askRestart, state());
             }
         }

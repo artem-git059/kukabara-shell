@@ -24,7 +24,7 @@ Scope {
         id: win
         implicitWidth: 1000
         implicitHeight: 700
-        title: "angelOS search test"
+        title: "kukabara search test"
         SettingsView {
             anchors.fill: parent
             hostWindow: win

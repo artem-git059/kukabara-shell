@@ -9,7 +9,7 @@ import qs.config
 // The live wallpaper's scene editor, for everyone: a window of the shell where the layers of a
 // picture are painted (what is sky, water, a waterfall …: what moves there), effects are switched
 // off and the places of the rare events are put. The scene goes next to the picture
-// (<name>.scene.json), or — for a picture angelOS ships or a folder that isn't the user's — into
+// (<name>.scene.json), or — for a picture kukabara ships or a folder that isn't the user's — into
 // ~/.local/share/angelos/scenes (scripts/scene-editor/scene_core.py; live-wall.py reads both).
 //   window   modules/sceneeditor/SceneEditorWindow.qml (modules/LazyWindows), while `shown`
 //   server   scripts/scene-editor/scene-editor.py (the window starts it)

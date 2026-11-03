@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The Steam client in angelOS's colours, heaven and hell and every circle (a Millennium
+"""The Steam client in kukabara's colours, heaven and hell and every circle (a Millennium
 theme; entry "steam" of templates/templates.json).
 
   steam-theme.py build PALETTE.json   write the theme for the palette (realm, circle, mode)
@@ -8,15 +8,15 @@ theme; entry "steam" of templates/templates.json).
                                       config is backed up once)
   steam-theme.py status               what is set up, as JSON
 
-Nothing happens without Millennium (https://steambrew.app): angelOS installs neither Steam
+Nothing happens without Millennium (https://steambrew.app): kukabara installs neither Steam
 nor Millennium. Millennium 3.x keeps its themes in <Steam>/millennium/themes/<name>/ with a
 skin.json (its src/system/filesystem.cc: get_millennium_path() = the Steam folder +
-"millennium"); the theme "angelOS" is written to ~/.local/share/angelos/steam/angelOS and
-copied there — into each Steam found (the native one, the Flatpak one). A folder "angelOS"
-there that angelOS did not write (no .angelos mark) is left alone.
+"millennium"); the theme "kukabara" is written to ~/.local/share/angelos/steam/kukabara and
+copied there — into each Steam found (the native one, the Flatpak one). A folder "kukabara"
+there that kukabara did not write (no .angelos mark) is left alone.
 
 How it follows: data/steam/angelos.js (Millennium loads it into every Steam window)
-recolours Steam's own stylesheets by what each colour is — greys onto angelOS's surfaces and
+recolours Steam's own stylesheets by what each colour is — greys onto kukabara's surfaces and
 text by brightness, blues onto the accent, greens onto "ok", reds onto "danger" — as
 --ao-* variables, and fetches colors.json, the variables' values, every few seconds. So a new
 palette, the light or dark mode, the demon's hell and its circles reach an open Steam on the
@@ -33,8 +33,8 @@ from pathlib import Path
 HOME = Path.home()
 SHELL = Path(__file__).resolve().parent.parent
 SRC = SHELL / "data/steam"
-BASE = HOME / ".local/share/angelos/steam/angelOS"
-NAME = "angelOS"
+BASE = HOME / ".local/share/angelos/steam/kukabara"
+NAME = "kukabara"
 MARK = ".angelos"
 STEAMS = [HOME / ".local/share/Steam", HOME / ".steam/steam",
           HOME / ".var/app/com.valvesoftware.Steam/.local/share/Steam"]
@@ -110,7 +110,7 @@ def webkit(c):
     """The store and the community: other sites, so only the frame — the page's ground, its
     links, the selection and the scrollbars — in the palette's colours, written as they are."""
     return (
-        "/* angelOS for Steam (scripts/steam-theme.py): written for every palette */\n"
+        "/* kukabara for Steam (scripts/steam-theme.py): written for every palette */\n"
         + css(c)
         + "::selection { background: %s; color: %s; }\n" % (c["accent"], c["onAccent"])
         + "::-webkit-scrollbar-track { background: %s !important; }\n" % c["desk"]
@@ -149,12 +149,12 @@ def steams():
 
 
 def install(steam):
-    """Copy the theme into <Steam>/millennium/themes/angelOS; never over someone else's."""
+    """Copy the theme into <Steam>/millennium/themes/kukabara; never over someone else's."""
     dest = steam / "millennium/themes" / NAME
     if dest.exists() and not (dest / MARK).exists():
-        return "skipped: %s is not angelOS's" % dest
+        return "skipped: %s is not kukabara's" % dest
     dest.mkdir(parents=True, exist_ok=True)
-    (dest / MARK).write_text("written by angelOS (scripts/steam-theme.py)\n")
+    (dest / MARK).write_text("written by kukabara (scripts/steam-theme.py)\n")
     changed = 0
     for f in BASE.iterdir():
         if f.is_file() and (not (dest / f.name).is_file() or (dest / f.name).read_bytes() != f.read_bytes()):
@@ -171,7 +171,7 @@ def build(palette_file):
     write(BASE / "colors.json", json.dumps(c, indent=1) + "\n")
     write(BASE / "colors.css", css(c))
     write(BASE / "webkit.css", webkit(c))
-    write(BASE / MARK, "written by angelOS (scripts/steam-theme.py)\n")
+    write(BASE / MARK, "written by kukabara (scripts/steam-theme.py)\n")
     found = steams()
     if not found:
         print("steam: no Millennium — the theme waits in", BASE)
@@ -185,7 +185,7 @@ def steam_running():
 
 
 def apply():
-    """Millennium's active theme := angelOS. Millennium rewrites its config while Steam runs,
+    """Millennium's active theme := kukabara. Millennium rewrites its config while Steam runs,
     so only with Steam closed; the config is backed up once (config.json.angelos-before)."""
     if not steams():
         return {"ok": False, "error": "no Millennium"}

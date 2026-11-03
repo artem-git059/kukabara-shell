@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Telegram Desktop in angelOS's colours, heaven and hell (Settings → Window behavior →
+"""Telegram Desktop in kukabara's colours, heaven and hell (Settings → Window behavior →
 Apps follow the theme; entry "telegram" of templates/templates.json).
 
   telegram-theme.py build PALETTE.json   write the theme for the palette (and realm)
@@ -21,19 +21,19 @@ theme change.
 Telegram keeps watching the theme file it has applied (QFileSystemWatcher in
 window_theme.cpp) and applies it again whenever the file changes. So the theme is applied
 once — Telegram → Settings → Chat Settings → ⋮ → "Choose from file" → this file (`apply`
-puts its path on the clipboard: Ctrl+L, Ctrl+V in the file dialog) — and from then on angelOS rewrites
-~/.local/share/angelos/telegram/angelOS.tdesktop-theme for every new palette, the dark
+puts its path on the clipboard: Ctrl+L, Ctrl+V in the file dialog) — and from then on kukabara rewrites
+~/.local/share/angelos/telegram/kukabara.tdesktop-theme for every new palette, the dark
 or light mode, the demon's hell, and Telegram follows on the fly.
 
 The colours: Telegram's own day or night palette (data/telegram/*.palette, every key
-resolved) recoloured — its greys onto angelOS's surfaces and text by brightness, its blues
+resolved) recoloured — its greys onto kukabara's surfaces and text by brightness, its blues
 onto the accent, the rest (names, file icons, red and green) left alone. The chat
 background is a tile of faint pixel hearts on the desk colour; in hell, embers and
 pentagrams on obsidian.
 
 Telegram draws its own text fields with these keys (historyComposeArea*, inputBorderFg,
 activeLineFg, filterInput*); a box around its message field was never one of them but
-angelOS's Qt stylesheet (scripts/qt-theme.py), which now leaves Telegram's fields alone.
+kukabara's Qt stylesheet (scripts/qt-theme.py), which now leaves Telegram's fields alone.
 """
 import base64
 import colorsys
@@ -51,7 +51,7 @@ from pathlib import Path
 HOME = Path.home()
 SHELL = Path(__file__).resolve().parent.parent
 BASE = HOME / ".local/share/angelos/telegram"
-THEME = BASE / "angelOS.tdesktop-theme"
+THEME = BASE / "kukabara.tdesktop-theme"
 STATE = BASE / "applied.json"
 
 # hell's colours, the same as scripts/browser-theme.py and Theme.hell*
@@ -219,8 +219,8 @@ def build(pal):
     s = scheme(pal)
     base = load_palette("night" if s["dark"] else "day")
     colours = recolour(base, s)
-    head = "// angelOS — %s (rewritten by angelOS on every theme change; Telegram follows the file)\n" % (
-        "hell, while the demon rules" if pal.get("realm") == "hell" else "heaven, the angelOS palette")
+    head = "// kukabara — %s (rewritten by kukabara on every theme change; Telegram follows the file)\n" % (
+        "hell, while the demon rules" if pal.get("realm") == "hell" else "heaven, the kukabara palette")
     text = head + "".join("%s: %s;\n" % kv for kv in colours.items())
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:

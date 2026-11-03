@@ -7,7 +7,7 @@ import qs.config
 
 // Apps started at login (Settings → Apps → Autostart, `angelos autostart`): the freedesktop
 // entries of ~/.config/autostart over the system's (scripts/autostart.py). The session's own
-// systemd starts them, so they come up with or without angelOS.
+// systemd starts them, so they come up with or without kukabara.
 Singleton {
     id: root
 

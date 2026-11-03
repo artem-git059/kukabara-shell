@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render angelOS theme templates.
+"""Render kukabara theme templates.
 
 usage: render-templates.py PALETTE.json [DISABLED_IDS_COMMA_SEPARATED] [--palette JSON]
 
@@ -129,7 +129,7 @@ def main():
     sys.argv[1:] = args
     pal = json.loads(path.read_text())
     pal["gtkSuffix"] = "-dark" if pal.get("mode") == "dark" else ""
-    # for the entries that run angelOS's own scripts on the same palette
+    # for the entries that run kukabara's own scripts on the same palette
     pal["shellDir"] = str(SHELL)
     pal["paletteFile"] = str(Path(sys.argv[1]).resolve())
     # a palette written before the browsers' bar had a colour of its own (Settings → Windows)

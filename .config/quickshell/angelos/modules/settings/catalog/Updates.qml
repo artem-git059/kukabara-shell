@@ -153,7 +153,7 @@ CatPage {
         }
         CatNote {
             present: !!Updates.repo && !Updates.blocked && !Updates.needsRestart
-            text: Updates.systemPackages >= 0 && !Updates.busy ? I18n.t("Система обновлена вместе с angelOS (пакетов: ", "The system was updated along with angelOS (packages: ") + Updates.systemPackages + ")." : I18n.t("«Обновить» сначала обновляет систему (pacman -Syu, спросит пароль администратора), потом angelOS — чтобы новой оболочке хватило свежих Quickshell и Qt.", "Update upgrades the system first (pacman -Syu, asks for the admin password), then angelOS — so the new shell gets a fresh enough Quickshell and Qt.")
+            text: Updates.systemPackages >= 0 && !Updates.busy ? I18n.t("Система обновлена вместе с kukabara (пакетов: ", "The system was updated along with kukabara (packages: ") + Updates.systemPackages + ")." : I18n.t("«Обновить» сначала обновляет систему (pacman -Syu, спросит пароль администратора), потом kukabara — чтобы новой оболочке хватило свежих Quickshell и Qt.", "Update upgrades the system first (pacman -Syu, asks for the admin password), then kukabara — so the new shell gets a fresh enough Quickshell and Qt.")
         }
         CatNote {
             present: Updates.needsRestart

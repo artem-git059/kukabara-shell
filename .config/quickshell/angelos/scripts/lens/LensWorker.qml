@@ -34,7 +34,7 @@ Window {
     visible: false
     color: "#16141c"
     // the island's niri rule places it (a corner, floating; [dev] → the test screen)
-    title: dev ? "angelOS · Остров [dev] · Google" : "angelOS · Остров · Google"
+    title: dev ? "kukabara · Остров [dev] · Google" : "kukabara · Остров · Google"
     // closed by the user: hidden, the results stay
     onClosing: close => {
         close.accepted = false;

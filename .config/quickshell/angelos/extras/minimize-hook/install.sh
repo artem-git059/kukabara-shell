@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS minimize hook: build it and give it to the session's apps (see angelos-minimize.c).
+# kukabara minimize hook: build it and give it to the session's apps (see angelos-minimize.c).
 #   - ~/.local/lib/angelos/{lib,lib32}/libangelos-minimize.so      (build.sh)
 #   - angelos.service drop-in: the shell and what it starts         (Environment=, $LIB literal)
 #   - ~/.config/niri/cfg/angelos-minimize.kdl + include: what niri starts
@@ -27,20 +27,20 @@ fi
 rm -f "$HOME/.config/angelos/minimize-hook.off"
 mkdir -p "$(dirname "$dropin")" "$(dirname "$kdl")"
 cat > "$dropin" <<UNIT
-# angelOS minimize hook (extras/minimize-hook): the windows' own minimize buttons go to angelOS.
+# kukabara minimize hook (extras/minimize-hook): the windows' own minimize buttons go to kukabara.
 # \$LIB is ld.so's (lib / lib32): systemd doesn't expand \$ in Environment=.
 [Service]
 Environment="LD_PRELOAD=$pre"
 UNIT
 cat > "$kdl" <<KDL
-// angelOS minimize hook (extras/minimize-hook): apps niri starts get the preload.
+// kukabara minimize hook (extras/minimize-hook): apps niri starts get the preload.
 environment {
     LD_PRELOAD "$pre"
 }
 KDL
 if [ -f "$conf" ] && ! grep -q 'angelos-minimize.kdl' "$conf"; then
     cp "$conf" "$conf.bak-angelos-minimize"
-    printf '\n// angelOS: the windows'"'"' own minimize buttons go to angelOS (extras/minimize-hook)\ninclude "./cfg/angelos-minimize.kdl"\n' >> "$conf"
+    printf '\n// kukabara: the windows'"'"' own minimize buttons go to kukabara (extras/minimize-hook)\ninclude "./cfg/angelos-minimize.kdl"\n' >> "$conf"
 fi
 systemctl --user daemon-reload
 systemctl --user set-environment "LD_PRELOAD=$pre"

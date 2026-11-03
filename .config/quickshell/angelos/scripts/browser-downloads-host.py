@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS: the native messaging host of the browser extension data/browser-downloads.
+"""kukabara: the native messaging host of the browser extension data/browser-downloads.
 
 Chromium starts it when the extension connects and talks over stdin (4-byte length + JSON).
 Each message — {at, list: [{id, file, received, total, paused}]} — goes as it is into

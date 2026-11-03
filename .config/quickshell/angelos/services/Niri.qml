@@ -23,14 +23,14 @@ Singleton {
     }
     // the angel's window for OBS (modules/y2k/StreamerCast) is the shell's own and nobody's to
     // see: kept out of `windows` (the taskbar, Alt+Tab, minimizing), its id and workspace here
-    readonly property string castTitle: "angelOS · ангел для OBS"
+    readonly property string castTitle: "kukabara · ангел для OBS"
     property int castWindowId: -1
     property int castWindowWs: -1
     function _isCast(w) {
         return w.app_id === "org.quickshell" && w.title === castTitle;
     }
     // the same for the privacy plates' window (modules/y2k/PrivacyCast)
-    readonly property string plateTitle: "angelOS · Privacy для OBS"
+    readonly property string plateTitle: "kukabara · Privacy для OBS"
     property int plateWindowId: -1
     property int plateWindowWs: -1
     function _isPlate(w) {

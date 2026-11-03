@@ -1,4 +1,4 @@
-# SDDM login screen with the angelOS theme (INSTALL_SDDM=1).
+# SDDM login screen with the kukabara theme (INSTALL_SDDM=1).
 sddm
-# QtQuick and QtQuick.Window in the angelOS theme.
+# QtQuick and QtQuick.Window in the kukabara theme.
 qt6-declarative

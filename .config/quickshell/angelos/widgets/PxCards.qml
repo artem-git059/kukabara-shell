@@ -1,6 +1,6 @@
 import QtQuick
 
-// A settings page's groups as cards in columns (Settings' angelOS look, PxPage): each group
+// A settings page's groups as cards in columns (Settings' kukabara look, PxPage): each group
 // (PxGroup) goes into the shortest column, in order; anything else (a note, buttons, a part of
 // a page put together from groups), a group marked `wide` and a group alone between those span
 // the width and start below all of them. One column: a plain column.

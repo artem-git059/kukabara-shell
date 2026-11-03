@@ -384,7 +384,7 @@ def saved_mode(bid):
 
 def keyring(what, bid, value=None):
     """store / lookup / clear; → (ok, text)"""
-    argv = ["secret-tool", what] + (["--label", "angelOS: " + NAMES[bid]] if what == "store" else []) + ["service", SERVICE, "backend", bid]
+    argv = ["secret-tool", what] + (["--label", "kukabara: " + NAMES[bid]] if what == "store" else []) + ["service", SERVICE, "backend", bid]
     code, text, err = run(argv, stdin=value.encode() if value is not None else None, timeout=30)
     return code == 0, text if code == 0 else err
 

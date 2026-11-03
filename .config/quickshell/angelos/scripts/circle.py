@@ -698,7 +698,7 @@ def read_segments(page, segs, langs, env, zoom=0, tmp=None, target=TARGET):
             if t is s or t.x1 <= x0 or t.x0 >= x1 or t.y1 <= y0:
                 continue
             # a short piece right under or over the line, within it: a descender or an accent the
-            # strips cut off (white it and "angelOS" reads "anaelOS")
+            # strips cut off (white it and "kukabara" reads "anaelOS")
             if 2 * (t.y1 - t.y0) <= s.h and s.x0 <= t.x0 and t.x1 <= s.x1 and (-1 <= t.y0 - s.y1 <= 2 or -1 <= s.y0 - t.y1 <= 2):
                 continue
             tx0, tx1 = max(t.x0, x0) - x0, min(t.x1, x1) - x0

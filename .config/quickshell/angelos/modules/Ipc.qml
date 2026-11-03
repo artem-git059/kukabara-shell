@@ -99,7 +99,7 @@ IpcHandler {
         Shell.startPrefill = text;
         Shell.openStart("");
     }
-    // switch workspaces through angelOS: a number, up, down or prev
+    // switch workspaces through kukabara: a number, up, down or prev
     function ws(target: string): void {
         WorkspaceAnim.go(target);
     }
@@ -631,7 +631,7 @@ IpcHandler {
             return;
         VideoGrab.shrink(path, 0, 0);
     }
-    // a picture to Google Lens, the results in angelOS's window (services/LensSearch)
+    // a picture to Google Lens, the results in kukabara's window (services/LensSearch)
     function lensSearch(path: string): void {
         if (Shell.setupLocked)
             return;
@@ -878,7 +878,7 @@ IpcHandler {
         return "ok";
     }
     // the Golden Gate menu bar from the keyboard (macOS: Control-F2): the menu `index` of the
-    // focused screen's bar opens with its first item selected (0 = angelOS's, 1 = the app's,
+    // focused screen's bar opens with its first item selected (0 = kukabara's, 1 = the app's,
     // -1: the app's); ←/→, ↑/↓, Enter and Esc from there
     function macMenu(index: int): string {
         if (Shell.setupLocked || !GoldenGate.on)
@@ -1465,7 +1465,7 @@ IpcHandler {
             "incoming": Updates.incoming.length
         });
     }
-    // used by ~/.local/bin/polkit-agent-guard to hand the session slot back to angelOS
+    // used by ~/.local/bin/polkit-agent-guard to hand the session slot back to kukabara
     function polkitRegister(): void {
         if (Shell.polkitReregister)
             Shell.polkitReregister();
@@ -1518,13 +1518,13 @@ IpcHandler {
     }
     function testNotify(): void {
         if (!Shell.dev) {
-            Quickshell.execDetached(["notify-send", "-a", "angelOS", I18n.t("Привет ♡", "Hello ♡"), I18n.t("тестовое уведомление", "test notification")]);
+            Quickshell.execDetached(["notify-send", "-a", "kukabara", I18n.t("Привет ♡", "Hello ♡"), I18n.t("тестовое уведомление", "test notification")]);
             return;
         }
         Notifs.popups = Notifs.popups.concat([
             {
                 "id": 900000 + Math.floor(Math.random() * 99999),
-                "appName": "angelOS",
+                "appName": "kukabara",
                 "summary": I18n.t("Привет, это тест ♡", "Hello, this is a test ♡"),
                 "body": I18n.t("Уведомление в стиле <b>NGO</b>: пиксели, розовый и сердечки. <i>Клик</i> — закрыть.", "An <b>NGO</b> notification: pixels, pink and hearts. <i>Click</i> to dismiss."),
                 "actions": [

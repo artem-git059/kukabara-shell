@@ -372,7 +372,7 @@ CatPage {
         CatChoice {
             present: !GoldenGate.on
             label: I18n.t("Кнопки окна", "Window buttons")
-            hint: Config.windows.buttonLook === "keys" ? I18n.t("квадратные клавиши с тёмной обводкой, «закрыть» на красном — у заголовков angelOS и у GTK-программ", "Square keys with a dark outline, close on red: angelOS's title bars and GTK apps") : I18n.t("только значки × _ □, под мышью — плашка, у «закрыть» красная — у заголовков angelOS и у GTK-программ", "Just the glyphs × _ □, a plate under the pointer, red for close: angelOS's title bars and GTK apps")
+            hint: Config.windows.buttonLook === "keys" ? I18n.t("квадратные клавиши с тёмной обводкой, «закрыть» на красном — у заголовков kukabara и у GTK-программ", "Square keys with a dark outline, close on red: kukabara's title bars and GTK apps") : I18n.t("только значки × _ □, под мышью — плашка, у «закрыть» красная — у заголовков kukabara и у GTK-программ", "Just the glyphs × _ □, a plate under the pointer, red for close: kukabara's title bars and GTK apps")
             model: [
                 {
                     "label": I18n.t("Значки", "Glyphs"),
@@ -808,8 +808,8 @@ CatPage {
         title: I18n.t("Заголовки окон", "Title bars")
         icon: "window"
         CatToggle {
-            label: I18n.t("Кнопки GTK-окон как в angelOS", "GTK window buttons like angelOS's")
-            hint: (Angel.hellShown ? I18n.t("пиксельные «развернуть» и «закрыть», шапка цвета меню; в аду — обсидиан и кровь. ", "Pixel maximize and close, the header in the menu colour; obsidian and blood in hell. ") : I18n.t("пиксельные «развернуть» и «закрыть», шапка цвета меню. ", "Pixel maximize and close, the header in the menu colour. ")) + I18n.t("GTK 3 и Helium в режиме «GTK» меняются сразу (своя тема angelOS поверх adw-gtk3), GTK 4 — при следующем запуске программы", "GTK 3 and Helium in its GTK mode change at once (angelOS's own theme over adw-gtk3), GTK 4 the next time an app starts")
+            label: I18n.t("Кнопки GTK-окон как в kukabara", "GTK window buttons like kukabara's")
+            hint: (Angel.hellShown ? I18n.t("пиксельные «развернуть» и «закрыть», шапка цвета меню; в аду — обсидиан и кровь. ", "Pixel maximize and close, the header in the menu colour; obsidian and blood in hell. ") : I18n.t("пиксельные «развернуть» и «закрыть», шапка цвета меню. ", "Pixel maximize and close, the header in the menu colour. ")) + I18n.t("GTK 3 и Helium в режиме «GTK» меняются сразу (своя тема kukabara поверх adw-gtk3), GTK 4 — при следующем запуске программы", "GTK 3 and Helium in its GTK mode change at once (kukabara's own theme over adw-gtk3), GTK 4 the next time an app starts")
             checked: Config.decor.gtkButtons
             onToggled: c => Config.decor.gtkButtons = c
         }
@@ -924,17 +924,17 @@ CatPage {
                         else if (!b.profile)
                             s = I18n.t("запусти " + n + " один раз — профиля ещё нет", "Start " + n + " once: there's no profile yet");
                         else if (!chromium)
-                            s = (b.static ? I18n.t("тема angelOS включена (userChrome.css): панели и вкладки в цветах рая или ада, Firefox читает их при запуске." + (b.running ? " Перезапусти Firefox, чтобы увидеть" : ""), "angelOS's theme is on (userChrome.css): toolbars and tabs in heaven's or hell's colours, read when Firefox starts." + (b.running ? " Restart Firefox to see it" : "")) : I18n.t("«Включить тему angelOS» — панели и вкладки Firefox в цветах рая или ада (userChrome.css в профиле, с копией и откатом; читается при запуске). Меню и кнопки окна и так следуют GTK на лету", "“Turn on angelOS's theme”: Firefox's toolbars and tabs in heaven's or hell's colours (userChrome.css in the profile, with a copy and undo; read at start). Menus and window buttons follow GTK live anyway")) + (b.live ? "" : I18n.t(". Сейчас у Firefox своя тема: чтобы он следовал GTK — about:addons → Темы → «Системная тема — авто»", ". Firefox has a theme of its own now: to follow GTK, about:addons → Themes → “System theme — auto”"));
+                            s = (b.static ? I18n.t("тема kukabara включена (userChrome.css): панели и вкладки в цветах рая или ада, Firefox читает их при запуске." + (b.running ? " Перезапусти Firefox, чтобы увидеть" : ""), "kukabara's theme is on (userChrome.css): toolbars and tabs in heaven's or hell's colours, read when Firefox starts." + (b.running ? " Restart Firefox to see it" : "")) : I18n.t("«Включить тему kukabara» — панели и вкладки Firefox в цветах рая или ада (userChrome.css в профиле, с копией и откатом; читается при запуске). Меню и кнопки окна и так следуют GTK на лету", "“Turn on kukabara's theme”: Firefox's toolbars and tabs in heaven's or hell's colours (userChrome.css in the profile, with a copy and undo; read at start). Menus and window buttons follow GTK live anyway")) + (b.live ? "" : I18n.t(". Сейчас у Firefox своя тема: чтобы он следовал GTK — about:addons → Темы → «Системная тема — авто»", ". Firefox has a theme of its own now: to follow GTK, about:addons → Themes → “System theme — auto”"));
                         else if (b.tabs)
-                            s = I18n.t("тема angelOS с заметной вкладкой: открытая вкладка светлая, остальные тёмные. Цвета " + n + " читает при запуске" + (b.stale ? " — тема сменилась, " + n + " ещё в старых цветах: новые будут, когда закроешь и откроешь его (или «Перезапустить сейчас»)" : "") + "; цвет — строкой выше. «Следовать теме angelOS» вернёт смену на лету, но без выделения вкладки", "angelOS's theme with a visible tab: the open tab is light, the others dark. " + n + " reads the colours when it starts" + (b.stale ? " — the theme changed, " + n + " still has the old colours: the new ones come when you close and open it (or “Restart now”)" : "") + "; the colour is the row above. “Follow angelOS's theme” brings back live switching, without the tab standing out");
+                            s = I18n.t("тема kukabara с заметной вкладкой: открытая вкладка светлая, остальные тёмные. Цвета " + n + " читает при запуске" + (b.stale ? " — тема сменилась, " + n + " ещё в старых цветах: новые будут, когда закроешь и откроешь его (или «Перезапустить сейчас»)" : "") + "; цвет — строкой выше. «Следовать теме kukabara» вернёт смену на лету, но без выделения вкладки", "kukabara's theme with a visible tab: the open tab is light, the others dark. " + n + " reads the colours when it starts" + (b.stale ? " — the theme changed, " + n + " still has the old colours: the new ones come when you close and open it (or “Restart now”)" : "") + "; the colour is the row above. “Follow kukabara's theme” brings back live switching, without the tab standing out");
                         else if (b.live)
-                            s = Angel.hellShown ? I18n.t("в режиме «GTK»: цвета и кнопки окна angelOS, рай и ад — сразу", "In GTK mode: angelOS colours and window buttons, heaven and hell at once") : I18n.t("в режиме «GTK»: цвета и кнопки окна angelOS — сразу", "In GTK mode: angelOS colours and window buttons at once");
+                            s = Angel.hellShown ? I18n.t("в режиме «GTK»: цвета и кнопки окна kukabara, рай и ад — сразу", "In GTK mode: kukabara colours and window buttons, heaven and hell at once") : I18n.t("в режиме «GTK»: цвета и кнопки окна kukabara — сразу", "In GTK mode: kukabara colours and window buttons at once");
                         else if (b.pending)
                             s = I18n.t("включу, как закроешь " + n + ". Или «Перезапустить сейчас» — вкладки вернутся", "On as soon as you close " + n + ". Or “Restart now”: the tabs come back");
                         else if (b.static)
-                            s = I18n.t("тема-расширение angelOS загружена: цвета подхватываются при каждом запуске." + (b.stale ? " Тема сменилась — перезапусти " + n + ", чтобы увидеть." : "") + " Чтобы рай и ад менялись на лету — «Следовать теме angelOS»", "The angelOS theme extension is loaded: its colours apply each time it starts." + (b.stale ? " The theme changed: restart " + n + " to see it." : "") + " For heaven and hell to switch live: “Follow angelOS's theme”");
+                            s = I18n.t("тема-расширение kukabara загружена: цвета подхватываются при каждом запуске." + (b.stale ? " Тема сменилась — перезапусти " + n + ", чтобы увидеть." : "") + " Чтобы рай и ад менялись на лету — «Следовать теме kukabara»", "The kukabara theme extension is loaded: its colours apply each time it starts." + (b.stale ? " The theme changed: restart " + n + " to see it." : "") + " For heaven and hell to switch live: “Follow kukabara's theme”");
                         else
-                            s = I18n.t("«Следовать теме angelOS» — " + n + " меняет цвета вместе с системой (его тема «GTK»; профиль правлю только по кнопке, с копией и откатом). Или тема-расширение: " + (b.id === "helium" ? "helium" : "chrome") + "://extensions → Режим разработчика → «Загрузить распакованное» → папка ниже (цвета обновляются при запуске)", "“Follow angelOS's theme”: " + n + " changes colours with the system (its “GTK” theme; I edit the profile only by this button, with a copy and undo). Or the theme extension: " + (b.id === "helium" ? "helium" : "chrome") + "://extensions → Developer mode → “Load unpacked” → the folder below (colours refresh at start)");
+                            s = I18n.t("«Следовать теме kukabara» — " + n + " меняет цвета вместе с системой (его тема «GTK»; профиль правлю только по кнопке, с копией и откатом). Или тема-расширение: " + (b.id === "helium" ? "helium" : "chrome") + "://extensions → Режим разработчика → «Загрузить распакованное» → папка ниже (цвета обновляются при запуске)", "“Follow kukabara's theme”: " + n + " changes colours with the system (its “GTK” theme; I edit the profile only by this button, with a copy and undo). Or the theme extension: " + (b.id === "helium" ? "helium" : "chrome") + "://extensions → Developer mode → “Load unpacked” → the folder below (colours refresh at start)");
                         return failed ? s + I18n.t(". Не вышло: ", ". Didn't work: ") + failed : s;
                     }
                     CatBox {
@@ -957,7 +957,7 @@ CatPage {
                                     compact: true
                                     accent: true
                                     icon: "sparkle"
-                                    text: browserRow.chromium ? I18n.t("Следовать теме angelOS", "Follow angelOS's theme") : I18n.t("Включить тему angelOS", "Turn on angelOS's theme")
+                                    text: browserRow.chromium ? I18n.t("Следовать теме kukabara", "Follow kukabara's theme") : I18n.t("Включить тему kukabara", "Turn on kukabara's theme")
                                     onClicked: browserAct.go(browserRow.b.id, "apply", "")
                                 }
                                 // Helium on the GTK theme can't show which tab is open: the theme extension
@@ -1094,7 +1094,7 @@ CatPage {
             property bool copied: false
             present: telegramStatus.info.installed === true
             label: "Telegram"
-            hint: I18n.t("Тема angelOS для Telegram. Один раз: «Скопировать путь» → Telegram → Настройки чатов → из файла.", "angelOS's theme for Telegram. Once: Copy path → Telegram → Chat settings → from file.")
+            hint: I18n.t("Тема kukabara для Telegram. Один раз: «Скопировать путь» → Telegram → Настройки чатов → из файла.", "kukabara's theme for Telegram. Once: Copy path → Telegram → Chat settings → from file.")
             CatBox {
                 Flow {
                     width: parent.width
@@ -1137,13 +1137,13 @@ CatPage {
             }
         }
         // Steam (scripts/steam-theme.py): a Millennium theme that follows on its own; only
-        // with Millennium there (angelOS installs neither Steam nor Millennium)
+        // with Millennium there (kukabara installs neither Steam nor Millennium)
         CatCustom {
             id: steamRow
             property string said: ""
             present: steamStatus.info.millennium === true
             label: "Steam"
-            hint: I18n.t("Тема angelOS для Steam через Millennium. Один раз: Millennium → Темы → angelOS.", "angelOS's theme for Steam via Millennium. Once: Millennium → Themes → angelOS.")
+            hint: I18n.t("Тема kukabara для Steam через Millennium. Один раз: Millennium → Темы → kukabara.", "kukabara's theme for Steam via Millennium. Once: Millennium → Themes → kukabara.")
             CatBox {
                 Flow {
                     width: parent.width
@@ -1192,7 +1192,7 @@ CatPage {
             }
         }
         // Discord and Vesktop (scripts/discord-theme.py): a Vencord theme that follows on its
-        // own; Discord without Vencord only through angelOS's launcher (a debugging port)
+        // own; Discord without Vencord only through kukabara's launcher (a debugging port)
         CatCustom {
             id: discordRow
             property string said: ""
@@ -1201,7 +1201,7 @@ CatPage {
             readonly property bool launcherOn: info.launcher === true
             present: info.found === true
             label: "Discord / Vesktop"
-            hint: I18n.t("Тема angelOS для Discord. С Vencord: Темы → angelOS. Без него — если Discord запущен из angelOS.", "angelOS's theme for Discord. With Vencord: Themes → angelOS. Without: when angelOS starts it.")
+            hint: I18n.t("Тема kukabara для Discord. С Vencord: Темы → kukabara. Без него — если Discord запущен из kukabara.", "kukabara's theme for Discord. With Vencord: Themes → kukabara. Without: when kukabara starts it.")
             CatBox {
                 Flow {
                     width: parent.width
@@ -1221,7 +1221,7 @@ CatPage {
                         visible: !!discordRow.info.discord
                         checked: discordRow.launcherOn
                         icon: "play"
-                        text: discordRow.launcherOn ? I18n.t("Без Vencord: через angelOS ✓", "Without Vencord: through angelOS ✓") : I18n.t("Без Vencord: запускать через angelOS", "Without Vencord: start it through angelOS")
+                        text: discordRow.launcherOn ? I18n.t("Без Vencord: через kukabara ✓", "Without Vencord: through kukabara ✓") : I18n.t("Без Vencord: запускать через kukabara", "Without Vencord: start it through kukabara")
                         onClicked: {
                             if (discordRow.launcherOn) {
                                 discordLauncher.command = ["python3", Quickshell.shellDir + "/scripts/discord-theme.py", "launcher", "off"];

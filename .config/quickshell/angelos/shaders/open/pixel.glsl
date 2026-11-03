@@ -1,4 +1,4 @@
-// angelOS open: the window assembles from pixel blocks that blink in (flashing in the theme's accent), chunky first, then sharp.
+// kukabara open: the window assembles from pixel blocks that blink in (flashing in the theme's accent), chunky first, then sharp.
 float angelos_hash(vec2 p) {
     return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
 }

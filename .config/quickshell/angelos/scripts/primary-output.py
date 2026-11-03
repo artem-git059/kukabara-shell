@@ -4,7 +4,7 @@
   primary-output.py status          -> JSON {"focused": [outputs with focus-at-startup]}
   primary-output.py set <output>    -> JSON {"ok": true, "changed": [files]} | {"error": …}
 
-angelOS keeps its own main screen in Settings → Monitor (Config.system.primaryScreen);
+kukabara keeps its own main screen in Settings → Monitor (Config.system.primaryScreen);
 this makes niri focus the same monitor when the session starts, so the first
 windows, the launcher and the Start menu open there. The line is removed from
 every other output block (in every niri config file) and added to a block for

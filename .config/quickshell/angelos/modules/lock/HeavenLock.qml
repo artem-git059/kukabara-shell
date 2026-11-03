@@ -15,7 +15,7 @@ import qs.widgets
 //   the prayer  the unlock is a wish (HeavenStars): free once a day, then 160 ✦; a falling
 //               star, 3★ / 4★ / 5★ with pity, a card for the album or one of her skins
 //   rewards     the daily login reward in stars ✦, the day's three tasks, the heavenly pass
-//   notices     the notice board: angelOS updates, who wrote while you were away, the
+//   notices     the notice board: kukabara updates, who wrote while you were away, the
 //               song, achievements, time at the computer, the prayer's pity
 // A key or a click wakes it ("press any key"); the login plate rises over the gate (the
 // key already counts). A wrong password clouds the sky with lightning; the right one
@@ -294,7 +294,7 @@ Item {
         anchors.rightMargin: Theme.u * 12
         anchors.bottom: parent.bottom
         anchors.bottomMargin: Theme.u * 8
-        text: "angelOS · " + I18n.t("сервер: Небеса", "server: Heaven") + " · " + I18n.t("день ", "day ") + LockStream.days
+        text: "kukabara · " + I18n.t("сервер: Небеса", "server: Heaven") + " · " + I18n.t("день ", "day ") + LockStream.days
         color: "#ffffff"
         style: Text.Outline
         styleColor: root.outline
@@ -519,11 +519,11 @@ Item {
         const out = [];
         out.push(Updates.available ? {
             "icon": "download",
-            "title": I18n.t("Обновление angelOS", "angelOS update"),
+            "title": I18n.t("Обновление kukabara", "kukabara update"),
             "text": I18n.t("доступно: %1 изм. — Настройки → Обновления", "available: %1 changes — Settings → Updates").arg(Updates.behind)
         } : {
             "icon": "check",
-            "title": I18n.t("angelOS обновлён", "angelOS is up to date"),
+            "title": I18n.t("kukabara обновлён", "kukabara is up to date"),
             "text": I18n.t("последняя версия", "the latest version")
         });
         const apps = LockStream.notified.filter((a, i, all) => all.indexOf(a) === i);

@@ -78,7 +78,7 @@ CatPage {
         icon: "leaf"
         CatNote {
             dim: true
-            text: I18n.t("angelOS перестаёт двигаться ради красоты: без анимаций и размытия, живые обои замирают. Сейчас: ", "angelOS stops moving for looks: no animations or blur, live wallpapers stand still. Now: ") + (Power.eco ? I18n.t("включён (", "on (") + Power.ecoWhy + ")" : I18n.t("выключен", "off"))
+            text: I18n.t("kukabara перестаёт двигаться ради красоты: без анимаций и размытия, живые обои замирают. Сейчас: ", "kukabara stops moving for looks: no animations or blur, live wallpapers stand still. Now: ") + (Power.eco ? I18n.t("включён (", "on (") + Power.ecoWhy + ")" : I18n.t("выключен", "off"))
         }
         CatChoice {
             label: I18n.t("Когда включать", "When")
@@ -207,7 +207,7 @@ CatPage {
         icon: "heartSmall"
         CatNote {
             dim: true
-            text: !Laptop.limitSupported ? I18n.t("Этот ноутбук не даёт ограничить заряд из Linux (нет charge_control_end_threshold).", "This laptop doesn't let Linux limit the charge (no charge_control_end_threshold).") : I18n.t("Батарея, которая всё время стоит на 100 % у розетки, стареет быстрее. С лимитом зарядка останавливается раньше; angelOS ставит его заново при каждом входе.", "A battery kept at 100% on the charger ages faster. With a limit charging stops earlier; angelOS sets it again at every login.")
+            text: !Laptop.limitSupported ? I18n.t("Этот ноутбук не даёт ограничить заряд из Linux (нет charge_control_end_threshold).", "This laptop doesn't let Linux limit the charge (no charge_control_end_threshold).") : I18n.t("Батарея, которая всё время стоит на 100 % у розетки, стареет быстрее. С лимитом зарядка останавливается раньше; kukabara ставит его заново при каждом входе.", "A battery kept at 100% on the charger ages faster. With a limit charging stops earlier; kukabara sets it again at every login.")
         }
         CatChoice {
             present: Laptop.limitSupported

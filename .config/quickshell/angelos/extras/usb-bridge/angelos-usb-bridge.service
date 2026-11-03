@@ -1,8 +1,8 @@
-# angelOS: the USB bridge, from boot on: it holds the keyboards' service interfaces (read all
+# kukabara: the USB bridge, from boot on: it holds the keyboards' service interfaces (read all
 # the time) and lends one to the user at the seat. Its own system user, nothing but USB device
 # nodes in reach, no network, no new privileges.
 [Unit]
-Description=angelOS USB bridge (holds a keyboard's service interface for its settings page)
+Description=kukabara USB bridge (holds a keyboard's service interface for its settings page)
 Requires=angelos-usb-bridge.socket
 After=angelos-usb-bridge.socket
 

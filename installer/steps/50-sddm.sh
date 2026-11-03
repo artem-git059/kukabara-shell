@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # ── SDDM login screen ────────────────────────────────────────────────────────
 
@@ -79,11 +79,11 @@ install_sddm() {
     return 0
   fi
   if [[ ! -f "$src/Main.qml" ]]; then
-    warn "$(_ 'No angelOS login screen in the repository; not configured' \
-             'Экрана входа angelOS нет в репозитории; не настроен')"
+    warn "$(_ 'No kukabara login screen in the repository; not configured' \
+             'Экрана входа kukabara нет в репозитории; не настроен')"
     return 0
   fi
-  say "$(_ 'Installing the angelOS login screen…' 'Установка экрана входа angelOS…')"
+  say "$(_ 'Installing the kukabara login screen…' 'Установка экрана входа kukabara…')"
 
   # What is already installed and current is left as the user has it (look, colours, walls);
   # a different theme they picked, or nothing yet, gets the author's screen.
@@ -100,8 +100,8 @@ install_sddm() {
   built="$(mktemp -d)" || return 1
   TMP_DIRS+=("$built")
   if ! python3 "$py" build "${args[@]}" --out "$built/angelos" >/dev/null 2>&1; then
-    warn "$(_ 'The angelOS login screen did not build (scripts/sddm-theme.py build); not configured' \
-             'Экран входа angelOS не собрался (scripts/sddm-theme.py build); не настроен')"
+    warn "$(_ 'The kukabara login screen did not build (scripts/sddm-theme.py build); not configured' \
+             'Экран входа kukabara не собрался (scripts/sddm-theme.py build); не настроен')"
     return 0
   fi
 
@@ -114,8 +114,8 @@ install_sddm() {
     set -eu
     sh -c "$1" sh "$2" "$3" "$4" "$5" "$6" </dev/null' sh "$root_script" "$built/angelos" \
       "$themes/angelos" "$SYSROOT/etc/sddm.conf.d/zz-angelos.conf" "$(id -u)" "$SYSROOT"; then
-    warn "$(_ 'The angelOS login screen could not be installed (see above)' \
-             'Экран входа angelOS не поставился (см. выше)')"
+    warn "$(_ 'The kukabara login screen could not be installed (see above)' \
+             'Экран входа kukabara не поставился (см. выше)')"
     return 0
   fi
   rm -rf -- "$built"

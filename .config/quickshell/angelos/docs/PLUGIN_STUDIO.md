@@ -9,7 +9,7 @@
      API-ключа. Мастер использует установленные `claude` (Claude Code) или
      `codex` и твою подписку. Кнопка **Войти через браузер** открывает терминал с
      `claude auth login` / `codex login`, они сами открывают браузер; затем
-     **Проверить вход**. angelOS не видит токены входа.
+     **Проверить вход**. kukabara не видит токены входа.
      Claude запускается без инструментов, MCP и пользовательских настроек/хуков
      (`--tools "" --strict-mcp-config --setting-sources ""`), API-ключ из окружения
      убирается, чтобы шла именно подписка. Codex — без shell, веб-поиска, MCP,
@@ -29,7 +29,7 @@
    текущий экран; позднее его можно добавить через настройки виджетов или ПКМ.
 
 ИИ получает [контракт генерации](STUDIO_CONTRACT.md), [API плагинов](PLUGINS.md)
-и исходники основных компонентов angelOS. Виджеты используют текущую тему,
+и исходники основных компонентов kukabara. Виджеты используют текущую тему,
 `Theme.u`, стандартные элементы управления и переключатель языка. Рамку,
 перетаскивание и размещение на мониторе обеспечивает оболочка.
 
@@ -76,11 +76,11 @@
 грузит виджет в раю и в аду. У старых своих плагинов, где ада нет, есть кнопка
 **«Адская версия»** в «Плагинах» (и **«Сделать адскую версию»** в мастере при
 доработке): ИИ дорисовывает только адский облик, остальное не трогает. Пока её
-не нажали, angelOS в аду просто перекрашивает такой виджет шейдером.
+не нажали, kukabara в аду просто перекрашивает такой виджет шейдером.
 
 ### Пиксель и macOS
 
-У angelOS две темы — исходная пиксельная (Win98 / NEEDY GIRL OVERDOSE) и macOS
+У kukabara две темы — исходная пиксельная (Win98 / NEEDY GIRL OVERDOSE) и macOS
 (Golden Gate, Liquid Glass), — и пользователь переключает их на ходу. Каждый
 новый плагин мастер делает для обеих: `"themes": ["pixel", "mac"]` в
 manifest.json, а цвета, шрифты, размеры, скругления и отступы — только из
@@ -144,7 +144,7 @@ API-ключ сам по себе не даёт остаток лимита по
   модель и лимит ответа. Эти пользовательские каталоги не публикуются.
 
 Ключ передаётся worker-процессу через stdin, а провайдеру — только в заголовке
-авторизации. Модели отправляются диалог, документация angelOS и файлы черновика
+авторизации. Модели отправляются диалог, документация kukabara и файлы черновика
 при исправлении; пользовательские файлы автоматически не сканируются.
 Ключи не передаются генерируемому плагину.
 
@@ -173,7 +173,7 @@ Enable **Settings → System → Development → Developer mode**. Open
 - **Claude · browser sign-in** / **Codex · ChatGPT sign-in** use the local
   `claude` or `codex` CLI and your subscription — no API key. **Sign in via
   browser** opens a terminal with `claude auth login` / `codex login`; then
-  **Check sign-in**. angelOS never sees the tokens. Claude runs with no tools,
+  **Check sign-in**. kukabara never sees the tokens. Claude runs with no tools,
   MCP or user settings/hooks; Codex without shell, web search, MCP or computer
   use, read-only, in an empty temporary folder.
 - **OpenAI API** / **Anthropic API** need an API key (separate API billing).
@@ -185,7 +185,7 @@ before clicking **Install**. Installation enables the plugin and optionally
 adds its desktop widget to the current screen. Manage it in **Settings →
 Plugins**. Turning off developer mode hides Studio without disabling plugins.
 
-Studio sends the conversation and angelOS's plugin contract/component sources
+Studio sends the conversation and kukabara's plugin contract/component sources
 to the selected provider. A repair request also includes the draft files.
 Credentials are stored separately in a local `0600` file and passed via stdin,
 never command-line arguments or generated plugin settings.
@@ -215,9 +215,9 @@ one and a hell look for the demon (`"realms": ["heaven", "hell"]`, drawn by
 `Theme.hell`); the check requires both and loads the widget in each. Your older
 plugins without hell get **Hell version** in Settings → Plugins (and **Make the
 hell version** while improving one): the AI adds only the hell look. Until then
-angelOS re-inks such a widget with a shader in hell.
+kukabara re-inks such a widget with a shader in hell.
 
-**Pixel and macOS**: angelOS has two themes, the original pixel one and macOS
+**Pixel and macOS**: kukabara has two themes, the original pixel one and macOS
 (Golden Gate), switched while it runs. Every new plugin draws both
 (`"themes": ["pixel", "mac"]`) and takes colours, fonts, sizes, radii and
 spacing only from the **Theme API** (`Skin`, see PLUGINS.md): no hex colours,

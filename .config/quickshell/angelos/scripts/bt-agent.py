@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""BlueZ pairing agent for angelOS (org.bluez.Agent1, capability KeyboardDisplay).
+"""BlueZ pairing agent for kukabara (org.bluez.Agent1, capability KeyboardDisplay).
 
 Questions go to stdout as JSON lines:
   {"event": "request", "id": N, "kind": "confirm|pin|passkey|authorize|display", "device": "...", "passkey": "..."}
-angelOS answers on stdin:
+kukabara answers on stdin:
   {"id": N, "ok": true|false, "pin": "..."}
 Unanswered questions are rejected after 60 s. The agent registers as the default
 agent while it runs and unregisters on exit.

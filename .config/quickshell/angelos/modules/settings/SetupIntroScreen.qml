@@ -95,7 +95,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 font.bold: true
                 color: Theme.dark ? Theme.desk : "#ffffff"
-                text: root.update ? I18n.t("angelOS — обновление", "angelOS — update") : I18n.t("angelOS — установка", "angelOS — setup")
+                text: root.update ? I18n.t("kukabara — обновление", "kukabara — update") : I18n.t("kukabara — установка", "kukabara — setup")
             }
         }
         Column {
@@ -106,7 +106,7 @@ Item {
             spacing: Theme.u * 4
             PxText {
                 kind: "title"
-                text: root.update ? I18n.t("Обновление angelOS", "Updating angelOS") : I18n.t("Установка angelOS", "Installing angelOS")
+                text: root.update ? I18n.t("Обновление kukabara", "Updating kukabara") : I18n.t("Установка kukabara", "Installing kukabara")
             }
             PxText {
                 width: parent.width

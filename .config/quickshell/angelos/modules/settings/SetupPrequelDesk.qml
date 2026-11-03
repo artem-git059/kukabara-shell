@@ -330,7 +330,7 @@ Item {
             y: 30
             width: 204
             height: 176
-            title: "sohrani_sebya.exe"     // suffix-ok: her machine of 2002, not an angelOS window
+            title: "sohrani_sebya.exe"     // suffix-ok: her machine of 2002, not an kukabara window
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: Qt.resolvedUrl("../y2k/sprites/angel-ophanim/body.png")

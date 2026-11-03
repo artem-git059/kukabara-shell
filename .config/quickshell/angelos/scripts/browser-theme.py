@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
-"""Browsers in angelOS's colours, heaven and hell: Helium, Chromium, Firefox
+"""Browsers in kukabara's colours, heaven and hell: Helium, Chromium, Firefox
 (Settings → Windows → Browsers; entry "helium" of templates/templates.json builds the themes).
 
   browser-theme.py build PALETTE.json          write the static themes for the palette's realm
   browser-theme.py status                      every browser found, as JSON
-  browser-theme.py apply ID [--restart|--wait] turn angelOS's look on in ID's profile
+  browser-theme.py apply ID [--restart|--wait] turn kukabara's look on in ID's profile
   browser-theme.py tabs ID [--restart|--wait]  Helium, Chromium: the look "tabs" instead
   browser-theme.py revert ID [--restart|--wait] put the profile back as it was before
   ID: helium, chromium or firefox
 
 Two looks:
-  live    the browser follows GTK — angelOS's GTK theme (scripts/gtk-live.py) switches live
+  live    the browser follows GTK — kukabara's GTK theme (scripts/gtk-live.py) switches live
           between heaven and hell, title bar buttons included. Helium and Chromium: their
           theme "GTK" (Settings → Appearance → Theme). Firefox: its "System theme — auto",
           the default one.
   static  a theme file for the current palette and realm, read when the browser starts:
           Chromium's theme extension ~/.local/share/angelos/helium/theme (helium://extensions
           → Developer mode → Load unpacked, once) and
-          Firefox's userChrome.css (angelOS turns it on in the profile by `apply firefox`).
-  tabs    that theme extension, loaded by angelOS itself: one line, --load-extension=…, in the
+          Firefox's userChrome.css (kukabara turns it on in the profile by `apply firefox`).
+  tabs    that theme extension, loaded by kukabara itself: one line, --load-extension=…, in the
           browser's flags file (~/.config/helium-browser-flags.conf, chromium-flags.conf; the
           other lines and a --load-extension of the user's own are kept). For Helium, where
           the GTK theme cannot show which tab is open (it paints the strip, the open tab and
@@ -55,7 +55,7 @@ DATA = HOME / ".local/share/angelos"
 STATE = DATA / "browsers"
 THEME = DATA / "helium/theme"                    # Chromium's theme extension (path kept: loaded copies point here)
 FF_CSS = STATE / "firefox/angelos-theme.css"     # Firefox's userChrome part, linked into the profile
-MARK_BEGIN, MARK_END = "angelOS begin", "angelOS end"
+MARK_BEGIN, MARK_END = "kukabara begin", "kukabara end"
 
 HELL = {
     "body": "#160609", "face": "#2a0b10", "faceAlt": "#3d1016", "sunken": "#0c0305",
@@ -189,7 +189,7 @@ def firefox_css(c, realm):
     }
     body = "\n".join("  --%s: %s !important;" % kv for kv in v.items())
     scheme = "dark" if c["dark"] else "light"
-    return ("/* angelOS — %s (browser-theme.py rewrites this file; Firefox reads it when it starts) */\n"
+    return ("/* kukabara — %s (browser-theme.py rewrites this file; Firefox reads it when it starts) */\n"
             ":root {\n  color-scheme: %s !important;\n%s\n}\n"
             "#navigator-toolbox { background-color: %s !important; color: %s !important; }\n"
             "#navigator-toolbox:-moz-window-inactive { background-color: %s !important; }\n"
@@ -218,9 +218,9 @@ def build(pal):
     colors = chromium_colors(c)
     manifest = {
         "manifest_version": 3,
-        "name": "angelOS",
+        "name": "kukabara",
         "version": "1.%d.%d" % (1 if hell else 0, int(hashlib.sha1(json.dumps(colors, sort_keys=True).encode()).hexdigest()[:6], 16) % 65535),
-        "description": "angelOS — " + ("hell, while the demon rules" if hell else "heaven, the angelOS palette") + " (rewritten by angelOS; the browser reads it at start)",
+        "description": "kukabara — " + ("hell, while the demon rules" if hell else "heaven, the kukabara palette") + " (rewritten by kukabara; the browser reads it at start)",
         "theme": {"colors": colors, "properties": {"ntp_background_alignment": "bottom"}},
     }
     new = json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
@@ -464,7 +464,7 @@ def dig(d, path, create=False):
 # The look "tabs": the theme extension named in the launcher's flags file. Only our path is
 # ever added or taken away; a line that held nothing else goes with its comment.
 FLAG = "--load-extension="
-FLAG_NOTE = "# angelOS: the theme with a visible open tab (Settings - Windows; browser-theme.py apply or revert takes it out)"
+FLAG_NOTE = "# kukabara: the theme with a visible open tab (Settings - Windows; browser-theme.py apply or revert takes it out)"
 
 
 def flags_file(b):

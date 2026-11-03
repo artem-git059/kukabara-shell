@@ -1,7 +1,7 @@
 #!/bin/sh
-# angelOS: SDDM's display setup (X11 greeter), set as [X11] DisplayCommand in
+# kukabara: SDDM's display setup (X11 greeter), set as [X11] DisplayCommand in
 # /etc/sddm.conf.d/zz-angelos.conf. First the system's own Xsetup (whatever it does: screens
-# turned and placed), then the main screen picked in angelOS becomes X's primary and the
+# turned and placed), then the main screen picked in kukabara becomes X's primary and the
 # pointer goes to its middle, where the password field is (xsetup.py). Never fails the login.
 here="$(dirname "$0")"
 if [ -x /usr/share/sddm/scripts/Xsetup ]; then

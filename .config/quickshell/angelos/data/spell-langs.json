@@ -2,7 +2,7 @@
   "_comment": [
     "Dictionaries the spelling check can download (scripts/spell.py install CODE, Settings → Devices → Spelling):",
     "the Hunspell dictionaries collected in github.com/wooorm/dictionaries, fetched from the commit pinned in \"ref\" as",
-    "dictionaries/CODE/index.aff + index.dic (+ license). Each dictionary keeps its authors' own licence; none is shipped with angelOS.",
+    "dictionaries/CODE/index.aff + index.dic (+ license). Each dictionary keeps its authors' own licence; none is shipped with kukabara.",
     "\"top\": shown first. Names in both languages."
   ],
   "source": "https://raw.githubusercontent.com/wooorm/dictionaries",

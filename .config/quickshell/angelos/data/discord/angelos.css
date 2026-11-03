@@ -1,4 +1,4 @@
-/* angelOS for Discord and Vesktop (scripts/discord-theme.py): the static half of the theme.
+/* kukabara for Discord and Vesktop (scripts/discord-theme.py): the static half of the theme.
    The --ao-* colours, the fonts and the chat's --ao-pattern are written above it
    for every palette (heaven or hell, light or dark); everything here only uses them.
    Discord's own variables are listed after midnight-discord's colors.css (MIT, refact0r) —
@@ -10,16 +10,16 @@
     --ao-active-a: color-mix(in srgb, var(--ao-accent) 26%, transparent);
     --ao-mention: color-mix(in srgb, var(--ao-accent) 16%, transparent);
     --ao-reply: color-mix(in srgb, var(--ao-text) 9%, transparent);
-    /* the Win98 bevel of angelOS's PxBox: light from the top left, a frame round it */
+    /* the Win98 bevel of kukabara's PxBox: light from the top left, a frame round it */
     --ao-raised: inset 2px 2px 0 var(--ao-hi), inset -2px -2px 0 var(--ao-lo), 0 0 0 2px var(--ao-edge);
     --ao-sunk: inset 2px 2px 0 var(--ao-lo), inset -2px -2px 0 var(--ao-hi), 0 0 0 2px var(--ao-edge);
     --ao-float: inset 2px 2px 0 var(--ao-hi), inset -2px -2px 0 var(--ao-lo), 0 0 0 2px var(--ao-edge), 4px 4px 0 2px var(--ao-shadow);
-    /* the corners: a little round, as niri rounds angelOS's windows (4 px); what floats a bit more */
+    /* the corners: a little round, as niri rounds kukabara's windows (4 px); what floats a bit more */
     --ao-r: 4px;
     --ao-r-lg: 8px;
 }
 
-/* ---- Discord's colours, angelOS's: the same for its light and dark themes (angelOS's mode
+/* ---- Discord's colours, kukabara's: the same for its light and dark themes (kukabara's mode
    decides). The selector outweighs Discord's .visual-refresh.theme-dark, which loads later. ---- */
 :root:root:is(.theme-dark, .theme-light, .theme-darker, .theme-midnight),
 :root .theme-dark:not(.custom-user-profile-theme),
@@ -425,7 +425,7 @@ rect[mask^="url(#svg-mask-status"] {
 }
 
 /* ---- the window ---- */
-/* the top strip: an angelOS title bar */
+/* the top strip: an kukabara title bar */
 .bar_c38106,
 [class^="bar_"]:has(> [class*="trailing_"]) {
     background: linear-gradient(90deg, var(--ao-title1), var(--ao-title2)) !important;
@@ -462,7 +462,7 @@ nav[class*="guilds_"] {
     transition: none !important;
 }
 
-/* the channel list, the member list: angelOS's face */
+/* the channel list, the member list: kukabara's face */
 .sidebarList__5e434,
 [class*="sidebarList_"],
 .container_c8ffbb,
@@ -574,7 +574,7 @@ textarea {
 [class*="tooltipPointer_"] {
     display: none !important;
 }
-/* menu rows: the accent on hover, like angelOS's menus */
+/* menu rows: the accent on hover, like kukabara's menus */
 [role="menu"] [role="menuitem"]:is(:hover, [class*="focused_"]),
 [role="menu"] [role="menuitemcheckbox"]:is(:hover, [class*="focused_"]),
 [role="menu"] [role="menuitemradio"]:is(:hover, [class*="focused_"]) {
@@ -586,7 +586,7 @@ textarea {
 [role="menu"] [role="menuitemradio"]:is(:hover, [class*="focused_"]) * {
     color: inherit !important;
 }
-/* a modal's head: an angelOS title bar */
+/* a modal's head: an kukabara title bar */
 [role="dialog"] > [class*="header_"]:first-child,
 [role="dialog"] [class*="modalHeader"],
 [class*="modal_"] > [class*="header_"]:first-child {
@@ -625,7 +625,7 @@ code.inline {
     box-shadow: 0 0 0 2px var(--ao-edge);
 }
 
-/* ---- scrollbars: angelOS's bevelled thumb on the sunken track (Discord's own widths kept:
+/* ---- scrollbars: kukabara's bevelled thumb on the sunken track (Discord's own widths kept:
    its hidden scrollers have none) ---- */
 * {
     scrollbar-color: auto !important;

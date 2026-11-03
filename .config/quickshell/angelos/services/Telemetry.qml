@@ -8,7 +8,7 @@ import qs.config
 // Telemetry and the sponsor wall (scripts/telemetry.py, data/sponsor.json). The user is asked
 // once — the setup wizard's «telemetry» step, or TelemetryPrompt for those set up before it —
 // and Config.setup.telemetry keeps the answer: "" not asked | "yes" | "no". Only "yes" sends:
-// a report a week (sooner when angelOS or Quickshell changed), to the author's relay; the
+// a report a week (sooner when kukabara or Quickshell changed), to the author's relay; the
 // script checks the answer again itself. Settings → Sponsor shows what goes and can take it back.
 Singleton {
     id: root

@@ -1,6 +1,6 @@
 import QtQuick
 
-// angelOS login, the "hell" look: the wallpaper burnt dark red, embers rising, a great
+// kukabara login, the "hell" look: the wallpaper burnt dark red, embers rising, a great
 // pentagram breathing behind a contract — "I, <user>, give my soul for a session" — signed
 // with the password (a little pentagram a letter) and "sign in blood". A wrong one: the
 // screen flares red; a right one: the seal. Other screens: the pentagram and the clock.
@@ -101,7 +101,7 @@ Item {
         spacing: root.u * 2
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "angelOS"
+            text: "kukabara"
             color: root.ember
             style: Text.Raised
             styleColor: root.blood

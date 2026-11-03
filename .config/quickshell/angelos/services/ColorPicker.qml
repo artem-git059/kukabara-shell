@@ -74,7 +74,7 @@ Singleton {
                 // the icon is the colour itself (no theme has a "color-select"): a file per colour, so
                 // the popup never shows the last one from a cache; written before the notification goes
                 const icon = root.iconDir + "/" + hex.slice(1) + ".svg";
-                Quickshell.execDetached(["sh", "-c", 'mkdir -p "$1" && printf %s "$2" > "$3"; exec notify-send -a angelOS -i "$3" -h string:x-canonical-private-synchronous:angelos-pick-color "$4" "$5"', "sh", root.iconDir, root.swatch(hex), icon, I18n.t("Пипетка: ", "Eyedropper: ") + hex, I18n.t("скопировано в буфер обмена", "copied to the clipboard")]);
+                Quickshell.execDetached(["sh", "-c", 'mkdir -p "$1" && printf %s "$2" > "$3"; exec notify-send -a kukabara -i "$3" -h string:x-canonical-private-synchronous:angelos-pick-color "$4" "$5"', "sh", root.iconDir, root.swatch(hex), icon, I18n.t("Пипетка: ", "Eyedropper: ") + hex, I18n.t("скопировано в буфер обмена", "copied to the clipboard")]);
                 root.picked(hex);
             }
         }

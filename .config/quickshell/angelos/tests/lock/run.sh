@@ -4,12 +4,12 @@
 # desktop. No QML errors; ANGELOS_TEST_SHOTS=dir keeps the pictures to look at.
 # Qt's offscreen platform draws no shaders (the pixelated wallpaper, heaven's sky, the
 # replay's blur, the unlock styles): ANGELOS_LOCK_TEST_GPU=1 runs it in a real window in
-# this Wayland session instead ("angelOS [dev]", which niri keeps off the stream monitor).
+# this Wayland session instead ("kukabara [dev]", which niri keeps off the stream monitor).
 #
-#   tests/lock/run.sh [angelOS dir]     exit 0 = all good, 77 = no quickshell
+#   tests/lock/run.sh [kukabara dir]     exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

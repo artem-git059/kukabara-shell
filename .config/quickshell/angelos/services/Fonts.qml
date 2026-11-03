@@ -21,7 +21,7 @@ Singleton {
     readonly property var presets: [
         {
             "id": "angelos",
-            "label": "angelOS",
+            "label": "kukabara",
             "fonts": ["", "", ""],
             "needs": []
         },
@@ -56,7 +56,7 @@ Singleton {
     function choices(role) {
         const out = [
             {
-                "label": I18n.t("Как в angelOS", "angelOS default"),
+                "label": I18n.t("Как в kukabara", "kukabara default"),
                 "value": ""
             }
         ];
@@ -154,7 +154,7 @@ Singleton {
                 try {
                     root.catalog = JSON.parse(text).fonts || [];
                 } catch (e) {
-                    console.warn("angelOS fonts:", e);
+                    console.warn("kukabara fonts:", e);
                 }
             }
         }

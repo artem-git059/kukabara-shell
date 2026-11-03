@@ -183,7 +183,7 @@ FloatingWindow {
         anchors.rightMargin: Theme.u * 2
         anchors.bottomMargin: Theme.u * 2
         translucent: false
-        title: "angelOS · " + I18n.t("Смерть на смене", "Death on shift")
+        title: "kukabara · " + I18n.t("Смерть на смене", "Death on shift")
         icon: "skull"
         onCloseClicked: Reaper.open = false
         onTitlePressed: root.startSystemMove()

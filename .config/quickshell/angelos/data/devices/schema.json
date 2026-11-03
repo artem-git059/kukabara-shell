@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "angelOS device description",
+  "title": "kukabara device description",
   "description": "One device of the devices' driver (docs/devices.md). `angelos devices check FILE` is the checker the shell itself uses; this schema is the same rules for editors.",
   "type": "object",
   "required": [

@@ -4,7 +4,7 @@ import QtQuick
 import qs.config
 import qs.widgets
 
-// Y2K glitter behind the pointer, drawn where angelOS can see it (the bare
+// Y2K glitter behind the pointer, drawn where kukabara can see it (the bare
 // desktop). A small pool of sparkles is reused round-robin; nothing animates
 // while the pointer rests.
 Item {

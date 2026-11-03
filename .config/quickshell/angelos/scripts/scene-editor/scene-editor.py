@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS scene editor: which parts of a wallpaper come alive (`angelos scene edit [picture]`).
+"""kukabara scene editor: which parts of a wallpaper come alive (`angelos scene edit [picture]`).
 
   scene-editor.py [PICTURE] [--port 0] [--no-open] [--stay]
 

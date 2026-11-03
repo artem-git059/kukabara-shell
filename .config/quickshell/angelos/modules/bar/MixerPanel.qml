@@ -7,7 +7,7 @@ import qs.widgets
 
 // The volume mixer on the bar. One fixed size: devices on top, programs in a scrolling
 // list below — the window no longer grows and shrinks (and jumps around its anchor)
-// whenever a program starts or stops playing, or angelOS clicks (Audio.appStreams).
+// whenever a program starts or stops playing, or kukabara clicks (Audio.appStreams).
 BarPopup {
     id: root
 

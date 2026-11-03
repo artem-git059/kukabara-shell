@@ -1,5 +1,5 @@
 name: Bug report / Сообщить об ошибке
-description: Something in angelOS or the dotfiles broke / Что-то сломалось в angelOS или конфигах
+description: Something in kukabara or the dotfiles broke / Что-то сломалось в kukabara или конфигах
 labels: [bug]
 body:
   - type: markdown
@@ -37,7 +37,7 @@ body:
     attributes:
       label: Desktop shell / Оболочка
       options:
-        - angelOS
+        - kukabara
         - none / без оболочки
   - type: input
     id: gpu

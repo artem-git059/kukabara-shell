@@ -14,7 +14,7 @@ screens themselves stay live.
   niri-cast-privacy status           JSON {"on", "apps": [{"id", "name", "on"}], "open": [{"id", "name"}], "shown": [id]}
                                      open: the apps of the windows open now that are not in the list
 
-The list is ~/.config/angelos/privacy.json — angelOS's Settings → Streaming → Stream mode → Privacy on stream
+The list is ~/.config/angelos/privacy.json — kukabara's Settings → Streaming → Stream mode → Privacy on stream
 edits the same file; without one it is Telegram, Freshgram, Bitwarden, Helium and Discord. An
 app is a window's app-id, matched whole (`niri msg windows`). The mode itself is niri's
 cfg/privacy-block.kdl (config.kdl includes it): a window rule with block-out-from "screencast",

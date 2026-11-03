@@ -1,4 +1,4 @@
-// angelOS open: the window appears pixel by pixel through an ordered (Bayer) dither, the grid of
+// kukabara open: the window appears pixel by pixel through an ordered (Bayer) dither, the grid of
 // 4 px "pixels" filling in evenly; each one lights up in the theme's accent for a moment.
 float angelos_bayer2(vec2 c) {
     vec2 d = mod(c, 2.0);

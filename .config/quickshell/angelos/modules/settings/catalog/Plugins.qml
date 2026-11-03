@@ -10,7 +10,7 @@ import qs.widgets
 import "../../../widgets/MacIcons.js" as MacIcons
 import qs.modules.settings.kit
 
-// Community Plugins — angelOS's one place for plugins (services/CommunityPlugins): everything
+// Community Plugins — kukabara's one place for plugins (services/CommunityPlugins): everything
 // installed (bundled, from the community catalog, your own) next to the approved entries of
 // the registry. Install, switch on and off, update, remove; the removed ones and a new plugin
 // below. The launcher's "plugins …" does the same (plugins/community, a core plugin).
@@ -39,7 +39,7 @@ CatPage {
     }
     function originText(p) {
         if (Plugins.isCore(p))
-            return I18n.t("часть angelOS", "part of angelOS");
+            return I18n.t("часть kukabara", "part of kukabara");
         const o = CommunityPlugins.origin(p);
         return o === "bundled" ? I18n.t("встроенный", "bundled") : o === "community" ? I18n.t("из каталога", "from the catalog") : o === "github" ? "GitHub" : o === "zip" || o === "url" ? I18n.t("из zip", "from a zip") : I18n.t("свой", "your own");
     }
@@ -404,7 +404,7 @@ CatPage {
                                         onClicked: Quickshell.execDetached(["xdg-open", card.entry.repository])
                                     }
                                     // remove (a second click confirms): yours go to the trash, bundled ones hide;
-                                    // angelOS's own part (core) stays
+                                    // kukabara's own part (core) stays
                                     PxButton {
                                         readonly property bool asking: page.confirmId === card.modelData.id
                                         visible: !card.core

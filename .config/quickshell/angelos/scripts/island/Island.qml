@@ -21,7 +21,7 @@ Window {
     visible: true
     color: "#16141c"
     // the niri rule finds it by this title (the page's own title goes into the strip)
-    title: args.indexOf("dev", 4) > 0 ? "angelOS · Остров [dev]" : "angelOS · Остров"
+    title: args.indexOf("dev", 4) > 0 ? "kukabara · Остров [dev]" : "kukabara · Остров"
     readonly property bool shellOpens: args.indexOf("shell-opens", 4) > 0
 
     readonly property string cmdFile: args[1] || ""

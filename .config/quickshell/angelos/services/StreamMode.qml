@@ -6,7 +6,7 @@ import Quickshell.Io
 import qs.config
 
 // Stream mode: while OBS streams (obs-websocket, scripts/obs-watch.py) or when
-// switched on by hand, angelOS keeps out of the picture — the angel leaves the
+// switched on by hand, kukabara keeps out of the picture — the angel leaves the
 // streamed screens, its sounds stay quiet, Do not disturb is on, and sparkles,
 // the loading screen and the angel/demon effects skip the streamed screens.
 // Settings → Y2K → Stream mode; `angelos stream on|off|auto`.
@@ -129,7 +129,7 @@ Singleton {
         if (Angel.present && !Angel.demon)
             Angel.say(text, [], 14000);
         else
-            Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "camera-web", I18n.t("OBS и ангел", "OBS and the angel"), text]);
+            Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "camera-web", I18n.t("OBS и ангел", "OBS and the angel"), text]);
     }
 
     // Settings → Streaming → OBS: connect again (a new port, OBS just started)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS: the browsers' half of the Halo's download progress.
+"""kukabara: the browsers' half of the Halo's download progress.
 
 A file being downloaded doesn't know its full size; only the browser does. So a small extension
 (data/browser-downloads: the WebExtension `downloads` API, the same in Chromium and Firefox)
@@ -86,12 +86,12 @@ def remove(path):
 
 
 def chromium_host():
-    return json.dumps({"name": NAME, "description": "angelOS: download progress for the Halo", "path": str(HOST),
+    return json.dumps({"name": NAME, "description": "kukabara: download progress for the Halo", "path": str(HOST),
                        "type": "stdio", "allowed_origins": ["chrome-extension://%s/" % CHROME_ID]}, indent=2) + "\n"
 
 
 def firefox_host():
-    return json.dumps({"name": NAME, "description": "angelOS: download progress for the Halo", "path": str(HOST),
+    return json.dumps({"name": NAME, "description": "kukabara: download progress for the Halo", "path": str(HOST),
                        "type": "stdio", "allowed_extensions": [GECKO_ID]}, indent=2) + "\n"
 
 
@@ -122,7 +122,7 @@ def flags_set(path, on):
             continue
         lines.append(line)
     if on and not done:
-        lines += ["# angelOS: download progress in the Halo (browser-downloads.py remove takes it out)", FLAG + me]
+        lines += ["# kukabara: download progress in the Halo (browser-downloads.py remove takes it out)", FLAG + me]
     if not on:
         lines = [l for l in lines if "browser-downloads.py remove" not in l]
     new = "\n".join(lines) + "\n" if lines else ""

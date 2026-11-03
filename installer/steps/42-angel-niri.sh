@@ -1,11 +1,11 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # ── angel-niri ───────────────────────────────────────────────────────────────
-# angelOS's fork of niri: the build pinned in data/angel-niri.json, from its GitHub release
+# kukabara's fork of niri: the build pinned in data/angel-niri.json, from its GitHub release
 # (checked by SHA256) or built from source when that fails, made the session's niri from the next
 # login. One place for this and Settings → Updates: scripts/angel-niri-install.sh. It failing
-# leaves niri from the package: angelOS works on it, without the fork's features.
+# leaves niri from the package: kukabara works on it, without the fork's features.
 
 ANGEL_NIRI="${ANGEL_NIRI:-1}"
 
@@ -20,4 +20,4 @@ install_angel_niri() {
 }
 
 # the steps of this file, in the order of the run (see step() in installer/lib/core.sh)
-step 42 install_angel_niri "angel-niri (angelOS's niri)" "angel-niri (niri angelOS)"
+step 42 install_angel_niri "angel-niri (kukabara's niri)" "angel-niri (niri kukabara)"

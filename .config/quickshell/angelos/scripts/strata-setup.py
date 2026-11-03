@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
-"""angelOS for Strata, the file manager angelOS installs (data/apps-catalog.json: «strata»).
+"""kukabara for Strata, the file manager kukabara installs (data/apps-catalog.json: «strata»).
 
   strata-setup.py status            -> JSON: what is installed and applied
-  strata-setup.py apply             -> angelOS's items in Strata's menu (Open in terminal, mediafix,
+  strata-setup.py apply             -> kukabara's items in Strata's menu (Open in terminal, mediafix,
                                        Send nearby: ~/.config/strata/actions/angelos-*), the
-                                       angelOS theme (scripts/strata-theme.py) as the one it uses
+                                       kukabara theme (scripts/strata-theme.py) as the one it uses
                                        and Pixora's icons (see below)
-  strata-setup.py theme             -> only make «angelOS» the theme (apply does it too)
+  strata-setup.py theme             -> only make «kukabara» the theme (apply does it too)
   strata-setup.py remove            -> take the items out (into a backup) and give the theme back
   strata-setup.py portal on|off     -> Strata's own Open/Save dialogs for every app (the file chooser
                                        portal: `strata --install-portal`), or back to the old ones
-  strata-setup.py terminal PATH     -> the angelOS terminal in PATH's folder (the menu item)
+  strata-setup.py terminal PATH     -> the kukabara terminal in PATH's folder (the menu item)
 
 The items are Strata's custom actions: one folder each with an action.toml (strict: unknown keys
-are refused), commands run without a shell, the paths as separate arguments. Labels in the angelOS
+are refused), commands run without a shell, the paths as separate arguments. Labels in the kukabara
 language. A changed item moves the old copy into ~/.local/state/angelos/backups/<stamp>-strata.
 
 The theme: Strata reads settings.toml once, at start, and writes it back from memory when its
 settings change — a running Strata would put its old theme back over ours. So the theme is set
 only while no Strata runs; otherwise apply says {"themePending": true} and the shell runs `theme`
-once Strata is gone (services/StrataSetup). Its colours follow angelOS on the fly afterwards
+once Strata is gone (services/StrataSetup). Its colours follow kukabara on the fly afterwards
 (Strata watches ~/.config/strata/themes). The theme Strata had before is kept in
 ~/.local/state/angelos/strata-before.json for `remove`.
 
@@ -73,7 +73,7 @@ def actions():
     return {
         "angelos-terminal": {
             "name": "Открыть в терминале" if r else "Open in terminal",
-            "description": "Терминал из настроек angelOS в этой папке" if r else "The angelOS terminal in this folder",
+            "description": "Терминал из настроек kukabara в этой папке" if r else "The kukabara terminal in this folder",
             "icon": "terminal", "menu": "top",
             "when": {"max_items": 1},
             "run": {"program": "python3", "args": [script, "terminal", "{path}"], "mode": "per-item"},
@@ -88,7 +88,7 @@ def actions():
         },
         # services/VideoGrab: Strata has no Space for Quick Look (Nautilus's previewer), so the menu
         "angelos-quicklook": {
-            "name": "Просмотр angelOS: обрезка, Discord, монтаж" if r else "angelOS Quick Look: cut, Discord, editing",
+            "name": "Просмотр kukabara: обрезка, Discord, монтаж" if r else "kukabara Quick Look: cut, Discord, editing",
             "description": "Quick Look с метками обрезки и кнопками «≤20 МБ», «Для монтажа», «Звук WAV»" if r else "Quick Look with cut marks and «≤20 MB», «For editing», «Sound WAV»",
             "icon": "video", "menu": "top",
             "when": {"kinds": ["file"], "extensions": VIDEO, "max_items": 1},
@@ -96,14 +96,14 @@ def actions():
         },
         "angelos-discord": {
             "name": "Сжать для Discord" if r else "Squeeze for Discord",
-            "description": "Под лимит из настроек angelOS, на Полку и в буфер" if r else "Under the limit from angelOS's settings, onto the shelf and into the clipboard",
+            "description": "Под лимит из настроек kukabara, на Полку и в буфер" if r else "Under the limit from kukabara's settings, onto the shelf and into the clipboard",
             "icon": "video", "menu": "submenu",
             "when": {"kinds": ["file"], "extensions": VIDEO},
             "run": {"program": angelos, "args": ["discord", "{paths}"], "mode": "whole-selection"},
         },
         "angelos-share": {
             "name": "Отправить рядом (LocalSend)" if r else "Send nearby (LocalSend)",
-            "description": "Окно angelOS «Отправить рядом» с этими файлами" if r else "angelOS's Send nearby window with these files",
+            "description": "Окно kukabara «Отправить рядом» с этими файлами" if r else "kukabara's Send nearby window with these files",
             "icon": "send", "menu": "top",
             "when": {},
             "run": {"program": angelos, "args": ["share", "{paths}"], "mode": "whole-selection"},
@@ -112,7 +112,7 @@ def actions():
 
 
 def manifest(aid, a):
-    lines = ["# written by angelOS (scripts/strata-setup.py); Settings → Default apps → Files · Strata",
+    lines = ["# written by kukabara (scripts/strata-setup.py); Settings → Default apps → Files · Strata",
              "schema_version = 1", f"id = {q(aid)}", f"name = {q(a['name'])}",
              f"description = {q(a['description'])}", f"icon = {q(a['icon'])}", "enabled = true",
              f"menu = {q(a['menu'])}", "", "[when]"]
@@ -239,7 +239,7 @@ def build_theme(errors):
 
 
 def select_theme(done):
-    """«angelOS» as Strata's theme — only while no Strata runs (see the docstring)"""
+    """«kukabara» as Strata's theme — only while no Strata runs (see the docstring)"""
     if strata_pids():
         return False
     text = read_settings()

@@ -70,7 +70,7 @@ def capture(target, channels, positions, rate, name, passive=True):
         sys.exit(2)
     # passive: follows the player without keeping anything awake; the console's mix
     # source may be suspended, so that capture is an ordinary one and wakes it up
-    props = "{ node.name = %s node.description = \"angelOS lyrics level\" node.dont-reconnect = true%s%s }" % (
+    props = "{ node.name = %s node.description = \"kukabara lyrics level\" node.dont-reconnect = true%s%s }" % (
         name, " node.passive = true" if passive else "", " stream.dont-remix = true" if positions else "")
     cmd = ["pw-record", "--raw", "--target", str(target), "--channels", str(channels),
            "--format", "f32", "--rate", str(rate), "--latency", "40ms", "-P", props]

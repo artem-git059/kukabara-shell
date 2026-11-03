@@ -266,7 +266,7 @@ with tempfile.TemporaryDirectory() as T:
     desk = Image.fromarray((np.asarray(photo(1920, 1080, 4), np.float32) * 0.6).astype(np.uint8))
     d = ImageDraw.Draw(desk)
     d.rectangle((0, 1040, 1919, 1079), fill="#111018")
-    d.text((20, 1050), "angelOS  12:40", font=font(13), fill="#dddddd")
+    d.text((20, 1050), "kukabara  12:40", font=font(13), fill="#dddddd")
     for (wd, bg, fg), lx in zip(strip, lefts):
         d.rectangle((lx, 15, lx + wd - 1, 1024), fill=bg)
         text(d, lx + 40, 60, 12, 14, fg, 60)

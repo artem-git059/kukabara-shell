@@ -13,7 +13,7 @@ import qs.widgets
 //   file    a GIF (or animated WebP / PNG), a still picture, or a video without its sound
 //   folder  a slideshow of a folder's pictures, one every N minutes (in order or shuffled),
 //           going over through big pixels
-// S / M / L: its longer side (64 / 100 / 160 angelOS pixels; an old widget's own size stays
+// S / M / L: its longer side (64 / 100 / 160 kukabara pixels; an old widget's own size stays
 // until a size is picked). The mat: none, or a polaroid with the file's name under it.
 // Qt 6.12's AnimatedImage ends a playback by itself: `loops` times through, then it rests on its
 // first or last frame (`finishBehavior`) and says `finished` — and the widget may start it again

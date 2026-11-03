@@ -1,6 +1,6 @@
 # Icon credits
 
-angelOS's own pixel icons (`widgets/Icons.js`) are part of angelOS. The two other icon styles
+kukabara's own pixel icons (`widgets/Icons.js`) are part of kukabara. The two other icon styles
 (Settings → Appearance → Icons) are converted from these sets by `scripts/icon-sets.py` into
 `widgets/IconSets.js`.
 
@@ -8,15 +8,15 @@ The pixel icons for the standard (freedesktop) icon names — what notifications
 apps get when the user's icon theme has no picture for a name (`services/StdIcon`) — are
 converted from the same two sets by `scripts/std-icons.py` into `widgets/StdIcons.js`
 (pixelarticons 2.4.2, HackerNoon 1.1.0; the same changes: rendered to bitmaps on their grid,
-cropped, coloured by the theme). The Bluetooth sign there is angelOS's own.
+cropped, coloured by the theme). The Bluetooth sign there is kukabara's own.
 
 ## pixelarticons
 
 Source: <https://github.com/halfmage/pixelarticons> (npm `pixelarticons@2.4.1`).
 Used as the "pixelarticons" style: rendered to bitmaps on their 24-unit grid, cropped to their
-ink, coloured by the angelOS theme.
+ink, coloured by the kukabara theme.
 
-Icons used (angelOS name): arrowDown, arrowLeft, arrowRight, arrowUp, bell, bellOff, calc, calendar, camera, cd, chat, check, chip, close, cursor, document, download, fire, folder, gamepad, gauge, gear, grid, image, info, keyboard, lock, logout, maximize, mic, micMute, minimize, minus, monitor, moon, mouse, music, package, palette, pin, plug, plus, power, refresh, search, skull, sparkle, sparkleStar, speaker, speakerMute, star, sun, terminal, trash, warn, window.
+Icons used (kukabara name): arrowDown, arrowLeft, arrowRight, arrowUp, bell, bellOff, calc, calendar, camera, cd, chat, check, chip, close, cursor, document, download, fire, folder, gamepad, gauge, gear, grid, image, info, keyboard, lock, logout, maximize, mic, micMute, minimize, minus, monitor, moon, mouse, music, package, palette, pin, plug, plus, power, refresh, search, skull, sparkle, sparkleStar, speaker, speakerMute, star, sun, terminal, trash, warn, window.
 
 ```
 MIT License
@@ -49,9 +49,9 @@ Source: <https://github.com/hackernoon/pixel-icon-library> (npm `@hackernoon/pix
 [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
 **Changes made:** the SVG icons were rendered to bitmaps on their 24-unit grid, cropped to their
-ink and are recoloured by the angelOS theme at runtime; only the icons listed below are included.
+ink and are recoloured by the kukabara theme at runtime; only the icons listed below are included.
 
-Icons used (angelOS name): arrowDown, arrowLeft, arrowRight, arrowUp, bell, bellOff, calendar, camera, cd, chat, check, close, document, download, fire, folder, gear, grid, image, info, lock, logout, maximize, minimize, minus, monitor, moon, music, package, palette, pin, plus, refresh, search, sparkle, sparkleStar, speaker, speakerMute, star, sun, terminal, trash, warn, window.
+Icons used (kukabara name): arrowDown, arrowLeft, arrowRight, arrowUp, bell, bellOff, calendar, camera, cd, chat, check, close, document, download, fire, folder, gear, grid, image, info, lock, logout, maximize, minimize, minus, monitor, moon, music, package, palette, pin, plus, refresh, search, sparkle, sparkleStar, speaker, speakerMute, star, sun, terminal, trash, warn, window.
 
 ## MacTahoe (the Golden Gate Dock)
 
@@ -68,6 +68,6 @@ Copyright 2020 Takuto Nakamura. Licensed under the Apache License, Version 2.0
 (<http://www.apache.org/licenses/LICENSE-2.0>).
 Used in `modules/halo/HaloCat.js` (Settings → Halo → At rest → «Cat»). Changes: the five running
 frames reduced by hand to 20×12 whole pixels in the theme's text colour, the eyes cut out; a
-sleeping pose (two frames) and a «z» added by angelOS.
+sleeping pose (two frames) and a «z» added by kukabara.
 Also in `modules/bar/parts/RunnerSprites.js` (the bar's «Забег»): the same cat drawn again at
-13×7 pixels (four running frames, a jump and a tumble) by angelOS.
+13×7 pixels (four running frames, a jump and a tumble) by kukabara.

@@ -10,7 +10,7 @@ rules). This writes what the templates can't:
   ~/.local/share/angelos/terminal/hell-lines.txt  her lines for a new terminal, one a line
   ~/.local/share/angelos/terminal/hell.png        kitty's scorched background (painted once)
   ~/.local/share/angelos/terminal/fastfetch.jsonc in hell: fastfetch in the circle. With one
-                                                  of angelOS's styles (scripts/fastfetch_style.py)
+                                                  of kukabara's styles (scripts/fastfetch_style.py)
                                                   that style in the circle: the circle's own sigil
                                                   (each of the nine has one), its number, name and
                                                   line, its words for the readings ("cpu · жар"),
@@ -35,8 +35,8 @@ FASTFETCH = HOME / ".config/fastfetch/config.jsonc"
 FISH = HOME / ".config/fish/conf.d/angelos-realm.fish"
 PAINT_VERSION = "2"
 
-FISH_SNIPPET = r"""# angelOS: the terminal in hell (Settings → Y2K → Terminal in hell).
-# Written by angelOS (scripts/terminal-hell.py) — edits here are overwritten.
+FISH_SNIPPET = r"""# kukabara: the terminal in hell (Settings → Y2K → Terminal in hell).
+# Written by kukabara (scripts/terminal-hell.py) — edits here are overwritten.
 status is-interactive; or return
 set -l __angelos_dir (set -q XDG_DATA_HOME; and echo $XDG_DATA_HOME; or echo $HOME/.local/share)/angelos/terminal
 test -f $__angelos_dir/realm; or return
@@ -206,11 +206,11 @@ def fastfetch_config(ff, user, logo_path):
         if isinstance(m, dict):
             m.pop("angelosCircle", None)
     cfg["modules"] = mods
-    return "// angelOS: fastfetch in the circle — written from ~/.config/fastfetch/config.jsonc by\n// scripts/terminal-hell.py; edits here are overwritten (edit your own config instead)\n" + json.dumps(cfg, ensure_ascii=False, indent=2) + "\n"
+    return "// kukabara: fastfetch in the circle — written from ~/.config/fastfetch/config.jsonc by\n// scripts/terminal-hell.py; edits here are overwritten (edit your own config instead)\n" + json.dumps(cfg, ensure_ascii=False, indent=2) + "\n"
 
 
 def styled_fastfetch(ff, logo_path):
-    """(config text, logo text, what moves) of angelOS's fastfetch style in the circle, or None
+    """(config text, logo text, what moves) of kukabara's fastfetch style in the circle, or None
     when the user's config isn't one of the styles"""
     style = ff.get("style")
     try:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS: Discord always with Vencord (CachyOS only). An update of Discord brings a clean
+"""kukabara: Discord always with Vencord (CachyOS only). An update of Discord brings a clean
 app.asar back; this puts Vencord in again, by itself:
 
   angelos-vencord status   JSON: every Discord found here and its state, and this user's Vencord
@@ -40,11 +40,11 @@ URL = os.environ.get("ANGELOS_VENCORD_URL", "https://github.com/Vendicated/Venco
 FILES = ["patcher.js", "preload.js", "renderer.js", "renderer.css",
          "patcher.js.LEGAL.txt", "renderer.js.LEGAL.txt"]
 FLATPAKS = ["com.discordapp.Discord", "com.discordapp.DiscordCanary"]
-MARK = "angelOS"
+MARK = "kukabara"
 # Vencord of whoever starts it; the plain Discord without one (what Vencord's patcher.js does
 # to start the original, too)
 SHIM = (
-    "// angelOS (angelos-vencord): Vencord of whoever starts Discord; without it, plain Discord\n"
+    "// kukabara (angelos-vencord): Vencord of whoever starts Discord; without it, plain Discord\n"
     'const p=require("path"),f=require("fs"),v=p.join(require("os").homedir(),".config","Vencord","dist","patcher.js");\n'
     'if(f.existsSync(v))require(v);else{const a=p.join(__dirname,"..","_app.asar"),'
     'm=p.join(a,require(p.join(a,"package.json")).main);'

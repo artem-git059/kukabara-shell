@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installer for angelOS — the pastel Niri rice (CachyOS / Arch).
+# Installer for kukabara-shell — the pastel Niri rice (CachyOS / Arch).
 #
 # Run it with no arguments for the interactive setup: a pastel "stream" in the terminal
 # (gum menus, a hearts progress bar; gum is installed first when it is missing). Or drive it
@@ -8,8 +8,8 @@
 #   DOTFILES_MODE=full|tech        full = styling + desktop shell + assets, tech = minimal
 #   DESKTOP_SHELL=angelos|none
 #                                  desktop shell (default angelos; tech defaults to none).
-#                                  angelOS = the pixel Quickshell shell shipped in .config/quickshell/angelos
-#   ANGELOS_THEME=pixel|macos      angelOS's look: pixel = the pink pixel desktop, macos = Golden Gate
+#                                  kukabara = the pixel Quickshell shell shipped in .config/quickshell/angelos
+#   ANGELOS_THEME=pixel|macos      kukabara's look: pixel = the pink pixel desktop, macos = Golden Gate
 #                                  (Dock, menu bar, Liquid Glass, Mac sounds and Mac keys). Asked
 #                                  interactively (default pixel); unattended runs leave the current
 #                                  one alone unless it is given. Later: Settings → Appearance
@@ -45,7 +45,7 @@
 #   NO_MUSIC=1                     no music and no sounds (off by itself over SSH, without a sound
 #                                  server and on the author's machine)
 #   INTERACTIVE=0                  no questions even on a terminal
-#   ANGELOS_GAME=1|0               angelOS is also a game played over the desktop (an angel, a demon,
+#   ANGELOS_GAME=1|0               kukabara is also a game played over the desktop (an angel, a demon,
 #                                  a story that follows your choices); 0 = plain dotfiles without it.
 #                                  Asked interactively; unattended runs leave the current choice alone.
 #                                  Later: `angelos game on|off`, Mod+Ctrl+Shift+Escape leaves it at once
@@ -57,7 +57,7 @@
 #                                  (or a raw XKB option such as grp:shifts_toggle)
 #   KB_VARIANT=,phonetic           optional XKB variants, one per layout, comma separated
 #   VOXTYPE_LANGUAGE=ru            dictation language (default: derived from KB_LAYOUTS)
-#   INSTALL_SDDM=1|0               SDDM login screen with the angelOS theme
+#   INSTALL_SDDM=1|0               SDDM login screen with the kukabara theme
 #                                  (default 1, or 0 together with SKIP_PACKAGES=1)
 #   MAIN_SCREEN=DP-1               the main screen (a niri output): the login's password field and
 #                                  the pointer, the lock (asked with two screens or more)
@@ -68,7 +68,7 @@
 #   SMOOTH_MEMORY=1|0              kernel memory settings that keep the picture from freezing when
 #                                  RAM fills up (extras/smooth-memory, a sysctl file; default 1)
 #   SKIP_PACKAGES=0|1              skip `pacman -Syu`
-#   ANGEL_NIRI=1|0                 angel-niri, angelOS's fork of niri (minimize, pixel looks, the
+#   ANGEL_NIRI=1|0                 angel-niri, kukabara's fork of niri (minimize, pixel looks, the
 #                                  stream's privacy looks and pause, tearing in games): downloaded
 #                                  (SHA256-checked) or built, started from the next login instead
 #                                  of the niri package (default 1; undo:
@@ -78,13 +78,13 @@
 #   WALLPAPER_PACKS=all|none|Lain,Pixel,…
 #                                  wallpaper packs to download (full mode, default all):
 #                                  Lain (~410 MB), Pixel (~187 MB), pixel-art-green-wallpapers (~275 MB),
-#                                  Hell (~0.4 MB, the angelOS demon's wallpapers).
+#                                  Hell (~0.4 MB, the kukabara demon's wallpapers).
 #                                  They live in WALLPAPERS_REPO; only the chosen folders are fetched.
 #   WALLPAPERS_REPO=<git url>      default https://github.com/MixaDoDs/PixelStreetArt_Wallpapers
 #   INSTALL_WALLPAPERS=0|1         older switch: 0 = no packs, 1 = all packs
 #   ENABLE_SERVICES=0|1            enable the systemd user services
 #   INTRO_SOUNDS=1|0               mix the first run's intro sound now, in the background
-#   MINIMIZE_HOOK=1|0              the windows' own minimize buttons reach angelOS
+#   MINIMIZE_HOOK=1|0              the windows' own minimize buttons reach kukabara
 #                                  (extras/minimize-hook: an LD_PRELOAD library, needs gcc)
 #   DISCORD_SHIELD=1|0             with a mixer (RØDECaster…), Discord streams don't crash on sound
 #   INSTALL_FLATPAK=0|1            (older switch, ignored: OBS and Blender are in the apps' catalog)
@@ -103,7 +103,7 @@
 #                                  a config-only run, SKIP_PACKAGES=1 — Settings → Updates — goes on
 #                                  with a warning, since it installs no packages)
 #   ANGELOS_LANG=ru|en             the language of the messages (default: the locale's)
-#   GITHUB_LOGIN=0|1               angelOS: log in to GitHub (gh) and fetch the author's tools
+#   GITHUB_LOGIN=0|1               kukabara: log in to GitHub (gh) and fetch the author's tools
 #                                  (the chapter editor) if this account can see the author's
 #                                  private repository. Only the author has use for it; for
 #                                  everyone else nothing changes. Asked interactively (default
@@ -111,7 +111,7 @@
 #
 # Every file that gets replaced is first moved to  name.bak.YYYYMMDD-HHMMSS.
 # Re-running the installer is safe: unchanged files are left alone.
-# Updating keeps your settings: a config file you (or angelOS's settings) changed
+# Updating keeps your settings: a config file you (or kukabara's settings) changed
 # since the installer wrote it stays as it is, and its new version is parked in
 # ~/.local/state/angelos/kept-updates/ to compare. The installer remembers what it
 # wrote in ~/.local/state/angelos/installed-files.sha256; for older installs the
@@ -139,7 +139,7 @@ done
 given() { local n="GIVEN_$1"; [[ -n "${!n:-}" ]]; }
 
 MODE="${DOTFILES_MODE:-full}"
-# Noctalia is not part of these dotfiles any more (angelOS took its place). The old switch still
+# Noctalia is not part of these dotfiles any more (kukabara took its place). The old switch still
 # means what it can: NOCTALIA=0 was "no desktop shell". Asking for Noctalia itself stops here,
 # before anything is touched
 if ! is_set DESKTOP_SHELL && [[ "${NOCTALIA:-}" == 0 ]]; then DESKTOP_SHELL=none; fi
@@ -165,7 +165,7 @@ WALLPAPER_LIST=(
   "Lain|136|410|Serial Experiments Lain|Serial Experiments Lain"
   "Pixel|100|187|pixel street art, games, cities|пиксельный стрит-арт, игры, города"
   "pixel-art-green-wallpapers|200|275|green pixel art|зелёный пиксель-арт"
-  "Hell|7|1|pixel hell for the angelOS demon (public-domain paintings)|пиксельный ад для демоницы angelOS (картины в общественном достоянии)"
+  "Hell|7|1|pixel hell for the kukabara demon (public-domain paintings)|пиксельный ад для демоницы kukabara (картины в общественном достоянии)"
 )
 if ! is_set WALLPAPER_PACKS; then
   [[ "$INSTALL_WALLPAPERS" == 0 ]] && WALLPAPER_PACKS=none || WALLPAPER_PACKS=all
@@ -215,17 +215,17 @@ G_HEART='♡' G_FULL='♥'
 
 # ── Output helpers (English, or Russian when the locale is ru_*) ─────────────
 
-# ANGELOS_LANG: angelOS's own language, passed by Settings → Updates
+# ANGELOS_LANG: kukabara's own language, passed by Settings → Updates
 case "${ANGELOS_LANG:-${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}}" in ru*) UI=ru ;; *) UI=en ;; esac
 # a fresh Arch Linux is en_US (or C) for most Russian speakers too: on a terminal the installer
-# asks first, in both languages, unless ANGELOS_LANG says it. The pick goes on to angelOS
+# asks first, in both languages, unless ANGELOS_LANG says it. The pick goes on to kukabara
 # (the setup wizard starts in it) and to the helpers (apps-install.py, cachyos-repos.sh).
 LANG_ASKED=""
 if [[ -z "${ANGELOS_LANG:-}" ]] && ((INTERACTIVE)); then
   # the first screen, as Windows XP's text-mode setup had it (blue, a bar, keys at the bottom)
   if ((COLOR)); then
     _w="$(tput cols 2>/dev/null || echo 80)"
-    printf '\033[2J\033[H\033[44;97m%-*s\033[0m\n\n' "$_w" ' angelOS Setup'
+    printf '\033[2J\033[H\033[44;97m%-*s\033[0m\n\n' "$_w" ' kukabara-shell Setup'
     printf '\033[1;95m  Добро пожаловать. / Welcome.\033[0m\n\n  1) Русский\n  2) English\n\n'
     printf '\033[%s;1H\033[44;97m%-*s\033[0m\033[8;1H' "$(tput lines 2>/dev/null || echo 24)" "$_w" ' ENTER=Продолжить/Continue   Ctrl+C=Выход/Quit'
     unset _w
@@ -269,13 +269,13 @@ warn() { _log "WARNING: $*"; printf '%s[dotfiles] WARNING:%s %s\n' "$C_WARN" "$C
 die()  { DIED=1; _log "ERROR: $*"; printf '%s[dotfiles] ERROR:%s %s\n' "$C_ERR" "$C_OFF2" "$*" >&2; exit 1; }
 hr()   { printf '%s%s %s %s%s\n' "$C_DIM" "$G_HEART" '───────────────────────────────────────────────────────' "$G_HEART" "$C_OFF"; }
 
-# root's home would get angelOS (sudo ./install.sh, or logged in as root on a fresh system); a
+# root's home would get kukabara (sudo ./install.sh, or logged in as root on a fresh system); a
 # container without a terminal (the CI, a build) runs as root on purpose
 ((EUID != 0 || !INTERACTIVE)) || die "$(_ 'Run the installer as your own user, not root and not with sudo: it asks for the admin password itself' \
                           'Запускай установщик от своего пользователя, не от root и не через sudo: пароль администратора он спросит сам')"
 
 # ── Self-update ──────────────────────────────────────────────────────────────
-# A clone that fell behind installed an old angelOS, and Settings → Updates then still showed
+# A clone that fell behind installed an old kukabara, and Settings → Updates then still showed
 # the update: it had to be installed twice. So before anything else the installer asks what the
 # branch's newest commit is — GitHub's API, one small curl, no objects; `git ls-remote` for
 # another host or without curl — and when the clone is behind and has nothing of its own (no
@@ -298,7 +298,7 @@ self_update() {
   fi
   [[ -n "$remote" ]] || remote="$(timeout 12 git -C "$ROOT" ls-remote --heads origin "$branch" 2>/dev/null | awk '{print $1; exit}' || true)"
   if [[ -z "$remote" ]]; then
-    warn "$(_ 'Could not ask whether a newer angelOS is out (no network?): installing the version that is here' \
+    warn "$(_ 'Could not ask whether a newer kukabara is out (no network?): installing the version that is here' \
               'Не удалось узнать, вышла ли версия новее (нет сети?): ставлю ту, что здесь')"
     return 0
   fi
@@ -308,11 +308,11 @@ self_update() {
     return 0
   fi
   if [[ -n "$(git -C "$ROOT" status --porcelain 2>/dev/null)" ]]; then
-    warn "$(_ "A newer angelOS is out, but this folder has edits of its own: installing the version that is here. To get the new one: git -C \"$ROOT\" stash -u (or commit), then run the installer again" \
+    warn "$(_ "A newer kukabara is out, but this folder has edits of its own: installing the version that is here. To get the new one: git -C \"$ROOT\" stash -u (or commit), then run the installer again" \
               "Вышла версия новее, но в этой папке есть свои правки: ставлю ту, что здесь. Чтобы получить новую: git -C \"$ROOT\" stash -u (или коммит), потом запусти установщик снова")"
     return 0
   fi
-  say "$(_ 'A newer angelOS is out: updating this folder first' 'Вышла версия новее: сначала обновляю эту папку')"
+  say "$(_ 'A newer kukabara is out: updating this folder first' 'Вышла версия новее: сначала обновляю эту папку')"
   if ! timeout 180 git -C "$ROOT" fetch --quiet origin "$branch" 2>/dev/null; then
     warn "$(_ 'git fetch failed: installing the version that is here' 'git fetch не удался: ставлю ту версию, что здесь')"
     return 0

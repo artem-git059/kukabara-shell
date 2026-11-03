@@ -7,7 +7,7 @@ import Quickshell.Io
 import qs.config
 
 // The game tuner (scripts/game-tune.py): for each Steam game the Proton and launch options
-// that work best and why — ProtonDB's reports, angelOS's own profiles, anti-cheat. A game that
+// that work best and why — ProtonDB's reports, kukabara's own profiles, anti-cheat. A game that
 // finishes installing gets its note (modules/gametune/GameNote); Settings → Maintenance → Games
 // lists them all. Steam rewrites its config on exit, so what is applied while it runs waits
 // and goes in once it is closed.

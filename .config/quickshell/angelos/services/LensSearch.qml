@@ -5,7 +5,7 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 
-// Google Lens in angelOS's own window (modules/lenssearch): a helper process (scripts/lens,
+// Google Lens in kukabara's own window (modules/lenssearch): a helper process (scripts/lens,
 // qml6 + QtWebEngine, the island's profile) sends the picture from a hidden page and reads the
 // results out of it; the window draws them itself. Google's page is always one click away
 // (showPage: the same hidden view, shown). Island.lens comes here when Config.circle.lensWindow

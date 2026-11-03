@@ -28,7 +28,7 @@ Image {
     // more colours for detailed art: {"char": "#rrggbb"}, also overriding the ones above
     property var palette: ({})
 
-    // the icon style (Settings → Appearance → Icons, D3): angelOS's own, pixelarticons or
+    // the icon style (Settings → Appearance → Icons, D3): kukabara's own, pixelarticons or
     // HackerNoon's. Theirs are drawn on a 24-unit grid, a whole number of screen pixels per
     // cell, in the box of ours — at most a third larger; smaller than that, or a name the set
     // lacks, and it is ours (a custom `bitmap` too)

@@ -396,7 +396,7 @@ Item {
                             readonly property var inst: root.wizard ? root.wizard.installState : null
                             enabled: !(inst && inst.running)
                             opacity: enabled ? 1 : 0.5
-                            text: root.shown && root.shown.id === "install" ? (inst && inst.done && (inst.failed.length || inst.auth) ? I18n.t("Пропустить", "Skip") : I18n.t("Начать работу", "Start using angelOS")) : root.shown && root.shown.id === "ready" && root.wizard && root.wizard.appsToInstall.length && !(inst && inst.active) ? I18n.t("Поставить программы", "Install the apps") : root.shownIndex >= root.count - 1 ? I18n.t("Начать работу", "Start using angelOS") : root.shown && root.shown.id === "github" && root.gh && !root.gh.settled ? I18n.t("Пропустить", "Skip") : I18n.t("Продолжить", "Continue")
+                            text: root.shown && root.shown.id === "install" ? (inst && inst.done && (inst.failed.length || inst.auth) ? I18n.t("Пропустить", "Skip") : I18n.t("Начать работу", "Start using kukabara")) : root.shown && root.shown.id === "ready" && root.wizard && root.wizard.appsToInstall.length && !(inst && inst.active) ? I18n.t("Поставить программы", "Install the apps") : root.shownIndex >= root.count - 1 ? I18n.t("Начать работу", "Start using kukabara") : root.shown && root.shown.id === "github" && root.gh && !root.gh.settled ? I18n.t("Пропустить", "Skip") : I18n.t("Продолжить", "Continue")
                             onClicked: root.wizard.next()
                         }
                     }
@@ -776,7 +776,7 @@ Item {
         }
     }
 
-    // the look: the pixel angelOS or Golden Gate (a Mac's; its keys only if asked for).
+    // the look: the pixel kukabara or Golden Gate (a Mac's; its keys only if asked for).
     // Config.setup.from says "mac" for the hints further on
     Component {
         id: from
@@ -787,7 +787,7 @@ Item {
                 n: 2
                 Choice {
                     width: parent.cardWidth
-                    label: I18n.t("Пиксельный angelOS", "The pixel angelOS")
+                    label: I18n.t("Пиксельный kukabara", "The pixel kukabara")
                     hint: I18n.t("панель, Нимб и окна в пикселях", "the bar, the Halo and the windows in pixels")
                     checked: Config.settingsUi.skin !== "goldengate"
                     onPicked: root.pickSkin(false)
@@ -1137,7 +1137,7 @@ Item {
                     width: parent.width
                     wrapMode: Text.Wrap
                     color: Recovery.exists ? Theme.accent : Theme.text
-                    text: !Recovery.checked || Recovery.login === "" ? I18n.t("Ищу твоё сохранение angelOS…", "Looking for your angelOS save…") : Recovery.exists ? I18n.t("Нашёл твоё сохранение: ", "Found your save: ") + (Recovery.last || "?") + I18n.t(". Вернуть прогресс и все настройки?", ". Bring back your progress and every setting?") : I18n.t("Сохранений пока нет. angelOS будет сам раз в день сохранять прогресс и настройки в твой приватный репозиторий angelos-save — на другом компьютере вернёшь их здесь же.", "No saves yet. angelOS will save your progress and settings into your private repository angelos-save once a day; on another computer you bring them back right here.")
+                    text: !Recovery.checked || Recovery.login === "" ? I18n.t("Ищу твоё сохранение kukabara…", "Looking for your kukabara save…") : Recovery.exists ? I18n.t("Нашёл твоё сохранение: ", "Found your save: ") + (Recovery.last || "?") + I18n.t(". Вернуть прогресс и все настройки?", ". Bring back your progress and every setting?") : I18n.t("Сохранений пока нет. kukabara будет сам раз в день сохранять прогресс и настройки в твой приватный репозиторий angelos-save — на другом компьютере вернёшь их здесь же.", "No saves yet. kukabara will save your progress and settings into your private repository angelos-save once a day; on another computer you bring them back right here.")
                 }
                 PxButton {
                     visible: Recovery.exists
@@ -1166,7 +1166,7 @@ Item {
                 wrapMode: Text.Wrap
                 kind: "tiny"
                 dim: true
-                text: I18n.t("Токен хранит gh, не angelOS. Позже — Настройки → Учётная запись → Восстановление.", "gh keeps the token, not angelOS. Later: Settings → Account → Recovery.")
+                text: I18n.t("Токен хранит gh, не kukabara. Позже — Настройки → Учётная запись → Восстановление.", "gh keeps the token, not kukabara. Later: Settings → Account → Recovery.")
             }
         }
     }
@@ -1572,7 +1572,7 @@ Item {
         }
     }
     // ---- the widgets: three sets (DesktopWidgets.sets), each on a little desktop ----
-    // the size of each widget in the picture, in angelOS pixels (about what it takes on screen)
+    // the size of each widget in the picture, in kukabara pixels (about what it takes on screen)
     readonly property var widgetBoxes: ({
             "clock": {
                 "m": [130, 42],
@@ -1827,7 +1827,7 @@ Item {
             }
         }
     }
-    // ---- what else angelOS can do: game mode, the mouse in games, voice input, and the keys
+    // ---- what else kukabara can do: game mode, the mouse in games, voice input, and the keys
     // of the rest (scripts/features.py) ----
     Component {
         id: scriptsStep
@@ -1853,7 +1853,7 @@ Item {
             FeatureRow {
                 icon: "mouse"
                 title: I18n.t("Мышь в играх", "The mouse in games")
-                about: I18n.t("Мышь на 4–8 кГц в тяжёлой игре (особенно через Wine/Proton) душит её: камера дёргается и догоняет. В игре angelOS прореживает движение до выбранной частоты, клики — сразу. На рабочем столе мышь как есть.", "A 4–8 kHz mouse chokes a heavy game (Wine/Proton most of all): the camera drags, then catches up. In a game angelOS thins the motion to the rate you pick; clicks go through at once. On the desktop the mouse is as it is.")
+                about: I18n.t("Мышь на 4–8 кГц в тяжёлой игре (особенно через Wine/Proton) душит её: камера дёргается и догоняет. В игре kukabara прореживает движение до выбранной частоты, клики — сразу. На рабочем столе мышь как есть.", "A 4–8 kHz mouse chokes a heavy game (Wine/Proton most of all): the camera drags, then catches up. In a game kukabara thins the motion to the rate you pick; clicks go through at once. On the desktop the mouse is as it is.")
                 missing: !((scCol.f.mouse || {}).installed)
                 note: (scCol.f.mouse || {}).uinput === false && Config.gaming.mouseRate > 0 ? I18n.t("заработает после перезахода (группа input)", "works after logging in again (the input group)") : ""
                 PxSegmented {
@@ -1948,7 +1948,7 @@ Item {
             }
         }
     }
-    // one of angelOS's little programs: its icon, name and what it does; its switch on the right
+    // one of kukabara's little programs: its icon, name and what it does; its switch on the right
     component FeatureRow: PxBox {
         id: frow
         property string icon: "sparkle"

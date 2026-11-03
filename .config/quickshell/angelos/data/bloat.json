@@ -1,7 +1,7 @@
 {
   "_comment": [
     "«Лишнее» (Settings → Apps → Programs → Extras; scripts/programs.py bloat-status | bloat), like",
-    "Omarchy's «Remove preinstalls»: what the dotfiles' installer puts on a system that angelOS itself",
+    "Omarchy's «Remove preinstalls»: what the dotfiles' installer puts on a system that kukabara itself",
     "never calls. A group's packages are shown when installed; \"ticked\": preselected. What the user",
     "removed here goes into ~/.local/state/angelos/removed-packages.txt and install.sh never brings it",
     "back (pacman_install, follow_system; apps-install.py's base packages). A package the user's",
@@ -13,8 +13,8 @@
       "id": "tools",
       "ru": "Утилиты для терминала",
       "en": "Terminal utilities",
-      "hintRu": "мелочи автора из packages/tools.txt — angelOS их не вызывает",
-      "hintEn": "the author's small tools from packages/tools.txt; angelOS never calls them",
+      "hintRu": "мелочи автора из packages/tools.txt — kukabara их не вызывает",
+      "hintEn": "the author's small tools from packages/tools.txt; kukabara never calls them",
       "ticked": true,
       "packages": {
         "btop": ["монитор ресурсов (в «Диспетчере» останется другой)", "a resource monitor (the task manager falls back to another)"],
@@ -34,11 +34,11 @@
       "id": "apps",
       "ru": "Мелкие программы",
       "en": "Small apps",
-      "hintRu": "у angelOS для этого свои окна (звук, диспетчер) или они нужны редко",
-      "hintEn": "angelOS has its own windows for these (sound, task manager), or they are rarely needed",
+      "hintRu": "у kukabara для этого свои окна (звук, диспетчер) или они нужны редко",
+      "hintEn": "kukabara has its own windows for these (sound, task manager), or they are rarely needed",
       "ticked": true,
       "packages": {
-        "pavucontrol": ["микшер PulseAudio — в angelOS есть «Звук»", "PulseAudio mixer; angelOS has Sound"],
+        "pavucontrol": ["микшер PulseAudio — в kukabara есть «Звук»", "PulseAudio mixer; kukabara has Sound"],
         "helvum": ["провода PipeWire", "PipeWire patchbay"],
         "mission-center": ["диспетчер задач", "a task manager"],
         "meld": ["сравнение файлов", "file diff"],
@@ -50,14 +50,14 @@
       "id": "spare",
       "ru": "Запасные терминалы и лаунчер",
       "en": "Spare terminals and a launcher",
-      "hintRu": "angelOS работает с kitty и своим «Пуском»; эти нужны только без angelOS",
-      "hintEn": "angelOS uses kitty and its own Start; these are for niri without angelOS",
+      "hintRu": "kukabara работает с kitty и своим «Пуском»; эти нужны только без kukabara",
+      "hintEn": "kukabara uses kitty and its own Start; these are for niri without kukabara",
       "ticked": true,
       "packages": {
         "alacritty": ["терминал", "a terminal"],
         "foot": ["терминал", "a terminal"],
-        "fuzzel": ["лаунчер (у angelOS свой)", "a launcher (angelOS has its own)"],
-        "nwg-displays": ["мониторы (у angelOS — Настройки → Экран)", "monitors (angelOS: Settings → Display)"]
+        "fuzzel": ["лаунчер (у kukabara свой)", "a launcher (kukabara has its own)"],
+        "nwg-displays": ["мониторы (у kukabara — Настройки → Экран)", "monitors (kukabara: Settings → Display)"]
       }
     },
     {
@@ -89,8 +89,8 @@
       "id": "cachyos",
       "ru": "Пришло с CachyOS",
       "en": "Came with CachyOS",
-      "hintRu": "окно приветствия и графические менеджеры CachyOS — не angelOS, но тоже лишнее",
-      "hintEn": "CachyOS's welcome window and GUI managers: not angelOS's, but extras too",
+      "hintRu": "окно приветствия и графические менеджеры CachyOS — не kukabara, но тоже лишнее",
+      "hintEn": "CachyOS's welcome window and GUI managers: not kukabara's, but extras too",
       "ticked": false,
       "packages": {
         "cachyos-hello": ["окно приветствия", "the welcome window"],

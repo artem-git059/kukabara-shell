@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS: is this hidraw node a maker's configuration interface that carries no input?
+# kukabara: is this hidraw node a maker's configuration interface that carries no input?
 #   angelos-hid-feature-only /sys/devices/…/hidraw/hidrawN      exit 0 = yes
 # udev asks it (70-angelos-peripherals.rules, as root, only for the makers listed there)
 # before letting the user at the seat open the node: the charge of a wireless mouse is read

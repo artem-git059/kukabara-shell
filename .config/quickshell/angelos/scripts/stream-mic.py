@@ -270,7 +270,7 @@ class PwMeter:
             say({"error": "no-mic" if not found else "pw-record missing"})
             return False
         rate, block = 16000, 640  # 40 ms
-        props = '{ node.name = angelos_stream_mic node.description = "angelOS angel on stream" node.dont-reconnect = true }'
+        props = '{ node.name = angelos_stream_mic node.description = "kukabara angel on stream" node.dont-reconnect = true }'
         self.proc = proc = subprocess.Popen(["pw-record", "--raw", "--target", found["name"], "--channels", "1", "--format", "f32",
                                              "--rate", str(rate), "--latency", "40ms", "-P", props, "-"],
                                             stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, bufsize=0)

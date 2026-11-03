@@ -53,13 +53,13 @@ Scope {
             "id": "from",
             "icon": "monitor",
             "title": I18n.t("Какой вид?", "Which look?"),
-            "text": I18n.t("Пиксельный angelOS или Golden Gate — как на Mac. Поменять можно в Настройках.", "The pixel angelOS or Golden Gate, like a Mac. Settings change it later.")
+            "text": I18n.t("Пиксельный kukabara или Golden Gate — как на Mac. Поменять можно в Настройках.", "The pixel kukabara or Golden Gate, like a Mac. Settings change it later.")
         },
         {
             "id": "game",
             "icon": "sparkle",
             "title": I18n.t("Ангел и сюжет?", "The angel and the story?"),
-            "text": I18n.t("angelOS — это ещё и игра поверх рабочего стола. Работать она не мешает.", "angelOS is also a game played over your desktop. It never gets in the way of work.")
+            "text": I18n.t("kukabara — это ещё и игра поверх рабочего стола. Работать она не мешает.", "kukabara is also a game played over your desktop. It never gets in the way of work.")
         },
         {
             "id": "screens",
@@ -101,7 +101,7 @@ Scope {
             "id": "wallpaper",
             "icon": "image",
             "title": I18n.t("Обои", "Wallpaper"),
-            "text": I18n.t("Что будет на рабочем столе. Первые — обои этого релиза angelOS, днём и ночью под твою тему.", "What goes on your desktop. The first ones are this angelOS release's wallpapers, day or night to match your theme."),
+            "text": I18n.t("Что будет на рабочем столе. Первые — обои этого релиза kukabara, днём и ночью под твою тему.", "What goes on your desktop. The first ones are this kukabara release's wallpapers, day or night to match your theme."),
             "when": Wallpapers.images.length > 0
         },
         {
@@ -121,13 +121,13 @@ Scope {
             "id": "motion",
             "icon": "sparkle",
             "title": I18n.t("Сколько всего движется?", "How much should move?"),
-            "text": I18n.t("В angelOS много анимаций, а в игре бывают вспышки и тряска экрана.", "angelOS has plenty of animation, and the game has flashes and screen shaking.")
+            "text": I18n.t("В kukabara много анимаций, а в игре бывают вспышки и тряска экрана.", "kukabara has plenty of animation, and the game has flashes and screen shaking.")
         },
         {
             "id": "laptop",
             "icon": "battery",
             "title": I18n.t("Это ноутбук ♡", "This is a laptop ♡"),
-            "text": I18n.t("Батарея — сердечки на панели. На батарее angelOS может стихать, чтобы её хватило надольше, а заряжать — бережно. Жесты тачпада и клавиши яркости уже работают.", "The battery shows as hearts on the bar. On battery angelOS can quiet down to make it last, and charge gently. The touchpad gestures and the brightness keys work already."),
+            "text": I18n.t("Батарея — сердечки на панели. На батарее kukabara может стихать, чтобы её хватило надольше, а заряжать — бережно. Жесты тачпада и клавиши яркости уже работают.", "The battery shows as hearts on the bar. On battery kukabara can quiet down to make it last, and charge gently. The touchpad gestures and the brightness keys work already."),
             "blocks": ["battery/eco", "battery/charge-limit"],
             "attention": "next",
             "when": Laptop.isLaptop
@@ -153,8 +153,8 @@ Scope {
         {
             "id": "scripts",
             "icon": "terminal",
-            "title": I18n.t("Что ещё умеет angelOS", "What else angelOS can do"),
-            "text": I18n.t("Маленькие программы, которые идут с angelOS: что-то работает само, что-то — по клавишам. Включи то, что нужно.", "Little programs that come with angelOS: some work by themselves, some on a key. Switch on what you need.")
+            "title": I18n.t("Что ещё умеет kukabara", "What else kukabara can do"),
+            "text": I18n.t("Маленькие программы, которые идут с kukabara: что-то работает само, что-то — по клавишам. Включи то, что нужно.", "Little programs that come with kukabara: some work by themselves, some on a key. Switch on what you need.")
         },
         {
             "id": "github",
@@ -169,7 +169,7 @@ Scope {
             "id": "telemetry",
             "icon": "chip",
             "title": I18n.t("Помочь автору телеметрией?", "Help the author with telemetry?"),
-            "text": I18n.t("Раз в неделю автору angelOS уходят версии и железо: процессор, видеокарта, память, экраны, версии Quickshell и системы. Так видно, на чём angelOS живёт и что чинить первым. Имён, файлов и IP — нет. Передумаешь — Настройки → Спонсор.", "Once a week angelOS's author gets the versions and the hardware: CPU, graphics, memory, screens, the Quickshell and system versions. That shows what angelOS runs on and what to fix first. No names, files or IP. Changed your mind? Settings → Sponsor."),
+            "text": I18n.t("Раз в неделю автору kukabara уходят версии и железо: процессор, видеокарта, память, экраны, версии Quickshell и системы. Так видно, на чём kukabara живёт и что чинить первым. Имён, файлов и IP — нет. Передумаешь — Настройки → Спонсор.", "Once a week kukabara's author gets the versions and the hardware: CPU, graphics, memory, screens, the Quickshell and system versions. That shows what kukabara runs on and what to fix first. No names, files or IP. Changed your mind? Settings → Sponsor."),
             // nowhere to send it yet (data/sponsor.json has no endpoint): not asked, «yes» would do nothing
             "when": Telemetry.hasEndpoint
         },
@@ -434,7 +434,7 @@ Scope {
         const again = setupInstall.auth ? appsToInstall : setupInstall.failed.filter(i => (appStatus[i] || {}).via !== "");
         startInstall(again.length ? again : appsToInstall);
     }
-    // ---- «What else angelOS can do» (scripts/features.py): game mode, the mouse in games, voice
+    // ---- «What else kukabara can do» (scripts/features.py): game mode, the mouse in games, voice
     // input (installed with the apps: catalog id "voxtype"), and the keys of the rest ----
     property var features: ({})
     Process {

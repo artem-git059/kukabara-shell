@@ -6,7 +6,7 @@
 Folded layers sweeping up from the lower left like silk or paper — cream, sand and warm brown on
 top, slate lilac and fog blue below, each edge catching a thin glossy highlight with a soft shadow
 under it: the mood of macOS 27's abstract wallpaper and of the bridge in the evening fog, made of a
-few smooth curves. --dark: the same folds at dusk. numpy + Pillow (both angelOS dependencies).
+few smooth curves. --dark: the same folds at dusk. numpy + Pillow (both kukabara dependencies).
 """
 import sys
 

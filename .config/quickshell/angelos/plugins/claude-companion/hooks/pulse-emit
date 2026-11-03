@@ -1,5 +1,5 @@
 #!/bin/sh
-# pulse-emit — generic emitter for the pulse protocol (angelOS port of
+# pulse-emit — generic emitter for the pulse protocol (kukabara port of
 # lowcache/claude-companion, MIT). For agents other than Claude Code.
 #   pulse-emit <event> [session] [model] [in] [out] [cacheCreate] [cacheRead]
 # Fail-open: always exits 0, dispatch capped at 3 s.

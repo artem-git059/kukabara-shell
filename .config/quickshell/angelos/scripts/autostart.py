@@ -3,7 +3,7 @@
 
 The freedesktop way: ~/.config/autostart/*.desktop (the user's) over /etc/xdg/autostart (the
 system's); systemd's xdg-autostart generator starts them with the session (niri.service wants
-xdg-desktop-autostart.target), so they come up without angelOS too and other tools see them.
+xdg-desktop-autostart.target), so they come up without kukabara too and other tools see them.
 
   autostart.py list                 JSON {"entries": [{id, name, icon, exec, on, source, system,
                                     fits}], "works": bool}
@@ -38,7 +38,7 @@ SYSTEM_DIRS = [Path(d) / "autostart" for d in (os.environ.get("XDG_CONFIG_DIRS")
 DATA_DIRS = [Path(os.environ.get("XDG_DATA_HOME") or HOME / ".local/share")] + \
             [Path(d) for d in (os.environ.get("XDG_DATA_DIRS") or "/usr/local/share:/usr/share").split(":") if d]
 LANG = (os.environ.get("ANGELOS_LANG") or os.environ.get("LANG") or "en")[:2].lower()
-MARK = "X-angelOS-Autostart"
+MARK = "X-kukabara-Autostart"
 
 
 def parse(path):

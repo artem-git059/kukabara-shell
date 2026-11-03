@@ -19,7 +19,7 @@ for Discord's «allow» window.
 > including Flatpak apps with network access, which share your loopback — full control of the
 > logged-in client: it can read your Discord account token, read and send messages, and act as
 > you. Nothing asks for permission. Turn it on only if you trust everything you run, keep it on
-> 127.0.0.1, and never add `--remote-allow-origins`. angelOS never turns it on by itself: the
+> 127.0.0.1, and never add `--remote-allow-origins`. kukabara never turns it on by itself: the
 > reader only connects when you set a port as described below.
 
 ## Enable the optional bridge
@@ -108,8 +108,8 @@ Sources: [Vesktop updater](https://github.com/Vencord/Vesktop/blob/main/src/main
 [electron-updater AppImage restart](https://github.com/electron-userland/electron-builder/blob/master/packages/electron-updater/src/AppImageUpdater.ts).
 
 
-The shell-side reader is part of this change and will be installed by AngelOS
-updates that include it. Updating to an older AngelOS revision that predates this
+The shell-side reader is part of this change and will be installed by kukabara
+updates that include it. Updating to an older kukabara revision that predates this
 change can replace `discord-voice.py` and remove its bridge hook; the persistent
 launcher settings alone cannot add missing support to that older shell.
 

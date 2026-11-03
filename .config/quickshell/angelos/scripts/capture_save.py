@@ -7,7 +7,7 @@ tool (~/.local/bin/niri-screenshot-region) kept it:
       <shots>/<month>/Screenshot from %Y-%m-%d %H-%M-%S.png (jpg q92 with capture.shotFormat jpg;
       the month folder by screenshot-sort.py), on the clipboard (capture.shotCopy, default on),
       opened (capture.shotOpen), the notification (it brings the shutter sound) "Скриншот сохранён" from app
-      "Screenshot" (angelOS plays its shutter sound and counts the achievement from that name)
+      "Screenshot" (kukabara plays its shutter sound and counts the achievement from that name)
       with Open / Show in folder (/ Edit when satty or swappy is there).
       prints {"path": "...", "copied": bool}
   capture_save.py copy <frame> [--rect x,y,w,h] [--out <png>]
@@ -110,7 +110,7 @@ def notify_and_wait(path, private=False):
         args += ["-A", "edit=Править"]
     args += ["--wait", "Скриншот сохранён", path]
     try:
-        # angelOS's popup only hides at its timeout (the notification stays open), so --wait
+        # kukabara's popup only hides at its timeout (the notification stays open), so --wait
         # never ended: the buttons give up after 15 minutes
         act = subprocess.run(args, capture_output=True, text=True, timeout=905).stdout.strip()
     except (OSError, subprocess.SubprocessError):

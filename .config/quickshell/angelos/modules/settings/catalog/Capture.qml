@@ -262,7 +262,7 @@ CatPage {
         }
         CatToggle {
             present: Config.circle.lens
-            label: I18n.t("Поиск по картинке — в окне angelOS", "Picture search in an angelOS window")
+            label: I18n.t("Поиск по картинке — в окне kukabara", "Picture search in an kukabara window")
             hint: I18n.t("Похожие картинки и текст — в своём окне. Выключено — страница Google в маленьком окне.", "Similar pictures and text in a window of its own. Off: Google's page in the small window.")
             checked: Config.circle.lensWindow
             onToggled: v => Config.circle.lensWindow = v

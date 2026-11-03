@@ -1,11 +1,11 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # ── The devices' charge ──────────────────────────────────────────────────────
 
 # The bar's ampoules ask a wireless mouse's dongle how much is left, over hidraw — root's alone
 # on a fresh system, so the charge never showed. extras/hid-access is a udev rule and the helper
-# it asks: only the makers angelOS can ask, of their devices only the configuration interface
+# it asks: only the makers kukabara can ask, of their devices only the configuration interface
 # that carries no input or output report (the dongle's keyboard and mouse interfaces stay
 # root's: nothing typed or moved can be read through the rule), and only to the user sitting at
 # this computer (logind's ACL, uaccess) — never MODE=0666 and never a group. Headsets need

@@ -668,7 +668,7 @@ CatPage {
         CatNote {
             present: Config.bar.metaTap
             dim: true
-            text: I18n.t("angelOS сам слушает клавиатуру (только чтение): запоминает лишь «Win нажата» и «нажато что-то ещё», никуда не пишет.", "angelOS listens to the keyboard itself (read only): it keeps only «Win pressed» and «something else pressed», and writes nothing down.")
+            text: I18n.t("kukabara сам слушает клавиатуру (только чтение): запоминает лишь «Win нажата» и «нажато что-то ещё», никуда не пишет.", "kukabara listens to the keyboard itself (read only): it keeps only «Win pressed» and «something else pressed», and writes nothing down.")
         }
     }
     // the avatar and the deep settings of every Start look (StartTuner, services/StartPrefs)
@@ -691,7 +691,7 @@ CatPage {
         icon: "heart"
         CatChoice {
             label: I18n.t("Кнопка", "Button")
-            hint: Config.bar.startButtonStyle === "capsule" ? I18n.t("капсула «пуск», как в Windows XP, в цветах темы; на боковой панели — только значок", "A \"start\" capsule like Windows XP, in the theme's colours; on a side bar just the emblem") : I18n.t("кнопка с логотипом angelOS", "The button with the angelOS logo")
+            hint: Config.bar.startButtonStyle === "capsule" ? I18n.t("капсула «пуск», как в Windows XP, в цветах темы; на боковой панели — только значок", "A \"start\" capsule like Windows XP, in the theme's colours; on a side bar just the emblem") : I18n.t("кнопка с логотипом kukabara", "The button with the kukabara logo")
             model: [
                 {
                     "label": I18n.t("Логотип", "Logo"),

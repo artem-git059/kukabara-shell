@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Settings → Updates the way a user meets it: angelOS installed from an older commit of
+# Settings → Updates the way a user meets it: kukabara installed from an older commit of
 # this repository, and that install's own (old) update script bringing it to this
 # working tree — the old script, the new installer. A throw-away $HOME, a local origin
 # holding the old commit with this tree on top, stand-ins for qs, systemctl and the like

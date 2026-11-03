@@ -8,7 +8,7 @@ import qs.services
 import qs.widgets
 import qs.modules.settings.kit
 
-// System sounds: every angelOS sound one by one (services/Sounds, Config.y2k.soundTweaks):
+// System sounds: every kukabara sound one by one (services/Sounds, Config.y2k.soundTweaks):
 // on/off, its own volume, which sound it plays (its own, another event's, a file of
 // yours), clicks per mouse button with a release tick, typing, quiet hours and quiet
 // over fullscreen games. The newer events start switched off.
@@ -21,7 +21,7 @@ CatPage {
             "notify": [I18n.t("Уведомление", "Notification"), I18n.t("не звучит в «Не беспокоить»", "Silent in Do not disturb")],
             "error": [I18n.t("Важное уведомление", "Urgent notification"), ""],
             "wallpaper": [I18n.t("Смена обоев", "Wallpaper change"), ""],
-            "open": [I18n.t("Окна angelOS", "angelOS windows"), I18n.t("настройки, поиск — милая мелочь", "Settings, search — a cute one")],
+            "open": [I18n.t("Окна kukabara", "kukabara windows"), I18n.t("настройки, поиск — милая мелочь", "Settings, search — a cute one")],
             "toggle": [I18n.t("Переключатель", "Switch"), I18n.t("милая мелочь", "A cute one")],
             "screenshot": [I18n.t("Скриншот", "Screenshot"), I18n.t("вместо обычного уведомления", "Instead of the usual notification")],
             "volume": [I18n.t("Громкость", "Volume"), I18n.t("милая мелочь", "A cute one")],
@@ -191,7 +191,7 @@ CatPage {
         title: I18n.t("Общее", "General")
         icon: "speaker"
         CatToggle {
-            label: I18n.t("Звуки angelOS", "angelOS sounds")
+            label: I18n.t("Звуки kukabara", "kukabara sounds")
             hint: I18n.t("молчат в стрим-режиме", "Quiet in stream mode")
             checked: Config.y2k.sounds
             onToggled: c => Config.y2k.sounds = c
@@ -242,7 +242,7 @@ CatPage {
         }
         CatToggle {
             label: I18n.t("Милые мелочи", "Cute little sounds")
-            hint: I18n.t("переключатели, окна angelOS, скриншоты, громкость, закрытие окон — разом", "Switches, angelOS windows, screenshots, volume, closing windows — all at once")
+            hint: I18n.t("переключатели, окна kukabara, скриншоты, громкость, закрытие окон — разом", "Switches, kukabara windows, screenshots, volume, closing windows — all at once")
             checked: Config.y2k.cuteSounds
             onToggled: c => Config.y2k.cuteSounds = c
         }

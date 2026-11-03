@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""«Обслуживание» (Device Care) for angelOS: one button that looks the computer over and cleans
+"""«Обслуживание» (Device Care) for kukabara: one button that looks the computer over and cleans
 what is safe to clean (services/Care, Settings → System → Maintenance, `angelos care`).
 
   care.py scan            JSON {"items": [...], "checks": [...], "score": 0-100}
@@ -11,7 +11,7 @@ what is safe to clean (services/Care, Settings → System → Maintenance, `ange
                           the ones that need root, progress as lines EV {"ev": item|check|done, …}
 
 Safe means: only caches that fill themselves again (and only their old files), never models,
-music, browser profiles, game shader caches or wine prefixes; angelOS's backups are archived
+music, browser profiles, game shader caches or wine prefixes; kukabara's backups are archived
 before they leave; the journal is copied (log-archive) before it is shortened; the trash only
 when ticked.
 """
@@ -202,12 +202,12 @@ def scan():
     dev = [f for d in DEV_CACHES for f in old_files(d)]
     item("devcaches", "Кэши разработки и сборки", "Build and package caches", "pip, uv, go, npm, bun, cargo, yay/paru — старше 30 дней; скачаются заново, если понадобятся", "pip, uv, go, npm, bun, cargo, yay/paru — older than 30 days; fetched again if needed", sum(s for _, s in dev))
     left = leftovers()
-    item("leftovers", "Забытые временные папки", "Forgotten temporary folders", "tmp.* в кэше и остатки тестов angelOS старше суток", "tmp.* in the cache and angelOS test leftovers older than a day", sum(s for _, s in left))
+    item("leftovers", "Забытые временные папки", "Forgotten temporary folders", "tmp.* в кэше и остатки тестов kukabara старше суток", "tmp.* in the cache and kukabara test leftovers older than a day", sum(s for _, s in left))
     try:
         bt = json.loads(run(["python3", str(HERE / "backups-tidy.py"), "--json"], timeout=60).stdout or "{}")
     except ValueError:
         bt = {}
-    item("backups", "Бэкапы angelOS → архив", "angelOS backups → archive", "старые бэкапы настроек сжимаются в ~/angelos-archive (ничего не теряется)", "old settings backups are packed into ~/angelos-archive (nothing is lost)", int(bt.get("bytes") or 0))
+    item("backups", "Бэкапы kukabara → архив", "kukabara backups → archive", "старые бэкапы настроек сжимаются в ~/angelos-archive (ничего не теряется)", "old settings backups are packed into ~/angelos-archive (nothing is lost)", int(bt.get("bytes") or 0))
     trash = trash_old()
     item("trash", "Корзина: старше 30 дней", "Trash: older than 30 days", "файлы, удалённые больше месяца назад", "files deleted more than a month ago", sum(s for _, s, _ in trash), default=False)
     pc = pacman_cache()

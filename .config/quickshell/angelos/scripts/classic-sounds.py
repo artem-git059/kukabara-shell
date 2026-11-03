@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Classic sounds any event may play (Settings → System sounds → the sound list: "ICQ «о-оу»").
-Synthesised here, nothing recorded or copied: original works of angelOS, CC0 1.0.
+Synthesised here, nothing recorded or copied: original works of kukabara, CC0 1.0.
 
   icq   a two-note "uh-oh" of the 2000s messenger: a short high "у", a breath, a lower "оу"
         that bends up and settles. A voice-like harmonic tone (the second harmonic carries it,

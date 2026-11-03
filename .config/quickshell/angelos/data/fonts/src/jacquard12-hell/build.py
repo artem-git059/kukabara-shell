@@ -176,11 +176,11 @@ def main(src, dst):
         elif rec.nameID == 6:
             name.setName("Jacquard12Hell-Regular", 6, rec.platformID, rec.platEncID, rec.langID)
         elif rec.nameID == 3:
-            name.setName("1.002;angelOS;Jacquard12Hell-Regular", 3, rec.platformID, rec.platEncID, rec.langID)
+            name.setName("1.002;kukabara;Jacquard12Hell-Regular", 3, rec.platformID, rec.platEncID, rec.langID)
         elif rec.nameID == 0:
-            name.setName(rec.toUnicode() + " Cyrillic: Copyright 2026 the angelOS contributors.", 0, rec.platformID, rec.platEncID, rec.langID)
+            name.setName(rec.toUnicode() + " Cyrillic: Copyright 2026 the kukabara contributors.", 0, rec.platformID, rec.platEncID, rec.langID)
         elif rec.nameID == 5:
-            name.setName("Version 1.002; Cyrillic added for angelOS", 5, rec.platformID, rec.platEncID, rec.langID)
+            name.setName("Version 1.002; Cyrillic added for kukabara", 5, rec.platformID, rec.platEncID, rec.langID)
     f.save(dst)
     print("saved", dst, "glyphs", len(order), "new chars", len(new_cmap))
 

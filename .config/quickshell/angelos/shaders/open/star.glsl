@@ -1,4 +1,4 @@
-// angelOS open: the window opens through a growing Y2K sparkle star ✦ with a shiny rim, the theme's accent going white.
+// kukabara open: the window opens through a growing Y2K sparkle star ✦ with a shiny rim, the theme's accent going white.
 float angelos_star(vec2 q) {
     q = abs(q);
     return sqrt(q.x) + sqrt(q.y) - 1.0;

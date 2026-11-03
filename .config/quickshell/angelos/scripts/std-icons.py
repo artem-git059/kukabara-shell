@@ -23,7 +23,7 @@ icon_sets = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(icon_sets)
 
 # the icon each name gets: a pixelarticons name, "hn:<name>" for HackerNoon's, "own:<name>" for
-# angelOS's own (widgets/Icons.js: neither set has a Bluetooth sign)
+# kukabara's own (widgets/Icons.js: neither set has a Bluetooth sign)
 NAMES = {
     # ---- actions
     "address-book-new": "contact", "application-exit": "logout", "appointment-new": "calendar",
@@ -209,7 +209,7 @@ def main():
           "const words = " + json.dumps(WORDS) + ";", "",
           "// the rows for a name: itself (no -symbolic), then without its last parts (audio-volume-high-rtl →",
           "// audio-volume-high), then a word in it (org.gnome.Screenshot → camera); null: nothing fits;",
-          "// a string: the name of angelOS's own icon (widgets/Icons.js)",
+          "// a string: the name of kukabara's own icon (widgets/Icons.js)",
           "function pic(icon) {",
           "    return icon.indexOf(\"own:\") === 0 ? icon.slice(4) : pics[icon];",
           "}",

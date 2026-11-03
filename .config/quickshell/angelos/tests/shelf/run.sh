@@ -4,10 +4,10 @@
 # copies (a name already there gets « (2)»), a deleted file shows as missing, the state file.
 # Stand-in wl-copy, curl, notify-send, xdg-open and gdbus; nothing real is copied or fetched.
 #
-#   tests/shelf/run.sh [angelOS dir]      exit 0 = all good, 77 = no quickshell
+#   tests/shelf/run.sh [kukabara dir]      exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

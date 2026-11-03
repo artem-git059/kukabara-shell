@@ -17,10 +17,10 @@ window-rule {
     open-floating true
 }
 
-// Square window and popup geometry matches angelOS pixel decorations.
+// Square window and popup geometry matches kukabara pixel decorations.
 window-rule {
     exclude app-id="^liquid-glass-test$"
-    exclude app-id="^org.quickshell$" title="^angelOS"
+    exclude app-id="^org.quickshell$" title="^kukabara"
     opacity 1.0
     geometry-corner-radius 0
     clip-to-geometry true
@@ -81,7 +81,7 @@ window-rule {
 
     // (a named "privacy" workspace used to be declared here: niri keeps named
     // workspaces forever at the top of a monitor, the panel hid it and the
-    // desk numbers slipped — angelOS issue #17)
+    // desk numbers slipped — kukabara issue #17)
     window-rule {
         match title="niri-cast-privacy"
         match app-id="dev.niri.cast-privacy"
@@ -89,11 +89,11 @@ window-rule {
         open-floating true
     }
 
-    // angelOS's privacy plates for OBS (modules/y2k/PrivacyCast): «Privacy ON» where a hidden
+    // kukabara's privacy plates for OBS (modules/y2k/PrivacyCast): «Privacy ON» where a hidden
     // window is, for the viewers alone. Unseen on the screens (a window cast takes it as drawn),
     // floating, never taking the focus
     window-rule {
-        match app-id=r#"^org\.quickshell$"# title="^angelOS · Privacy для OBS$"
+        match app-id=r#"^org\.quickshell$"# title="^kukabara · Privacy для OBS$"
         opacity 0.0
         open-focused false
         open-floating true
@@ -117,7 +117,7 @@ window-rule {
         default-column-width { proportion 1.0; }
     }
 
-    // ─── angelOS (managed by angelos switch.py) ───
+    // ─── kukabara (managed by angelos switch.py) ───
     layer-rule {
         match namespace="^angelos-wallpaper$"
         place-within-backdrop true
@@ -129,7 +129,7 @@ window-rule {
         }
     }
     window-rule {
-        match app-id="^org.quickshell$" title="^angelOS"
+        match app-id="^org.quickshell$" title="^kukabara"
         open-floating true
         geometry-corner-radius 0
         clip-to-geometry false
@@ -139,16 +139,16 @@ window-rule {
         default-column-width { fixed 1040; }
         default-window-height { fixed 740; }
     }
-    // angelOS dev instances (ANGELOS_DEV=1): keep test windows off the stream monitor
+    // kukabara dev instances (ANGELOS_DEV=1): keep test windows off the stream monitor
     window-rule {
-        match app-id="^org.quickshell$" title=r#"^angelOS \[dev\]"#
+        match app-id="^org.quickshell$" title=r#"^kukabara \[dev\]"#
         open-on-output "HDMI-A-1"
         open-focused false
         block-out-from "screencast"
     }
     // the mini island (scripts/island): a small browser in a corner
     window-rule {
-        match title="^angelOS · Остров"
+        match title="^kukabara · Остров"
         open-floating true
         default-floating-position x=24 y=24 relative-to="bottom-right"
         geometry-corner-radius 16
@@ -157,8 +157,8 @@ window-rule {
         focus-ring { off; }
     }
     window-rule {
-        match title=r#"^angelOS · Остров \[dev\]"#
+        match title=r#"^kukabara · Остров \[dev\]"#
         open-on-output "HDMI-A-1"
         open-focused false
     }
-    // ─── /angelOS ───
+    // ─── /kukabara ───

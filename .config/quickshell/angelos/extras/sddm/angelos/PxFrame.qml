@@ -1,6 +1,6 @@
 import QtQuick
 
-// The angelOS window (widgets/PxWindow): an outline, a bevel, a title bar in the title
+// The kukabara window (widgets/PxWindow): an outline, a bevel, a title bar in the title
 // gradient with the program's name and three little buttons.
 Item {
     id: root

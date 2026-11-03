@@ -103,7 +103,7 @@ def serve(conn, uid):
         req = {}
     cmd = allowed([str(a) for a in req.get("argv", [])], uid)
     if cmd is None:
-        conn.sendall(f"angelOS: not allowed: {' '.join(map(str, req.get('argv', [])))}\n\n\0RC 126\n".encode())
+        conn.sendall(f"kukabara: not allowed: {' '.join(map(str, req.get('argv', [])))}\n\n\0RC 126\n".encode())
         return
     if not cmd:
         conn.sendall(b"\0RC 0\n")

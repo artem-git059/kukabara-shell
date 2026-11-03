@@ -10,7 +10,7 @@ import qs.widgets
 // The stats of NEEDY GIRL OVERDOSE on the lock's stream, from the real machine:
 //   followers  everyone who ever stayed (services/LockStream, grows with the days)
 //   stress     the processor's load, how long the computer has been on, the mistakes
-//   affection  the days with angelOS (full by day 30)
+//   affection  the days with kukabara (full by day 30)
 //   darkness   the night, the mistakes, the minutes away
 PxWindow {
     id: root

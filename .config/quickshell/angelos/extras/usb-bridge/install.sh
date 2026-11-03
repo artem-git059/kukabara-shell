@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS: the USB bridge — a keyboard's service interface for the settings page, and nothing
+# kukabara: the USB bridge — a keyboard's service interface for the settings page, and nothing
 # else of the keyboard (root: pkexec from Settings → Devices → Device driver, or sudo).
 # What it gives to whom, and what it keeps closed, is written in bridge.py and in
 # docs/devices.md, «Доступ». Copies, never links: everything installed stays root's.

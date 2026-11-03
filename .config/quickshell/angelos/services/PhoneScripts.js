@@ -264,7 +264,7 @@ const otherAnswers = {
 // the numbers that answer (the dialler): number → what the screen shows (and the sound)
 const codes = {
     "*#06#": ["IMEI ангела: 777-HALO-%v", "Angel IMEI: 777-HALO-%v"],
-    "*#0000#": ["angelOS %v\nРаскладушка «Нимб-2002»\nСделано на небесах", "angelOS %v\nFlip phone \"Halo-2002\"\nMade in heaven"],
+    "*#0000#": ["kukabara %v\nРаскладушка «Нимб-2002»\nСделано на небесах", "kukabara %v\nFlip phone \"Halo-2002\"\nMade in heaven"],
     "*100#": ["Баланс: %l ♡ нежности\nТариф «Ангельский»", "Balance: %l ♡ of tenderness\nPlan: \"Angelic\""],
     "100": ["Точное время: %t", "The exact time: %t"],
     "112": ["Небесная служба спасения.\nОставайтесь на линии.\nВаш звонок очень важен для нас… ♡", "Heavenly emergency service.\nPlease stay on the line.\nYour call matters to us… ♡"],
@@ -390,7 +390,7 @@ const riddles = [
     [["Сколько клавиш с цифрами на раскладушке? *ответ#", "How many number keys does the flip phone have? *answer#"], "10"],
     [["Сколько лучей у пентаграммы? *ответ#", "How many points does a pentagram have? *answer#"], "5"],
     [["Мой номер, ангельский. Три одинаковые цифры. *ответ#", "My number, the angel's. Three of the same digit. *answer#"], "777"],
-    [["Сколько ног у паучка в паутине angelOS? *ответ#", "How many legs does the spider in angelOS's cobweb have? *answer#"], "8"],
+    [["Сколько ног у паучка в паутине kukabara? *ответ#", "How many legs does the spider in kukabara's cobweb have? *answer#"], "8"],
     [["Сколько минут в часе, если ты сидишь в интернете? Шучу. Сколько секунд в минуте? *ответ#", "How many seconds in a minute? *answer#"], "60"],
     [["Сколько дней в неделе вместе? *ответ#", "How many days in a week together? *answer#"], "7"]
 ];

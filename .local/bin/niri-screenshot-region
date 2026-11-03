@@ -42,7 +42,7 @@ gi.require_version("GtkLayerShell", "0.1")
 from gi.repository import Gdk, GLib, Gtk, GtkLayerShell  # noqa: E402
 
 def load_capture_settings():
-    """angelOS Settings → System → Screenshots and recording (settings.json "capture")."""
+    """kukabara Settings → System → Screenshots and recording (settings.json "capture")."""
     import json
     base = os.environ.get("XDG_CONFIG_HOME") or os.path.expanduser("~/.config")
     try:
@@ -71,7 +71,7 @@ MIN_SIZE = 4
 
 
 def load_skin():
-    """angelOS skin (Settings → Screenshots): None keeps the ropes."""
+    """kukabara skin (Settings → Screenshots): None keeps the ropes."""
     try:
         base = os.environ.get("XDG_CONFIG_HOME") or os.path.expanduser("~/.config")
         sys.path.insert(0, os.path.join(base, "quickshell/angelos/scripts"))
@@ -114,7 +114,7 @@ def niri_request(name):
 
 
 def niri_layout():
-    """gaps, center-focused-column and struts from niri's config (angelOS: cfg/layout.kdl)."""
+    """gaps, center-focused-column and struts from niri's config (kukabara: cfg/layout.kdl)."""
     import re
     base = os.path.join(os.environ.get("XDG_CONFIG_HOME") or os.path.expanduser("~/.config"), "niri")
     text = ""
@@ -137,7 +137,7 @@ def niri_layout():
 
 
 def read_zones():
-    """The edges angelOS's bars keep from windows, per output (services/Zones in the shell)."""
+    """The edges kukabara's bars keep from windows, per output (services/Zones in the shell)."""
     import json
     try:
         with open(os.path.join(os.environ.get("XDG_RUNTIME_DIR") or "/tmp", "angelos", "zones.json")) as f:
@@ -257,7 +257,7 @@ def ts_key(ts):
 
 
 def shot_dir(sel, rects):
-    """<shots>/<2026-10 Октябрь> by angelOS's screenshot-sort.py (by month), else <shots>."""
+    """<shots>/<2026-10 Октябрь> by kukabara's screenshot-sort.py (by month), else <shots>."""
     sorter = os.path.expanduser("~/.config/quickshell/angelos/scripts/screenshot-sort.py")
     try:
         out = subprocess.run(["python3", sorter, "dir"],
@@ -820,7 +820,7 @@ class ScreenshotApp:
             while Gtk.events_pending():
                 Gtk.main_iteration_do(False)
             pling = os.path.expanduser("~/.local/share/sounds/screenshot-pling.ogg")
-            # angelOS's Golden Gate plays its shutter from the notification (services/Sounds)
+            # kukabara's Golden Gate plays its shutter from the notification (services/Sounds)
             shutter = os.path.join(os.environ.get("XDG_RUNTIME_DIR", "/tmp"), "angelos", "shutter")
             if os.path.isfile(pling) and not os.path.exists(shutter):
                 subprocess.Popen(

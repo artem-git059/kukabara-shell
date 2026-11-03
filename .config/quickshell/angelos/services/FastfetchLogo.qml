@@ -6,7 +6,7 @@ import Quickshell.Io
 import qs.config
 import "../widgets/Logos.js" as Logos
 
-// fastfetch in angelOS's style (Settings → System → fastfetch): scripts/fastfetch_style.py
+// fastfetch in kukabara's style (Settings → System → fastfetch): scripts/fastfetch_style.py
 // writes ~/.config/fastfetch/config.jsonc and its picture in the theme's colours with the
 // emblem of Settings → Bar → Logo. Horns while the demon rules, like everywhere else; hell's
 // own fastfetch, one per circle, is scripts/terminal-hell.py's (ThemeExport.fastfetchHell).
@@ -37,7 +37,7 @@ Singleton {
         {
             "id": "receipt",
             "name": I18n.t("Чек", "Receipt"),
-            "hint": I18n.t("чек магазина angelOS: железо, сетап по ценам и ИТОГО (в аду — договор на душу)", "an angelOS store receipt: the hardware, the gear priced and the TOTAL (in hell, a contract for your soul)")
+            "hint": I18n.t("чек магазина kukabara: железо, сетап по ценам и ИТОГО (в аду — договор на душу)", "an kukabara store receipt: the hardware, the gear priced and the TOTAL (in hell, a contract for your soul)")
         },
         {
             "id": "passport",
@@ -62,7 +62,7 @@ Singleton {
         {
             "id": "window",
             "name": I18n.t("Окошко", "Window"),
-            "hint": I18n.t("показания в рамке Y2K-окна ", "the readings in a Y2K window frame, ") + I18n.exe("AngelOS")
+            "hint": I18n.t("показания в рамке Y2K-окна ", "the readings in a Y2K window frame, ") + I18n.exe("kukabara")
         },
         {
             "id": "mini",
@@ -72,7 +72,7 @@ Singleton {
         {
             "id": "own",
             "name": I18n.t("Свой", "Your own"),
-            "hint": I18n.t("angelOS не трогает config.jsonc (вернётся тот, что был до стилей)", "angelOS leaves config.jsonc alone (the one from before the styles comes back)")
+            "hint": I18n.t("kukabara не трогает config.jsonc (вернётся тот, что был до стилей)", "kukabara leaves config.jsonc alone (the one from before the styles comes back)")
         }
     ]
     readonly property string style: styles.some(s => s.id === Config.bar.fastfetchStyle) ? Config.bar.fastfetchStyle : "compact"
@@ -109,7 +109,7 @@ Singleton {
             "dim": Theme.hex(Theme.textDim),
             "pink": Theme.hex(Theme.mix(Theme.accent, "#ffffff", 0.35)),
             "lilac": Theme.hex(Theme.mix(Theme.accent2, "#ffffff", 0.35)),
-            "windowTitle": I18n.exe("AngelOS"),     // the window style's title: AngelOS.exe / .sh / .bin
+            "windowTitle": I18n.exe("kukabara"),     // the window style's title: kukabara.exe / .sh / .bin
             "lang": I18n.english ? "en" : "ru"      // the words in the pictures (the receipt, her lines)
         })
     function args(cmd, style) {

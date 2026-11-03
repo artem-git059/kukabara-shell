@@ -7,7 +7,7 @@ import qs.config
 
 // «Обслуживание» (Device Care, scripts/care.py): one button that looks the computer over —
 // space, memory, failed services, .pacnew, errors, the disks' SMART — and cleans what is safe:
-// old caches that fill themselves again, temporary leftovers, angelOS's backups (archived),
+// old caches that fill themselves again, temporary leftovers, kukabara's backups (archived),
 // the package cache, orphans; one admin password for all the root parts. First a scan shows
 // what would go and how much it frees (nothing changes), then "Start" cleans the ticked ones.
 // Settings → System → Maintenance, the Start menu, `angelos care`.
@@ -100,7 +100,7 @@ Singleton {
             return;
         const off = rebar.level === "warn";
         if (off && !Config.system.rebarWarned)
-            Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-warning", I18n.t("Resizable BAR выключен", "Resizable BAR is off"), lang === "en" ? rebar.en : rebar.ru]);
+            Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-warning", I18n.t("Resizable BAR выключен", "Resizable BAR is off"), lang === "en" ? rebar.en : rebar.ru]);
         if (Config.system.rebarWarned !== off)
             Config.system.rebarWarned = off;
     }
@@ -174,7 +174,7 @@ Singleton {
         onExited: {
             root.finished = true;
             if (!root.authError)
-                Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "applications-utilities", I18n.t("Обслуживание закончено", "Maintenance done"), I18n.t("Освобождено ", "Freed ") + root.size(root.freed)]);
+                Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "applications-utilities", I18n.t("Обслуживание закончено", "Maintenance done"), I18n.t("Освобождено ", "Freed ") + root.size(root.freed)]);
             // the numbers after: a fresh look, the picks back to the defaults
             root.picked = {};
             rescan.restart();

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Strata (the file manager) in angelOS's colours, heaven and hell (entry "strata" of
+"""Strata (the file manager) in kukabara's colours, heaven and hell (entry "strata" of
 templates/templates.json; Settings → Default apps → Files · Strata picks it).
 
   strata-theme.py build PALETTE.json   write ~/.config/strata/themes/angelos.toml for the palette
@@ -8,7 +8,7 @@ templates/templates.json; Settings → Default apps → Files · Strata picks it
 Strata leaves GTK's CSS alone (~/.config/gtk-4.0/gtk.css can't reach it, on purpose): its look is
 nine colour tokens in a TOML file. It watches ~/.config/strata/themes while it runs and re-applies
 a changed file to every open window, so a new palette, the dark or light mode and the demon's
-hell reach it on the fly — once «angelOS» is the theme it uses (scripts/strata-setup.py apply).
+hell reach it on the fly — once «kukabara» is the theme it uses (scripts/strata-setup.py apply).
 
 The tokens, darkest to lightest in a dark theme as Strata's own themes have them: background
 (the desk), surface (the sidebar: the face), muted (hover: faceAlt), highlight (the selection:
@@ -97,8 +97,8 @@ def tokens(pal):
 
 def render(pal):
     realm = "hell" if pal.get("realm") == "hell" else "heaven"
-    lines = [f"# angelOS · {realm} · {pal.get('mode', 'dark')} — written by angelOS (scripts/strata-theme.py)",
-             'name = "angelOS"']
+    lines = [f"# kukabara · {realm} · {pal.get('mode', 'dark')} — written by kukabara (scripts/strata-theme.py)",
+             'name = "kukabara"']
     lines += [f'{k} = "{hexa(v)}"' for k, v in tokens(pal).items()]
     return "\n".join(lines) + "\n"
 

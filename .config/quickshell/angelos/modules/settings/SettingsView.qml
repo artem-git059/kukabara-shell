@@ -927,7 +927,7 @@ Item {
         anchors.bottomMargin: Config.appearance.shadows ? Theme.u * 2 : 0
         // Settings have one look of their own: the desktop skins (Windose, Stream) don't dress it
         skin: ""
-        title: "angelOS · " + (win.currentPage ? win.currentPage.label : I18n.t("Настройки", "Settings"))
+        title: "kukabara · " + (win.currentPage ? win.currentPage.label : I18n.t("Настройки", "Settings"))
         icon: win.atHome ? "gear" : win.currentPage ? win.currentPage.icon : "gear"
         minimizable: false
         maximizable: true

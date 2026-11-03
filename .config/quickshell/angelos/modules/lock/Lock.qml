@@ -336,7 +336,7 @@ Scope {
         // held while awake; let go once the lock is confirmed (or after 4 s)
         running: root.sleepLock && !(root.sleeping && (lock.secure || root.sleepTimedOut))
         stdinEnabled: true           // `cat` exits with the pipe, so nothing is left behind
-        command: ["systemd-inhibit", "--what=sleep", "--mode=delay", "--who=angelOS", "--why=Lock the screen before sleep", "cat"]
+        command: ["systemd-inhibit", "--what=sleep", "--mode=delay", "--who=kukabara", "--why=Lock the screen before sleep", "cat"]
     }
     Process {
         id: logind

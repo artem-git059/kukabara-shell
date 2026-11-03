@@ -2,10 +2,10 @@
 # The SDDM theme (extras/sddm/angelos) with a stand-in SDDM: built like `angelos sddm
 # install` builds it, loaded in a window, typed into, failed and logged in. No QML errors;
 # ANGELOS_TEST_SHOTS=dir keeps the pictures. It runs in this Wayland session as an
-# "angelOS [dev]" window (niri keeps those off the stream monitor), or offscreen with
+# "kukabara [dev]" window (niri keeps those off the stream monitor), or offscreen with
 # ANGELOS_SDDM_TEST_OFFSCREEN=1 (no pixelated wallpaper there: no shaders offscreen).
 #
-#   tests/sddm/run.sh [angelOS dir]     exit 0 = all good, 77 = no quickshell
+#   tests/sddm/run.sh [kukabara dir]     exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
 QS="$(command -v quickshell || true)"

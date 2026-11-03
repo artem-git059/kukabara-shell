@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Wire niri and the apps' themes for angelOS.
+"""Wire niri and the apps' themes for kukabara.
 
   switch.py angelos [--no-restart] [--no-validate]
-                                     patch niri + app themes for angelOS, start it (a config
+                                     patch niri + app themes for kukabara, start it (a config
                                      wired for another shell — CachyOS's with Noctalia's keys —
                                      is rewired; a Noctalia that runs is stopped). A config niri
                                      refuses afterwards is put back from this run's backup;
@@ -41,13 +41,13 @@ FILES = [
 
 CLI = "qs -c angelos ipc call angelos"
 KEYS = [  # noctalia msg ... -> angelos function
-    (r"panel-toggle wallpaper", "settings wallpaper", "angelOS: обои"),
-    (r"panel-toggle control-center", "settings appearance", "angelOS: настройки"),
-    (r"settings-toggle", "settings appearance", "angelOS: настройки"),
-    (r"panel-toggle launcher", "launcher", "angelOS: программы"),
-    (r"session lock", "lock", "angelOS: блокировка"),
-    (r"panel-toggle session", "session", "angelOS: выключение"),
-    (r"panel-toggle clipboard", "clipboard", "angelOS: буфер обмена"),
+    (r"panel-toggle wallpaper", "settings wallpaper", "kukabara: обои"),
+    (r"panel-toggle control-center", "settings appearance", "kukabara: настройки"),
+    (r"settings-toggle", "settings appearance", "kukabara: настройки"),
+    (r"panel-toggle launcher", "launcher", "kukabara: программы"),
+    (r"session lock", "lock", "kukabara: блокировка"),
+    (r"panel-toggle session", "session", "kukabara: выключение"),
+    (r"panel-toggle clipboard", "clipboard", "kukabara: буфер обмена"),
     (r"volume-up", "volumeUp", None),
     (r"volume-down", "volumeDown", None),
     (r"volume-mute", "mute", None),
@@ -59,7 +59,7 @@ KEYS = [  # noctalia msg ... -> angelos function
 ]
 
 RULES = '''
-    // ─── angelOS (managed by angelos switch.py) ───
+    // ─── kukabara (managed by angelos switch.py) ───
     layer-rule {
         match namespace="^angelos-wallpaper$"
         place-within-backdrop true
@@ -71,7 +71,7 @@ RULES = '''
         }
     }
     window-rule {
-        match app-id="^org.quickshell$" title="^angelOS"
+        match app-id="^org.quickshell$" title="^kukabara"
         open-floating true
         geometry-corner-radius 0
         clip-to-geometry false
@@ -83,7 +83,7 @@ RULES = '''
     }
     // the mini island (scripts/island): a small browser in a corner
     window-rule {
-        match title="^angelOS · Остров"
+        match title="^kukabara · Остров"
         open-floating true
         default-floating-position x=24 y=24 relative-to="bottom-right"
         geometry-corner-radius 16
@@ -91,13 +91,13 @@ RULES = '''
         border { off; }
         focus-ring { off; }
     }
-    // ─── /angelOS ───
+    // ─── /kukabara ───
 '''
 
 EXTRA_BINDS = '''
-    // ─── angelOS extras ───
-    Mod+Alt+Y                           hotkey-overlay-title="angelOS: лирика вкл/выкл" { spawn-sh "qs -c angelos ipc call angelos lyrics"; }
-    Mod+Alt+T                           hotkey-overlay-title="angelOS: светлая/тёмная" { spawn-sh "qs -c angelos ipc call angelos theme toggle"; }
+    // ─── kukabara extras ───
+    Mod+Alt+Y                           hotkey-overlay-title="kukabara: лирика вкл/выкл" { spawn-sh "qs -c angelos ipc call angelos lyrics"; }
+    Mod+Alt+T                           hotkey-overlay-title="kukabara: светлая/тёмная" { spawn-sh "qs -c angelos ipc call angelos theme toggle"; }
 '''
 
 
@@ -142,10 +142,10 @@ def patch_keys(t, extras=True):
         t = rx.sub(lambda m: repl, t)
     # brightness keys have no target on desktop monitors: comment them out
     t = re.sub(r'^(\s*)(XF86MonBrightness\w+[^\n]*noctalia msg[^\n]*)$', r'\1// \2', t, flags=re.M)
-    t = t.replace("// ─── noctalia-shell keybinds ───", "// ─── angelOS keybinds (were noctalia) ───")
+    t = t.replace("// ─── noctalia-shell keybinds ───", "// ─── kukabara keybinds (were noctalia) ───")
     # the extras go into a keybinds.kdl from before the key profiles only: the profiles
     # (templates/keybinds) have these keys already, and the selector holds no binds block
-    if extras and "angelOS extras" not in t and re.search(r"^\s*binds\s*\{", t, re.M):
+    if extras and "kukabara extras" not in t and re.search(r"^\s*binds\s*\{", t, re.M):
         t = t.rstrip()
         assert t.endswith("}")
         t = t[:-1].rstrip() + "\n" + EXTRA_BINDS + "}\n"
@@ -153,15 +153,15 @@ def patch_keys(t, extras=True):
 
 
 def patch_rules(t):
-    if 'exclude app-id="^org.quickshell$" title="^angelOS"' not in t:
-        t = t.replace('exclude app-id="^liquid-glass-test$"', 'exclude app-id="^liquid-glass-test$"\n    exclude app-id="^org.quickshell$" title="^angelOS"')
-    t = t.replace('match title="^angelOS · "', 'match app-id="^org.quickshell$" title="^angelOS"')
+    if 'exclude app-id="^org.quickshell$" title="^kukabara"' not in t:
+        t = t.replace('exclude app-id="^liquid-glass-test$"', 'exclude app-id="^liquid-glass-test$"\n    exclude app-id="^org.quickshell$" title="^kukabara"')
+    t = t.replace('match title="^kukabara · "', 'match app-id="^org.quickshell$" title="^kukabara"')
     # the island sizes itself now (landscape, the user's size kept: services/Island)
-    t = t.replace('''        match title="^angelOS · Остров"
+    t = t.replace('''        match title="^kukabara · Остров"
         open-floating true
         default-column-width { fixed 460; }
         default-window-height { fixed 720; }
-''', '''        match title="^angelOS · Остров"
+''', '''        match title="^kukabara · Остров"
         open-floating true
 ''')
     if "managed by angelos switch.py" in t:
@@ -236,7 +236,7 @@ def to_angelos(restart=True, validate=True):
         subprocess.run(["pkill", "-x", "noctalia"])
         time.sleep(0.8)
         subprocess.Popen([str(SHELL / "bin/angelos"), "start"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        log("angelOS запущен ♡")
+        log("kukabara запущен ♡")
 
 
 def restore(src):

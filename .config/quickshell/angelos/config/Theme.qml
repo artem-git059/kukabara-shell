@@ -499,7 +499,7 @@ Singleton {
 
     // ---- the Golden Gate skin (Config.settingsUi.skin "goldengate"): macOS 27's colours ----
     // While the skin is on and the demon doesn't rule, the palette is a Mac's — light or dark,
-    // the accent picked in its Appearance — so everything that follows angelOS's colours (GTK,
+    // the accent picked in its Appearance — so everything that follows kukabara's colours (GTK,
     // Qt, the terminals, Telegram, Steam, the browsers, the shell's own pixel windows) looks like
     // a Mac too. services/GoldenGate takes its accent from here.
     readonly property bool macLook: Config.ready && Config.settingsUi.skin === "goldengate" && realm !== "hell"
@@ -679,7 +679,7 @@ Singleton {
     // by day the interface is a zine: flat boxes (widgets/PxBox), an outline, a solid shadow
     readonly property bool zine: !night && !macLook && !aeroLook
     readonly property real shadowAlpha: zine ? (dayLook && dayLook.shadowAlpha || 1) : dark ? 0.55 : 0.35
-    // the Win10 skin (Config.settingsUi.skin "win10", the 2026-10-27 references): angelOS classic
+    // the Win10 skin (Config.settingsUi.skin "win10", the 2026-10-27 references): kukabara classic
     // with Windows 10's taskbar buttons, RetroUI's bubbles, hard shadows and striped progress, and
     // Start as tiles (StartTiles); the paradise only — hell and Golden Gate keep their own
     readonly property bool win10: Config.ready && Config.settingsUi.skin === "win10" && !hell && !macLook
@@ -836,7 +836,7 @@ Singleton {
     readonly property color hellSprite: HellLook.barRole.sprite
     readonly property color hellSpriteHi: HellLook.barRole.spriteHi
     // Jacquard 12 Hell (OFL, data/fonts): Jacquard 12, a pixel blackletter, with the Cyrillic
-    // drawn for angelOS on its own grid (sources and the build: data/fonts/src/jacquard12-hell).
+    // drawn for kukabara on its own grid (sources and the build: data/fonts/src/jacquard12-hell).
     // Hell's headings, crisp at 21 px and its multiples (Theme.hellPx).
     readonly property string fontHell: hellFont.status === FontLoader.Ready ? hellFont.name : fontTitle
     function hellPx(n) {
@@ -895,7 +895,7 @@ Singleton {
         source: Qt.resolvedUrl("../data/fonts/DotGothic16-Regular.ttf")
     }
     // the cut-out letters of its headings: a font per letter, each with Cyrillic (the last
-    // four come with angelOS's fonts, ~/.local/share/fonts/angelos)
+    // four come with kukabara's fonts, ~/.local/share/fonts/angelos)
     readonly property var p5Ransom: [fontTitle, fontHell, fontP5Body, fontMono, dotGothicFont.status === FontLoader.Ready ? dotGothicFont.name : fontBody, fontHellText, "Press Start 2P", "Monocraft", "Tiny5", fontBody]
     // (hell's lyrics used to have a font of their own; now the headings' — kept for plugins)
     readonly property string fontLyricsHell: fontHell

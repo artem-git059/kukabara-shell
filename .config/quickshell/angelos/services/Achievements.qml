@@ -325,8 +325,8 @@ Singleton {
         },
         {
             "id": "explore",
-            "ru": "Попробовать штуку angelOS (Mission Control, полка Нимба, кольцо, повтор…)",
-            "en": "Try an angelOS thing (Mission Control, the Halo's shelf, the ring, replay…)",
+            "ru": "Попробовать штуку kukabara (Mission Control, полка Нимба, кольцо, повтор…)",
+            "en": "Try an kukabara thing (Mission Control, the Halo's shelf, the ring, replay…)",
             "key": "mission | note | shelf | tour | chest | quicklook | lens | convert | discord | grab | share | eyedropper | timer | shotedit | replay | chalk | keycast | care | gametune | reaper | meteor"
         },
         {

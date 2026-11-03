@@ -49,7 +49,7 @@ PxWindow {
         PxText {
             width: parent.width
             wrapMode: Text.Wrap
-            text: dialog.picking ? I18n.t("Автор angelOS добавил это уже после твоей установки. Отмечено то, что подходит к твоему выбору — сними лишнее.", "angelOS's author added these after your install. Ticked is what fits your pick: untick what you don't need.") : AppsSync.allDone ? I18n.t("Всё на месте — как у автора.", "Everything is there, as the author has it.") : AppsSync.done ? (AppsSync.auth ? I18n.t("Установка не началась: ", "The install never started: ") + AppsSync.auth + "." : I18n.t("Не всё поставилось — причина в строчках ниже.", "Not everything installed: the lines below say why.")) : I18n.t("Ставлю. Окно можно закрыть — установка продолжится, а я скажу, чем кончилось.", "Installing. The window can be closed: the install goes on, and I'll say how it ended.")
+            text: dialog.picking ? I18n.t("Автор kukabara добавил это уже после твоей установки. Отмечено то, что подходит к твоему выбору — сними лишнее.", "kukabara's author added these after your install. Ticked is what fits your pick: untick what you don't need.") : AppsSync.allDone ? I18n.t("Всё на месте — как у автора.", "Everything is there, as the author has it.") : AppsSync.done ? (AppsSync.auth ? I18n.t("Установка не началась: ", "The install never started: ") + AppsSync.auth + "." : I18n.t("Не всё поставилось — причина в строчках ниже.", "Not everything installed: the lines below say why.")) : I18n.t("Ставлю. Окно можно закрыть — установка продолжится, а я скажу, чем кончилось.", "Installing. The window can be closed: the install goes on, and I'll say how it ended.")
         }
 
         // how far it is

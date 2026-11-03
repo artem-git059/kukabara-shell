@@ -4,11 +4,11 @@
 # (tests/vault/fake — no real vault, no real clipboard), the Spell service and a text area with
 # two tiny dictionaries made here, the two settings pages.
 #
-#   tests/vault/run.sh [angelOS dir]          exit 0 = all good, 77 = no quickshell / no libhunspell
+#   tests/vault/run.sh [kukabara dir]          exit 0 = all good, 77 = no quickshell / no libhunspell
 #   ANGELOS_VAULT_SHOTS=dir saves pictures of the two settings pages and of a note with mistakes
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS: compile every QML file of the shell before a restart, without running it.
+# kukabara: compile every QML file of the shell before a restart, without running it.
 #
 #   scripts/qml-check.sh [shell dir]     exit 0 = all good, 1 = the shell's errors (printed), 2 = could not
 #                                        check, 3 = the shell is fine but the publish check would fail:

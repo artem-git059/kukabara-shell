@@ -1,6 +1,6 @@
-"""angelOS for Nautilus: videos → «Подготовить для DaVinci Resolve (mediafix)».
+"""kukabara for Nautilus: videos → «Подготовить для DaVinci Resolve (mediafix)».
 
-Runs the mediafix bundled with angelOS in the terminal chosen in angelOS; the
+Runs the mediafix bundled with kukabara in the terminal chosen in kukabara; the
 selected files are passed as arguments, never through a shell.
 """
 import os

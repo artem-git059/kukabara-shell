@@ -9,7 +9,7 @@ import qs.modules.settings.kit
 
 CatPage {
     heading: I18n.t("Звук", "Sound")
-    subtitle: I18n.t("Меняется только то, что ты трогаешь здесь. Маршрутизацию пульта angelOS не касается.", "Only controls you change here are applied. Audio routing is preserved.")
+    subtitle: I18n.t("Меняется только то, что ты трогаешь здесь. Маршрутизацию пульта kukabara не касается.", "Only controls you change here are applied. Audio routing is preserved.")
     CatGroup {
         name: "output"
         title: I18n.t("Динамики и наушники", "Speakers and headphones")
@@ -200,10 +200,10 @@ CatPage {
         }
         CatChoice {
             label: I18n.t("Индикатор", "Indicator")
-            hint: I18n.t("«angelOS» — окошко " + I18n.exe("voice") + ", «Старый» — прежний кружок", "“angelOS”: a " + I18n.exe("voice") + " window, “Classic”: the old circle")
+            hint: I18n.t("«kukabara» — окошко " + I18n.exe("voice") + ", «Старый» — прежний кружок", "“kukabara”: a " + I18n.exe("voice") + " window, “Classic”: the old circle")
             model: [
                 {
-                    "label": "angelOS",
+                    "label": "kukabara",
                     "value": "angelos"
                 },
                 {

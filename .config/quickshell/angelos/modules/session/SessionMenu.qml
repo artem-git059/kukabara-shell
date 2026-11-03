@@ -7,7 +7,7 @@ import qs.config
 import qs.services
 import qs.widgets
 
-// "Shut down angelOS?" dialog.
+// "Shut down kukabara?" dialog.
 PanelWindow {
     id: win
 
@@ -99,7 +99,7 @@ PanelWindow {
         anchors.centerIn: parent
         width: row.implicitWidth + Theme.pad * 2 + Theme.u * 8
         height: titleHeight + col.implicitHeight + Theme.pad * 2 + Theme.u * 10
-        title: I18n.t("Завершение работы angelOS", "angelOS session")
+        title: I18n.t("Завершение работы kukabara", "kukabara session")
         icon: "power"
         onCloseClicked: Shell.sessionOpen = false
 

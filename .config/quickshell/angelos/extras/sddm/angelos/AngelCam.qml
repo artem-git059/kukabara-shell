@@ -1,7 +1,7 @@
 import QtQuick
 import "AngelRig.js" as Rig
 
-// The angel asleep on the second camera: angelOS's own picture-rig (modules/y2k/sprites/angel,
+// The angel asleep on the second camera: kukabara's own picture-rig (modules/y2k/sprites/angel,
 // copied in by `angelos sddm build` with its rig.json as AngelRig.js). Eyes shut, the wings
 // rising and falling with her breath, a z drifting up; now and then she peeks.
 Item {

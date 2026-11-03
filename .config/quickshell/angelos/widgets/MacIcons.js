@@ -140,7 +140,7 @@ function has(name) {
     return !!icons[name];
 }
 
-// angelOS's pixel icon names (widgets/Icons.js) → the line icon of the same meaning, for
+// kukabara's pixel icon names (widgets/Icons.js) → the line icon of the same meaning, for
 // controls and pages drawn in the Golden Gate look; "" when there is none
 var fromPixelMap = {
     "bell": "bell", "bluetooth": "bluetooth", "camera": "camera", "chip": "cpu", "cursor": "mouse-pointer-2",

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Small line protocol between the angelOS bar and EasyEffects 8.3's local socket.
+"""Small line protocol between the kukabara bar and EasyEffects 8.3's local socket.
 
 Only the output equalizer is touched. The microphone pipeline is never read or written.
 """
@@ -25,7 +25,7 @@ PRESETS = {
     "air": (-2, -1, 0, 0, 0, 1, 2, 3, 2, 1),
     "soft": (0, 1, 0, 0, 0, -1, -1, -1, -2, -2),
 }
-PRESET_NAME = "angelOS Panel EQ"
+PRESET_NAME = "kukabara Panel EQ"
 RODE_OUTPUTS = {
     "rcp_duo_game_in": "Game",
     "rcp_duo_system_in": "System",

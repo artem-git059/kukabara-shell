@@ -5,7 +5,7 @@ import qs.config
 import qs.services
 import qs.widgets
 
-// Alt+Tab, angelOS style: a pixel "alt+tab.exe" window in the theme colours;
+// Alt+Tab, kukabara style: a pixel "alt+tab.exe" window in the theme colours;
 // the pick is framed in the accent with a heart (the desk sprite) on its corner.
 Item {
     id: root

@@ -34,7 +34,7 @@ bringing in what the author adds later.
                                     since this system last looked — apps in the groups the user took,
                                     and the base packages of DIR/packages (the dotfiles repository) —
                                     and that is not installed; fish: the login shell is still bash
-                                    (an install from before fish came with angelOS), not asked yet;
+                                    (an install from before fish came with kukabara), not asked yet;
                                     suggest: on a system that never picked, the author's other apps
                                     (shown once, unticked).
                                     Changes nothing
@@ -224,7 +224,7 @@ def tsv():
 def notify(*args):
     """a desktop notification; none without notify-send or a desktop"""
     if shutil.which("notify-send") and os.environ.get("WAYLAND_DISPLAY"):
-        subprocess.run(["notify-send", "-a", "angelOS", *args], stderr=subprocess.DEVNULL)
+        subprocess.run(["notify-send", "-a", "kukabara", *args], stderr=subprocess.DEVNULL)
 
 
 def say(text):
@@ -434,14 +434,14 @@ def sync(repo, wait=True):
                         "fish — the shell as the author has it (the pure prompt, fastfetch, eza) instead of bash"))
         items.append(("fish", ""))
     for name in p["packages"]:
-        labels.append(f"{name} — {t('системный пакет angelOS', 'an angelOS system package')}")
+        labels.append(f"{name} — {t('системный пакет kukabara', 'an kukabara system package')}")
         items.append(("pkg", name))
     if not items:
         say(t("ничего нового — всё как у автора ♡", "nothing new: everything is as the author has it ♡"))
         ack(repo)
         return finish(0, wait)
-    say(t("как у автора angelOS — отмечено то, что подходит к твоему выбору:",
-          "as angelOS's author has it — ticked is what fits your pick:"))
+    say(t("как у автора kukabara — отмечено то, что подходит к твоему выбору:",
+          "as kukabara's author has it — ticked is what fits your pick:"))
     picked = [items[n] for n in choose(labels, [n for n in range(len(items)) if n not in unticked])]
     ids = [v for k, v in picked if k == "app"]
     names = [v for k, v in picked if k == "pkg"]
@@ -840,7 +840,7 @@ def install(ids, wait=True, browser="", events=False, extra=()):
             return finish(2, wait)
     try:
         if todo:
-            say(t("angelOS ставит программы, которые ты выбрал ♡", "angelOS is installing the apps you picked ♡"))
+            say(t("kukabara ставит программы, которые ты выбрал ♡", "kukabara is installing the apps you picked ♡"))
         # an app pacman can't give yet (Helium, qView, LocalSend: CachyOS's; Steam: multilib): the
         # author's repositories first, as the installer adds them — then pacman has it
         if coming and any(pkgs(a, "pacman") and not pacman_has(pkgs(a, "pacman")[0]) for a, _ in todo):

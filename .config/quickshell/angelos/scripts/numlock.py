@@ -2,7 +2,7 @@
 """NumLock on login, for real (Settings → Keyboard → NumLock on login).
 
 niri's `numlock` (cfg/input.kdl) only acts when niri itself starts, and not
-every build or keymap honours it (angelOS issue #12). This checks the keyboards'
+every build or keymap honours it (kukabara issue #12). This checks the keyboards'
 NumLock LEDs and, when it is off, taps NumLock once through a short-lived
 virtual keyboard (uinput) — the compositor then turns it on for every keyboard.
 
@@ -52,7 +52,7 @@ def tap():
         fcntl.ioctl(fd, UI_SET_EVBIT, EV_KEY)
         fcntl.ioctl(fd, UI_SET_KEYBIT, KEY_NUMLOCK)
         # the legacy uinput_user_dev: name[80], input_id, ff_effects_max, abs arrays
-        name = b"angelOS numlock".ljust(80, b"\0")
+        name = b"kukabara numlock".ljust(80, b"\0")
         dev = name + struct.pack("HHHH", BUS_VIRTUAL, 0x1d6b, 0x0104, 1) + struct.pack("i", 0) + b"\0" * (4 * 64 * 4)
         os.write(fd, dev)
         fcntl.ioctl(fd, UI_DEV_CREATE)

@@ -8,7 +8,7 @@ import qs.config
 // Recovery: the game's progress and every setting on the user's own GitHub (a private repo,
 // angelos-save) or in a file (scripts/recovery.py). With gh logged in it saves once a day by
 // itself (Config.recovery.auto); the setup wizard's GitHub step offers to restore a save it
-// finds, and so does Settings → Account → Recovery. gh keeps the login, angelOS no token.
+// finds, and so does Settings → Account → Recovery. gh keeps the login, kukabara no token.
 Singleton {
     id: root
 
@@ -99,7 +99,7 @@ Singleton {
     }
     Process {
         id: picker
-        command: ["sh", "-c", 'python3 "$1" "$2" "$3" "*.tar.gz" "*.angelos"', "sh", Quickshell.shellDir + "/scripts/pick-file.py", I18n.t("angelOS — восстановить из файла", "angelOS — restore from a file"), I18n.t("Сохранения angelOS", "angelOS saves")]
+        command: ["sh", "-c", 'python3 "$1" "$2" "$3" "*.tar.gz" "*.angelos"', "sh", Quickshell.shellDir + "/scripts/pick-file.py", I18n.t("kukabara — восстановить из файла", "kukabara — restore from a file"), I18n.t("Сохранения kukabara", "kukabara saves")]
         stdout: StdioCollector {
             onStreamFinished: {
                 const f = text.trim();

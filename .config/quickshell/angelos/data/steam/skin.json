@@ -1,10 +1,10 @@
 {
-  "name": "angelOS",
-  "description": "Steam in angelOS's colours: heaven, hell and every circle, every palette — it follows the desktop on the fly. Written by angelOS (scripts/steam-theme.py); edits here are overwritten.",
-  "author": "angelOS",
+  "name": "kukabara",
+  "description": "Steam in kukabara's colours: heaven, hell and every circle, every palette — it follows the desktop on the fly. Written by kukabara (scripts/steam-theme.py); edits here are overwritten.",
+  "author": "kukabara",
   "version": "1.0.0",
   "tags": [
-    "angelOS",
+    "kukabara",
     "pixel",
     "dark",
     "light"

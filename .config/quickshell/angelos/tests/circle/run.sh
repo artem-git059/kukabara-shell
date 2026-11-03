@@ -6,11 +6,11 @@
 # the browser as stand-in qml6 / xdg-open, translate through a stand-in `trans`, copy through a
 # stand-in `wl-copy` — no real clipboard, network or screen.
 #
-#   tests/circle/run.sh [angelOS dir]      exit 0 = all good, 77 = no quickshell
+#   tests/circle/run.sh [kukabara dir]      exit 0 = all good, 77 = no quickshell
 #   CIRCLE_SNAP_DIR=<dir>                  also keep pictures of the overlay's face there
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

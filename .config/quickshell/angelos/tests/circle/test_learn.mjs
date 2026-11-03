@@ -77,9 +77,9 @@ ok(L.fixFor(db, "kitty", "CB") === "GB" && !L.fixUnsure(db, "kitty", "CB", "GB")
 ok(!(db.apps["*"] && db.apps["*"].fixes.CB), "a short word: not fixed for every app");
 L.addFix(db, "", "teh", "the");
 ok(L.fixFor(db, "", "teh") === null, "no app: once is once");
-L.addFix(db, "tg", "anaelOS", "angelOS", true);
+L.addFix(db, "tg", "anaelOS", "kukabara", true);
 const fixed = L.fixWords(db, [{ t: "anaelOS", app: "tg" }, { t: "CB", app: "kitty" }, { t: "ok", app: "kitty" }], q => q.app);
-assert.deepEqual(fixed.map(q => q.t), ["angelOS", "GB", "ok"]); n++;
+assert.deepEqual(fixed.map(q => q.t), ["kukabara", "GB", "ok"]); n++;
 ok(L.count(db) === 2, "counted (the short word not in it): " + L.count(db));
 
 console.log("  ✓ learning: " + n + " checks (edges, grain, drops, fixes)");

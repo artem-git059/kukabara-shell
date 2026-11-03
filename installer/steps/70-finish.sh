@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # gum draws the interface; it is installed before the first question (or plain prompts stay)
 bootstrap_tui() {
@@ -43,22 +43,22 @@ summary() {
     say "$(_ "Apps: $APPS" "Программы: $APPS")"
   fi
   if [[ "$DESKTOP_SHELL" == angelos ]]; then
-    say "$(_ 'angelOS: on the first login a setup wizard and interface tips open by themselves;' \
-             'angelOS: при первом входе сами откроются мастер настройки и подсказки по интерфейсу;')"
+    say "$(_ 'kukabara: on the first login a setup wizard and interface tips open by themselves;' \
+             'kukabara: при первом входе сами откроются мастер настройки и подсказки по интерфейсу;')"
     say "$(_ '  later: Mod+S — settings, `angelos help` — CLI' '  потом: Mod+S — настройки, `angelos help` — CLI')"
     say "$(_ '  next updates: Settings → Updates' '  следующие обновления: Настройки → Обновления')"
     [[ -z "$QS_STATE" || "$QS_STATE" == ok ]] ||
-      warn "$(_ 'angelOS: Quickshell needs an update (see the warning above)' 'angelOS: Quickshell нужно обновить (см. предупреждение выше)')"
+      warn "$(_ 'kukabara: Quickshell needs an update (see the warning above)' 'kukabara: Quickshell нужно обновить (см. предупреждение выше)')"
   fi
   say "$(_ "Files: $N_INSTALLED installed, $N_UNCHANGED unchanged, $N_KEPT kept" \
            "Файлы: $N_INSTALLED установлено, $N_UNCHANGED без изменений, $N_KEPT сохранено")"
   if ((N_MERGED - ${#MERGED[@]} > 0)); then
-    say "$(_ "Shortcuts: angelOS's new keys merged into $((N_MERGED - ${#MERGED[@]})) key profile(s), yours kept (backup: *.bak.$STAMP)" \
-             "Горячие клавиши: новые клавиши angelOS добавлены в $((N_MERGED - ${#MERGED[@]})) профил(я/ей), твои сохранены (бэкап: *.bak.$STAMP)")"
+    say "$(_ "Shortcuts: kukabara's new keys merged into $((N_MERGED - ${#MERGED[@]})) key profile(s), yours kept (backup: *.bak.$STAMP)" \
+             "Горячие клавиши: новые клавиши kukabara добавлены в $((N_MERGED - ${#MERGED[@]})) профил(я/ей), твои сохранены (бэкап: *.bak.$STAMP)")"
   fi
   if [[ "$NIRI_FOREIGN" == 1 ]]; then
-    say "$(_ "Niri: the config that was there was not angelOS's — replaced, so angelOS's keys work (the old one: ~/.config/niri/*.bak.$STAMP)" \
-             "Niri: прежний конфиг был не от angelOS — заменён, чтобы работали клавиши angelOS (старый: ~/.config/niri/*.bak.$STAMP)")"
+    say "$(_ "Niri: the config that was there was not kukabara's — replaced, so kukabara's keys work (the old one: ~/.config/niri/*.bak.$STAMP)" \
+             "Niri: прежний конфиг был не от kukabara — заменён, чтобы работали клавиши kukabara (старый: ~/.config/niri/*.bak.$STAMP)")"
   fi
   if ((${#MERGED[@]})); then
     say "$(_ "The author's changes merged into ${#MERGED[@]} config file(s) you had changed — where you both changed the same lines, yours stay (before: *.bak.$STAMP):" \
@@ -97,16 +97,16 @@ summary() {
 # installer without a terminal: ask in a notification, its buttons answer.
 restart_notify() {
   command -v notify-send >/dev/null 2>&1 && command -v setsid >/dev/null 2>&1 || return 1
-  setsid -f bash -c '[[ "$(notify-send -a angelOS -i system-software-update -u critical --wait \
+  setsid -f bash -c '[[ "$(notify-send -a kukabara -i system-software-update -u critical --wait \
       -A restart="$2" -A later="$3" "$4" "$5" 2>/dev/null)" == restart ]] && exec "$1" restart' _ "$1" \
     "$(_ 'Restart the shell' 'Перезагрузить оболочку')" "$(_ 'Later' 'Позже')" \
-    "$(_ 'angelOS is updated ♡' 'angelOS обновлён ♡')" \
+    "$(_ 'kukabara is updated ♡' 'kukabara обновлён ♡')" \
     "$(_ 'The previous version is still running. Restart the shell now? Windows and apps stay open.' \
          'Работает ещё прошлая версия. Перезагрузить оболочку сейчас? Окна и программы останутся открытыми.')" \
     </dev/null >/dev/null 2>&1
 }
 
-# A running angelOS keeps the old version in memory (it only watches its files in
+# A running kukabara keeps the old version in memory (it only watches its files in
 # dev mode), so an update — new settings pages included — shows up after a restart.
 restart_shell() {
   [[ "$DESKTOP_SHELL" == angelos ]] || return 0
@@ -117,15 +117,15 @@ restart_shell() {
   [[ -x "$bin" && -x "$qs" ]] || return 0
   [[ "$("$qs" -c angelos list 2>/dev/null)" == *Instance* ]] || return 0
   if ((INTERACTIVE)) && [[ -n "${WAYLAND_DISPLAY:-}" ]] &&
-     confirm "$(_ 'angelOS is still running the previous version. Restart it now?' \
-                  'angelOS ещё работает на прошлой версии. Перезапустить его сейчас?')" y; then
-    if "$bin" restart; then say "$(_ 'angelOS restarted' 'angelOS перезапущен')"
-    else warn "$(_ 'Could not restart angelOS: run `angelos restart`' 'Не удалось перезапустить angelOS: выполните `angelos restart`')"; fi
+     confirm "$(_ 'kukabara is still running the previous version. Restart it now?' \
+                  'kukabara ещё работает на прошлой версии. Перезапустить его сейчас?')" y; then
+    if "$bin" restart; then say "$(_ 'kukabara restarted' 'kukabara перезапущен')"
+    else warn "$(_ 'Could not restart kukabara: run `angelos restart`' 'Не удалось перезапустить kukabara: выполните `angelos restart`')"; fi
   elif ((!INTERACTIVE)) && [[ -n "${WAYLAND_DISPLAY:-}" ]] && restart_notify "$bin"; then
-    say "$(_ 'angelOS asks in a notification whether to restart it now' 'angelOS спросит в уведомлении, перезапустить ли его сейчас')"
+    say "$(_ 'kukabara asks in a notification whether to restart it now' 'kukabara спросит в уведомлении, перезапустить ли его сейчас')"
   else
-    warn "$(_ 'angelOS is still running the previous version: run `angelos restart` or log in again' \
-              'angelOS ещё работает на прошлой версии: выполните `angelos restart` или перезайдите в систему')"
+    warn "$(_ 'kukabara is still running the previous version: run `angelos restart` or log in again' \
+              'kukabara ещё работает на прошлой версии: выполните `angelos restart` или перезайдите в систему')"
   fi
 }
 

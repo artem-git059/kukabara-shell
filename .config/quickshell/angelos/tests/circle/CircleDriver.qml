@@ -137,7 +137,7 @@ Scope {
             Text {
                 x: 40
                 y: 60
-                text: "Hello angelOS world"
+                text: "Hello kukabara world"
                 font.pixelSize: 44
                 color: "#16121c"
             }
@@ -324,7 +324,7 @@ Scope {
             "y": 70,
             "w": 170,
             "h": 34,
-            "t": "angelOS",
+            "t": "kukabara",
             "line": 1
         },
         {
@@ -1140,7 +1140,7 @@ Scope {
             root.click("act-search");
             return true;
         },
-        // Lens's results in angelOS's own window (services/LensSearch; a test starts no worker)
+        // Lens's results in kukabara's own window (services/LensSearch; a test starts no worker)
         () => root.until("Search-on-a-pick-without-text-goes-to-Lens", () => root.lensAsked(), 8000, () => JSON.stringify(LensSearch.lastCommand)),
         () => {
             root.reopen();
@@ -1158,7 +1158,7 @@ Scope {
             root.click("act-lens");
             return true;
         },
-        // Lens's results in angelOS's own window (services/LensSearch; a test starts no worker)
+        // Lens's results in kukabara's own window (services/LensSearch; a test starts no worker)
         () => root.until("Search-the-picture-opens-Lens-in-its-window", () => root.lensAsked(), 8000, () => JSON.stringify(LensSearch.lastCommand)),
         () => {
             root.reopen();

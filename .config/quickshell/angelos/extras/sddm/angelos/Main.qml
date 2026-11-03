@@ -1,12 +1,12 @@
 import QtQuick
 import QtQuick.Window
 
-// angelOS login (SDDM). Several looks, picked in angelOS (Settings → Lock → Login screen) and
+// kukabara login (SDDM). Several looks, picked in kukabara (Settings → Lock → Login screen) and
 // kept in theme.conf's `look` — theme.conf.user (a link into walls/, the user's own part of
 // the theme) overrides it, so changing the look needs no password:
 //   stream  the NGO stream that is "starting soon" (StreamLook.qml)
 //   heaven  a gate above the clouds, the sky of the hour (HeavenLook.qml)
-//   retro   angelOS 98: the logon dialog of a Y2K desktop (RetroLook.qml)
+//   retro   kukabara 98: the logon dialog of a Y2K desktop (RetroLook.qml)
 //   hell    a pentagram, embers and a contract to sign (HellLook.qml)
 //   quiet   just the wallpaper, a big clock and a slim field (QuietLook.qml)
 // Each look is a whole screen of its own; the login state they share is Greeter.qml.
@@ -31,7 +31,7 @@ Rectangle {
     readonly property string look: looks[conf("look", "stream")] ? conf("look", "stream") : "stream"
     // the login is on the primary screen; the others get the look's second screen
     // (theme.conf role=login|cam pins it: a preview of one or the other)
-    // The main screen picked in angelOS (`angelos sddm primary`: walls/theme.conf.user) wins over
+    // The main screen picked in kukabara (`angelos sddm primary`: walls/theme.conf.user) wins over
     // X's own pick, found by the monitor's serial, then its name, then the output name (X's
     // names are not niri's): exactly one screen must answer, or SDDM's primaryScreen decides
     function matches(s, key, want) {

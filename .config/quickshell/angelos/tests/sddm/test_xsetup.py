@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""extras/sddm/angelos/xsetup.py with a stand-in xrandr: the main screen picked in angelOS is
+"""extras/sddm/angelos/xsetup.py with a stand-in xrandr: the main screen picked in kukabara is
 found by its monitor's EDID name (X's output names are not niri's), made X's primary, and the
 pointer goes to its middle; with nothing picked, or the screen not there, nothing is done."""
 import os

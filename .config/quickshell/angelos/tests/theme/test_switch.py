@@ -65,7 +65,7 @@ class Switch(unittest.TestCase):
         self.switch()
         kitty = self.read(".config/kitty/themes/angelos.conf")
         self.assertRegex(kitty, r"(?m)^cursor\s+#636f99$")
-        self.assertIn("angelOS wallpaper / dark", kitty)
+        self.assertIn("kukabara wallpaper / dark", kitty)
         self.assertIn("#636f99", self.read(".config/niri/angelos.kdl"))
         self.assertIn("#101418", self.read(".config/gtk-4.0/angelos.css"))
 

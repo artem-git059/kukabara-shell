@@ -47,7 +47,7 @@ binary() {
   # a config of its own when there is none (install.sh renders the dotfiles' one)
   if [[ ! -f "$CONF" ]]; then
     mkdir -p -- "${CONF%/*}"
-    printf '# angelOS: voice input (Settings → Sound → Voice typing)\nlanguage = "%s"\n' "${1:-en}" >"$CONF"
+    printf '# kukabara: voice input (Settings → Sound → Voice typing)\nlanguage = "%s"\n' "${1:-en}" >"$CONF"
   fi
 }
 

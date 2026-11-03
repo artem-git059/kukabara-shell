@@ -3,10 +3,10 @@
 # Start looks, the bar's widgets and a notification card at art pixel 1–4 and font scale ×1,
 # ×1.5, ×2 on a 1280×720 screen, against px 2 / ×1. No new overlaps, cut or overflowing text.
 #
-#   tests/scale/run.sh [angelOS dir]     exit 0 = all good, 77 = no quickshell
+#   tests/scale/run.sh [kukabara dir]     exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

@@ -2,7 +2,7 @@ import QtQuick
 import Quickshell
 import qs.services
 
-// Night light: a warmer screen in the evening. The gamma tables are angelOS's own
+// Night light: a warmer screen in the evening. The gamma tables are kukabara's own
 // (services/ScreenTune → scripts/gamma.py), shared with the brightness sliders in
 // Settings → Monitor: one owner, so no wlsunset next to them.
 Item {

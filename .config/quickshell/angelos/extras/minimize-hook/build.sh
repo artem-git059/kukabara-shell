@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS minimize hook: builds the preload library for 64-bit apps and, when gcc can, 32-bit ones
+# kukabara minimize hook: builds the preload library for 64-bit apps and, when gcc can, 32-bit ones
 # (Steam's games — without it ld.so complains about the wrong ELF class in every one of them).
 # usage: build.sh [prefix]   (default ~/.local/lib/angelos; LD_PRELOAD=<prefix>/$LIB/libangelos-minimize.so)
 set -e

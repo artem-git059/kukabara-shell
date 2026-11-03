@@ -34,7 +34,7 @@ Scope {
             WlrLayershell.namespace: "angelos-lens"
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
-            // where the pointer is: the last spot angelOS knows until it moves here
+            // where the pointer is: the last spot kukabara knows until it moves here
             property real px: Pointer.screen === Lens.screenName ? Pointer.x : width / 2
             property real py: Pointer.screen === Lens.screenName ? Pointer.y : height / 2
             readonly property real radius: Lens.size / 2

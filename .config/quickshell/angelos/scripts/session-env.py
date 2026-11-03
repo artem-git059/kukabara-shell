@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Save the session environment for the angelOS systemd service.
+"""Save the session environment for the kukabara systemd service.
 
   session-env.py self|<pid> <file>
 
@@ -91,7 +91,7 @@ def main():
     tmp = target + ".tmp"
     fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
     with os.fdopen(fd, "w") as f:
-        f.write("# written by angelOS (scripts/session-env.py); the shell service reads it\n")
+        f.write("# written by kukabara (scripts/session-env.py); the shell service reads it\n")
         for k in sorted(env):
             f.write(f"{k}={quote(env[k])}\n")
     os.replace(tmp, target)

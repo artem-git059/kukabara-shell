@@ -436,7 +436,7 @@ mv "$W/origin.away" "$W/origin.git"
 }
 case_system_fails() {
 
-# ── 7b. the system update stops the update before angelOS changes ────────────
+# ── 7b. the system update stops the update before kukabara changes ────────────
 new_case system-fails
 v2_edits
 publish v2
@@ -499,7 +499,7 @@ new_case no-system
 v2_edits
 publish v2
 update SYSTEM_UPGRADE=0
-check "SYSTEM_UPGRADE=0: angelOS updates, pacman never runs" \
+check "SYSTEM_UPGRADE=0: kukabara updates, pacman never runs" \
   bash -c "[[ $RC == 0 ]] && ! grep -q '^SYSTEM ' '$W/$CASE.out' && ! grep -q 'pacman -Syu' '$H/stub-calls' 2>/dev/null"
 }
 case_install_dies() {

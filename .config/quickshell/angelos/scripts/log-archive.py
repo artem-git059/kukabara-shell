@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS's own log history: the journal keeps ~50 MB here (a day or so), so "the logs of all
+"""kukabara's own log history: the journal keeps ~50 MB here (a day or so), so "the logs of all
 time" were gone when they were asked for (2026-10-15). Each finished day of the shell, niri
 and the USB bridge is kept as one compressed file:
 

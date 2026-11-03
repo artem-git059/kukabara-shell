@@ -5,8 +5,8 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 
-// angelOS for Strata, the file manager angelOS installs (scripts/strata-setup.py): «Open in
-// terminal», mediafix and «Send nearby» in its menu, and the angelOS theme (heaven, hell, on the
+// kukabara for Strata, the file manager kukabara installs (scripts/strata-setup.py): «Open in
+// terminal», mediafix and «Send nearby» in its menu, and the kukabara theme (heaven, hell, on the
 // fly: scripts/strata-theme.py). Applied once, when Strata is there; Settings → Default apps
 // → Files · Strata re-applies or removes them, and turns its Open/Save dialogs on for every app.
 Singleton {
@@ -106,7 +106,7 @@ Singleton {
                     if (r.error)
                         lines.push(r.error);
                     if (root.themePending)
-                        lines.push(I18n.t("Тема angelOS включится, когда Strata закроется (он помнит свою тему, пока открыт).", "The angelOS theme switches on once Strata closes (it keeps its own theme while it is open)."));
+                        lines.push(I18n.t("Тема kukabara включится, когда Strata закроется (он помнит свою тему, пока открыт).", "The kukabara theme switches on once Strata closes (it keeps its own theme while it is open)."));
                     root.log = lines.join("\n") || I18n.t("уже всё на месте", "everything is in place already");
                 } catch (e) {
                     root.log = text.trim();

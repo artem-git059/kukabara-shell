@@ -101,7 +101,7 @@ Item {
         path: "/etc/hostname"
         printErrors: false
     }
-    readonly property string hostName: (hostFile.loaded ? hostFile.text().trim() : "") || Quickshell.env("HOSTNAME") || "angelOS"
+    readonly property string hostName: (hostFile.loaded ? hostFile.text().trim() : "") || Quickshell.env("HOSTNAME") || "kukabara"
     readonly property real since: t - doom
     // a few of its letters broken at a time, more towards the end — still its name
     property string glitched: hostName

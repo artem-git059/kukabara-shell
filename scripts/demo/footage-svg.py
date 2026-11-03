@@ -336,9 +336,9 @@ def header(lang):
     h = 560
     sub = {"en": "RECOVERED MEDIA · 12 TAPES · CASE #0031-12",
            "ru": "НАЙДЕННЫЕ ЗАПИСИ · 12 КАССЕТ · ДЕЛО №0031-12"}[lang]
-    desc = {"en": "angelOS. Recovered media, 12 tapes, case #0031-12. A VHS playback screen, 31.12.2002.",
-            "ru": "angelOS. Найденные записи, 12 кассет, дело №0031-12. Воспроизведение с VHS, 31.12.2002."}[lang]
-    s = Svg(W, h, "angelOS — recovered media" if lang == "en" else "angelOS — найденные записи", desc)
+    desc = {"en": "kukabara. Recovered media, 12 tapes, case #0031-12. A VHS playback screen, 31.12.2002.",
+            "ru": "kukabara. Найденные записи, 12 кассет, дело №0031-12. Воспроизведение с VHS, 31.12.2002."}[lang]
+    s = Svg(W, h, "kukabara — recovered media" if lang == "en" else "kukabara — найденные записи", desc)
     b = s.body
     b.append(f'<rect width="{W}" height="{h}" fill="{BG}"/>')
     jit = s.anim("transform", [(0, "translate(0,0)"), (40, "translate(0,4px)"), (40.8, "translate(-3px,-2px)"),
@@ -362,16 +362,16 @@ def header(lang):
     tm = s.anim("transform", [(0, "translate(0,0)"), (60, "translate(6px,0)"), (61.6, "translate(-4px,0)"),
                               (63.2, "translate(0,0)")], 5)
     mid = ' text-anchor="middle"'
-    b.append(f'<g class="{tp}">{T("title", tx - 6, ty, "angelOS", ts, PINK, mid)}</g>'
-             f'<g class="{tc}">{T("title", tx + 6, ty, "angelOS", ts, CYAN, mid)}</g>'
-             f'<g class="{tm}">{T("title", tx, ty, "angelOS", ts, WHITE, mid)}</g>')
+    b.append(f'<g class="{tp}">{T("title", tx - 6, ty, "kukabara", ts, PINK, mid)}</g>'
+             f'<g class="{tc}">{T("title", tx + 6, ty, "kukabara", ts, CYAN, mid)}</g>'
+             f'<g class="{tm}">{T("title", tx, ty, "kukabara", ts, WHITE, mid)}</g>')
     for y0, hh, dx, stops in ((214, 26, 44, [(0, "0"), (60, "1"), (61.6, "0"), (88, "1"), (89, "0")]),
                               (262, 18, -34, [(0, "0"), (61.6, "1"), (63.2, "0")])):
         cid, cls = s.uid("c"), s.anim("opacity", stops, 5)
         s.defs.append(f'<clipPath id="{cid}"><rect x="0" y="{y0}" width="{W}" height="{hh}"/></clipPath>')
         b.append(f'<g clip-path="url(#{cid})"><g class="{cls}" opacity="0"><rect y="{y0}" width="{W}" height="{hh}" '
-                 f'fill="{BG}"/>{T("title", tx + dx - 12, ty, "angelOS", ts, PINK, mid)}'
-                 f'{T("title", tx + dx, ty, "angelOS", ts, WHITE, mid)}</g></g>')
+                 f'fill="{BG}"/>{T("title", tx + dx - 12, ty, "kukabara", ts, PINK, mid)}'
+                 f'{T("title", tx + dx, ty, "kukabara", ts, WHITE, mid)}</g></g>')
     sw = cw(26) * len(sub)
     b.append(osd(640 - sw / 2, 372, sub, 26, LPINK))
     b.append(f'{head_switch(rnd, W, h)}</g>')

@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # ── Voxtype ──────────────────────────────────────────────────────────────────
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS: the snapshot an update starts from, and the way back (scripts/dotfiles-update.sh).
+"""kukabara: the snapshot an update starts from, and the way back (scripts/dotfiles-update.sh).
 
   update-txn.py snapshot DIR --home H --state S --repo R --rev OLD --rev NEW --stamp STAMP
       record every file the installer may write (the repository's files in both
@@ -10,7 +10,7 @@
       record what the update left behind (DIR/after.json): the changes it made
   update-txn.py restore DIR [--dry-run]
       put back what this update changed, file by file. A file changed again since
-      (by hand, by angelOS's settings) stays as it is and is reported as a
+      (by hand, by kukabara's settings) stays as it is and is reported as a
       conflict; files the update created are removed; the installer's manifest
       (installed-files.sha256) is patched to match; then `niri validate` and,
       when it still points at the update, the repository goes back to the old

@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS owner check: is the GitHub account logged in here (gh) an admin of the
+# kukabara owner check: is the GitHub account logged in here (gh) an admin of the
 # dotfiles repository? Owner features (services/Owner) and the owner's publish
 # script switch on only then — the owner/ folder and the marker file alone are not
 # enough, anyone could copy those.

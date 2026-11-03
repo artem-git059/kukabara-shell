@@ -6,7 +6,7 @@ import Quickshell.Wayland
 import qs.config
 import qs.services
 
-// angelOS's pixel context menu: one engine for every pixel menu (services/MenuLook). A menu is
+// kukabara's pixel context menu: one engine for every pixel menu (services/MenuLook). A menu is
 // a row of everyday actions as signed icons (`quick`) over a list of plain entries (`items`):
 //   {label, short, icon, hint, keys, separator, checkable, checked, enabled, keepOpen, run,
 //    choices, children}
@@ -19,7 +19,7 @@ import qs.services
 //   choices   a few small buttons on the row (or under the icon) instead of a submenu:
 //             [{label, checked, keepOpen, run}] — the desks 1 2 3 4, a widget's S M L
 //   children  a list, or a function building it as it opens: a submenu beside the entry —
-//             the tray's apps' own menus only (angelOS's menus have none). A function may give
+//             the tray's apps' own menus only (kukabara's menus have none). A function may give
 //             nothing yet: the submenu shows once refresh() finds entries (the tray's DBus menus)
 // Open it with popup(items, title, x, y) or show(x, y) (x, y in parentWindow, or in anchor.item
 // when a menu anchors itself to an item instead); close() closes it with its submenus.

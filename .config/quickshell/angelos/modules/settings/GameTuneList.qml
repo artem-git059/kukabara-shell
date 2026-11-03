@@ -34,7 +34,7 @@ Column {
         width: parent.width
         visible: GameTune.hasSteam
         label: I18n.t("Без перезапуска Steam", "No Steam restart")
-        hint: GameTune.instant === "on" ? I18n.t("включено: Proton и настройки игры меняются со следующего её запуска", "on: a game's Proton and settings change from its next start") : GameTune.instant === "waiting" ? I18n.t("закрой Steam один раз — дальше без перезапусков", "close Steam once — then no more restarts") : I18n.t("Steam видит один переключатель angelOS, а он перед каждым запуском берёт выбранный Proton и настройки игры. Твои параметры запуска в Steam остаются.", "Steam sees one angelOS switch that takes each game's chosen Proton and settings at every start. Your launch options in Steam stay.")
+        hint: GameTune.instant === "on" ? I18n.t("включено: Proton и настройки игры меняются со следующего её запуска", "on: a game's Proton and settings change from its next start") : GameTune.instant === "waiting" ? I18n.t("закрой Steam один раз — дальше без перезапусков", "close Steam once — then no more restarts") : I18n.t("Steam видит один переключатель kukabara, а он перед каждым запуском берёт выбранный Proton и настройки игры. Твои параметры запуска в Steam остаются.", "Steam sees one kukabara switch that takes each game's chosen Proton and settings at every start. Your launch options in Steam stay.")
         PxToggle {
             checked: GameTune.instant !== "off"
             enabled: !GameTune.busy

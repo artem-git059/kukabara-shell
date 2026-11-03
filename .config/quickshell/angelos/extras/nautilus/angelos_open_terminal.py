@@ -1,6 +1,6 @@
-"""angelOS for Nautilus: «Открыть в терминале» with the terminal chosen in angelOS.
+"""kukabara for Nautilus: «Открыть в терминале» with the terminal chosen in kukabara.
 
-Installed by angelOS (Settings → Default apps → Files · Nautilus). The terminal
+Installed by kukabara (Settings → Default apps → Files · Nautilus). The terminal
 comes from ~/.config/angelos/settings.json (system.terminal) at click time.
 """
 import json

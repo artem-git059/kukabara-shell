@@ -120,7 +120,7 @@ Singleton {
                 Sounds.play("stars");
                 return;
             }
-            notifier.command = ["notify-send", "-a", "angelOS", "-h", "string:x-angelos-sound:stars", "-i", Quickshell.shellDir + "/data/icons/heaven-star.svg", "--wait", "-A", "open=" + I18n.t("Открыть сундук", "Open the chest"), I18n.t("Сундук дня ждёт ✦", "The day's chest is waiting ✦"), I18n.t("Бесплатная молитва: карточка в альбом или скин ангела. Может выпасть и 5★…", "A free prayer: a card for the album or one of the angel's skins. A 5★ may drop…")];
+            notifier.command = ["notify-send", "-a", "kukabara", "-h", "string:x-angelos-sound:stars", "-i", Quickshell.shellDir + "/data/icons/heaven-star.svg", "--wait", "-A", "open=" + I18n.t("Открыть сундук", "Open the chest"), I18n.t("Сундук дня ждёт ✦", "The day's chest is waiting ✦"), I18n.t("Бесплатная молитва: карточка в альбом или скин ангела. Может выпасть и 5★…", "A free prayer: a card for the album or one of the angel's skins. A 5★ may drop…")];
             notifier.running = true;
         }
     }

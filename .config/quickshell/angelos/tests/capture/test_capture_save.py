@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """scripts/capture_save.py against stand-ins: wl-copy, notify-send, xdg-open, gdbus and pw-play
 write what they were given into files; the owner's clipboard and notifications stay untouched.
-  test_capture_save.py <angelOS dir> [script]   (script: another capture_save.py, to see the test fail)"""
+  test_capture_save.py <kukabara dir> [script]   (script: another capture_save.py, to see the test fail)"""
 import io
 import json
 import os

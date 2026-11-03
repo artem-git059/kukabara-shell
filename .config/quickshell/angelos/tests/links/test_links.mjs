@@ -8,7 +8,7 @@ let n = 0;
 const is = (t, want) => { assert.deepEqual(urls(t), want, t); n++; };
 
 is("https://example.org/x", ["url https://example.org/x"]);
-is("see www.angel.dev, and github.com/mixadod/angelOS.", ["url https://www.angel.dev", "url https://github.com/mixadod/angelOS"]);
+is("see www.angel.dev, and github.com/mixadod/kukabara.", ["url https://www.angel.dev", "url https://github.com/mixadod/kukabara"]);
 is("(ссылка: Github.com/x)", ["url https://Github.com/x"]);
 is("пиши на angel@mail.ru или звони +7 (999) 123-45-67", ["mail mailto:angel@mail.ru", "phone tel:+79991234567"]);
 is("8 999 123 45 67", ["phone tel:89991234567"]);

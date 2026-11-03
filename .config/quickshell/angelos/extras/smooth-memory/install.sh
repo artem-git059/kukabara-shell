@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS: memory settings that keep the picture from freezing when RAM fills up (the sysctl
+# kukabara: memory settings that keep the picture from freezing when RAM fills up (the sysctl
 # file beside this one says what each does). Root: install.sh of the dotfiles through sudo.
 #   install.sh            install / update, and apply now
 #   install.sh --remove   take it away (the kernel's values come back at the next boot)

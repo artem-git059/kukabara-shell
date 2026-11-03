@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""«Доктор игр» for angelOS (Settings → Maintenance → Games, services/Care): what games need,
+"""«Доктор игр» for kukabara (Settings → Maintenance → Games, services/Care): what games need,
 looked over in one go, and the three fixes that help most when a game stops starting.
 
   game-doctor.py scan                 JSON {checks, games, protons, edition, missing}
@@ -334,7 +334,7 @@ def ge_proton():
         return done(False, "Steam не найден: сначала поставь и запусти его", "Steam not found: install and start it first")
     dest = roots[0] / "compatibilitytools.d"
     try:
-        req = urllib.request.Request(GE_API, headers={"Accept": "application/vnd.github+json", "User-Agent": "angelOS"})
+        req = urllib.request.Request(GE_API, headers={"Accept": "application/vnd.github+json", "User-Agent": "kukabara"})
         rel = json.load(urllib.request.urlopen(req, timeout=20))
     except (OSError, ValueError) as e:
         return done(False, f"GitHub не ответил: {e}", f"GitHub did not answer: {e}")

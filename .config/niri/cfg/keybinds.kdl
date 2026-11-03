@@ -1,4 +1,4 @@
-// angelOS: the key profile of the theme in front — written by angelOS (scripts/keyprofile.py),
+// kukabara: the key profile of the theme in front — written by kukabara (scripts/keyprofile.py),
 // switched with the theme. Edit the profiles, not this file (Settings → Keyboard does):
 //   keybinds-common.kdl — both themes, keybinds-pixel.kdl — the pixel theme,
 //   keybinds-macos.kdl — Golden Gate (macOS). The profile is read last: its key wins.

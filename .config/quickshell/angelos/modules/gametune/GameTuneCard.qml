@@ -53,7 +53,7 @@ Column {
     function protonWhy(w) {
         return ({
                 "native": I18n.t("У игры своя версия для Linux — Proton не нужен", "The game has a Linux build — no Proton needed"),
-                "profile": I18n.t("проверено angelOS для этой игры", "checked by angelOS for this game"),
+                "profile": I18n.t("проверено kukabara для этой игры", "checked by kukabara for this game"),
                 "anticheat": I18n.t("с античитом надёжнее официальный Proton Experimental", "with anti-cheat Valve's Proton Experimental is the safe bet"),
                 "default": I18n.t("быстрый, сам чинит сотни игр (protonfixes), дружит с Wayland", "fast, mends hundreds of games by itself (protonfixes), Wayland-friendly"),
                 "ge": I18n.t("Proton-CachyOS не установлен — следующий по качеству GE-Proton", "Proton-CachyOS isn't installed — GE-Proton is the next best"),
@@ -62,7 +62,7 @@ Column {
     }
     function optionsWhy(w) {
         if (w === "profile")
-            return I18n.t("проверено angelOS для этой игры", "checked by angelOS for this game");
+            return I18n.t("проверено kukabara для этой игры", "checked by kukabara for this game");
         if (w.startsWith("protondb:"))
             return I18n.t("так запускают %1 игроков с такой же видеокартой", "%1 players with the same kind of video card run it so").replace("%1", w.slice(9));
         return (root.options.indexOf("gamemoderun") >= 0) ? I18n.t("gamemoderun — режим производительности, пока идёт игра", "gamemoderun — performance mode while the game runs") : "";
@@ -420,7 +420,7 @@ Column {
         visible: !!root.bench && !root.bench.done
         wrapMode: Text.Wrap
         color: Theme.accent
-        text: root.bench && !root.bench.done ? I18n.t("Заход %1 из %2: %3. Запусти игру, встань в одно место (или включи бенчмарк игры) и нажми Shift+F2 — 60 секунд записи. Потом выйди из игры: следующий Proton включится сам.", "Run %1 of %2: %3. Start the game, stand in one spot (or run its benchmark) and press Shift+F2 — 60 seconds of recording. Then quit: the next Proton comes by itself.").replace("%1", root.bench.i + 1).replace("%2", root.bench.tools.length).replace("%3", root.runName(root.bench.tools[root.bench.i])) + (GameTune.restartSteam ? I18n.t(" Сначала перезапусти Steam один раз — он должен увидеть переключатель «angelOS: Proton per game».", " Restart Steam once first — it has to see the switch \"angelOS: Proton per game\".") : "") : ""
+        text: root.bench && !root.bench.done ? I18n.t("Заход %1 из %2: %3. Запусти игру, встань в одно место (или включи бенчмарк игры) и нажми Shift+F2 — 60 секунд записи. Потом выйди из игры: следующий Proton включится сам.", "Run %1 of %2: %3. Start the game, stand in one spot (or run its benchmark) and press Shift+F2 — 60 seconds of recording. Then quit: the next Proton comes by itself.").replace("%1", root.bench.i + 1).replace("%2", root.bench.tools.length).replace("%3", root.runName(root.bench.tools[root.bench.i])) + (GameTune.restartSteam ? I18n.t(" Сначала перезапусти Steam один раз — он должен увидеть переключатель «kukabara: Proton per game».", " Restart Steam once first — it has to see the switch \"kukabara: Proton per game\".") : "") : ""
     }
     Repeater {
         model: root.bench ? root.bench.tools : []

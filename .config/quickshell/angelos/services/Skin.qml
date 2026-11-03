@@ -5,8 +5,8 @@ import Quickshell
 import qs.config
 
 // The Theme API: one place that says which look is on and gives its tokens — for plugins,
-// Plugin Studio's generated code and the shell's own plugin hosts. angelOS has two looks:
-//   "pixel"  the original angelOS (Win98 / NEEDY GIRL OVERDOSE): square bevelled boxes, the
+// Plugin Studio's generated code and the shell's own plugin hosts. kukabara has two looks:
+//   "pixel"  the original kukabara (Win98 / NEEDY GIRL OVERDOSE): square bevelled boxes, the
 //            pixel fonts, sizes on the art-pixel grid (Theme.u), window titles "name.exe"
 //   "mac"    Golden Gate (macOS 27, Liquid Glass): rounded glass, the system font (Inter or
 //            SF Pro), point sizes, titles without an ending

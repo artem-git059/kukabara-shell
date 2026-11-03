@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS: let the user at the seat read the charge of wireless mice from their dongles
+# kukabara: let the user at the seat read the charge of wireless mice from their dongles
 # (root: install.sh of the dotfiles through sudo, or pkexec from Settings → Devices → Device
 # charge). A udev rule and the helper it asks; what the rule opens and to whom is written in
 # the rule itself (70-angelos-peripherals.rules). Copies, never links: both must stay root's.

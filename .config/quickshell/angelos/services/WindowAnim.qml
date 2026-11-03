@@ -5,7 +5,7 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 
-// niri's window open and close animations: its own, off, or an angelOS shader
+// niri's window open and close animations: its own, off, or an kukabara shader
 // (shaders/open/*.glsl, shaders/close/*.glsl), each at its own speed —
 // written into cfg/animation.kdl by scripts/window-anim.py (backed up, validated), in the
 // theme's accents — templates.json's "window-anim" writes them again when the theme changes.
@@ -182,7 +182,7 @@ Singleton {
     }
     // a throwaway window that opens and closes itself, to see both animations
     function preview() {
-        Shell.exec(Shell.terminalArgv(["sh", "-c", "printf '\\n  ♡ angelOS: " + I18n.t("привет… и пока!", "hello… and bye!") + "\\n'; sleep 1.6"], "angelos.closepreview"));
+        Shell.exec(Shell.terminalArgv(["sh", "-c", "printf '\\n  ♡ kukabara: " + I18n.t("привет… и пока!", "hello… and bye!") + "\\n'; sleep 1.6"], "angelos.closepreview"));
     }
     function refresh() {
         if (!reader.running)

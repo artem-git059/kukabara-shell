@@ -4,11 +4,11 @@
 # the Halo's capsule, a paid message, the cats' line along the bottom, their switch. Nothing
 # talks to YouTube: the log is what a chat reader would write.
 #
-#   tests/streamchat/run.sh [angelOS dir]      exit 0 = all good, 77 = no quickshell
+#   tests/streamchat/run.sh [kukabara dir]      exit 0 = all good, 77 = no quickshell
 #   ANGELOS_CHAT_SHOTS=dir …                   pictures of the running cats
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 fail=0
 if out=$(python3 "$DIR/scripts/stream-chat.py" --self-test 2>&1); then
   echo "  ✓ chat follower: the newest session, nothing replayed, links cut, regulars, a half-written line waits"

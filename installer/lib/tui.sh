@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — the face of it: a pastel "stream" in the terminal (sourced by install.sh).
+# kukabara installer — the face of it: a pastel "stream" in the terminal (sourced by install.sh).
 #
 # Built on gum (charmbracelet/gum, in Arch's and CachyOS's repositories): the menus, the
 # confirmations, the input fields and the framed boxes. The hearts progress bar, the boot
@@ -84,7 +84,7 @@ BANNER=(
 '   ▄▀▀▄▄▀▀▄      ▄▀█ █▄ █ █▀▀ █▀▀ █   █▀█ █▀▀'
 '  █  ♥  ♥  █     █▀█ █ ▀█ █▄█ ██▄ █▄▄ █▄█ ▄▄█'
 '   ▀▄    ▄▀'
-'     ▀▄▄▀        ● LIVE   angelOS setup ♡'
+'     ▀▄▄▀        ● LIVE   kukabara setup ♡'
 )
 
 tui_banner() {

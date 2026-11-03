@@ -28,7 +28,7 @@ Scope {
         id: win
         implicitWidth: 1100
         implicitHeight: 780
-        title: "angelOS leak test"
+        title: "kukabara leak test"
         color: Theme.desk
 
         SettingsView {

@@ -815,7 +815,7 @@ Singleton {
                 });
             }
         case "kill":
-            // not for angelOS's own windows: their pid is the shell itself; not for X11 ones: niri
+            // not for kukabara's own windows: their pid is the shell itself; not for X11 ones: niri
             // knows only xwayland-satellite's pid for them, and killing it took every X11 app (#116).
             // Checked once more when it runs, in case the list is behind
             return w.pid && w.pid !== Shell.pid && Shell.pid > 0 && !root.x11Pids.includes(w.pid) ? with_({

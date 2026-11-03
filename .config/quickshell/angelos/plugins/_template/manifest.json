@@ -3,12 +3,12 @@
   "name": "__NAME__",
   "version": "0.1.0",
   "author": "",
-  "description": "Новый плагин angelOS",
+  "description": "Новый плагин kukabara",
   "icon": "heart",
   "enabledByDefault": true,
   "themes": ["pixel", "mac"],
   "menu": [
-    { "label": "__NAME__: привет", "icon": "heart", "exec": "notify-send angelOS 'привет из плагина ♡'" }
+    { "label": "__NAME__: привет", "icon": "heart", "exec": "notify-send kukabara 'привет из плагина ♡'" }
   ],
   "barWidget": "BarWidget.qml",
   "desktopTitle": "__ID__",

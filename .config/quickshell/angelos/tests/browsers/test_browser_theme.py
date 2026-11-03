@@ -221,7 +221,7 @@ class BrowserTheme(unittest.TestCase):
         r = self.run_bt("apply", "firefox")
         self.assertTrue(r["done"], r)
         css = (prof / "chrome/userChrome.css").read_text()
-        self.assertTrue(css.startswith("/* angelOS begin */\n@import"), "the import comes before @namespace")
+        self.assertTrue(css.startswith("/* kukabara begin */\n@import"), "the import comes before @namespace")
         self.assertIn(USERCHROME, css)
         self.assertIn("legacyUserProfileCustomizations", (prof / "user.js").read_text())
         self.assertTrue((prof / "chrome/angelos-theme.css").is_symlink())

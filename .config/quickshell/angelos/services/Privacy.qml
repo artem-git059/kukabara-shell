@@ -219,7 +219,7 @@ Singleton {
     }
     Process {
         id: picker
-        command: ["python3", Quickshell.shellDir + "/scripts/pick-file.py", I18n.t("angelOS — заглушка для эфира", "angelOS — what the stream shows"), I18n.t("Картинки", "Pictures"), "*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.bmp"]
+        command: ["python3", Quickshell.shellDir + "/scripts/pick-file.py", I18n.t("kukabara — заглушка для эфира", "kukabara — what the stream shows"), I18n.t("Картинки", "Pictures"), "*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.bmp"]
         stdout: StdioCollector {
             onStreamFinished: {
                 const f = text.trim();

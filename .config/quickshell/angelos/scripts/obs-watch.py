@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tell angelOS when OBS goes live (obs-websocket 5, no extra Python packages).
+"""Tell kukabara when OBS goes live (obs-websocket 5, no extra Python packages).
 
   obs-watch.py [--port 4455] [--password PW]
 

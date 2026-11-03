@@ -239,7 +239,7 @@ Singleton {
 
     // ---- terminal launches ----
     readonly property string shim: Quickshell.shellDir + "/plugins/claude-companion/shim/angelos-mcp.py"
-    readonly property string systemNote: "You are running inside the angelOS desktop shell (Quickshell on niri), launched from its Claude Companion plugin. An MCP server named 'angelos' gives you live desktop senses and hands: PERCEIVE — get_window, get_workspace, get_media, get_shell_state, get_power, get_network, get_processes. ACT — notify, set_theme_mode (dark/light/auto), set_color_scheme (overdose/bubblegum/cyberangel/wallpaper/gruvbox/rosepine/catppuccin/nord/dracula/tokyonight/solarized/everforest), focus_window, switch_workspace, move_to_workspace, set_wallpaper, set_presence/clear_presence. MEMORY — remember. Call the perceive tools when current desktop context matters instead of assuming it."
+    readonly property string systemNote: "You are running inside the kukabara desktop shell (Quickshell on niri), launched from its Claude Companion plugin. An MCP server named 'angelos' gives you live desktop senses and hands: PERCEIVE — get_window, get_workspace, get_media, get_shell_state, get_power, get_network, get_processes. ACT — notify, set_theme_mode (dark/light/auto), set_color_scheme (overdose/bubblegum/cyberangel/wallpaper/gruvbox/rosepine/catppuccin/nord/dracula/tokyonight/solarized/everforest), focus_window, switch_workspace, move_to_workspace, set_wallpaper, set_presence/clear_presence. MEMORY — remember. Call the perceive tools when current desktop context matters instead of assuming it."
     function launch(args, mcp) {
         const mcpJson = JSON.stringify({
             "mcpServers": {

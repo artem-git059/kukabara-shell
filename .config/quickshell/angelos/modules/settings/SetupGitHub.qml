@@ -10,7 +10,7 @@ import qs.services
 // gh's own login, the device way — the wizard covers every screen, so the code is shown big
 // with a QR of github.com/login/device for a phone. Then the author's tools
 // (scripts/author-tools.sh: owner/ from the private repo, only for an account GitHub lets
-// in) and the owner check (services/Owner). angelOS keeps no token: gh does.
+// in) and the owner check (services/Owner). kukabara keeps no token: gh does.
 Scope {
     id: root
 

@@ -2,7 +2,7 @@
 """scripts/discord-theme.py in a throw-away $HOME: the theme into every Vencord found (and only
 into them, never over someone else's file), apply and revert touching only enabledThemes and
 themeLinks, apply refusing a running client, the launcher override set and taken back only when
-it is angelOS's — and the DevTools injector against a headless Chromium (Helium) of its own,
+it is kukabara's — and the DevTools injector against a headless Chromium (Helium) of its own,
 on a local page with a strict CSP, through a reload and a theme change.
 
 Nothing here touches the real Discord or the real Helium: the "running" clients are stand-in
@@ -109,16 +109,16 @@ class Build(Base):
         flat = self.client(".var/app/com.discordapp.Discord/config/Vencord")
         out = self.run_script("build", str(self.pal))
         self.assertTrue(out["ok"])
-        base = self.home / ".local/share/angelos/discord/angelOS.theme.css"
+        base = self.home / ".local/share/angelos/discord/kukabara.theme.css"
         text = base.read_text()
-        self.assertIn("@name angelOS", text)
-        self.assertIn("written by angelOS", text)
+        self.assertIn("@name kukabara", text)
+        self.assertIn("written by kukabara", text)
         self.assertIn("--ao-accent: #6871b3;", text)
         self.assertIn("border-radius: var(--ao-r) !important", text)
         self.assertIn('--ao-font-body: "gg sans"', text)
         self.assertNotIn("--ao-size", text)
         for d in (vesk, flat):
-            self.assertEqual((d / "themes/angelOS.theme.css").read_text(), text)
+            self.assertEqual((d / "themes/kukabara.theme.css").read_text(), text)
         # no Vencord folder made for a client that isn't there
         self.assertFalse((self.home / ".config/equibop").exists())
         self.assertFalse((self.home / ".config/Vencord").exists())
@@ -127,7 +127,7 @@ class Build(Base):
     def test_zero_contrast_frame_is_made_visible(self):
         # the wallpaper palette: hi == faceAlt, edge == lo == desk
         self.run_script("build", str(self.pal))
-        text = (self.home / ".local/share/angelos/discord/angelOS.theme.css").read_text()
+        text = (self.home / ".local/share/angelos/discord/kukabara.theme.css").read_text()
         vals = dict(l.strip().rstrip(";").split(": ", 1) for l in text.splitlines()
                     if l.strip().startswith(("--ao-hi:", "--ao-lo:", "--ao-edge:", "--ao-face:")))
         self.assertNotEqual(vals["--ao-hi"], PALETTE["faceAlt"])
@@ -137,7 +137,7 @@ class Build(Base):
     def test_same_palette_writes_nothing(self):
         vesk = self.client(".config/vesktop")
         self.run_script("build", str(self.pal))
-        f = vesk / "themes/angelOS.theme.css"
+        f = vesk / "themes/kukabara.theme.css"
         m = f.stat().st_mtime_ns
         time.sleep(0.05)
         out = self.run_script("build", str(self.pal))
@@ -148,17 +148,17 @@ class Build(Base):
     def test_someone_elses_file_is_left_alone(self):
         vesk = self.client(".config/vesktop")
         (vesk / "themes").mkdir()
-        mine = "/** @name angelOS — my own */\nbody { color: red; }\n"
-        (vesk / "themes/angelOS.theme.css").write_text(mine)
+        mine = "/** @name kukabara — my own */\nbody { color: red; }\n"
+        (vesk / "themes/kukabara.theme.css").write_text(mine)
         out = self.run_script("build", str(self.pal))
         self.assertIn("skipped", out["clients"]["vesktop"])
-        self.assertEqual((vesk / "themes/angelOS.theme.css").read_text(), mine)
+        self.assertEqual((vesk / "themes/kukabara.theme.css").read_text(), mine)
 
     def test_hell_and_light(self):
         self.client(".config/vesktop")
         self.pal.write_text(json.dumps(HELL))
         self.run_script("build", str(self.pal))
-        text = (self.home / ".local/share/angelos/discord/angelOS.theme.css").read_text()
+        text = (self.home / ".local/share/angelos/discord/kukabara.theme.css").read_text()
         self.assertIn("for hell (limbo)", text)
         self.assertIn('"Jacquard 12 Hell"', text)
         self.assertIn("@font-face", text)
@@ -167,7 +167,7 @@ class Build(Base):
                      sunken="#fbeef5", text="#2a1a22", textDim="#7a6470")
         self.pal.write_text(json.dumps(light))
         self.run_script("build", str(self.pal))
-        text = (self.home / ".local/share/angelos/discord/angelOS.theme.css").read_text()
+        text = (self.home / ".local/share/angelos/discord/kukabara.theme.css").read_text()
         self.assertIn("--ao-scheme: light;", text)
         self.assertNotIn("@font-face", text)
 
@@ -181,7 +181,7 @@ class Apply(Base):
         out = self.run_script("apply", "vesktop")
         self.assertEqual(out["done"], ["vesktop"])
         cfg = json.loads((d / "settings/settings.json").read_text())
-        self.assertEqual(cfg["enabledThemes"], ["angelOS.theme.css"])
+        self.assertEqual(cfg["enabledThemes"], ["kukabara.theme.css"])
         self.assertEqual(cfg["themeLinks"], [])
         for k in ("autoUpdate", "useQuickCss", "plugins"):
             self.assertEqual(cfg[k], self.SETTINGS[k])
@@ -288,7 +288,7 @@ class Inject(Base):
         self.mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(self.mod)
         self.run_script("build", str(self.pal))
-        self.theme = self.home / ".local/share/angelos/discord/angelOS.theme.css"
+        self.theme = self.home / ".local/share/angelos/discord/kukabara.theme.css"
 
     def tearDown(self):
         self.server.shutdown()

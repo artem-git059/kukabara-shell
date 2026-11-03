@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """tests/rhythm: scripts/osu-beats.py's Tracker on made-up drums, no sound device.
 
-  beats.py <angelOS dir>   prints {"case": [estimates…]} as JSON
+  beats.py <kukabara dir>   prints {"case": [estimates…]} as JSON
 
 Each case is a kick (a falling 60 Hz thump) with a hat between, fed in the hops pw-record
 would send, the way main() does; every quarter of a second the estimate is taken.

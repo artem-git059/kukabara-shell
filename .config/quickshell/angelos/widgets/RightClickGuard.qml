@@ -7,7 +7,7 @@ import qs.services
 // the keyboard" and maps the null activeFocusItem
 // (QQuickDeliveryAgentPrivate::contextMenuTargets → QQuickItem::mapToScene).
 // A menu opened at the pointer puts its corner right under the next click.
-// Every angelOS window carries one of these: it takes right presses on that pixel. It also
+// Every kukabara window carries one of these: it takes right presses on that pixel. It also
 // signs its window in for `angelos perf` (services/Perf), which has no other way to find them.
 MouseArea {
     readonly property var hostWindow: Window.window

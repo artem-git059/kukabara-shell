@@ -1,6 +1,6 @@
 # a Flatpak update deploys a new folder and switches "active" to it: Discord is clean again
 [Unit]
-Description=angelOS: watch the Flatpak Discord for its updates
+Description=kukabara: watch the Flatpak Discord for its updates
 
 [Path]
 PathChanged=/var/lib/flatpak/app/com.discordapp.Discord/x86_64/stable

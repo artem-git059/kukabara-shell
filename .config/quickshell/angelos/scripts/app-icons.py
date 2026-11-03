@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The apps' own icons for the setup wizard, in angelOS's pixels: data/app-icons/<id>.png.
+"""The apps' own icons for the setup wizard, in kukabara's pixels: data/app-icons/<id>.png.
 
   app-icons.py [ID…]        (re)make them (all the catalog's apps by default); needs the network
 
@@ -40,7 +40,7 @@ DESKTOP = {"helium": "helium.desktop", "freshgram": "io.github.snowyfluffy.fresh
 
 
 def fetch(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "angelOS app-icons"})
+    req = urllib.request.Request(url, headers={"User-Agent": "kukabara app-icons"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return r.read()
 

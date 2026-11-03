@@ -152,7 +152,7 @@ def save_token(token):
 
 def exchange(code):
     req = urllib.request.Request(TOKEN_URL, data=json.dumps({"code": code}).encode(),
-                                 headers={"Content-Type": "application/json", "User-Agent": "angelOS-discord-voice/1"})
+                                 headers={"Content-Type": "application/json", "User-Agent": "kukabara-discord-voice/1"})
     with urllib.request.urlopen(req, timeout=20) as r:
         return json.loads(r.read(65536))["access_token"]
 
@@ -210,7 +210,7 @@ class Voice:
 
     def _download(self, user, p):
         try:
-            req = urllib.request.Request(avatar_url(user), headers={"User-Agent": "angelOS-discord-voice/1"})
+            req = urllib.request.Request(avatar_url(user), headers={"User-Agent": "kukabara-discord-voice/1"})
             with urllib.request.urlopen(req, timeout=15) as r:
                 data = r.read(2 * 1024 * 1024)
             AVATARS.mkdir(parents=True, exist_ok=True)
@@ -313,7 +313,7 @@ class Session:
         if cmd == "DISPATCH":
             if evt == "READY":
                 if (data.get("user") or {}).get("id") == ARRPC_USER:
-                    raise RichPresenceOnly("This client's arRPC supports Rich Presence only; enable the angelOS voice bridge")
+                    raise RichPresenceOnly("This client's arRPC supports Rich Presence only; enable the kukabara voice bridge")
                 token = self.load()
                 if token:
                     self.cmd("AUTHENTICATE", {"access_token": token})

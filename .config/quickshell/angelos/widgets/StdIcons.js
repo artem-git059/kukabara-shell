@@ -3844,7 +3844,7 @@ const words = [["screenshot", "camera"], ["camera", "camera"], ["webcam", "webca
 
 // the rows for a name: itself (no -symbolic), then without its last parts (audio-volume-high-rtl →
 // audio-volume-high), then a word in it (org.gnome.Screenshot → camera); null: nothing fits;
-// a string: the name of angelOS's own icon (widgets/Icons.js)
+// a string: the name of kukabara's own icon (widgets/Icons.js)
 function pic(icon) {
     return icon.indexOf("own:") === 0 ? icon.slice(4) : pics[icon];
 }

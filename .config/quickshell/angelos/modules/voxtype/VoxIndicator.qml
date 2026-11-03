@@ -9,7 +9,7 @@ import qs.services
 import qs.widgets
 import "../../widgets/Place.js" as Place
 
-// VoxType dictation indicator in the angelOS style ("voice.exe").
+// VoxType dictation indicator in the kukabara style ("voice.exe").
 Scope {
     id: root
 

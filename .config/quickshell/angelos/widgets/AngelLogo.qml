@@ -3,7 +3,7 @@ import qs.config
 import qs.services
 import "Logos.js" as Logos
 
-// angelOS logo: an emblem and a wordmark (Settings → Bar → Logo; widgets/Logos.js).
+// kukabara logo: an emblem and a wordmark (Settings → Bar → Logo; widgets/Logos.js).
 //   wordmarks: classic — "angel" + a Win98 "OS" plate · angel — pink "angel" + cyan "OS"
 //              with sparkles · windose — NGO sticker letters, the O is a pill ·
 //              hell — gothic red letters with drips · chrome — Y2K silver-to-pink

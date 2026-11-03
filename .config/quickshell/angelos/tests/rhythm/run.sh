@@ -8,11 +8,11 @@
 #      song's words, one on a beat alone, one with neither (turned down); the best is written to
 #      its file, the achievements asked for (RhythmDriver.qml; MPRIS and the beat are stand-ins)
 #
-#   tests/rhythm/run.sh [angelOS dir]     exit 0 = all good, 77 = no node / quickshell
+#   tests/rhythm/run.sh [kukabara dir]     exit 0 = all good, 77 = no node / quickshell
 #   ANGELOS_RHYTHM_SHOTS=dir …            a picture of each screen
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 command -v node >/dev/null || { echo "no node"; exit 77; }
 fail=0
 T="$(mktemp -d /tmp/aos-rhythm.XXXXXX)"

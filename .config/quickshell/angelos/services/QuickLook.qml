@@ -7,7 +7,7 @@ import qs.config
 
 // Quick Look (macOS's Space): a look at a file without opening it (modules/quicklook).
 // Nautilus asks for it itself — Space on a file calls org.gnome.NautilusPreviewer, the name
-// GNOME's sushi would hold; scripts/quicklook.py holds it while angelOS runs and passes the
+// GNOME's sushi would hold; scripts/quicklook.py holds it while kukabara runs and passes the
 // file here. Arrows go back to Nautilus, which moves its selection and asks again.
 // Also: `angelos quicklook <file>`, Space on a file in the launcher's search.
 Singleton {

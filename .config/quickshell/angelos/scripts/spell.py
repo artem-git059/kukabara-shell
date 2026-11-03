@@ -304,7 +304,7 @@ def langs():
 
 
 def fetch(url, dest):
-    req = urllib.request.Request(url, headers={"User-Agent": "angelOS-spell"})
+    req = urllib.request.Request(url, headers={"User-Agent": "kukabara-spell"})
     with urllib.request.urlopen(req, timeout=40) as r, open(dest, "wb") as f:
         size = 0
         while True:

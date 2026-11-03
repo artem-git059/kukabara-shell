@@ -70,14 +70,14 @@ CatPage {
             }
         }
     }
-    // Strata, the file manager angelOS installs (services/StrataSetup, scripts/strata-setup.py)
+    // Strata, the file manager kukabara installs (services/StrataSetup, scripts/strata-setup.py)
     CatGroup {
         name: "files-strata"
         title: I18n.t("Файлы · Strata", "Files · Strata")
         icon: "folder"
         CatNote {
             dim: true
-            text: StrataSetup.installed ? I18n.t("Файловый менеджер angelOS: колонки, превью на пробел, поиск по Ctrl+K, тема следует за раем и адом.", "angelOS's file manager: columns, preview on Space, search on Ctrl+K, its theme follows heaven and hell.") : I18n.t("Strata — файловый менеджер, который ставит angelOS (колонки, превью на пробел, быстрый поиск). Его ещё нет: он ставится из релиза на GitHub, для твоего пользователя, а обновляется сам.", "Strata is the file manager angelOS installs (columns, Space previews, fast search). It isn't here yet: it comes from its GitHub release, for your user, and updates itself.")
+            text: StrataSetup.installed ? I18n.t("Файловый менеджер kukabara: колонки, превью на пробел, поиск по Ctrl+K, тема следует за раем и адом.", "kukabara's file manager: columns, preview on Space, search on Ctrl+K, its theme follows heaven and hell.") : I18n.t("Strata — файловый менеджер, который ставит kukabara (колонки, превью на пробел, быстрый поиск). Его ещё нет: он ставится из релиза на GitHub, для твоего пользователя, а обновляется сам.", "Strata is the file manager kukabara installs (columns, Space previews, fast search). It isn't here yet: it comes from its GitHub release, for your user, and updates itself.")
         }
         CatRepeat {
             model: !StrataSetup.installed ? [] : [
@@ -87,7 +87,7 @@ CatPage {
                 [I18n.t("Отправить рядом (LocalSend)", "Send nearby (LocalSend)"), !!StrataSetup.status.actions && StrataSetup.status.actions["angelos-share"], ""],
                 ["mediafix", !!StrataSetup.status.actions && StrataSetup.status.actions["angelos-mediafix"], ""],
                 ["ffmpeg (mediafix)", !!StrataSetup.status.ffmpeg, "sudo pacman -S ffmpeg"],
-                [I18n.t("Тема angelOS (рай/ад на лету)", "The angelOS theme (heaven/hell on the fly)"), !!StrataSetup.status.themeSelected, StrataSetup.themePending ? I18n.t("включится, когда Strata закроется", "switches on once Strata closes") : ""]
+                [I18n.t("Тема kukabara (рай/ад на лету)", "The kukabara theme (heaven/hell on the fly)"), !!StrataSetup.status.themeSelected, StrataSetup.themePending ? I18n.t("включится, когда Strata закроется", "switches on once Strata closes") : ""]
             ]
             delegate: Component {
                 CatCustom {
@@ -188,7 +188,7 @@ CatPage {
         present: !!NautilusSetup.status.nautilus
         CatNote {
             dim: true
-            text: I18n.t("angelOS добавляет в меню Nautilus «Открыть в терминале» и «Подготовить для DaVinci Resolve», архивы делает в 7z.", "angelOS adds Open in terminal and Prepare for DaVinci Resolve to Nautilus's menu and makes archives 7z.")
+            text: I18n.t("kukabara добавляет в меню Nautilus «Открыть в терминале» и «Подготовить для DaVinci Resolve», архивы делает в 7z.", "kukabara adds Open in terminal and Prepare for DaVinci Resolve to Nautilus's menu and makes archives 7z.")
         }
         CatRepeat {
             model: [
@@ -215,7 +215,7 @@ CatPage {
         }
         CatToggle {
             label: I18n.t("Просмотр по пробелу", "Quick Look on Space")
-            hint: !Config.quicklook.enabled ? I18n.t("выключено", "off") : QuickLook.nameOurs ? I18n.t("пробел на файле в Nautilus — окно angelOS с картинкой, видео, текстом, PDF", "Space on a file in Nautilus opens it in an angelOS window: pictures, video, text, PDF") : I18n.t("пробел занят другим просмотрщиком (sushi?)", "Space is taken by another previewer (sushi?)")
+            hint: !Config.quicklook.enabled ? I18n.t("выключено", "off") : QuickLook.nameOurs ? I18n.t("пробел на файле в Nautilus — окно kukabara с картинкой, видео, текстом, PDF", "Space on a file in Nautilus opens it in an kukabara window: pictures, video, text, PDF") : I18n.t("пробел занят другим просмотрщиком (sushi?)", "Space is taken by another previewer (sushi?)")
             checked: Config.quicklook.enabled
             onToggled: v => Config.quicklook.enabled = v
         }
@@ -223,7 +223,7 @@ CatPage {
             present: !NautilusSetup.status.prefsApplied && !!NautilusSetup.status.prefs
             textKind: "tiny"
             dim: true
-            text: I18n.t("Файловый менеджер сам запоминает масштаб значков и формат архива; «Применить» вернёт значения angelOS.", "The file manager remembers icon zoom and archive format itself; Apply brings angelOS's values back.")
+            text: I18n.t("Файловый менеджер сам запоминает масштаб значков и формат архива; «Применить» вернёт значения kukabara.", "The file manager remembers icon zoom and archive format itself; Apply brings kukabara's values back.")
         }
         CatCustom {
             wide: true

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Add/remove the angelOS pulse hooks in ~/.claude/settings.json.
+"""Add/remove the kukabara pulse hooks in ~/.claude/settings.json.
 
   install-hooks.py install | uninstall | status
 

@@ -1,4 +1,4 @@
-/* angelOS minimize hook — LD_PRELOAD for every app of the session (build.sh, install.sh).
+/* kukabara minimize hook — LD_PRELOAD for every app of the session (build.sh, install.sh).
 
    niri has no minimizing: a window's own minimize button (GTK 3/4's yellow light, Qt's, Firefox's)
    sends xdg_toplevel.set_minimized and niri ignores it. Every toolkit sends that request through
@@ -6,7 +6,7 @@
    call between libraries, so a preloaded library sees it even in GTK 4 (built -Bsymbolic: its own
    gtk_window_minimize can't be interposed). This one passes everything on exactly as libwayland
    does (signature → wl_argument[] → wl_proxy_marshal_array_flags), except set_minimized: that one
-   goes to angelOS — a line "<pid>\t<title>\n" to $XDG_RUNTIME_DIR/angelos-minimize.sock, where
+   goes to kukabara — a line "<pid>\t<title>\n" to $XDG_RUNTIME_DIR/angelos-minimize.sock, where
    services/Minimize.qml listens while the Golden Gate skin is on and minimizes the window its own
    way. Nobody listening (another skin, the shell down): the request goes to the compositor as
    before. The window's title (set_title, kept per toplevel) tells apart the windows of one process
@@ -14,7 +14,7 @@
    don't pass here.
    GTK 4 asks first: it minimizes only when the compositor lists "minimize" in
    xdg_toplevel.wm_capabilities (else gdk_toplevel_minimize drops it, the button does nothing), and
-   niri never sends that event (an empty set isn't sent). So while angelOS listens (the socket is
+   niri never sends that event (an empty set isn't sent). So while kukabara listens (the socket is
    there) the listener of each toplevel is wrapped (wl_proxy_add_listener): with every configure
    it gets a wm_capabilities of its own — "minimize" — as a compositor would send it, and a real
    wm_capabilities gets "minimize" added. ANGELOS_MINIMIZE_DEBUG=1 prints the xdg_* requests. */
@@ -175,7 +175,7 @@ static int debug_on(void) {
     return debug;
 }
 
-/* ---- angelOS's socket ---- */
+/* ---- kukabara's socket ---- */
 static int socket_path(struct sockaddr_un *addr) {
     const char *rt = getenv("XDG_RUNTIME_DIR");
     if (!rt || !*rt)
@@ -322,7 +322,7 @@ int wl_proxy_add_listener(struct wl_proxy *proxy, void (**implementation)(void),
     return add_listener(proxy, table, data);
 }
 
-/* ---- the request to angelOS: 1 when it took it ---- */
+/* ---- the request to kukabara: 1 when it took it ---- */
 static int tell_angelos(struct wl_proxy *proxy) {
     struct sockaddr_un addr;
     if (!socket_path(&addr))
@@ -345,7 +345,7 @@ static int tell_angelos(struct wl_proxy *proxy) {
     return ok;
 }
 
-/* what to do with a request: 1 = swallowed (set_minimized taken by angelOS) */
+/* what to do with a request: 1 = swallowed (set_minimized taken by kukabara) */
 static int look(struct wl_proxy *proxy, uint32_t opcode, union wl_argument *args) {
     if (!get_interface)
         return 0;

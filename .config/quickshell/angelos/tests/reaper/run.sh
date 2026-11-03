@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # «Смерть на смене» (modules/reaper/ReaperCore.js, ReaperArt.js, ReaperLines.js): the rules' order,
-# the shift, the souls and their sprites, the room's pictures, the talk. Plain node, no shell needed.   tests/reaper/run.sh [angelOS dir]   exit 0 = good
+# the shift, the souls and their sprites, the room's pictures, the talk. Plain node, no shell needed.   tests/reaper/run.sh [kukabara dir]   exit 0 = good
 set -euo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
 command -v node >/dev/null || { echo "no node"; exit 77; }

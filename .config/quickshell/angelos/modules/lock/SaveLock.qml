@@ -198,7 +198,7 @@ Item {
                         anchors.right: parent.right
                         anchors.rightMargin: Theme.u * 4
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "angelOS 2004"
+                        text: "kukabara 2004"
                         kind: "tiny"
                         color: Theme.inkOn(Theme.accent)
                     }

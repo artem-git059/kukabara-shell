@@ -17,7 +17,7 @@ import "../../services/Intents.js" as Intents
 import "../../widgets/Icons.js" as Icons
 import "../../widgets/IconSets.js" as IconSets
 
-// angelOS UI self-test, started by scripts/test-ui.sh (ANGELOS_TEST=1, Qt's
+// kukabara UI self-test, started by scripts/test-ui.sh (ANGELOS_TEST=1, Qt's
 // offscreen platform, a throwaway HOME). Inside the real shell, so the type
 // anchors of shell.qml are the ones in use:
 //   pages     every settings page loads in each settings skin (no errors), the sidebar is
@@ -111,7 +111,7 @@ Scope {
         id: win
         implicitWidth: 1100
         implicitHeight: 780
-        title: "angelOS self-test"
+        title: "kukabara self-test"
         color: Theme.desk
 
         SettingsView {
@@ -150,11 +150,11 @@ Scope {
             visible: false
             width: Theme.u * 180
             height: Theme.u * 120
-            title: "angelOS app"
+            title: "kukabara app"
             Column {
                 spacing: Theme.u * 6
                 PxText {
-                    text: "angelOS app"
+                    text: "kukabara app"
                     kind: "big"
                 }
                 PxField {

@@ -269,7 +269,7 @@ Scope {
                     anchors.horizontalCenter: parent.horizontalCenter
                     color: "#6f6680"
                     kind: "tiny"
-                    text: "© 2000 angelOS ♡ best viewed in 800×600"
+                    text: "© 2000 kukabara ♡ best viewed in 800×600"
                 }
             }
             MouseArea {

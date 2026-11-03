@@ -2,7 +2,7 @@
 // A plate of the P5 settings window (modules/settings/p5/P5Plate.qml) in one pass: a polygon of up
 // to 8 corners (unused ones repeat the last), its hard shadow (the same polygon shifted) and a rim
 // (a grown copy, given on its own), each pixel tested at its art pixel's centre — the slanted
-// edges step on the angelOS pixel grid as they did drawn into a layer of one texel per art pixel,
+// edges step on the kukabara pixel grid as they did drawn into a layer of one texel per art pixel,
 // without the layer and the shapes (hundreds of them made a page take half a second to build).
 layout(location = 0) in vec2 qt_TexCoord0;
 layout(location = 0) out vec4 fragColor;

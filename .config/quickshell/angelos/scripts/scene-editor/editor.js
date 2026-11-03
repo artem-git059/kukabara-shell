@@ -1,4 +1,4 @@
-// angelOS scene editor — the page (scene-editor.py serves it). One picture at a time: its
+// kukabara scene editor — the page (scene-editor.py serves it). One picture at a time: its
 // painted layers (one cell = one art pixel of live-wall.py's mask), effects, event places,
 // rings, and requests to Claude. Saved through PUT /api/scene; a change made elsewhere
 // (Claude over MCP) is picked up by polling /api/state.

@@ -45,7 +45,7 @@ C_LIT = (0.90, 0.74, 0.48, 1.0)
 
 
 def load_skin():
-    """angelOS skin (Settings → Screenshots): None keeps the ropes → dirt morph."""
+    """kukabara skin (Settings → Screenshots): None keeps the ropes → dirt morph."""
     try:
         import os
         base = os.environ.get("XDG_CONFIG_HOME") or os.path.expanduser("~/.config")

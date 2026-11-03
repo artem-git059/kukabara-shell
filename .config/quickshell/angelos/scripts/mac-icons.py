@@ -66,7 +66,7 @@ def status():
 
 
 def fetch():
-    request = urllib.request.Request(URL, headers={"User-Agent": "angelOS-mac-icons/1"})
+    request = urllib.request.Request(URL, headers={"User-Agent": "kukabara-mac-icons/1"})
     with urllib.request.urlopen(request, timeout=120) as response:
         data = response.read(MAX_DOWNLOAD + 1)
     if len(data) > MAX_DOWNLOAD:

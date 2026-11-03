@@ -27,7 +27,7 @@ Singleton {
     property string fingerprint: ""
     property string myIp: ""
     property string kdcState: ""           // KDE Connect's daemon: ok | missing ("" = off, not asked yet)
-    readonly property string alias: Config.quickshare.alias || ("angelOS " + (Quickshell.env("HOSTNAME") || hostName))
+    readonly property string alias: Config.quickshare.alias || ("kukabara " + (Quickshell.env("HOSTNAME") || hostName))
     property string hostName: ""
     readonly property string saveDir: Config.quickshare.dir || (Quickshell.env("HOME") + "/Downloads/LocalSend")
 

@@ -8,13 +8,13 @@ flag ($XDG_RUNTIME_DIR/niri-game-mode/game) exists, grab the real mouse and repl
 a uinput copy, motion summed into at most RATE reports a second. Buttons and the wheel go
 through at once, and motion waits at most 1/RATE s. Flag gone → ungrab, the mouse is raw again.
 
-A mouse angelOS's device driver can set (scripts/devices.py: LAMZU's 8K dongle) is not thinned
+A mouse kukabara's device driver can set (scripts/devices.py: LAMZU's 8K dongle) is not thinned
 at all: its own polling rate goes down to RATE for the game and back after it. Nothing then
 sits between the mouse and the game — no grab, no uinput copy, no wait for the next slot.
 
     mouse-coalesce [--rate 2000] [--device /dev/input/by-id/...-event-mouse]
 
-Without --rate it is angelOS's setting (settings.json gaming.mouseRate, the setup wizard's
+Without --rate it is kukabara's setting (settings.json gaming.mouseRate, the setup wizard's
 «Scripts» or Settings → Games), read each time a game starts: 0 = leave the mouse alone.
 Without --device: the first USB mouse (/dev/input/by-id/*-event-mouse). The mouse and
 /dev/uinput need the input group (install.sh: 70-angelos-uinput.rules).
@@ -54,7 +54,7 @@ def gaming() -> dict:
 
 
 def setting_rate() -> int:
-    """angelOS's gaming.mouseRate (0 = off)"""
+    """kukabara's gaming.mouseRate (0 = off)"""
     try:
         return int(gaming().get("mouseRate", 0) or 0)
     except (ValueError, TypeError):
@@ -66,7 +66,7 @@ def find_device(path: str | None) -> str | None:
     if path:
         return path if os.path.exists(path) else None
     hits = sorted(glob.glob(DEVICE_GLOB))
-    # the one picked in angelOS (gaming.mouseDevice: a part of its by-id name) — a keyboard with
+    # the one picked in kukabara (gaming.mouseDevice: a part of its by-id name) — a keyboard with
     # a mouse interface of its own (Hall-effect ones) is an "event-mouse" too
     want = str(gaming().get("mouseDevice") or "").replace(" ", "_")
     if want:
@@ -75,7 +75,7 @@ def find_device(path: str | None) -> str | None:
 
 
 def hw_set(hz: int, down: bool = False) -> int | None:
-    """Set the mouse's own polling rate through angelOS's driver (down: only when it is faster);
+    """Set the mouse's own polling rate through kukabara's driver (down: only when it is faster);
     the rate it had before. None: no mouse the driver can set to hz — thinned here instead.
     Raises when one is there but did not take it (asleep)."""
     if str(ANGELOS_SCRIPTS) not in sys.path:
@@ -221,7 +221,7 @@ def coalesce(dev: evdev.InputDevice, ui: evdev.UInput, period: float, flag: Path
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--rate", type=int, default=0, help="max motion reports a second in games (default: angelOS's setting)")
+    ap.add_argument("--rate", type=int, default=0, help="max motion reports a second in games (default: kukabara's setting)")
     ap.add_argument("--device", help=f"evdev node (default: first of {DEVICE_GLOB})")
     ap.add_argument("--flag", type=Path, default=GAME_FLAG, help="coalesce while this file exists")
     args = ap.parse_args()

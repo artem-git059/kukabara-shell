@@ -253,7 +253,7 @@ Singleton {
         return list.slice().sort((a, b) => (u[b.id] || 0) - (u[a.id] || 0) || String(a.name).localeCompare(String(b.name)));
     }
     // where Start opens when nothing says (a Meta tap, IPC): where the focus is, under the
-    // pointer (as far as angelOS knows it), or on the main screen. "Only where the bar is"
+    // pointer (as far as kukabara knows it), or on the main screen. "Only where the bar is"
     // (withBar, #48): a screen without a Start button hands it to the main screen's bar, or
     // the first one there is
     function screenFor() {
@@ -278,7 +278,7 @@ Singleton {
     readonly property string avatar: Config.bar.avatar || systemAvatar
     readonly property string avatarUrl: avatar ? "file://" + avatar : ""
     readonly property string avatarDir: Config.home + "/.local/share/angelos"
-    // the picture from the system, when angelOS has none: AccountsService, then ~/.face
+    // the picture from the system, when kukabara has none: AccountsService, then ~/.face
     Process {
         id: faceProbe
         property string found: ""
@@ -305,7 +305,7 @@ Singleton {
     }
     Process {
         id: picker
-        command: ["sh", "-c", 'f=$(python3 "$2" "$3" "$4" "*.png" "*.jpg" "*.jpeg" "*.webp" "*.gif" "*.bmp" "*.svg" 2>/dev/null); rc=$?; [ "$rc" = 2 ] && { echo "!none"; exit 2; }; [ -n "$f" ] || exit 1; mkdir -p "$1"; ext="${f##*.}"; ext=$(printf %s "$ext" | tr A-Z a-z); t="$1/avatar-$(date +%s).$ext"; cp -f "$f" "$t" || { echo "!copy"; exit 3; }; for o in "$1"/avatar-*; do [ "$o" = "$t" ] || rm -f "$o"; done; echo "$t"', "sh", root.avatarDir, Quickshell.shellDir + "/scripts/pick-file.py", I18n.t("angelOS — аватарка", "angelOS — avatar"), I18n.t("Картинки", "Pictures")]
+        command: ["sh", "-c", 'f=$(python3 "$2" "$3" "$4" "*.png" "*.jpg" "*.jpeg" "*.webp" "*.gif" "*.bmp" "*.svg" 2>/dev/null); rc=$?; [ "$rc" = 2 ] && { echo "!none"; exit 2; }; [ -n "$f" ] || exit 1; mkdir -p "$1"; ext="${f##*.}"; ext=$(printf %s "$ext" | tr A-Z a-z); t="$1/avatar-$(date +%s).$ext"; cp -f "$f" "$t" || { echo "!copy"; exit 3; }; for o in "$1"/avatar-*; do [ "$o" = "$t" ] || rm -f "$o"; done; echo "$t"', "sh", root.avatarDir, Quickshell.shellDir + "/scripts/pick-file.py", I18n.t("kukabara — аватарка", "kukabara — avatar"), I18n.t("Картинки", "Pictures")]
         stdout: StdioCollector {
             onStreamFinished: {
                 const p = text.trim();

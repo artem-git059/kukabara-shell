@@ -1,6 +1,6 @@
 .pragma library
 
-// angelOS novel — the rules both sides share: the engine in the shell (services/Novel.qml)
+// kukabara novel — the rules both sides share: the engine in the shell (services/Novel.qml)
 // and the dialogue editor in the browser (the author's tool, owner/novel-editor — not shipped;
 // served by nov-editor.py with the pragma line cut off). One file, so the editor's play-test
 // does exactly what the shell does.

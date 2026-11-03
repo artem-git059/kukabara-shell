@@ -1,5 +1,5 @@
-// angelOS fastfetch style: window
-// Written by angelOS (Settings → System → fastfetch). Pick "own" there and this file
+// kukabara fastfetch style: window
+// Written by kukabara (Settings → System → fastfetch). Pick "own" there and this file
 // is yours again (the one you had first is config.before-angelos.jsonc).
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
@@ -31,7 +31,7 @@
   "modules": [
     {
       "type": "custom",
-      "format": "{#38;2;135;176;179}╭─{#} {#1;38;2;175;202;204}♡ AngelOS.sh{#} {#38;2;135;176;179}─────────────── ─ □ ✕{#}"
+      "format": "{#38;2;135;176;179}╭─{#} {#1;38;2;175;202;204}♡ kukabara.sh{#} {#38;2;135;176;179}─────────────── ─ □ ✕{#}"
     },
     {
       "type": "title",

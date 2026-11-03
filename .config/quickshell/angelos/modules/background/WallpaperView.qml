@@ -37,7 +37,7 @@ Item {
     // the codename of the release a scene came with (Pictures/AngelOS/NN-name/), else this one's
     function releaseName(folder) {
         const r = Wallpapers.releases.find(r => folder === r.dir || folder.startsWith(r.dir + "/")) || Updates.release;
-        return r ? r.codename || "angelOS " + r.number : "";
+        return r ? r.codename || "kukabara " + r.number : "";
     }
     function url(p) {
         // a scene with a night of its own, at night: the night's still, so the scene takes over

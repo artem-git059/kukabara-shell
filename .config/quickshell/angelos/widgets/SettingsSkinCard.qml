@@ -12,7 +12,7 @@ Item {
     signal picked
 
     readonly property var names: ({
-            "classic": [I18n.t("Классика angelOS", "angelOS classic"), I18n.t("пиксельные окна Win98", "Win98 pixel windows")],
+            "classic": [I18n.t("Классика kukabara", "kukabara classic"), I18n.t("пиксельные окна Win98", "Win98 pixel windows")],
             "win10": ["Win10", I18n.t("классика с плитками Windows 10", "classic with Windows 10's tiles")],
             "aero": ["Aero", I18n.t("стекло Windows 7", "Windows 7's glass")],
             "windose": ["Windose ♡", I18n.t("ОС из NEEDY GIRL OVERDOSE", "NEEDY GIRL OVERDOSE's OS")],

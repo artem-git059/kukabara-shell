@@ -1,4 +1,4 @@
-/* angelOS {{flavor}} / {{mode}} — generated */
+/* kukabara {{flavor}} / {{mode}} — generated */
 @define-color accent_color {{accent}};
 @define-color accent_bg_color {{accent}};
 @define-color accent_fg_color {{selectText}};
@@ -26,7 +26,7 @@
 @define-color theme_unfocused_selected_bg_color @accent_bg_color;
 @define-color theme_unfocused_selected_fg_color @accent_fg_color;
 
-/* angelOS pixel frames, like the shell's own boxes (PxBox): a 2 px outline whose corners step
+/* kukabara pixel frames, like the shell's own boxes (PxBox): a 2 px outline whose corners step
    in by one art pixel, and a 2 px bevel inside — light top-left, dark bottom-right on buttons,
    the other way round on fields and pressed buttons. The outline is an image
    (assets/frame-*.svg, drawn by scripts/gtk-live.py in the palette's edge colour) laid 4 px wide

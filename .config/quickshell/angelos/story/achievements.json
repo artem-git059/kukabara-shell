@@ -449,8 +449,8 @@
         "en": "A week together"
       },
       "desc": {
-        "ru": "Семь дней с angelOS",
-        "en": "Seven days with angelOS"
+        "ru": "Семь дней с kukabara",
+        "en": "Seven days with kukabara"
       },
       "cond": "days >= 7",
       "reward": "cursor.glitter"
@@ -640,8 +640,8 @@
         "en": "A month together"
       },
       "desc": {
-        "ru": "Тридцать дней с angelOS",
-        "en": "Thirty days with angelOS"
+        "ru": "Тридцать дней с kukabara",
+        "en": "Thirty days with kukabara"
       },
       "cond": "days >= 30"
     },
@@ -699,8 +699,8 @@
         "en": "A hundred days"
       },
       "desc": {
-        "ru": "Сто дней с angelOS",
-        "en": "A hundred days with angelOS"
+        "ru": "Сто дней с kukabara",
+        "en": "A hundred days with kukabara"
       },
       "cond": "days >= 100"
     },
@@ -1411,8 +1411,8 @@
         "en": "The grand tour"
       },
       "desc": {
-        "ru": "Пройти тур по angelOS: ПКМ по Нимбу или «тур» в поиске",
-        "en": "Take the angelOS tour: right-click the Halo or type “tour” in search"
+        "ru": "Пройти тур по kukabara: ПКМ по Нимбу или «тур» в поиске",
+        "en": "Take the kukabara tour: right-click the Halo or type “tour” in search"
       },
       "on": "explore:tour"
     },
@@ -1664,8 +1664,8 @@
         "en": "The tourist"
       },
       "desc": {
-        "ru": "Попробовать восемь разных штук angelOS из списка выше",
-        "en": "Try eight different angelOS things from this list"
+        "ru": "Попробовать восемь разных штук kukabara из списка выше",
+        "en": "Try eight different kukabara things from this list"
       },
       "on": "explore",
       "kinds": 8
@@ -1679,8 +1679,8 @@
         "en": "An old-timer"
       },
       "desc": {
-        "ru": "Попробовать шестнадцать разных штук angelOS",
-        "en": "Try sixteen different angelOS things"
+        "ru": "Попробовать шестнадцать разных штук kukabara",
+        "en": "Try sixteen different kukabara things"
       },
       "on": "explore",
       "kinds": 16

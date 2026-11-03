@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — the show: pictures, the angel flapping, music and sounds (sourced by install.sh).
+# kukabara installer — the show: pictures, the angel flapping, music and sounds (sourced by install.sh).
 #
 # Pictures go straight to the terminal (/dev/tty), never into a log: chafa when it is there
 # (kitty graphics in kitty/ghostty/wezterm, sixel in foot/konsole, coloured blocks elsewhere), else
@@ -110,7 +110,7 @@ typed() {
   printf '\n'
 }
 
-# while the packages download: what angelOS can do, as the billboards of an old Windows setup
+# while the packages download: what kukabara can do, as the billboards of an old Windows setup
 billboard() {
   ((SHOW && CHAFA)) || return 0
   local -a gifs

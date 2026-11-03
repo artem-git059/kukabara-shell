@@ -184,7 +184,7 @@ Column {
             }
         }
         SettingRow {
-            label: I18n.t("Подключать MCP «angelos»", "Connect angelOS MCP")
+            label: I18n.t("Подключать MCP «angelos»", "Connect kukabara MCP")
             hint: I18n.t("сессии из лаунчера видят окна, музыку, могут менять тему/обои", "Launcher sessions can see windows and music, and change the theme or wallpaper")
             PxToggle {
                 checked: root.plugin ? root.plugin.get("mcp", true) : true

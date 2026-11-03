@@ -166,7 +166,7 @@ Singleton {
     property var _colsBefore: ({})                  // ws id -> tiled columns
     property var _lastShake: ({})
     property var _movedAt: ({})                     // id -> when niri last showed it in a new place
-    // angelOS's own windows (Settings, the novel…) are the shell: no spider there
+    // kukabara's own windows (Settings, the novel…) are the shell: no spider there
     function _apps() {
         return Niri.windows.filter(w => w.app_id !== "org.quickshell");
     }

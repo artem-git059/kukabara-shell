@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS: set the battery charge limit (Settings → Battery → Gentle charging).
+# kukabara: set the battery charge limit (Settings → Battery → Gentle charging).
 # Runs as root through pkexec (org.angelos.charge-limit: the active session, no password).
 # Takes one number, 50…100 (100 = no limit), and writes it to every laptop battery's
 # charge_control_end_threshold; a start threshold above it is lowered first (ThinkPads refuse

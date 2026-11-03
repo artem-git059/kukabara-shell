@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""angelOS Recovery: the game's progress and every setting, kept on the user's own GitHub (a
+"""kukabara Recovery: the game's progress and every setting, kept on the user's own GitHub (a
 private repository, angelos-save) or in a file, and brought back on another computer or after a
-reinstall. gh holds the login; angelOS keeps no token.
+reinstall. gh holds the login; kukabara keeps no token.
 
   recovery.py status                 JSON {gh, login, repo, exists, last, files}
   recovery.py push                   save to GitHub (creates the private repo the first time)
@@ -109,7 +109,7 @@ def unpack(path_or_obj):
             tarfile.open(fileobj=path_or_obj, mode="r:gz") as tar:
         names = tar.getnames()
         if "angelos-recovery.json" not in names:
-            raise SystemExit("✕ это не сохранение angelOS")
+            raise SystemExit("✕ это не сохранение kukabara")
         meta = json.loads(tar.extractfile("angelos-recovery.json").read())
         before = snapshot()
         say(f"» то, что было, отложено в {before}")
@@ -183,12 +183,12 @@ def push():
         raise SystemExit("✕ нет входа в GitHub (gh auth login)")
     if not repo_info(login):
         r = run(["gh", "repo", "create", f"{login}/{REPO}", "--private",
-                 "--description", "angelOS Recovery: my progress and settings (private)"])
+                 "--description", "kukabara Recovery: my progress and settings (private)"])
         if r.returncode != 0:
             raise SystemExit("✕ не удалось создать приватный репозиторий: " + r.stderr.strip())
         say(f"» создан приватный репозиторий {login}/{REPO}")
     elif not repo_info(login)["private"]:
-        raise SystemExit(f"✕ {login}/{REPO} публичный — angelOS сохраняет только в приватный")
+        raise SystemExit(f"✕ {login}/{REPO} публичный — kukabara сохраняет только в приватный")
     d = clone(login)
     now = digest()
     if (d / "content.sha256").exists() and (d / "content.sha256").read_text().strip() == now:
@@ -200,7 +200,7 @@ def push():
     with open(d / "angelos-recovery.tar.gz", "wb") as f:
         meta = pack(f)
     (d / "content.sha256").write_text(now + "\n")
-    (d / "README.md").write_text("# angelOS Recovery\n\nYour angelOS progress and settings. Keep this repository "
+    (d / "README.md").write_text("# kukabara Recovery\n\nYour kukabara progress and settings. Keep this repository "
                                  "private. Restore: Settings → Account → Recovery, or the setup wizard's GitHub step.\n")
     git(d, "checkout", "--quiet", "-B", "main")
     git(d, "add", "-A")

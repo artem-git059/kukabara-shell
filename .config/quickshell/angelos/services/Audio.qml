@@ -21,7 +21,7 @@ Singleton {
     readonly property var sinks: nodes.filter(n => n.audio && n.isSink && !n.isStream)
     readonly property var sources: nodes.filter(n => n.audio && !n.isSink && !n.isStream)
     readonly property var streams: nodes.filter(n => n.audio && n.isStream && n.isSink)
-    // what the mixers list: programs playing sound. Not angelOS's own clicks and chimes
+    // what the mixers list: programs playing sound. Not kukabara's own clicks and chimes
     // (quickshell's SoundEffect, pw-play): they come and go every click and made the
     // mixer jump. Not virtual-sink plumbing either (loopbacks: node.virtual / link-group).
     readonly property var appStreams: streams.filter(n => isAppStream(n)).sort((a, b) => a.id - b.id)

@@ -349,7 +349,7 @@ CatPage {
         }
         CatSlider {
             label: I18n.t("Скорость переключения", "Switch speed")
-            hint: WorkspaceAnim.current.id === "instant" ? I18n.t("у «Мгновенно» скорости нет", "Instant has no speed") : WorkspaceAnim.captured ? I18n.t("длина эффекта angelOS: ", "the angelOS effect lasts ") + WorkspaceAnim.fxMs + I18n.t(" мс", " ms") : I18n.t("анимация niri: ", "niri's slide: ") + WorkspaceAnim.slideMs + I18n.t(" мс (× slowdown ", " ms (× slowdown ") + WorkspaceAnim.slowdown + ")"
+            hint: WorkspaceAnim.current.id === "instant" ? I18n.t("у «Мгновенно» скорости нет", "Instant has no speed") : WorkspaceAnim.captured ? I18n.t("длина эффекта kukabara: ", "the kukabara effect lasts ") + WorkspaceAnim.fxMs + I18n.t(" мс", " ms") : I18n.t("анимация niri: ", "niri's slide: ") + WorkspaceAnim.slideMs + I18n.t(" мс (× slowdown ", " ms (× slowdown ") + WorkspaceAnim.slowdown + ")"
             fade: enabled ? 1 : 0.5
             from: 25
             to: 300

@@ -4,10 +4,10 @@
 # that answers from a plan — a stop before the snapshot, a failed install, an
 # "UPDATED" followed by a failure, a failed and a good restore, a good update.
 #
-#   tests/updates/run.sh [angelOS dir]     exit 0 = all good, 77 = no quickshell
+#   tests/updates/run.sh [kukabara dir]     exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"
@@ -107,7 +107,7 @@ case "$step" in
   system-fails)
     echo "» сначала обновляю систему (pacman -Syu) — попросит пароль администратора"
     echo "error: failed to commit transaction (conflicting files)"
-    echo "FAILED system обновление системы (pacman -Syu) остановилось: failed to commit transaction (conflicting files). angelOS не обновлялся"
+    echo "FAILED system обновление системы (pacman -Syu) остановилось: failed to commit transaction (conflicting files). kukabara не обновлялся"
     exit 8 ;;
   update-qt)
     echo "SYSTEM 5 1"

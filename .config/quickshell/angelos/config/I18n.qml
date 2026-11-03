@@ -28,8 +28,8 @@ Singleton {
         "Уведомления": "Notifications",
         "Плагины": "Plugins",
         "Настройки": "Settings",
-        "Настройки angelOS": "AngelOS settings",
-        "angelOS · Настройки": "angelOS · Settings",
+        "Настройки kukabara": "kukabara settings",
+        "kukabara · Настройки": "kukabara · Settings",
         "Программы…": "Applications…",
         "Терминал": "Terminal",
         "Файлы": "Files",
@@ -82,7 +82,7 @@ Singleton {
         "активное окно остаётся в своих цветах": "The focused window keeps its original colors",
         "узкие экраны: без плеера, окна иконками": "Narrow screens: compact player and window icons",
         "Перетаскивай элементы между частями панели. «Окна» растягиваются на свободное место слева, «Лирика» лучше всего смотрится в центре. Виджеты новых плагинов сами появляются справа.": "Drag widgets between sections. Windows use the free space on the left; lyrics fit best in the center. New plugin widgets appear on the right.",
-        "Основная тема angelOS и дополнительные светлые и тёмные палитры.": "The original angelOS theme and additional light and dark palettes.",
+        "Основная тема kukabara и дополнительные светлые и тёмные палитры.": "The original kukabara theme and additional light and dark palettes.",
         "Светлая с … до …": "Light theme from … to …",
         "часы, по локальному времени": "hours in local time",
         "ext-background-effect, рисует niri": "ext-background-effect, rendered by niri",
@@ -192,7 +192,7 @@ Singleton {
         "Длительность": "Duration",
         "Крупность мозаики": "Mosaic size",
         "Играет только когда меняешь картинку. При переключении воркспейсов обои меняются мгновенно.": "Runs when the image changes. Workspace wallpapers otherwise switch instantly.",
-        "Меняется только то, что ты трогаешь здесь. Маршрутизацию пульта angelOS не касается.": "Only controls you change here are applied. Audio routing is preserved.",
+        "Меняется только то, что ты трогаешь здесь. Маршрутизацию пульта kukabara не касается.": "Only controls you change here are applied. Audio routing is preserved.",
         "Выход": "Output",
         "Вход": "Input",
         "Устройство по умолчанию": "Default device",
@@ -293,7 +293,7 @@ Singleton {
         "Монитор для сферы": "Orb display",
         "пусто = на всех": "Empty = all displays",
         "Скорость дыхания": "Breathing speed",
-        "Подключать MCP «angelos»": "Connect angelOS MCP",
+        "Подключать MCP «angelos»": "Connect kukabara MCP",
         "сессии из лаунчера видят окна, музыку, могут менять тему/обои": "Launcher sessions can see windows and music, and change the theme or wallpaper",
         "Хуки Claude Code (необязательно)": "Claude Code hooks (optional)",
         "Подключить": "Connect",
@@ -368,7 +368,7 @@ Singleton {
         "буфер_обмена.txt": "clipboard.txt",
         "пусто… скопируй что-нибудь ♡": "Nothing here… copy something ♡",
         "Что сделать с компьютером? ♡": "What would you like to do? ♡",
-        "Завершение работы angelOS": "angelOS session",
+        "Завершение работы kukabara": "kukabara session",
         "Сон": "Sleep",
         "Выйти": "Log out",
         "Рестарт": "Restart",
@@ -434,7 +434,7 @@ Singleton {
         "Claude ответил ♡": "Claude replied ♡",
         "Claude: ошибка": "Claude: error",
         "Enter в поле — сохранить правку": "Press Enter to save",
-        "angelOS — пиксельная оболочка на Quickshell для niri. Конфиг: ": "angelOS is a pixel shell built with Quickshell for niri. Config: ",
+        "kukabara — пиксельная оболочка на Quickshell для niri. Конфиг: ": "kukabara is a pixel shell built with Quickshell for niri. Config: ",
         "claude завершился с кодом ": "Claude exited with code ",
         "claude не найден в PATH": "Claude was not found in PATH",
         "id, напр. my-widget": "ID, e.g. my-widget",
@@ -470,7 +470,7 @@ Singleton {
         "уведомление": "notification",
         "Пункты ПКМ-меню рабочего стола: терминал, файлы, случайные обои, скриншот, тема. Пример декларативного меню.": "Desktop menu shortcuts for apps, wallpaper and screenshots.",
         "Окошко статов в духе NGO на рабочем столе: «стресс» = загрузка CPU, «тьма» = занятая память, «любовь» = аптайм. Плюс сердечко на панели. Пример виджетов, сервиса и страницы настроек.": "Pixel heart indicators for stream activity.",
-        "Тёплый экран вечером (6600K днём → 3900K ночью): свои гамма-таблицы angelOS, вместе с яркостью мониторов из Настроек → Экран.": "A warmer screen in the evening (6600K by day, 3900K at night): angelOS's own gamma tables, together with the monitor brightness in Settings → Display.",
+        "Тёплый экран вечером (6600K днём → 3900K ночью): свои гамма-таблицы kukabara, вместе с яркостью мониторов из Настроек → Экран.": "A warmer screen in the evening (6600K by day, 3900K at night): kukabara's own gamma tables, together with the monitor brightness in Settings → Display.",
         "Поиск в интернете и любимые сайты прямо из лаунчера: «web запрос» или просто набери название сайта.": "Search the web and open favorite sites from the launcher.",
         "Пиксельный котик на панели: спит, гуляет или бежит — в зависимости от загрузки процессора. В аду — щенок-цербер. Клик — котик покрупнее.": "An animated pixel cat. Its pace follows CPU usage; in hell it is a puppy Cerberus.",
         "Замер скорости интернета со спидометром и историей. Кнопка на панели, работает через speedtest-cli.": "Measure download, upload and latency, with recent results.",
@@ -486,7 +486,7 @@ Singleton {
         return english ? en : ru;
     }
     // "calendar" → "calendar.exe" (or .sh / .bin): the ending picked in Settings → Appearance
-    // for every angelOS window, widget and caption (C3). A name that ends in one already
+    // for every kukabara window, widget and caption (C3). A name that ends in one already
     // gets the picked one instead ("cat.exe" → "cat.sh").
     readonly property var suffixes: ["exe", "sh", "bin"]
     readonly property string suffix: suffixes.includes(Config.desktop.titleSuffix) ? Config.desktop.titleSuffix : "exe"

@@ -2,7 +2,7 @@
 """scripts/qt-theme.py in a throw-away $HOME: Telegram's own fields are left to it, and running
 Qt apps are told about a new look.
 
-- the stylesheet boxes Qt's fields in the angelOS frame, but not the ones inside Telegram
+- the stylesheet boxes Qt's fields in the kukabara frame, but not the ones inside Telegram
   (Ui::RpWidget, Ui::MaskedInputField): Telegram draws those itself, in its own theme
   (scripts/telegram-theme.py) — a box of this sheet in them was the frame around its message field
 - qt6ct reloads only on a change in its own folder (not in qss/ or colors/): a stamp is written

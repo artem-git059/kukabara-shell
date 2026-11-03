@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS pixel wordmarks (Panel → Logo: Windose, Hell, Y2K Chrome) drawn from real pixel
+"""kukabara pixel wordmarks (Panel → Logo: Windose, Hell, Y2K Chrome) drawn from real pixel
 fonts, so the letters are the same size as the text wordmarks (Classic 95, Angel +):
 
   windose  Pixeloid Sans Bold 9 px, white sticker letters, ink outline, a coloured rim;
@@ -94,7 +94,7 @@ def windose(pix_bold):
 
 
 def chrome(pix_bold):
-    word = render(pix_bold, 9, "angelOS")
+    word = render(pix_bold, 9, "kukabara")
     h, w = word.shape
     pad = 1
     m = np.pad(word, ((pad, pad), (pad, pad + 4)))
@@ -112,7 +112,7 @@ def chrome(pix_bold):
 
 
 def hell(jacquard):
-    word = render(jacquard, 24, "angelOS")
+    word = render(jacquard, 24, "kukabara")
     h, w = word.shape
     pad = 3
     m = np.pad(word, pad)

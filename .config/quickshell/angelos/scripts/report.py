@@ -3,7 +3,7 @@
 
   report.py [--out DIR] [--open] [--json]
 
-Collects versions (angelOS, Quickshell, Qt, niri, kernel, GPU), the shell's
+Collects versions (kukabara, Quickshell, Qt, niri, kernel, GPU), the shell's
 service state and restarts, the login-to-shell chain (systemd-analyze), what it
 costs (CPU, memory, helpers) and daemons running twice, the log of the running
 shell, the last Quickshell crash reports, the niri config check, plugins and the
@@ -71,11 +71,11 @@ def versions():
     repo, remote = source_repo()
     lines = []
     if Path(repo, ".git").exists():
-        lines.append("angelOS: " + run(["git", "-C", repo, "log", "-1", "--format=%h %cs %s"]))
+        lines.append("kukabara: " + run(["git", "-C", repo, "log", "-1", "--format=%h %cs %s"]))
         dirty = run(["git", "-C", repo, "status", "--porcelain"])
         lines.append("repo state: " + ("local changes" if dirty.strip() else "clean"))
     else:
-        lines.append("angelOS: repository not found (" + repo + ")")
+        lines.append("kukabara: repository not found (" + repo + ")")
     qs = shutil.which("qs") or shutil.which("quickshell") or str(Path.home() / ".local/bin/qs")
     qv = run([qs, "--version"])
     lines.append("quickshell: " + (qv.splitlines()[0] if qv else "?"))
@@ -215,7 +215,7 @@ def main():
         "niri-validate.txt": scrub(run(["niri", "validate"])),
         "settings.json": settings(),
         "plugins.txt": scrub("\n".join(sorted(p.name for p in (CONF / "angelos/plugins").glob("*") if p.is_dir())) or "(none)"),
-        "README.txt": "angelOS bug report made by `angelos report`.\n"
+        "README.txt": "kukabara bug report made by `angelos report`.\n"
                       "Home path and user name are replaced; launcher history, workspace names,\n"
                       "plugin data and free texts are left out. Logs can still mention window or\n"
                       "track titles — have a look before you attach it.\n",

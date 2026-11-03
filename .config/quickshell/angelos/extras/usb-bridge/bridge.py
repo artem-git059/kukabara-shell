@@ -1,5 +1,5 @@
 #!/usr/bin/python3 -I
-"""angelOS USB bridge: one service interface of a keyboard, handed to the user at the seat
+"""kukabara USB bridge: one service interface of a keyboard, handed to the user at the seat
 as a stream of packets — and nothing else of the device (docs/devices.md, «Доступ»).
 
 Why it exists. A keyboard whose service interface the kernel's usbhid must not touch has no
@@ -16,7 +16,7 @@ out only what a settings page needs:
   * it talks only to someone who sits at this computer now: the peer's uid must own an
     active local session on a seat (logind's /run/systemd/sessions);
   * it opens only the devices of /etc/angelos/usb-bridge.json (root's file, written by
-    install.sh from the descriptions angelOS ships), and of each only the one interface and
+    install.sh from the descriptions kukabara ships), and of each only the one interface and
     the two endpoints named there. It never detaches a kernel driver, never resets a device,
     never sets a configuration (devlib/usbfs.py has no such call);
   * every packet going to the device passes the protocol family's filter: a known settings

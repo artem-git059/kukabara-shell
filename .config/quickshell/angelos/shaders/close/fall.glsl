@@ -1,4 +1,4 @@
-// angelOS close: the window drops down with a slight random tilt (niri's example, tuned).
+// kukabara close: the window drops down with a slight random tilt (niri's example, tuned).
 vec4 close_color(vec3 coords_geo, vec3 size_geo) {
     float p = niri_clamped_progress * niri_clamped_progress;
     vec2 coords = (coords_geo.xy - vec2(0.5, 1.0)) * size_geo.xy;

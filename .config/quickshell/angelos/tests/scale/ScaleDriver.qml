@@ -38,7 +38,7 @@ Scope {
         id: win
         implicitWidth: 1280
         implicitHeight: 720
-        title: "angelOS scale test"
+        title: "kukabara scale test"
         color: Theme.desk
         Loader {
             id: stage
@@ -127,7 +127,7 @@ Scope {
                 width: Theme.u * 175 - Theme.u * 3
                 notification: ({
                         "id": 1,
-                        "appName": "angelOS",
+                        "appName": "kukabara",
                         "summary": "Привет, это тест ♡",
                         "body": "Уведомление в стиле NGO: пиксели, розовый и сердечки. Клик — закрыть.",
                         "actions": [

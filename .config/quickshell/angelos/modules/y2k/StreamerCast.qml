@@ -11,7 +11,7 @@ import "AngelSpriteMini.js" as AngelMini
 import "DemonSpriteMini.js" as DemonMini
 
 // The angel on stream for OBS alone (services/StreamAngel, view "obs"): a window of her own,
-// "angelOS · ангел для OBS", that OBS takes with "Window capture (PipeWire)" and its
+// "kukabara · ангел для OBS", that OBS takes with "Window capture (PipeWire)" and its
 // transparency. niri casts a window wherever it is, but one on a workspace nobody looks at
 // gets a frame a second, so it stays on the active workspace of a screen nobody streams,
 // moving along with it, see-through on the screen (its niri rule: opacity 0, window-config.py

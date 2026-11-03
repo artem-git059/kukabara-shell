@@ -481,7 +481,7 @@ Singleton {
     onHellImagesChanged: metaTimer.restart()
     onReleasesChanged: metaTimer.restart()
 
-    // ---- the wallpapers of angelOS's big releases ----
+    // ---- the wallpapers of kukabara's big releases ----
     // every big release brings its own (drawn by the author): Pictures/AngelOS/NN-name/ with a
     // release.json {number, codename, date, files}, put into ~/Pictures by the installer. A fresh
     // system shows the newest; a system with a picture of its own is asked once per release.
@@ -496,7 +496,7 @@ Singleton {
         return latestRelease ? latestRelease.main : "";
     }
     function releaseLabel(r) {
-        return r ? "angelOS " + r.number + (r.codename ? " «" + r.codename + "»" : "") : "";
+        return r ? "kukabara " + r.number + (r.codename ? " «" + r.codename + "»" : "") : "";
     }
     function _offerRelease() {
         const r = latestRelease;
@@ -507,7 +507,7 @@ Singleton {
         const own = Config.wallpaper.fallback || Object.keys(Config.wallpaper.outputs || {}).length || Object.keys(Config.wallpaper.workspaces || {}).length;
         if (!own || !r.main)
             return;
-        releaseNotify.command = ["notify-send", "-a", "angelOS", "-i", "preferences-desktop-wallpaper", "--wait", "-A", "set=" + I18n.t("Поставить", "Set it"), "-A", "open=" + I18n.t("Посмотреть", "Show"), I18n.t("Новые обои: ", "New wallpapers: ") + releaseLabel(r), I18n.t("С этим релизом пришли его обои, сделанные для angelOS (" + r.walls.length + "). Твои обои останутся, пока не поставишь новые.", "This release brought its own wallpapers, made for angelOS (" + r.walls.length + "). Yours stay until you set the new ones.")];
+        releaseNotify.command = ["notify-send", "-a", "kukabara", "-i", "preferences-desktop-wallpaper", "--wait", "-A", "set=" + I18n.t("Поставить", "Set it"), "-A", "open=" + I18n.t("Посмотреть", "Show"), I18n.t("Новые обои: ", "New wallpapers: ") + releaseLabel(r), I18n.t("С этим релизом пришли его обои, сделанные для kukabara (" + r.walls.length + "). Твои обои останутся, пока не поставишь новые.", "This release brought its own wallpapers, made for kukabara (" + r.walls.length + "). Yours stay until you set the new ones.")];
         releaseNotify.running = true;
     }
     Process {
@@ -818,14 +818,14 @@ Singleton {
     }
     Process {
         id: addPicker
-        command: ["python3", Quickshell.shellDir + "/scripts/pick-file.py", "--multi", "--remember", "wallpaper-add", I18n.t("angelOS — добавить обои", "angelOS — add wallpapers"), I18n.t("Картинки", "Pictures"), "*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.bmp"]
+        command: ["python3", Quickshell.shellDir + "/scripts/pick-file.py", "--multi", "--remember", "wallpaper-add", I18n.t("kukabara — добавить обои", "kukabara — add wallpapers"), I18n.t("Картинки", "Pictures"), "*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.bmp"]
         stdout: StdioCollector {
             onStreamFinished: root.importFiles(text.split("\n").filter(l => l !== ""))
         }
     }
     Process {
         id: dirPicker
-        command: ["python3", Quickshell.shellDir + "/scripts/pick-file.py", "--dir", "--start", root.heavenDir, I18n.t("angelOS — папка с обоями", "angelOS — the wallpaper folder")]
+        command: ["python3", Quickshell.shellDir + "/scripts/pick-file.py", "--dir", "--start", root.heavenDir, I18n.t("kukabara — папка с обоями", "kukabara — the wallpaper folder")]
         stdout: StdioCollector {
             onStreamFinished: {
                 const d = text.trim();

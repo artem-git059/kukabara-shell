@@ -7,7 +7,7 @@ import qs.config
 import qs.services
 import qs.widgets
 
-// angelOS settings: a real toplevel window with a client-drawn NGO frame.
+// kukabara settings: a real toplevel window with a client-drawn NGO frame.
 // The main window's place is Shell itself; any other window gets a SettingsNav of its own.
 FloatingWindow {
     id: win

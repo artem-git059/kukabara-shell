@@ -386,7 +386,7 @@ CatPage {
         icon: "window"
         CatNote {
             dim: true
-            text: I18n.t("Golden Gate меняет весь рабочий стол. Вернуться к пиксельному angelOS — «Классика»; его настройки вернутся вместе с ним.", "Golden Gate changes the whole desktop. Back to the pixel angelOS: Classic; its settings come back with it.")
+            text: I18n.t("Golden Gate меняет весь рабочий стол. Вернуться к пиксельному kukabara — «Классика»; его настройки вернутся вместе с ним.", "Golden Gate changes the whole desktop. Back to the pixel kukabara: Classic; its settings come back with it.")
         }
         CatCustom {
             wide: true
@@ -480,7 +480,7 @@ CatPage {
         CatCustom {
             label: I18n.t("Заголовки окон", "Title bars")
             // Golden Gate is always Desktop (WindowConfig.floatAll)
-            hint: Niri.nativeMinimize ? I18n.t("окна всегда как на Mac — поверх друг друга. Программам, которые дают рисовать заголовок системе (kitty, alacritty, Qt), angel-niri рисует пиксельный со светофором слева; GTK, браузеры, Discord и Steam рисуют свой", "Windows are always as on a Mac, over each other. Apps that let the system draw their title bar (kitty, alacritty, Qt) get angel-niri's pixel one with the traffic lights on the left; GTK, the browsers, Discord and Steam draw their own") : I18n.t("рисуют сами программы: светофор слева у GTK, рамка Adwaita у Qt, свой заголовок у kitty и браузеров. Жёлтая кнопка убирает окно в Dock, если программа запущена из angelOS (niri сам сворачивание не умеет; его ловит extras/minimize-hook). Всегда работают ⌘M и меню Dock", "drawn by the apps themselves: the traffic lights on the left in GTK, Adwaita's frame in Qt, their own in kitty and the browsers. The yellow light sends the window to the Dock when the app was started from angelOS (niri can't minimize; extras/minimize-hook catches it). ⌘M and the Dock menu always work")
+            hint: Niri.nativeMinimize ? I18n.t("окна всегда как на Mac — поверх друг друга. Программам, которые дают рисовать заголовок системе (kitty, alacritty, Qt), angel-niri рисует пиксельный со светофором слева; GTK, браузеры, Discord и Steam рисуют свой", "Windows are always as on a Mac, over each other. Apps that let the system draw their title bar (kitty, alacritty, Qt) get angel-niri's pixel one with the traffic lights on the left; GTK, the browsers, Discord and Steam draw their own") : I18n.t("рисуют сами программы: светофор слева у GTK, рамка Adwaita у Qt, свой заголовок у kitty и браузеров. Жёлтая кнопка убирает окно в Dock, если программа запущена из kukabara (niri сам сворачивание не умеет; его ловит extras/minimize-hook). Всегда работают ⌘M и меню Dock", "drawn by the apps themselves: the traffic lights on the left in GTK, Adwaita's frame in Qt, their own in kitty and the browsers. The yellow light sends the window to the Dock when the app was started from kukabara (niri can't minimize; extras/minimize-hook catches it). ⌘M and the Dock menu always work")
             CatBox {
                 PxText {
                     text: GoldenGate.hookInstalled ? I18n.t("перехват: есть", "hook: installed") : I18n.t("перехват: нет", "hook: missing")

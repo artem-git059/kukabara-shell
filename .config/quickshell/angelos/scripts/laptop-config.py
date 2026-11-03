@@ -6,7 +6,7 @@
       keys: true | false     the brightness keys, the keyboard's light, the touchpad's key,
                              airplane mode, the display key and Mod+P (the projection menu),
                              the calculator key — each through `qs ipc call angelos …`
-      switches: true | false the lid and tablet-mode switches (niri switch-events) → angelOS
+      switches: true | false the lid and tablet-mode switches (niri switch-events) → kukabara
 
 A key you bound yourself in another niri file stays yours: it is left out here and named in
 "skipped". The file is included at the end of config.kdl (after the key profiles), written
@@ -40,7 +40,7 @@ KEYS = [
     ("XF86TouchpadOff", "allow-inhibiting=false", "laptop 'touchpad off'"),
     ("XF86RFKill", "allow-when-locked=true allow-inhibiting=false", "laptop airplane"),
     ("XF86Display", "", "laptop project"),
-    ("Mod+P", 'hotkey-overlay-title="angelOS: экраны (проектор)"', "laptop project"),
+    ("Mod+P", 'hotkey-overlay-title="kukabara: экраны (проектор)"', "laptop project"),
     ("XF86Calculator", "", "launcherWith ="),
 ]
 SWITCHES = [
@@ -49,7 +49,7 @@ SWITCHES = [
     ("tablet-mode-on", "laptop 'tablet on'"),
     ("tablet-mode-off", "laptop 'tablet off'"),
 ]
-HEADER = "// angelOS: a laptop's keys and switches — written by angelOS (Settings → Keyboard → Laptop\n// keys, scripts/laptop-config.py); a key bound in your own files is left out of here\n"
+HEADER = "// kukabara: a laptop's keys and switches — written by kukabara (Settings → Keyboard → Laptop\n// keys, scripts/laptop-config.py); a key bound in your own files is left out of here\n"
 
 
 def included_files(cfg, seen=None):
@@ -128,7 +128,7 @@ def apply(changes):
     new, skipped = render(keys, switches)
     old = path.read_text() if path.exists() else None
     cfg = config.read_text() if config.exists() else ""
-    new_cfg = cfg if INCLUDE in cfg else cfg.rstrip("\n") + "\n\n// angelOS: a laptop's keys and switches (last: they come after the key profiles)\n" + INCLUDE + "\n"
+    new_cfg = cfg if INCLUDE in cfg else cfg.rstrip("\n") + "\n\n// kukabara: a laptop's keys and switches (last: they come after the key profiles)\n" + INCLUDE + "\n"
     if old == new and new_cfg == cfg:
         print(json.dumps({"saved": False, "skipped": skipped}))
         return

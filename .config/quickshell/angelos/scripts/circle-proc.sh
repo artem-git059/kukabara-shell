@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS: the screenshot overlay (Circle) in a process of its own. services/CircleHost runs it.
+# kukabara: the screenshot overlay (Circle) in a process of its own. services/CircleHost runs it.
 #
 #   scripts/circle-proc.sh <shell dir> <root dir>
 #

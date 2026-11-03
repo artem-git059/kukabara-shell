@@ -11,13 +11,13 @@
       the theme changed (templates.json hook): the shader presets in use are written
       again in its colours; nothing else is touched.
 
-Presets: default (niri's own), off, and angelOS shaders from shaders/open/*.glsl
+Presets: default (niri's own), off, and kukabara shaders from shaders/open/*.glsl
 and shaders/close/*.glsl. The speed (0.25–4, 2 = twice as fast) divides the
 preset's duration; the block remembers it in its marker comment
-(`// angelOS close: pixel ×1.5`). niri compiles the shader when it loads the
+(`// kukabara close: pixel ×1.5`). niri compiles the shader when it loads the
 config; a broken one only logs a warning and falls back to the default.
 A shader's ANGELOS_ACCENT / ANGELOS_ACCENT2 become the theme's accents as vec3
-(~/.cache/angelos/palette.json; angelOS pink and cyan without one) — #43.
+(~/.cache/angelos/palette.json; kukabara pink and cyan without one) — #43.
 """
 import fcntl
 import json
@@ -91,7 +91,7 @@ def colourize(code, pal):
 
 
 def mark(kind):
-    return f"// angelOS {kind}: "
+    return f"// kukabara {kind}: "
 
 
 def clamp_speed(speed):

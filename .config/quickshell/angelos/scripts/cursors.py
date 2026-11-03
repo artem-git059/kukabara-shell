@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pixel cursor themes for angelOS, and one cursor everywhere.
+"""Pixel cursor themes for kukabara, and one cursor everywhere.
 
   cursors.py list                      -> JSON: catalog, installed themes, what is applied where
   cursors.py install <id> [--accent #rrggbb --edge #rrggbb --light #rrggbb]
@@ -7,14 +7,14 @@
   cursors.py preview <theme>           -> PNG strip in ~/.cache/angelos/cursors/<theme>.png
 
 Themes are downloaded from pinned archives (SHA-256 checked) or built from the
-pixel-cursors assets (mikaeladev, GPL-3.0) recoloured with the angelOS palette.
+pixel-cursors assets (mikaeladev, GPL-3.0) recoloured with the kukabara palette.
 The hell themes ("realm": "hell") are pixel-cursors too: their own palettes, some
 shapes redrawn (a devil's tail, a pitchfork, claws, a skull) and two animated
 (embers rising, lava flowing). Each circle of hell has its own as well, described in
-story/circles.json → "cursor" (palette, shapes, fx: angelOS-Circle-<Circle>), with two
+story/circles.json → "cursor" (palette, shapes, fx: kukabara-Circle-<Circle>), with two
 variations for the mood (Cursors.mood): "Tip" — the tip in the circle's accent — and
 "Alive" — its rare animation, played in the cursor's own frames so it shows over every
-app (an oil drop swelling and falling, a glint, eyes opening…). angelOS puts the circle's
+app (an oil drop swelling and falling, a glint, eyes opening…). kukabara puts the circle's
 on while the demon rules, or the one picked (Settings → Cursor → Hell). Every theme is
 built on first use. The pixel-cursors archive is cached.
 `apply` sets the theme for niri (Wayland + XWayland via xwayland-satellite),
@@ -49,11 +49,11 @@ BACKUPS = HOME / ".local/state/angelos/backups"
 PIXEL_SRC = ("https://codeload.github.com/mikaeladev/pixel-cursors/tar.gz/736814216bcd5558ec904287b18deeabd0b91f78",
              "679a2df495b1333208a61f01fff3fe7bfba28fd81a28e61b6508d4a2ac9d5dfb")
 CATALOG = [
-    {"id": "angelos", "theme": "angelOS-Pixel", "name": "angelOS Pixel",
-     "about": "pixel-cursors in the angelOS colours (accent, edge, light)", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
+    {"id": "angelos", "theme": "kukabara-Pixel", "name": "kukabara Pixel",
+     "about": "pixel-cursors in the kukabara colours (accent, edge, light)", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
      "build": "pixel", "palette": None},
-    {"id": "glitter", "theme": "angelOS-Glitter", "name": "angelOS Glitter",
-     "about": "angelOS Pixel with twinkling Y2K sparkles", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
+    {"id": "glitter", "theme": "kukabara-Glitter", "name": "kukabara Glitter",
+     "about": "kukabara Pixel with twinkling Y2K sparkles", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
      "build": "pixel", "palette": None, "glitter": True},
     {"id": "pixel-amethyst", "theme": "Pixel-Amethyst", "name": "Pixel Amethyst",
      "about": "lavender 8-bit set", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
@@ -81,32 +81,32 @@ CATALOG = [
      "about": "black-and-white pixel set with a skull", "license": "BSD-3-Clause (da0ab/Pixel-Linux-Cursor)",
      "url": "https://codeload.github.com/da0ab/Pixel-Linux-Cursor/tar.gz/fdef33f8c87bff22812048c6060d6f36a12f1aaa",
      "sha256": "6039f887cec4d32de0b5cea9b87a55c009a9e2975fde1e87211ee57b57dbe55a"},
-    # the angel cold towards the player for good (Story.angelStep, Cursors.heavenTheme): angelOS
-    # Pixel in ice, frost along its upper rim — put on instead of angelOS's own, never listed
-    {"id": "frost", "theme": "angelOS-Frost", "name": "angelOS Frost", "about": "angelOS Pixel in ice, frost on the rim",
+    # the angel cold towards the player for good (Story.angelStep, Cursors.heavenTheme): kukabara
+    # Pixel in ice, frost along its upper rim — put on instead of kukabara's own, never listed
+    {"id": "frost", "theme": "kukabara-Frost", "name": "kukabara Frost", "about": "kukabara Pixel in ice, frost on the rim",
      "license": "GPL-3.0 (mikaeladev/pixel-cursors)", "build": "pixel", "hidden": True, "frostRim": "#d8ecff",
      "palette": {"primary": "#eef6ff", "secondary": "#a9cbe8", "border": "#2c4560"}},
     # ---- hell: while the demon rules (pixel-cursors, GPL-3.0) ----
-    {"id": "hell", "theme": "angelOS-Hell", "name": "angelOS Hell", "realm": "hell",
+    {"id": "hell", "theme": "kukabara-Hell", "name": "kukabara Hell", "realm": "hell",
      "about": "blood and obsidian; the arrow grew a devil's tail", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
      "build": "pixel", "palette": {"primary": "#ff4a3d", "secondary": "#8e1022", "border": "#14040a"},
      "shapes": {"default": "tail"}},
-    {"id": "hell-ember", "theme": "angelOS-Hell-Ember", "name": "Hell Ember", "realm": "hell",
+    {"id": "hell-ember", "theme": "kukabara-Hell-Ember", "name": "Hell Ember", "realm": "hell",
      "about": "smouldering: embers float up off the pointer", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
      "build": "pixel", "palette": {"primary": "#ffb02e", "secondary": "#d9431b", "border": "#1c0606"}, "fx": "embers"},
-    {"id": "hell-pitchfork", "theme": "angelOS-Hell-Pitchfork", "name": "Hell Pitchfork", "realm": "hell",
+    {"id": "hell-pitchfork", "theme": "kukabara-Hell-Pitchfork", "name": "Hell Pitchfork", "realm": "hell",
      "about": "the arrow is a pitchfork, the rest dark crimson", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
      "build": "pixel", "palette": {"primary": "#c9283c", "secondary": "#6a0d1c", "border": "#120306"},
      "shapes": {"default": "pitchfork"}},
-    {"id": "hell-claw", "theme": "angelOS-Hell-Claw", "name": "Hell Claw", "realm": "hell",
+    {"id": "hell-claw", "theme": "kukabara-Hell-Claw", "name": "Hell Claw", "realm": "hell",
      "about": "the hands are the demon's claws", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
      "build": "pixel", "palette": {"primary": "#ff3b6b", "secondary": "#7a1e46", "border": "#1a0a14"},
      "shapes": {"hand-pointing": "claw", "hand-open": "claw-open", "hand-closed": "claw-closed"}},
-    {"id": "hell-bone", "theme": "angelOS-Hell-Bone", "name": "Hell Bone", "realm": "hell",
+    {"id": "hell-bone", "theme": "kukabara-Hell-Bone", "name": "Hell Bone", "realm": "hell",
      "about": "bone white; “forbidden” is a skull", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
      "build": "pixel", "palette": {"primary": "#efe6d0", "secondary": "#a89a7c", "border": "#1a1010"},
      "shapes": {"forbidden": "skull"}},
-    {"id": "hell-brimstone", "theme": "angelOS-Hell-Brimstone", "name": "Hell Brimstone", "realm": "hell",
+    {"id": "hell-brimstone", "theme": "kukabara-Hell-Brimstone", "name": "Hell Brimstone", "realm": "hell",
      "about": "lava flows through every pointer", "license": "GPL-3.0 (mikaeladev/pixel-cursors)",
      "build": "pixel", "palette": {"primary": "#ff8a1a", "secondary": "#b3142b", "border": "#0d0303"}, "fx": "lava"},
 ]
@@ -207,7 +207,7 @@ class Fail(Exception):
 
 # ---------- downloads ----------
 def fetch(url, sha):
-    req = urllib.request.Request(url, headers={"User-Agent": "angelOS-cursors/1"})
+    req = urllib.request.Request(url, headers={"User-Agent": "kukabara-cursors/1"})
     with urllib.request.urlopen(req, timeout=60) as r:
         data = r.read(64 * 1024 * 1024 + 1)
     if len(data) > 64 * 1024 * 1024:
@@ -515,7 +515,7 @@ def circle_entries():
         if cid in ("_comment", "base") or not isinstance(spec, dict) or not spec.get("palette"):
             continue
         name = (c.get("name") or {}).get("en") or cid.capitalize()
-        theme = "angelOS-Circle-" + cid.capitalize()
+        theme = "kukabara-Circle-" + cid.capitalize()
         about = (spec.get("about") or {}).get("en", "")
         base = {"id": "circle-" + cid, "theme": theme, "name": "Circle %s: %s" % (c.get("n", ""), name), "realm": "hell",
                 "circle": cid, "about": about, "license": "GPL-3.0 (mikaeladev/pixel-cursors)", "build": "pixel",
@@ -793,7 +793,7 @@ def apply(theme, size, flatpak=True):
     done.append("niri")
     for d in (LEGACY_ICONS / "default", ICONS / "default"):
         d.mkdir(parents=True, exist_ok=True)
-        (d / "index.theme").write_text(f"[Icon Theme]\nName=Default\nComment=Default cursor (angelOS)\nInherits={theme}\n")
+        (d / "index.theme").write_text(f"[Icon Theme]\nName=Default\nComment=Default cursor (kukabara)\nInherits={theme}\n")
     done.append("x11")
     for g in ("gtk-3.0", "gtk-4.0"):
         set_ini(HOME / f".config/{g}/settings.ini", {"gtk-cursor-theme-name": theme, "gtk-cursor-theme-size": size})
@@ -832,7 +832,7 @@ def apply(theme, size, flatpak=True):
         senv.write_text(text)
         done.append("session.env")
     if flatpak and shutil.which("flatpak"):
-        # read-only access to ~/.local/share/icons only (where angelOS puts the themes)
+        # read-only access to ~/.local/share/icons only (where kukabara puts the themes)
         ok = run(["flatpak", "override", "--user", "--filesystem=xdg-data/icons:ro", "--nofilesystem=~/.icons",
                   f"--env=XCURSOR_THEME={theme}", f"--env=XCURSOR_SIZE={size}",
                   f"--env=XCURSOR_PATH={ICONS}:/run/host/user-share/icons:/run/host/share/icons:/usr/share/icons"])

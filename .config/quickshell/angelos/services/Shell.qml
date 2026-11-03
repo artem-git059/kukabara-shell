@@ -64,7 +64,7 @@ Singleton {
     // where it shows: the screens picked (all when none), streamed ones skipped while stream mode is on
     readonly property var bootScreens: screens.filter(s => (!(Config.y2k.bootScreens || []).length || Config.y2k.bootScreens.includes(s.name)) && StreamMode.effectsOn(s.name))
     // the shell's own pid: its windows (settings, osu!mini…) share it, so
-    // "End task" on them would kill angelOS itself
+    // "End task" on them would kill kukabara itself
     property int pid: 0
     property Process pidProbe: Process {
         running: true
@@ -89,8 +89,8 @@ Singleton {
     property bool polkitAsking: false
     property var setupHost: null              // the screen the setup wizard asks on (SetupWizard)
     readonly property bool dev: Quickshell.env("ANGELOS_DEV") === "1"
-    // niri sends "angelOS [dev]" windows to the non-stream monitor (cfg/rules.kdl)
-    readonly property string appTitle: dev ? "angelOS [dev]" : "angelOS"
+    // niri sends "kukabara [dev]" windows to the non-stream monitor (cfg/rules.kdl)
+    readonly property string appTitle: dev ? "kukabara [dev]" : "kukabara"
     // demo/recording mode: popups open from IPC without an input grab
     readonly property bool demo: Quickshell.env("ANGELOS_DEMO") === "1"
     property var desktopMenus: ({})   // screen name -> DesktopMenu
@@ -255,7 +255,7 @@ Singleton {
     // the windows' rectangles on the screen's active workspace is >= 95% of the screen. Recomputed once
     // per change of Niri.windows/workspaces/screens into a name -> bool map, not per binding.
     // Windows' opacity/blur is unknown to niri's IPC, so the terminals (usually translucent) and
-    // angelOS's own windows are not counted: better to keep the wallpaper running than to stop a seen one.
+    // kukabara's own windows are not counted: better to keep the wallpaper running than to stop a seen one.
     readonly property var _coveredMap: {
         const res = {};
         const wins = Niri.windows;
@@ -401,7 +401,7 @@ Singleton {
         else
             openSettings(page);
     }
-    // Apps started from angelOS get the environment the shell itself started with:
+    // Apps started from kukabara get the environment the shell itself started with:
     // the renderer variables bin/angelos set for the shell are put back, and the
     // cursor follows Settings → Cursor even before the next login.
     function _pre(name) {
@@ -421,7 +421,7 @@ Singleton {
             e.MALLOC_CONF = _pre("MALLOC_CONF");
         e.ANGELOS_PRE_MALLOC_CONF = null;
         e.ANGELOS_SETTINGS_WARM = null;
-        // Qt apps in angelOS's look (Settings → Appearance → Qt apps): qt6ct from now on,
+        // Qt apps in kukabara's look (Settings → Appearance → Qt apps): qt6ct from now on,
         // not only after the next login (bin/angelos keeps the shell itself on gtk3)
         // off: what the session had — but never a GTK platform theme (GTK menus and dialogs in Qt
         // apps); the shell's own gtk3 (bin/angelos) never reaches an app

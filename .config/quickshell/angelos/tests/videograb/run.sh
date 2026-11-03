@@ -5,10 +5,10 @@
 # capsule, the shelf, a yt-dlp failure reaching the notification, a squeeze held through a game.
 # No site is asked anything.
 #
-#   tests/videograb/run.sh [angelOS dir]      exit 0 = all good, 77 = no quickshell/ffmpeg
+#   tests/videograb/run.sh [kukabara dir]      exit 0 = all good, 77 = no quickshell/ffmpeg
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 command -v ffmpeg >/dev/null && command -v ffprobe >/dev/null || { echo "no ffmpeg"; exit 77; }
 VG="$DIR/scripts/videograb.py"
 fail=0

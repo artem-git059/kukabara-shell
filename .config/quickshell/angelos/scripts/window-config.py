@@ -72,11 +72,11 @@ def width_of(body):
     return re.sub(r"\s+", " ", m.group(1)) if m else ""
 
 
-TM_BEGIN = "// >>> angelOS task manager (Настройки → System → Диспетчер задач)"
-TM_END = "// <<< angelOS task manager"
+TM_BEGIN = "// >>> kukabara task manager (Настройки → System → Диспетчер задач)"
+TM_END = "// <<< kukabara task manager"
 HEIGHT = re.compile(r"^(proportion\s+(0?\.\d+|1(\.0+)?)|fixed\s+\d{2,5})$")
-AT_BEGIN = "// >>> angelOS Alt+Tab (Настройки → Окна → Alt+Tab)"
-AT_END = "// <<< angelOS Alt+Tab"
+AT_BEGIN = "// >>> kukabara Alt+Tab (Настройки → Окна → Alt+Tab)"
+AT_END = "// <<< kukabara Alt+Tab"
 AT_MAC = "// Golden Gate's Mac keys: ⌘Tab is the switcher, Alt+Tab is left to the apps"
 ANGELOS = "exec ~/.config/quickshell/angelos/bin/angelos alttab "
 
@@ -93,8 +93,8 @@ def norm_alttab(v):
     return "mac" if v == "mac" else bool(v)
 
 
-LS_BEGIN = "// >>> angelOS lens (Настройки → Клавиатура и мышь → Лупа)"
-LS_END = "// <<< angelOS lens"
+LS_BEGIN = "// >>> kukabara lens (Настройки → Клавиатура и мышь → Лупа)"
+LS_END = "// <<< kukabara lens"
 LENS = "exec ~/.config/quickshell/angelos/bin/angelos lens "
 
 
@@ -104,13 +104,13 @@ def read_lens(text=None):
     return LS_BEGIN in text
 
 
-QT_BEGIN = "// >>> angelOS game off (README: «Как выйти из игры»)"
-QT_END = "// <<< angelOS game off"
+QT_BEGIN = "// >>> kukabara game off (README: «Как выйти из игры»)"
+QT_END = "// <<< kukabara game off"
 GAME_OFF = "exec ~/.config/quickshell/angelos/bin/angelos game off"
 
 
-CH_BEGIN = "// >>> angelOS chalk (держи Mod+Alt+ЛКМ — мышь рисует, отпустил — тает; angel-niri)"
-CH_END = "// <<< angelOS chalk"
+CH_BEGIN = "// >>> kukabara chalk (держи Mod+Alt+ЛКМ — мышь рисует, отпустил — тает; angel-niri)"
+CH_END = "// <<< kukabara chalk"
 CHALK = "exec ~/.config/quickshell/angelos/bin/angelos chalk "
 
 
@@ -136,29 +136,29 @@ def render_keys(alttab, lens, quit=False, stream_angel=False, chalk=False):
     if alttab == "mac":
         out += [AT_BEGIN, AT_MAC, "recent-windows {", "    off", "}", AT_END]
     elif alttab:
-        out += [AT_BEGIN, "// the angelOS switcher: niri's own is off, the keys go to the shell",
+        out += [AT_BEGIN, "// the kukabara switcher: niri's own is off, the keys go to the shell",
                 "recent-windows {", "    off", "}", AT_END]
     if lens:
         out += [LS_BEGIN, "// the lens at the pointer: its keys are in the binds below", LS_END]
     if quit:
-        out += [QT_BEGIN, "// out of angelOS's game at once: no angel, demon, novel or hell", QT_END]
+        out += [QT_BEGIN, "// out of kukabara's game at once: no angel, demon, novel or hell", QT_END]
     if chalk:
         out += [CH_BEGIN, "// the chalk: its key is in the binds below", CH_END]
-    out += ["// angelOS keys (one binds node per file)", "binds {"]
+    out += ["// kukabara keys (one binds node per file)", "binds {"]
     if alttab and alttab != "mac":
-        out += [f'    Alt+Tab repeat=false hotkey-overlay-title="angelOS: Alt+Tab" {{ spawn-sh "{ANGELOS}next"; }}',
-                f'    Alt+Shift+Tab repeat=false hotkey-overlay-title="angelOS: Alt+Tab назад" {{ spawn-sh "{ANGELOS}prev"; }}']
+        out += [f'    Alt+Tab repeat=false hotkey-overlay-title="kukabara: Alt+Tab" {{ spawn-sh "{ANGELOS}next"; }}',
+                f'    Alt+Shift+Tab repeat=false hotkey-overlay-title="kukabara: Alt+Tab назад" {{ spawn-sh "{ANGELOS}prev"; }}']
     if lens:
-        out += [f'    Mod+Alt+Equal hotkey-overlay-title="angelOS: лупа ближе" {{ spawn-sh "{LENS}in"; }}',
-                f'    Mod+Alt+Minus hotkey-overlay-title="angelOS: лупа дальше" {{ spawn-sh "{LENS}out"; }}',
-                f'    Mod+Alt+0 repeat=false hotkey-overlay-title="angelOS: убрать лупу" {{ spawn-sh "{LENS}close"; }}']
+        out += [f'    Mod+Alt+Equal hotkey-overlay-title="kukabara: лупа ближе" {{ spawn-sh "{LENS}in"; }}',
+                f'    Mod+Alt+Minus hotkey-overlay-title="kukabara: лупа дальше" {{ spawn-sh "{LENS}out"; }}',
+                f'    Mod+Alt+0 repeat=false hotkey-overlay-title="kukabara: убрать лупу" {{ spawn-sh "{LENS}close"; }}']
     if stream_angel:
-        out += [f'    Mod+Alt+A repeat=false allow-inhibiting=false hotkey-overlay-title="angelOS: ангел на стриме — спрятать/показать" {{ spawn-sh "{STREAM_VIEW}"; }}']
+        out += [f'    Mod+Alt+A repeat=false allow-inhibiting=false hotkey-overlay-title="kukabara: ангел на стриме — спрятать/показать" {{ spawn-sh "{STREAM_VIEW}"; }}']
     if chalk:
-        out += [f'    Mod+Alt+MouseLeft hotkey-overlay-title="angelOS: мелок (держать)" {{ press {{ spawn-sh "{CHALK}on"; }}; release {{ spawn-sh "{CHALK}off"; }}; }}']
+        out += [f'    Mod+Alt+MouseLeft hotkey-overlay-title="kukabara: мелок (держать)" {{ press {{ spawn-sh "{CHALK}on"; }}; release {{ spawn-sh "{CHALK}off"; }}; }}']
     if quit:
-        out += [f'    Mod+Ctrl+Shift+Escape repeat=false allow-inhibiting=false hotkey-overlay-title="angelOS: выйти из игры" {{ spawn-sh "{GAME_OFF}"; }}']
-    out += ["}", "// <<< angelOS keys", ""]
+        out += [f'    Mod+Ctrl+Shift+Escape repeat=false allow-inhibiting=false hotkey-overlay-title="kukabara: выйти из игры" {{ spawn-sh "{GAME_OFF}"; }}']
+    out += ["}", "// <<< kukabara keys", ""]
     return "\n".join(out)
 
 
@@ -220,8 +220,8 @@ def read_apps():
     return rules
 
 
-SA_BEGIN = "// >>> angelOS stream angel (Настройки → Y2K → Ангел на стриме)"
-SA_END = "// <<< angelOS stream angel"
+SA_BEGIN = "// >>> kukabara stream angel (Настройки → Y2K → Ангел на стриме)"
+SA_END = "// <<< kukabara stream angel"
 STREAM_VIEW = "qs -c angelos ipc call angelos streamer view"
 
 
@@ -236,7 +236,7 @@ def render_stream_angel():
     # it as drawn), floating in a corner, never taking the focus as it opens
     return "\n".join([SA_BEGIN,
                       "window-rule {",
-                      '    match app-id=r#"^org\\.quickshell$"# title="^angelOS · ангел для OBS$"',
+                      '    match app-id=r#"^org\\.quickshell$"# title="^kukabara · ангел для OBS$"',
                       "    opacity 0.0",
                       "    open-focused false",
                       "    open-floating true",
@@ -320,7 +320,7 @@ def set_block(text, name, lines):
 
 
 def render_apps(rules, taskmgr=None, alttab=False, lens=False, quit=False, stream_angel=False, chalk=False):
-    out = ["// Managed by angelOS → Настройки → Окна. Per-app default widths.", ""]
+    out = ["// Managed by kukabara → Настройки → Окна. Per-app default widths.", ""]
     for app, w in sorted(rules.items()):
         out += ["window-rule {", f'    match app-id=r#"^{re.escape(app)}$"#', f"    default-column-width {{ {w}; }}", "}", ""]
     return ("\n".join(out) + render_taskmgr(taskmgr) + (render_stream_angel() if stream_angel else "")

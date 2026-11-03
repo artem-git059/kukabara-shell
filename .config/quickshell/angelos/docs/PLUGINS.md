@@ -1,4 +1,4 @@
-# Плагины angelOS
+# Плагины kukabara
 
 Плагин — это папка с `manifest.json` и QML-файлами:
 
@@ -62,7 +62,7 @@ the page is listed under Apps.
 | `menu` | ПКМ-меню рабочего стола (декларативно; в macOS — пункты меню рабочего стола без значков). `exec` — команда sh, `settings` — открыть страницу настроек, `url` — xdg-open | — |
 | `menuComponent` | QML-элементы в ПКМ-меню (обычно `PxMenuItem`) | `plugin`, `menu` (вызови `menu.close()`) |
 | `barWidget` | панель, рядом с треем (все стили); в macOS — строка меню, слева от значков трея («menu bar extra»), в том же порядке, что на панели | `plugin`, `screenName`, `barWindow` |
-| `desktopWidget` | виджет на рабочем столе: angelOS сам рисует рамку — в пиксельной теме окно с заголовком `desktopTitle` (без окончания: `"my-widget"` — angelOS добавит выбранное в настройках `.exe`, `.sh` или `.bin`; в своём QML — `Skin.title("my-widget")`), в macOS — карточку Liquid Glass без заголовка; перетаскивание и удаление; добавляется через ПКМ → Вид | `plugin`, `screenName`, `widget` (`{uid, x, y, settings}`) |
+| `desktopWidget` | виджет на рабочем столе: kukabara сам рисует рамку — в пиксельной теме окно с заголовком `desktopTitle` (без окончания: `"my-widget"` — kukabara добавит выбранное в настройках `.exe`, `.sh` или `.bin`; в своём QML — `Skin.title("my-widget")`), в macOS — карточку Liquid Glass без заголовка; перетаскивание и удаление; добавляется через ПКМ → Вид | `plugin`, `screenName`, `widget` (`{uid, x, y, settings}`) |
 | `settings` | страница в Настройки → Плагины → имя | `plugin` |
 | `main` | фоновый сервис, живёт пока плагин включён (можно держать тут `IpcHandler`) | `plugin` |
 | `launcher` | провайдер результатов лаунчера (Mod+Space; в macOS — Spotlight: свой раздел, префикс работает так же, пиксельные имена значков становятся линейными, `image` — картинкой) | `plugin`, `pluginId` |
@@ -109,8 +109,8 @@ QtObject {
 `property var plugin` и `property string screenName`.
 
 Виджет рабочего стола — это только содержимое: размер берётся из `implicitWidth` /
-`implicitHeight`, рамку «*.exe» рисует angelOS. Виджеты рисуются в поверхности
-обоев (backdrop niri): она не принимает ввод, поэтому angelOS ловит мышь
+`implicitHeight`, рамку «*.exe» рисует kukabara. Виджеты рисуются в поверхности
+обоев (backdrop niri): она не принимает ввод, поэтому kukabara ловит мышь
 невидимым прокси и передаёт виджету настоящие события Qt — нажатия, hover,
 колесо работают как обычно; перетаскивание за заголовок делает хост. Необязательное
 `property bool wantVisible` прячет рамку, когда показывать нечего (в режиме правки
@@ -118,7 +118,7 @@ QtObject {
 
 ## Theme API: пиксель и macOS
 
-У angelOS две темы, и пользователь переключает их на ходу:
+У kukabara две темы, и пользователь переключает их на ходу:
 
 - **пиксельная** (исходная: Win98 / NEEDY GIRL OVERDOSE) — квадратные рамки с фаской,
   пиксельные шрифты, размеры по сетке арт-пикселя `Theme.u`, заголовки «name.exe»;
@@ -287,7 +287,7 @@ Companion, стрим-статы, веб-поиск (результаты и в 
 Ангел или демон → «Виджеты в аду»). Виджет плагина должен уметь оба вида:
 
 - в манифесте `"realms": ["heaven", "hell"]` — «я рисую ад сам». Без этого
-  angelOS в аду перекрашивает виджет шейдером (запасной вариант);
+  kukabara в аду перекрашивает виджет шейдером (запасной вариант);
 - `Theme.realm` — `"heaven"` или `"hell"`, `Theme.hell` — `true` в аду. Просто
   привязывайся к ним: переключение идёт посреди сгорания, само сгорание и адскую
   рамку (обсидиан, пламя, капли) рисует хост — сам переход не анимируй;
@@ -416,7 +416,7 @@ Enabled plugins can add optional `appearanceThemes` entries beside the built-in 
 
 IDs must contain lowercase letters, digits or hyphens and be unique within the plugin. `name` supports the usual localized labels. `cursor` applies an already installed theme using the native Cursors service, with the current cursor size. `themeSetting` resolves a dynamic theme name from that plugin's saved settings (for example a color-specific wallpaper cursor); it also selects the plugin's `theme=wallpaper` preference. Static cursor contributions select the matching `theme` preference. Missing themes or a busy cursor worker leave the choice unchanged.
 
-`plugin-settings` updates primitive settings only in the contributing plugin's namespace. `settings` opens that plugin's own settings page. Choosing a built-in palette clears the last plugin selection; choosing a cursor or picker theme preserves the desktop color palette. Older AngelOS versions ignore the optional field, so plugins should retain their own settings controls.
+`plugin-settings` updates primitive settings only in the contributing plugin's namespace. `settings` opens that plugin's own settings page. Choosing a built-in palette clears the last plugin selection; choosing a cursor or picker theme preserves the desktop color palette. Older kukabara versions ignore the optional field, so plugins should retain their own settings controls.
 
 ### Assistant panel in the angel/demon menu
 

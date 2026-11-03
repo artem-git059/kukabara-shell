@@ -2,7 +2,7 @@
 
 `scripts/pc2k-sounds.py` makes every `<event>.ogg` here. The tones (the BIOS beep, the PC
 speaker's "no", ringtone jingles, messenger blips, the chords at start and shutdown) are
-synthesised there: original works of angelOS, dedicated to the public domain (CC0 1.0). The
+synthesised there: original works of kukabara, dedicated to the public domain (CC0 1.0). The
 machine itself is the recordings in `src/`, cut from these (all CC0, credit given anyway).
 Freesound previews (mp3), mono, 48 kHz, cut at the times below; the script trims the silence
 before each and levels it.

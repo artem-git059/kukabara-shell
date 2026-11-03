@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Download the NEEDY GIRL OVERDOSE sound pack for angelOS.
+"""Download the NEEDY GIRL OVERDOSE sound pack for kukabara.
 
   sound-pack.py overdose <dir>     fetches the Windose sounds, prints JSON
 
 The sounds come from Plasma-Overdose (github.com/Notify-ctrl/Plasma-Overdose,
 a KDE theme after the game; the sounds belong to the game's authors). They are
 fetched on the user's machine when the pack is switched on and are not shipped
-with angelOS. Each angelOS event gets the Windose sound that fits it; events
+with kukabara. Each kukabara event gets the Windose sound that fits it; events
 the game has nothing for (the demon's glass, the angel's choir) stay with the
 synthesised Y2K pack.
 """
@@ -19,7 +19,7 @@ SOURCES = [
     "https://raw.githubusercontent.com/Notify-ctrl/Plasma-Overdose/master/sounds/stereo/{}.ogg",
     "https://codeberg.org/Notify-ctrl/Plasma-Overdose/raw/branch/master/sounds/stereo/{}.ogg",
 ]
-# angelOS event -> Windose sound
+# kukabara event -> Windose sound
 OVERDOSE = {
     "startup": "desktop-login",
     "notify": "message-new-instant",
@@ -41,7 +41,7 @@ def fetch(name):
     last = None
     for src in SOURCES:
         try:
-            req = urllib.request.Request(src.format(name), headers={"User-Agent": "angelOS"})
+            req = urllib.request.Request(src.format(name), headers={"User-Agent": "kukabara"})
             with urllib.request.urlopen(req, timeout=20) as r:
                 data = r.read(4 * 1024 * 1024)
             if data[:4] == b"OggS":

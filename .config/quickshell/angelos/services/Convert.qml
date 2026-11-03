@@ -82,7 +82,7 @@ Singleton {
         groups = g;
         skipped = skip;
         if (!ringKinds.length) {
-            Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-information", I18n.t("Конвертировать нечего", "Nothing to convert"), I18n.t("Среди выделенного нет картинок, видео или звука", "No pictures, video or sound among the selected files")]);
+            Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-information", I18n.t("Конвертировать нечего", "Nothing to convert"), I18n.t("Среди выделенного нет картинок, видео или звука", "No pictures, video or sound among the selected files")]);
             return;
         }
         level = "";

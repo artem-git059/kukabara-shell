@@ -128,7 +128,7 @@ Singleton {
         const left = duration(secondsLeft);
         const what = name === "critical" ? I18n.t("Батарея почти пуста", "Battery almost empty") : name === "veryLow" ? I18n.t("Батарея садится", "Battery very low") : I18n.t("Батарея разряжается", "Battery low");
         const body = I18n.t("Осталось " + percent + " %", percent + "% left") + (left ? I18n.t(", примерно " + left, ", about " + left) : "") + I18n.t(". Подключи зарядку ♡", ". Plug in the charger ♡");
-        notify.exec(["notify-send", "-a", "angelOS", "-u", name === "low" ? "normal" : "critical", "-h", "string:x-angelos-sound:" + (name === "low" ? "notify" : "error"), "-i", iconDir + (name === "low" ? "battery-low.svg" : "battery-empty.svg"), what, body]);
+        notify.exec(["notify-send", "-a", "kukabara", "-u", name === "low" ? "normal" : "critical", "-h", "string:x-angelos-sound:" + (name === "low" ? "notify" : "error"), "-i", iconDir + (name === "low" ? "battery-low.svg" : "battery-empty.svg"), what, body]);
     }
     Process {
         id: notify
@@ -146,7 +146,7 @@ Singleton {
             return;
         critical.restart();
         const verb = criticalAction === "hibernate" ? I18n.t("гибернация", "hibernating") : criticalAction === "poweroff" ? I18n.t("выключаюсь", "powering off") : I18n.t("ухожу в сон", "going to sleep");
-        warner.command = ["notify-send", "-a", "angelOS", "-u", "critical", "--wait", "-h", "string:x-angelos-sound:error", "-i", iconDir + "battery-empty.svg", "-A", "hold=" + I18n.t("Не сейчас (10 мин)", "Not now (10 min)"), I18n.t("Через минуту: ", "In a minute: ") + verb, I18n.t("Батарея " + percent + " %. Подключи зарядку, и ничего не случится.", "Battery at " + percent + "%. Plug in the charger and nothing happens.")];
+        warner.command = ["notify-send", "-a", "kukabara", "-u", "critical", "--wait", "-h", "string:x-angelos-sound:error", "-i", iconDir + "battery-empty.svg", "-A", "hold=" + I18n.t("Не сейчас (10 мин)", "Not now (10 min)"), I18n.t("Через минуту: ", "In a minute: ") + verb, I18n.t("Батарея " + percent + " %. Подключи зарядку, и ничего не случится.", "Battery at " + percent + "%. Plug in the charger and nothing happens.")];
         warner.running = true;
     }
     Process {

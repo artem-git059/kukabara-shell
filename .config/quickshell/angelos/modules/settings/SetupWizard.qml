@@ -272,7 +272,7 @@ Scope {
                         anchors.verticalCenter: parent.verticalCenter
                         font.bold: true
                         color: Theme.dark ? Theme.desk : "#ffffff"
-                        text: I18n.t("angelOS — обновление", "angelOS — update")
+                        text: I18n.t("kukabara — обновление", "kukabara — update")
                     }
                 }
                 Column {

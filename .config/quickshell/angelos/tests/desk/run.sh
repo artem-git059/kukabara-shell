@@ -4,10 +4,10 @@
 # live scene, LiveBeat listening to a spectrum instead of a cava of its own, the launcher's
 # thumbnails only from the cache's files (tests/desk/DeskDriver.qml).
 #
-#   tests/desk/run.sh [angelOS dir]        exit 0 = all good, 77 = no quickshell
+#   tests/desk/run.sh [kukabara dir]        exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

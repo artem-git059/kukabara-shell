@@ -53,7 +53,7 @@ if ! has_cachyos; then
       { say "could not fetch CachyOS's signing key (offline? a keyserver blocked?)" "не скачался ключ подписи CachyOS (нет сети? заблокирован keyserver?)"; exit 1; }
   fi
   pacman-key --lsign-key "$KEY" >/dev/null
-  printf '\n# angelOS (scripts/cachyos-repos.sh): last, so Arch'"'"'s own packages win\n[cachyos]\nServer = %s\n' "$SERVER" >>"$CONF"
+  printf '\n# kukabara (scripts/cachyos-repos.sh): last, so Arch'"'"'s own packages win\n[cachyos]\nServer = %s\n' "$SERVER" >>"$CONF"
   pacman -Sy
   # its keyring and its mirror list, then the repository reads the list instead of one server
   pacman -S --needed --noconfirm cachyos-keyring cachyos-mirrorlist

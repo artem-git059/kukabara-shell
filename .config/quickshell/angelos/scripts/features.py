@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS's little programs for the setup wizard's «Scripts» step (and Settings → Games):
+"""kukabara's little programs for the setup wizard's «Scripts» step (and Settings → Games):
 what is there, what runs, switching the services.
 
   features.py status                 JSON {gameMode, mouse, voice, privacy, ocr, shot, record}:

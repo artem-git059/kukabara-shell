@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pixel fonts for angelOS, and the Golden Gate skin's smooth ones: list, install, remove.
+"""Pixel fonts for kukabara, and the Golden Gate skin's smooth ones: list, install, remove.
 
   fonts.py list             -> JSON catalog with installed state
   fonts.py install <id>     -> download, verify SHA-256, install into
@@ -29,10 +29,10 @@ GF = "https://raw.githubusercontent.com/google/fonts/main/ofl/"
 # native: pixel size of one glyph cell; UI sizes snap to its multiples so glyphs stay crisp.
 CATALOG = [
     {"id": "pixeloid", "families": ["Pixeloid Sans", "Pixeloid Mono"], "native": 9, "cyrillic": True,
-     "roles": ["title", "body", "mono"], "license": "OFL", "note": "angelOS default titles",
+     "roles": ["title", "body", "mono"], "license": "OFL", "note": "kukabara default titles",
      "homepage": "https://ggbot.itch.io/pixeloid-font", "assets": []},
     {"id": "cozette", "families": ["CozetteVector"], "native": 13, "cyrillic": True,
-     "roles": ["body", "mono"], "license": "MIT", "note": "angelOS default text",
+     "roles": ["body", "mono"], "license": "MIT", "note": "kukabara default text",
      "homepage": "https://github.com/the-moonwitch/Cozette",
      "assets": [
          {"url": "https://github.com/the-moonwitch/Cozette/releases/download/v.1.30.0/CozetteVector.ttf",
@@ -129,7 +129,7 @@ def listing():
 def fetch(url):
     if not url.startswith("https://"):
         raise ValueError("Only HTTPS downloads are allowed")
-    request = urllib.request.Request(url, headers={"User-Agent": "angelOS-fonts/1"})
+    request = urllib.request.Request(url, headers={"User-Agent": "kukabara-fonts/1"})
     with urllib.request.urlopen(request, timeout=60) as response:
         data = response.read(MAX_DOWNLOAD + 1)
     if len(data) > MAX_DOWNLOAD:

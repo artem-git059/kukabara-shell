@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # ── Config files ─────────────────────────────────────────────────────────────
 
@@ -47,7 +47,7 @@ backup() {
 
 # Files that belong to the user (or are rewritten by the system itself): seeded
 # on the first install, never overwritten afterwards. mimeapps.list holds the
-# default apps (browser, file manager…) that apps and angelOS's settings set.
+# default apps (browser, file manager…) that apps and kukabara's settings set.
 keep_existing() {
   case "$1" in
     .config/niri/monitor.kdl|.config/user-dirs.dirs|.config/user-dirs.locale|.config/mimeapps.list) return 0 ;;
@@ -59,10 +59,10 @@ keep_existing() {
 
 # Two layers: the author's configs are the base, the user's changes go on top. A config the user
 # never changed simply follows the author on every update. One they changed (by hand, or through
-# angelOS's settings) is merged three ways (merge_config: git merge-file): base = the version the
+# kukabara's settings) is merged three ways (merge_config: git merge-file): base = the version the
 # installer put there last time, ours = the file as it is, theirs = the repository's now. What the
 # author changed comes in; where both changed the same lines, the user's lines win — the author's
-# are the backup. The key profiles merge by key instead (merge_key_profile). Files angelOS
+# are the backup. The key profiles merge by key instead (merge_key_profile). Files kukabara
 # generates (the palette's theme files, GTK's, fastfetch's style; Voxtype's own)
 # are not merged: the user's stay, the new version is parked. So is anything without a known base
 # (an install older than the manifest), and everything on the author's own machine (owner/).
@@ -84,7 +84,7 @@ mergeable() { # a text config of the author's (not the shell's code, a font or a
 OWNER_HOME=0
 [[ -d "$HOME_DIR/.config/quickshell/angelos/owner" ]] && OWNER_HOME=1
 
-# niri's config.kdl replaced: the includes angelOS's services added to it (cfg/angelos-windows.kdl,
+# niri's config.kdl replaced: the includes kukabara's services added to it (cfg/angelos-windows.kdl,
 # -laptop, -minimize; CachyOS's cfg/display.kdl) go into the new one too, before user.kdl
 carry_includes() { # old-file new-file
   local line missing=()
@@ -150,11 +150,11 @@ remember() {
   save_manifest
 }
 
-# A niri config angelOS never wrote — the one niri makes on its first start, CachyOS's own
-# (cfg/keybinds.kdl with Noctalia's keys)… Kept as "the user's changes", it left angelOS's
+# A niri config kukabara never wrote — the one niri makes on its first start, CachyOS's own
+# (cfg/keybinds.kdl with Noctalia's keys)… Kept as "the user's changes", it left kukabara's
 # keys, rules and theme unplugged while Settings → Shortcuts listed them. The whole of it is
 # replaced instead (each file backed up); outputs from CachyOS's cfg/display.kdl move to
-# monitor.kdl. Ours = known to the manifest, or wired like angelOS's config.kdl.
+# monitor.kdl. Ours = known to the manifest, or wired like kukabara's config.kdl.
 niri_foreign_check() {
   local cfg="$HOME_DIR/.config/niri/config.kdl" old="$HOME_DIR/.config/niri/cfg/display.kdl"
   NIRI_FOREIGN=0
@@ -215,7 +215,7 @@ install_file() {
     save_base "$rel" "$new"
     N_UNCHANGED=$((N_UNCHANGED + 1)); return 0
   fi
-  # changed since the installer wrote it (by hand, or by angelOS's settings:
+  # changed since the installer wrote it (by hand, or by kukabara's settings:
   # hotkeys, animations, the default browser…): the user's version stays —
   # a theme's key profile gets the repository's new keys merged in around the user's
   # changed since the installer wrote it: merged (the user's lines win), else the user's stays
@@ -248,7 +248,7 @@ install_file() {
 
 # The themes' niri key profiles (cfg/keybinds-{common,pixel,macos}.kdl) are edited by
 # Settings → Shortcuts, so they are the user's — and still have to receive the keys
-# angelOS adds or changes. An update merges them three ways (scripts/keyprofile.py merge):
+# kukabara adds or changes. An update merges them three ways (scripts/keyprofile.py merge):
 # base = the repository's version the installer put there last time (a copy in
 # $BASES_DIR, else found in git history by the manifest's checksum), ours = the file as it
 # is, new = the repository's now. Keys the user left as they came follow the repository,
@@ -379,7 +379,7 @@ niri_merge_guard() {
   MERGED=("${keep[@]}")
 }
 
-# The theme's niri keys: cfg/keybinds.kdl picks the pixel or the Mac profile (angelOS's
+# The theme's niri keys: cfg/keybinds.kdl picks the pixel or the Mac profile (kukabara's
 # scripts/keyprofile.py switches it when the theme changes later). The installed copy of the
 # selector already says the chosen one: ANGELOS_THEME when asked or given, else the profile
 # the installed selector has now — an update never flips someone's Mac keys back.
@@ -400,7 +400,7 @@ destination() {
   DEST=""
   case "$rel" in
     */__pycache__/*|*.pyc|*.bak.*|.config/quickshell/angelos/owner/*) return 0 ;;
-    # Niri: the files wired for angelOS and their plain variants (no desktop shell) share one
+    # Niri: the files wired for kukabara and their plain variants (no desktop shell) share one
     # destination.
     .config/niri/config.kdl|.config/niri/cfg/autostart.kdl|.config/niri/cfg/keybinds.kdl)
       [[ "$DESKTOP_SHELL" != none ]] || return 0 ;;
@@ -513,7 +513,7 @@ user_layer() {
   if [[ -f "$HOME_DIR/.config/niri/config.kdl" && ! -e "$kdl" ]]; then
     mkdir -p -- "${kdl%/*}"
     cat >"$kdl" <<'KDL'
-// Yours: niri reads this file last, so a bind or a rule here wins over angelOS's.
+// Yours: niri reads this file last, so a bind or a rule here wins over kukabara's.
 // Updates bring the author's changes into the rest of ~/.config/niri; this file is never touched.
 // For example:
 // binds {

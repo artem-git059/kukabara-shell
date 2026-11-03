@@ -11,7 +11,7 @@ The shell ships the result (data/sounds/macos) and plays it with pw-play; a file
 name in ~/.local/share/angelos/sounds/macos (yours, e.g. copied from your own Mac) wins
 (services/Sounds). The waveforms are numpy, ffmpeg only encodes. Levelled like the Y2K pack
 (scripts/y2k-sounds.py): peaks about -6 dBFS, RMS at most -20 dBFS, so they sit under music.
-These files are original works of angelOS, dedicated to the public domain (CC0 1.0).
+These files are original works of kukabara, dedicated to the public domain (CC0 1.0).
 """
 import json
 import shutil

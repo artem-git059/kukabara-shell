@@ -75,7 +75,7 @@ Singleton {
             return;
         setter.command = ["python3", Quickshell.shellDir + "/scripts/default-apps.py", "set", category, id];
         setter.running = true;
-        // angelOS's own launchers follow the choice
+        // kukabara's own launchers follow the choice
         const e = DesktopEntries.byId(id.replace(/\.desktop$/, "")) || DesktopEntries.byId(id);
         const bin = e && e.command && e.command.length ? e.command[0] : id.replace(/\.desktop$/, "");
         if (category === "terminal")

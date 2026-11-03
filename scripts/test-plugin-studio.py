@@ -22,7 +22,7 @@ studio = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(studio)
 
 PLAN = {
-    "summary": "A small counter that follows the angelOS theme.",
+    "summary": "A small counter that follows the kukabara theme.",
     "questions": [],
     "spec": {
         "id": "studio-test-counter", "name": "Counter", "description": "A test widget",

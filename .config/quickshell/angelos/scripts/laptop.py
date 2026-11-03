@@ -8,7 +8,7 @@
                                      (cycle count, the charge limit and whether it can be set)
   laptop.py limit <value>         -> set the charge limit (50…100, 100 = off) on every battery
                                      that has one: directly when sysfs lets us, else through
-                                     the angelOS helper (extras/charge-limit, pkexec without a
+                                     the kukabara helper (extras/charge-limit, pkexec without a
                                      password for the active session). Prints "ok <value>",
                                      "nohelper" or "error <why>"
   laptop.py rfkill [on|off]       -> JSON {airplane, devices}; on/off blocks or unblocks all

@@ -299,6 +299,6 @@ Singleton {
         }
     }
     function say(t) {
-        Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "image-x-generic", "-h", "string:x-canonical-private-synchronous:angelos-shot-edit", "--", t, path.split("/").pop()]);
+        Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "image-x-generic", "-h", "string:x-canonical-private-synchronous:angelos-shot-edit", "--", t, path.split("/").pop()]);
     }
 }

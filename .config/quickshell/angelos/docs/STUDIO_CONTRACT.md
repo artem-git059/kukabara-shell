@@ -1,6 +1,6 @@
-# angelOS Plugin Studio: generation contract
+# kukabara Plugin Studio: generation contract
 
-You build real angelOS plugins for Quickshell 0.3 / Qt 6 on Linux with Niri.
+You build real kukabara plugins for Quickshell 0.3 / Qt 6 on Linux with Niri.
 The supplied PLUGINS.md and component sources are authoritative. A plugin is
 an ordinary directory, not an OpenAI/Codex or Claude extension.
 
@@ -17,7 +17,7 @@ The plan must specify:
 
 - A unique lowercase kebab-case id, name, purpose and integration point.
 - Content width/height in points (`Skin.px(n)`), when visual.
-- How it looks in both angelOS themes, pixel and macOS (section "Two looks").
+- How it looks in both kukabara themes, pixel and macOS (section "Two looks").
 - Actual data sources, update frequency, empty/loading/error/offline states.
 - Settings, actions, dependencies and limitations; list "none" if none.
 - How it starts, stops, and releases timers/processes when disabled.
@@ -46,7 +46,7 @@ Manifest: id/name/version/description/icon, enabledByDefault=false,
 kind (desktopWidget/barWidget/main/menu/launcher). A plugin may also add sidebarWidget (a compact Column that receives
 plugin and width) for the experimental sidebar. Settings.qml is mandatory, even for a small plugin: explain the data
 source and allow useful preferences. Do not override any installed/bundled id.
-Give desktop widgets a desktopTitle such as "my-widget", without an ending: angelOS adds the one the user picked (.exe, .sh or .bin) in the pixel theme and shows no title in macOS. Titles in the plugin's own QML (a BarPopup's `title`): `Skin.title("my-widget")` — "my-widget.exe" in pixel, plain words in macOS; never `I18n.exe` directly.
+Give desktop widgets a desktopTitle such as "my-widget", without an ending: kukabara adds the one the user picked (.exe, .sh or .bin) in the pixel theme and shows no title in macOS. Titles in the plugin's own QML (a BarPopup's `title`): `Skin.title("my-widget")` — "my-widget.exe" in pixel, plain words in macOS; never `I18n.exe` directly.
 
 Import qs.config for Theme, Config and I18n; qs.services for the Theme API
 (`Skin`) and documented services; qs.widgets for the shared controls. All
@@ -82,7 +82,7 @@ Explain in the plan any access to network, local files or command execution.
 
 ## Two looks: pixel and macOS (the Theme API)
 
-angelOS has two themes and the user switches between them while the shell
+kukabara has two themes and the user switches between them while the shell
 runs: the original **pixel** look (Win98 / NEEDY GIRL OVERDOSE: square
 bevelled boxes, pixel fonts, sizes on the art-pixel grid, window titles
 "name.exe") and **macOS** (Golden Gate, macOS 27 Liquid Glass: rounded glass,
@@ -129,7 +129,7 @@ blocky meter vs a thin rounded bar), with `Skin.mac ? … : …` on bindings or 
 `Loader { active: Skin.mac }` for whole parts, so the unused look costs
 nothing. Everything else is the same code bound to the tokens.
 
-Memory and CPU (angelOS keeps its RAM low): load parts lazily (`Loader` with
+Memory and CPU (kukabara keeps its RAM low): load parts lazily (`Loader` with
 `active` only while shown, `LazyLoader` for windows), no work while hidden
 (`running: root.visible && …`), no polling faster than the data changes
 (local data ≥ 1 s, network ≥ 60 s with backoff), `Image` always with
@@ -140,7 +140,7 @@ bound. `Canvas` repaints only when its data changes (requestPaint on change).
 
 ## Two realms: heaven and hell
 
-angelOS has two dimensions. Heaven is the usual look. When the user throws the
+kukabara has two dimensions. Heaven is the usual look. When the user throws the
 angel into hell the demon rules: the wallpaper becomes pixel hell and the desktop
 widgets burn and rise again in their hell versions (Y2K → Angel or demon →
 Widgets in hell). Every desktop widget you make is designed for both:
@@ -198,7 +198,7 @@ both languages. Keep the total output below 24 files and 512 KiB.
 
 Every draft is checked automatically before the user sees it: JSON/Python/
 shell syntax and `qmlformat`, then each QML entry point is loaded once, the
-way angelOS hosts it, in Quickshell running offscreen inside a sandbox (no
+way kukabara hosts it, in Quickshell running offscreen inside a sandbox (no
 network, no home directory, no sockets). Load-time errors — unknown
 properties or types, bad imports, ReferenceError/TypeError in bindings, zero
 implicit size of visual content — are sent back to you with the files; then

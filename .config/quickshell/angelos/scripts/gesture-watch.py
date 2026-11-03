@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS's own touchpad gestures (services/Gestures; Settings → Devices → Touchpad).
+"""kukabara's own touchpad gestures (services/Gestures; Settings → Devices → Touchpad).
 
 niri keeps its own: three fingers swipe the columns and the workspaces, four up/down open and
 close the overview, two pinch for the apps. This adds what niri leaves alone, read from the

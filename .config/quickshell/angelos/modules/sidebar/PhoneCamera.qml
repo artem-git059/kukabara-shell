@@ -13,7 +13,7 @@ import qs.modules.y2k
 // tilt), the date in yellow in the corner as the 2002 cameras stamped it; now and then the
 // other one photobombs. The photo goes to the album (PhoneLine.keepPhoto, files in
 // ~/.local/share/angelos/phone/album) and she says something about it. * opens the album:
-// ◀ ▶ through it, the green key copies the photo to ~/Pictures/angelOS, # throws it away.
+// ◀ ▶ through it, the green key copies the photo to ~/Pictures/kukabara, # throws it away.
 Item {
     id: root
 
@@ -57,7 +57,7 @@ Item {
             }
             const a = album[pic];
             if (k === "call" && a) {
-                Quickshell.execDetached(["sh", "-c", 'mkdir -p "$1" && cp -n "$2" "$1/"', "sh", Config.home + "/Pictures/angelOS", a.path]);
+                Quickshell.execDetached(["sh", "-c", 'mkdir -p "$1" && cp -n "$2" "$1/"', "sh", Config.home + "/Pictures/kukabara", a.path]);
                 PhoneLine.play("sms", 0.5);
                 return true;
             }

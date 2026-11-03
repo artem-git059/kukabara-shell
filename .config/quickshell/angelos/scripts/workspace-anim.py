@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Read or set niri's workspace-switch animation (cfg/animation.kdl) and whether
-the workspace keys go through angelOS (both themes' key profiles, cfg/keybinds-*.kdl).
+the workspace keys go through kukabara (both themes' key profiles, cfg/keybinds-*.kdl).
 
   workspace-anim.py                          -> {"preset": "soft|dash|instant|custom", "routed": bool,
                                                  "slowdown": float, "speed": float, "ms": int}

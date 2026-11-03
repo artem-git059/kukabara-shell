@@ -277,7 +277,7 @@ Singleton {
         const paths = (urls || []).filter(u => /^file:/i.test(String(u))).map(pathOf);
         if (!f || f.kind !== "folder" || !paths.length)
             return;
-        run(["sh", "-c", 'd="$1"; shift; for s; do b=$(basename "$s"); case "$b" in ?*.*) n="${b%.*}"; e=".${b##*.}";; *) n="$b"; e="";; esac; t="$d/$b"; i=2; while [ -e "$t" ]; do t="$d/$n ($i)$e"; i=$((i+1)); done; cp -rn -- "$s" "$t"; done', "sh", f.path].concat(paths), () => Quickshell.execDetached(["notify-send", "-a", "angelOS", I18n.t("Скопировано в ", "Copied to ") + f.name, paths.map(base).join(", ")]));
+        run(["sh", "-c", 'd="$1"; shift; for s; do b=$(basename "$s"); case "$b" in ?*.*) n="${b%.*}"; e=".${b##*.}";; *) n="$b"; e="";; esac; t="$d/$b"; i=2; while [ -e "$t" ]; do t="$d/$n ($i)$e"; i=$((i+1)); done; cp -rn -- "$s" "$t"; done', "sh", f.path].concat(paths), () => Quickshell.execDetached(["notify-send", "-a", "kukabara", I18n.t("Скопировано в ", "Copied to ") + f.name, paths.map(base).join(", ")]));
     }
 
     // a picture from the browser: on the shelf at once (a spinner while it comes), then the

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS's own backups (~/.local/state/angelos/backups) without the pile-up: every settings
+"""kukabara's own backups (~/.local/state/angelos/backups) without the pile-up: every settings
 page, every niri change and every agent session leaves a folder there (850 of them, 1.5 GB by
 2026-10-15). Of each kind (cursor, anim, window-layout, claude, update, …) the newest KEEP (3
 of whole copies of the shell) and everything younger than DAYS stay as they are; the rest goes into one tar.zst in
@@ -102,7 +102,7 @@ def apply(moves, archive_dir=ARCHIVE):
         if r.returncode == 0:
             final = Path(str(tar_path) + ".zst")
     with open(archive_dir / "INDEX.md", "a") as f:
-        f.write(f"\n## {final.name} — angelOS backups older than kept ({len(moves)})\n\n")
+        f.write(f"\n## {final.name} — kukabara backups older than kept ({len(moves)})\n\n")
         for m in moves:
             f.write(f"- `{Path(m['path']).name}` · {m['kind']} · {m['when']} · {m['bytes'] // 1024} KB\n")
     for m in moves:

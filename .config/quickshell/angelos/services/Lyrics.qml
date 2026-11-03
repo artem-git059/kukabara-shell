@@ -453,7 +453,7 @@ Singleton {
                 cb(xhr.status, xhr.status === 200 ? xhr.responseText : "");
         };
         xhr.open("GET", url);
-        xhr.setRequestHeader("User-Agent", "angelOS-quickshell (https://github.com/MixaDoDs)");
+        xhr.setRequestHeader("User-Agent", "kukabara-quickshell (https://github.com/MixaDoDs)");
         xhr.send();
     }
     function http(url, cb) {
@@ -468,7 +468,7 @@ Singleton {
             cb(xhr.status, body);
         };
         xhr.open("GET", url);
-        xhr.setRequestHeader("User-Agent", "angelOS-quickshell (https://github.com/MixaDoDs)");
+        xhr.setRequestHeader("User-Agent", "kukabara-quickshell (https://github.com/MixaDoDs)");
         xhr.send();
     }
 

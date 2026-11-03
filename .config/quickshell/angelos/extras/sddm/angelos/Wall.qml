@@ -1,6 +1,6 @@
 import QtQuick
 
-// The desktop's wallpaper for a look (walls/, kept in step by angelOS), alive through
+// The desktop's wallpaper for a look (walls/, kept in step by kukabara), alive through
 // sddm_wall.frag: cover-cropped, drifting, `block` px pixels (1 = the picture as it is),
 // scanlines every `line` px (0 = none), the `tint` laid over it, a ring from ring().
 // No picture: the `fallback` gradient.

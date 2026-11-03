@@ -93,7 +93,7 @@ CatPage {
             CatButton {
                 text: I18n.t("Тестовое уведомление", "Test notification")
                 icon: "bell"
-                onClicked: Quickshell.execDetached(["notify-send", "-a", "angelOS", I18n.t("Привет ♡", "Hello ♡"), I18n.t("Это тестовое уведомление. <b>жирный</b> текст и <i>курсив</i>.", "A test notification with <b>bold</b> and <i>italic</i> text.")])
+                onClicked: Quickshell.execDetached(["notify-send", "-a", "kukabara", I18n.t("Привет ♡", "Hello ♡"), I18n.t("Это тестовое уведомление. <b>жирный</b> текст и <i>курсив</i>.", "A test notification with <b>bold</b> and <i>italic</i> text.")])
             }
         }
     }

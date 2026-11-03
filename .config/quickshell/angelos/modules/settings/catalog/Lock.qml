@@ -220,7 +220,7 @@ CatPage {
         }
         CatToggle {
             label: I18n.t("Логотип", "Logo")
-            hint: I18n.t("логотип angelOS над часами (какой — «Пуск» → «Кнопка «Пуск» и логотип»)", "the angelOS logo above the clock (pick one in Start → The Start button and the logo)")
+            hint: I18n.t("логотип kukabara над часами (какой — «Пуск» → «Кнопка «Пуск» и логотип»)", "the kukabara logo above the clock (pick one in Start → The Start button and the logo)")
             checked: Config.lock.logo
             onToggled: c => Config.lock.logo = c
         }
@@ -286,7 +286,7 @@ CatPage {
         CatToggle {
             present: lockPage.ngo && Config.lock.stream
             label: I18n.t("Шкалы как в NGO", "NGO stats")
-            hint: I18n.t("подписчики, стресс (нагрузка процессора и аптайм), привязанность (дни с angelOS), тьма (ночь и ошибки)", "followers, stress (CPU load and uptime), affection (days with angelOS), darkness (night and mistakes)")
+            hint: I18n.t("подписчики, стресс (нагрузка процессора и аптайм), привязанность (дни с kukabara), тьма (ночь и ошибки)", "followers, stress (CPU load and uptime), affection (days with kukabara), darkness (night and mistakes)")
             checked: Config.lock.streamMeters
             onToggled: c => Config.lock.streamMeters = c
         }
@@ -338,7 +338,7 @@ CatPage {
         CatToggle {
             present: Config.lock.style === "heaven"
             label: I18n.t("Доска объявлений", "Notice board")
-            hint: I18n.t("обновления angelOS, кто писал, пока тебя не было, музыка, достижения, время за компьютером", "angelOS updates, who wrote while you were away, music, achievements, time at the computer")
+            hint: I18n.t("обновления kukabara, кто писал, пока тебя не было, музыка, достижения, время за компьютером", "kukabara updates, who wrote while you were away, music, achievements, time at the computer")
             checked: Config.lock.notices
             onToggled: c => Config.lock.notices = c
         }
@@ -370,7 +370,7 @@ CatPage {
             {
                 "id": "retro",
                 "icon": "monitor",
-                "name": "angelOS 98",
+                "name": "kukabara 98",
                 "hint": I18n.t("Y2K-рабочий стол: окно входа, «Пуск», ошибка как в 98-й", "a Y2K desktop: the logon dialog, Start, the error box of ’98")
             },
             {
@@ -713,7 +713,7 @@ CatPage {
             onToggled: c => Config.idle.allScreens = c
         }
         CatNote {
-            text: I18n.t("Текст или ASCII-арт (пусто — логотип angelOS):", "Text or ASCII art (empty = angelOS logo):")
+            text: I18n.t("Текст или ASCII-арт (пусто — логотип kukabara):", "Text or ASCII art (empty = kukabara logo):")
         }
         CatCustom {
             wide: true

@@ -6,7 +6,7 @@ import qs.services
 
 // Events for other programs (Quickshell 0.3's IPC signal listeners): `angelos events [signal]`
 // (= `qs -c angelos ipc listen events [signal]`) prints a line each time one fires, so a stream
-// bot, a fader script or a status bar follows angelOS without polling it. `angelos eventsNow`
+// bot, a fader script or a status bar follows kukabara without polling it. `angelos eventsNow`
 // gives the state they describe right now, as JSON. Quickshell lets a signal carry one value:
 // awake gives its reason ("" = off), angelSaid a line of JSON.
 Scope {

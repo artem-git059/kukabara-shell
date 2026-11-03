@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# angelOS rescue: the shell could not start (a broken update, Quickshell built against another
+# kukabara rescue: the shell could not start (a broken update, Quickshell built against another
 # Qt, a file cut short). systemd tries five times in a minute and gives up — the desk stays
 # bare, and nothing on it says why. `bin/angelos reap` opens this in a terminal after the last
 # try (`angelos rescue` by hand): the reason from the log, another try, the way back to before
@@ -91,7 +91,7 @@ try_start() {
     fi
   done
   if active; then
-    say "angelOS запустилась ♡ Это окно можно закрыть." "angelOS is up ♡ You can close this window."
+    say "kukabara запустилась ♡ Это окно можно закрыть." "kukabara is up ♡ You can close this window."
     return 0
   fi
   say "Не запустилась." "It did not start."
@@ -101,7 +101,7 @@ try_start() {
 while :; do
   clear 2>/dev/null || true
   printf '\n'
-  say "angelOS не запустилась" "angelOS did not start"
+  say "kukabara не запустилась" "kukabara did not start"
   say "──────────────────────" "──────────────────────"
   printf '\n'
   if active; then

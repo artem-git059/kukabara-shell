@@ -1,13 +1,13 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # The system as the author has it, with one admin password, when something is missing — an
 # update from Settings runs this too (the installer there is always the new version):
 #   - the base packages the author added since (packages/*.txt), fish among them
-#   - fish as the login shell instead of bash/sh (installs from before fish came with angelOS);
+#   - fish as the login shell instead of bash/sh (installs from before fish came with kukabara);
 #     asked once: a user who goes back to bash later stays on bash
-#   - the angelOS login screen (extras/sddm/angelos, as the author has it) instead of an older
-#     theme the user's install had (pixel-cyberpunk, which angelOS no longer ships); again when
+#   - the kukabara login screen (extras/sddm/angelos, as the author has it) instead of an older
+#     theme the user's install had (pixel-cyberpunk, which kukabara no longer ships); again when
 #     the author changes it, with the user's own look and colours (Settings → Lock screen).
 #     Another theme the user picked stays
 #   - the gaming edition's packages (data/gaming-packages.txt), when it was set up here
@@ -88,12 +88,12 @@ PY
     if python3 "$sddm_py" build "${opts[@]}" --out "$built/angelos" >/dev/null 2>&1; then
       root_sddm="$(python3 -c 'import importlib.util as u, sys; s = u.spec_from_file_location("t", sys.argv[1]); m = u.module_from_spec(s); s.loader.exec_module(m); print(m.ROOT_SCRIPT)' "$sddm_py")"
     else
-      warn "$(_ "the angelOS login screen did not build (scripts/sddm-theme.py build)" "экран входа angelOS не собрался (scripts/sddm-theme.py build)")"
+      warn "$(_ "the kukabara login screen did not build (scripts/sddm-theme.py build)" "экран входа kukabara не собрался (scripts/sddm-theme.py build)")"
       theme=""
     fi
   fi
   ((${#pkgs[@]})) || [[ -n "$fish$theme$hid$mem" ]] || return 0
-  say "$(_ "As the author has it:" "Как у автора:")${pkgs[*]:+ $(_ "packages" "пакеты") ${pkgs[*]};}${fish:+ $(_ "fish instead of bash;" "fish вместо bash;")}${theme:+ $(_ "the angelOS login screen;" "экран входа angelOS;")}${hid:+ $(_ "the devices' charge (a mouse's dongle: its service interface only);" "заряд устройств (донгл мыши: только служебный интерфейс);")}${mem:+ $(_ "memory settings against freezes" "настройки памяти против подвисаний")} — $(_ "the admin password" "пароль администратора")"
+  say "$(_ "As the author has it:" "Как у автора:")${pkgs[*]:+ $(_ "packages" "пакеты") ${pkgs[*]};}${fish:+ $(_ "fish instead of bash;" "fish вместо bash;")}${theme:+ $(_ "the kukabara login screen;" "экран входа kukabara;")}${hid:+ $(_ "the devices' charge (a mouse's dongle: its service interface only);" "заряд устройств (донгл мыши: только служебный интерфейс);")}${mem:+ $(_ "memory settings against freezes" "настройки памяти против подвисаний")} — $(_ "the admin password" "пароль администратора")"
 
   local -a root=()
   if ((EUID == 0)); then root=()

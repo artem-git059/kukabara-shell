@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1.5 10 10" width="120" height="120" shape-rendering="crispEdges">
-<!-- angelOS: the battery almost empty (widgets/Icons.js "battery"), for its notifications -->
+<!-- kukabara: the battery almost empty (widgets/Icons.js "battery"), for its notifications -->
 <rect x="0" y="0" width="1" height="1" fill="#3a2140"/>
 <rect x="1" y="0" width="1" height="1" fill="#3a2140"/>
 <rect x="2" y="0" width="1" height="1" fill="#3a2140"/>

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""The angelOS login screen for SDDM (extras/sddm/angelos), dressed like the desktop.
+"""The kukabara login screen for SDDM (extras/sddm/angelos), dressed like the desktop.
 
   sddm-theme.py build [--wallpaper FILE] [--tall FILE] [--palette ngo|system] [--look LOOK] [--out DIR]
       puts the theme together in ~/.cache/angelos/sddm/angelos (or DIR): its QML, the
       pixel fonts, the wallpaper shader, the sleeping angel (modules/y2k/sprites/angel),
       the wallpapers (walls/wide.jpg for landscape screens, walls/tall.jpg for portrait
-      ones; --tall defaults to --wallpaper) and a theme.conf with angelOS's NGO pink (the
+      ones; --tall defaults to --wallpaper) and a theme.conf with kukabara's NGO pink (the
       default) or the desktop's own colours (~/.cache/angelos/palette.json), the look
       (stream, heaven, retro, hell, quiet — see extras/sddm/angelos/Main.qml) and the
       shell's language
@@ -17,7 +17,7 @@
       the user, so the wallpapers and the look can follow the desktop without a password
       (theme.conf.user, which SDDM reads over theme.conf, is a link to walls/theme.conf.user):
   sddm-theme.py walls [--wallpaper FILE] [--tall FILE]
-      puts these pictures into the installed theme's walls/ (angelOS runs it whenever the
+      puts these pictures into the installed theme's walls/ (kukabara runs it whenever the
       wallpaper changes); a picture already there is not redone; prints JSON
   sddm-theme.py look LOOK [--palette ngo|system]
       the installed theme takes this look (and these colours) from now on: written into
@@ -43,7 +43,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent.parent           # the angelOS folder
+HERE = Path(__file__).resolve().parent.parent           # the kukabara folder
 SRC = HERE / "extras" / "sddm" / "angelos"
 HOME = Path.home()
 CACHE = Path(os.environ.get("XDG_CACHE_HOME", HOME / ".cache")) / "angelos"
@@ -54,7 +54,7 @@ LOOKS = ("stream", "heaven", "retro", "hell", "quiet")
 WALL_BOX = "2560x2560"                                   # walls are fitted into this
 CONF_D = Path("/etc/sddm.conf.d/zz-angelos.conf")
 
-# angelOS's NGO pink ("overdose" at night): the look of the lock's stream
+# kukabara's NGO pink ("overdose" at night): the look of the lock's stream
 NGO = {
     "desk": "#2a1b3d", "face": "#3a2350", "faceAlt": "#4a2c66", "sunken": "#1d1230",
     "edge": "#140c20", "hi": "#5c3a80", "lo": "#1d1230", "text": "#fdf3ff",
@@ -200,7 +200,7 @@ def build(out: Path, wallpaper, palette_name, tall=None, look="stream"):
     if out.exists():
         # only ever a theme this script built (or an empty folder)
         if any(out.iterdir()) and not (out / "Main.qml").is_file():
-            sys.exit(f"{out} is not an angelOS theme folder; not touching it")
+            sys.exit(f"{out} is not an kukabara theme folder; not touching it")
         shutil.rmtree(out)
     shutil.copytree(SRC, out)
     shutil.copy2(HERE / "shaders" / "sddm_wall.frag.qsb", out / "sddm_wall.frag.qsb")
@@ -212,14 +212,14 @@ def build(out: Path, wallpaper, palette_name, tall=None, look="stream"):
         if (FONTS / name).is_file():
             shutil.copy2(FONTS / name, fonts / name)
             found.append(name)
-    # hell's blackletter with Cyrillic (angelOS's own build of Jacquard 12)
+    # hell's blackletter with Cyrillic (kukabara's own build of Jacquard 12)
     if (HERE / "data" / "fonts" / "Jacquard12Hell-Regular.ttf").is_file():
         shutil.copy2(HERE / "data" / "fonts" / "Jacquard12Hell-Regular.ttf", fonts / "Jacquard12Hell-Regular.ttf")
         found.append("Jacquard12Hell-Regular.ttf")
     (fonts / "LICENSES.txt").write_text(
         "Pixeloid Sans by GGBotNet: SIL Open Font License 1.1 (https://openfontlicense.org)\n"
         "CozetteVector by Ines (slavfox): MIT (https://github.com/the-moonwitch/Cozette)\n"
-        "Jacquard 12 by Sarah Cadigan-Fried, Cyrillic added for angelOS: SIL Open Font License 1.1\n")
+        "Jacquard 12 by Sarah Cadigan-Fried, Cyrillic added for kukabara: SIL Open Font License 1.1\n")
     s = settings()
     pal = system_palette() if palette_name == "system" else dict(NGO)
     lang = (s.get("appearance") or {}).get("language") or ("ru" if os.environ.get("LANG", "").startswith("ru") else "en")
@@ -237,7 +237,7 @@ def build(out: Path, wallpaper, palette_name, tall=None, look="stream"):
     walls.mkdir(exist_ok=True)
     put_walls(walls, wp if wp and wp.is_file() else None, Path(tall) if tall else None)
     (out / "theme.conf").write_text(conf_lines(conf))
-    # what angelOS changes later without a password: the look and the colours
+    # what kukabara changes later without a password: the look and the colours
     user_conf(walls, look, pal, palette_name, primary_keys())
     return {"out": str(out), "fonts": found, "background": conf.get("background", ""), "palette": palette_name, "look": conf["look"]}
 
@@ -356,14 +356,14 @@ for f in "$(dirname "$confd")"/*; do
   # (the installer's old zz-pixelstreetart.conf sorts after zz-angelos.conf) is commented out
   case "$f" in *.conf) ;; *) mv "$f" "$bakdir/"; echo "moved out of sddm.conf.d: $(basename "$f")"; continue ;; esac
   cp -p "$f" "$bakdir/$(basename "$f").$stamp"
-  sed -i -E '/^[[:space:]]*\[Theme[[:space:]]*\]/,/^[[:space:]]*\[/ s/^([[:space:]]*Current[[:space:]]*=)/# (angelOS: zz-angelos.conf sets the theme) \1/' "$f"
+  sed -i -E '/^[[:space:]]*\[Theme[[:space:]]*\]/,/^[[:space:]]*\[/ s/^([[:space:]]*Current[[:space:]]*=)/# (kukabara: zz-angelos.conf sets the theme) \1/' "$f"
 done
 main="$prefix/etc/sddm.conf"
 if [ -f "$main" ] && sed -n '/^[[:space:]]*\[Theme[[:space:]]*\]/,/^[[:space:]]*\[/p' "$main" | grep -Eq '^[[:space:]]*Current[[:space:]]*='; then
   cp "$main" "$bakdir/sddm.conf.$stamp"
-  sed -i -E '/^[[:space:]]*\[Theme[[:space:]]*\]/,/^[[:space:]]*\[/ s/^([[:space:]]*Current[[:space:]]*=)/# (angelOS: zz-angelos.conf sets the theme) \1/' "$main"
+  sed -i -E '/^[[:space:]]*\[Theme[[:space:]]*\]/,/^[[:space:]]*\[/ s/^([[:space:]]*Current[[:space:]]*=)/# (kukabara: zz-angelos.conf sets the theme) \1/' "$main"
 fi
-# The theme that came with the installer before angelOS's own: nothing else points at it now.
+# The theme that came with the installer before kukabara's own: nothing else points at it now.
 old="$prefix/usr/share/sddm/themes/pixel-cyberpunk"
 if [ -d "$old" ]; then
   backup="$(dirname "$old")/.pixel-cyberpunk.bak.$stamp-$$"

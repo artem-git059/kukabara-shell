@@ -1,9 +1,9 @@
 #!/usr/bin/python3 -I
-"""angelOS: the main screen of the login (SDDM's Xsetup, run as root before the greeter).
+"""kukabara: the main screen of the login (SDDM's Xsetup, run as root before the greeter).
 
 People did not see where to type the password: X starts the pointer in the middle of all the
 screens put together (on a side monitor, often), and the greeter's password field is on X's
-primary output, which X picks by itself. This makes the screen picked in angelOS (Settings →
+primary output, which X picks by itself. This makes the screen picked in kukabara (Settings →
 Monitor → Main screen, the installer, the wizard) X's primary and puts the pointer in its middle.
 
 What it reads is walls/theme.conf.user, the user's own file (the keys primary, primaryModel,
@@ -140,7 +140,7 @@ def main():
         return 0
     main_out = pick(outs, conf)
     if not main_out:
-        print("angelOS xsetup: the main screen (%s / %s) is not connected" % (conf.get("primary", ""), conf.get("primaryModel", "")), file=sys.stderr)
+        print("kukabara xsetup: the main screen (%s / %s) is not connected" % (conf.get("primary", ""), conf.get("primaryModel", "")), file=sys.stderr)
         return 0
     try:
         run([XRANDR, "--output", main_out["name"], "--primary"])
@@ -154,7 +154,7 @@ def main():
     if now.get("geo"):
         w, h, x, y = now["geo"]
         warp(x + w // 2, y + h // 2)
-    print("angelOS xsetup: main screen %s" % main_out["name"], file=sys.stderr)
+    print("kukabara xsetup: main screen %s" % main_out["name"], file=sys.stderr)
     return 0
 
 
@@ -162,5 +162,5 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except Exception as e:                  # the login must come whatever happens here
-        print("angelOS xsetup: %s" % e, file=sys.stderr)
+        print("kukabara xsetup: %s" % e, file=sys.stderr)
         sys.exit(0)

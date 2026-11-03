@@ -113,7 +113,7 @@ def run_probe(path: Path) -> ProbeInfo:
 
 
 def output_folder() -> Path:
-    # angelOS passes the folder chosen in its settings (capture.mediafixDir)
+    # kukabara passes the folder chosen in its settings (capture.mediafixDir)
     return Path(os.environ.get("MEDIAFIX_DIR") or Path.home() / "Videos" / "MediaFix").expanduser()
 
 

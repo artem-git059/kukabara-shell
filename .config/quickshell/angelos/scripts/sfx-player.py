@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS sounds through one long-lived audio stream (Sounds.qml starts it).
+"""kukabara sounds through one long-lived audio stream (Sounds.qml starts it).
 
   stdin, one sound per line:  VOLUME<TAB>PATH[<TAB>PATH…]   (the first PATH that exists plays;
                               VOLUME 0 only decodes it ahead and opens the stream)
@@ -218,7 +218,7 @@ def server_ready():
 def open_stream():
     proc = subprocess.Popen(["pacat", "--playback", "--raw", "--format=float32le", f"--rate={RATE}",
                              f"--channels={CHANNELS}", "--latency-msec=30", "--client-name=angelos-sfx",
-                             "--stream-name=angelOS sounds", "--property=application.name=angelos-sfx",
+                             "--stream-name=kukabara sounds", "--property=application.name=angelos-sfx",
                              "--property=media.role=event"], stdin=subprocess.PIPE)
     try:
         fcntl.fcntl(proc.stdin.fileno(), F_SETPIPE_SZ, PIPE_SIZE)

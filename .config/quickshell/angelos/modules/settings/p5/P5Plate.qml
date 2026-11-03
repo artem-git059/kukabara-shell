@@ -4,7 +4,7 @@ import qs.config
 // A plate of the P5 window: a polygon (`poly`, [[x, y], …] in this item's pixels) turned by
 // `tilt` degrees round its middle, with an optional hard shadow (`shadow`, shifted by
 // `shadowX/Y`) and a second one round it (`rim`). One shader (shaders/p5_plate.frag) tests every
-// pixel at its art pixel's centre: the slanted edges step on the angelOS pixel grid. Up to 8 corners.
+// pixel at its art pixel's centre: the slanted edges step on the kukabara pixel grid. Up to 8 corners.
 Item {
     id: root
 

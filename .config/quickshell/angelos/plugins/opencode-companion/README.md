@@ -1,6 +1,6 @@
 # OpenCode Companion
 
-Спутник OpenCode для angelOS — в стиле и по конвенциям `claude-companion` и `codex-companion`.
+Спутник OpenCode для kukabara — в стиле и по конвенциям `claude-companion` и `codex-companion`.
 
 ## Возможности / Features
 
@@ -36,7 +36,7 @@
 
 ## Требования / Requirements
 
-- angelOS / Quickshell
+- kukabara / Quickshell
 - OpenCode CLI (`opencode`)
 - Python 3 with `sqlite3` (входит в стандартную библиотеку)
 

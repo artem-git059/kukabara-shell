@@ -70,7 +70,7 @@ widgets_on() { # the desktop widgets of the README's desktop
   for w in "$@"; do ipc widget "$w" "$s"; done
 }
 
-terminal() { # a kitty with angelOS's fastfetch, floating in the lower right (the widgets stay in sight)
+terminal() { # a kitty with kukabara's fastfetch, floating in the lower right (the widgets stay in sight)
   "$RIG" run kitty -o update_check_interval=0 --title angel -e fish -c 'fastfetch; read -P ""'
   sleep 4
   act toggle-window-floating; act set-window-width 1120; act set-window-height 520
@@ -124,7 +124,7 @@ shot_sddm_login() {
   local fake; fake="$(mktemp -d)"
   printf 'root:x:0:0::/root:/bin/bash\nangel:x:%s:%s:angel:/home/angel:/bin/bash\n' "$(id -u)" "$(id -g)" >"$fake/passwd"
   printf '[Last]\nUser=angel\nSession=niri.desktop\n' >"$fake/state.conf"
-  # angelOS's own login theme where it is installed (scripts/sddm-theme.py), else the legacy one
+  # kukabara's own login theme where it is installed (scripts/sddm-theme.py), else the legacy one
   local theme="$ROOT/sddm/themes/pixel-cyberpunk"
   [[ -f /usr/share/sddm/themes/angelos/Main.qml ]] && theme=/usr/share/sddm/themes/angelos
   "$RIG" run bwrap --dev-bind / / --ro-bind "$fake/passwd" /etc/passwd --tmpfs /var/lib/sddm \

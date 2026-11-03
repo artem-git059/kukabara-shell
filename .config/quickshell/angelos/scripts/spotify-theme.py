@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Spotify in angelOS's colours, heaven and hell, over whatever Spicetify theme is set (entry
+"""Spotify in kukabara's colours, heaven and hell, over whatever Spicetify theme is set (entry
 "spotify" of templates/templates.json).
 
   spotify-theme.py build PALETTE.json   write the extension for the palette and register it
@@ -23,7 +23,7 @@ SHELL = Path(__file__).resolve().parent.parent
 SPICE_DIR = HOME / ".config/spicetify"
 EXT_NAME = "angelos-colors.js"
 EXT = SPICE_DIR / "Extensions" / EXT_NAME
-MARK = "written by angelOS"
+MARK = "written by kukabara"
 
 
 
@@ -97,7 +97,7 @@ def build(palette_file):
     if not tool or not (SPICE_DIR / "config-xpui.ini").exists():
         return {"ok": True, "skipped": "no Spicetify"}
     if EXT.exists() and MARK not in EXT.read_text(errors="replace")[:200]:
-        return {"ok": True, "skipped": "%s is not angelOS's" % EXT}
+        return {"ok": True, "skipped": "%s is not kukabara's" % EXT}
     pal = json.loads(Path(palette_file).read_text())
     text = extension(pal)
     changed = not EXT.exists() or EXT.read_text() != text

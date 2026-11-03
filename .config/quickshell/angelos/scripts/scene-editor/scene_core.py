@@ -69,7 +69,7 @@ USER_SCENES = Path(os.environ.get("XDG_DATA_HOME") or Path.home() / ".local/shar
 
 
 def user_scene_file(pic):
-    """The user's own scene of a picture they can't (or shouldn't) write next to: the ones angelOS
+    """The user's own scene of a picture they can't (or shouldn't) write next to: the ones kukabara
     ships inside the shell (an update would take the file away), a folder that isn't theirs."""
     pic = Path(pic)
     tag = hashlib.sha1(str(pic.resolve()).encode()).hexdigest()[:10]

@@ -4,10 +4,10 @@
 # window the history was opened over, Ctrl+Shift+V in a terminal, nothing for Shift+Enter, the
 # setting off or an empty desktop, waiting for the keyboard to come back, a stored picture.
 #
-#   tests/clipboard/run.sh [angelOS dir]      exit 0 = all good, 77 = no quickshell
+#   tests/clipboard/run.sh [kukabara dir]      exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

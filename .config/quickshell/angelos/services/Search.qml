@@ -183,7 +183,7 @@ Singleton {
         for (const b of Keybinds.binds) {
             if (!b.title || skip.includes(callOf(b.action)) || Keybinds.describe(b).appId)
                 continue;
-            let t = String(b.title).replace(/^angelOS:\s*/, "");
+            let t = String(b.title).replace(/^kukabara:\s*/, "");
             t = t.charAt(0).toUpperCase() + t.slice(1);
             if (out.some(x => x.title === t))
                 continue;

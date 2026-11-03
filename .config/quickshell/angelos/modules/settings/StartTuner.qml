@@ -132,7 +132,7 @@ Column {
                 text: StartPrefs.pickError
             }
             PxToggle {
-                text: I18n.t("Пиксельная — крупными пикселями, как всё в angelOS", "Pixelated, in big pixels like the rest of angelOS")
+                text: I18n.t("Пиксельная — крупными пикселями, как всё в kukabara", "Pixelated, in big pixels like the rest of kukabara")
                 checked: Config.bar.avatarPixel
                 onToggled: c => Config.bar.avatarPixel = c
             }

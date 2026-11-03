@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Window
 
-// angelOS login (SDDM), the "stream" look (Main.qml picks it): the lock screen's look before
-// anyone has logged in — the NGO stream that is "starting soon". The pixelated wallpaper, floating hearts, the angelOS
+// kukabara login (SDDM), the "stream" look (Main.qml picks it): the lock screen's look before
+// anyone has logged in — the NGO stream that is "starting soon". The pixelated wallpaper, floating hearts, the kukabara
 // wordmark and clock, the login window ("login.exe") whose password turns into pixel
 // hearts, a waiting chat, and the power buttons. Colours, wallpaper and language come
 // from theme.conf, written by `angelos sddm install` from the desktop's own theme.
@@ -13,7 +13,7 @@ Rectangle {
     height: Screen.height
     color: pal.desk
 
-    // ---- the theme's settings (theme.conf), with angelOS's NGO defaults ----
+    // ---- the theme's settings (theme.conf), with kukabara's NGO defaults ----
     function conf(key, fallback) {
         const v = typeof config !== "undefined" && config ? config[key] : undefined;
         return v === undefined || v === null || String(v) === "" ? fallback : String(v);
@@ -151,7 +151,7 @@ Rectangle {
     signal succeeded
 
     // ---- background: the wallpaper in big pixels, alive (shaders/sddm_wall), hearts drifting up ----
-    // the desktop's own wallpaper for this screen's shape (walls/, kept in step by angelOS:
+    // the desktop's own wallpaper for this screen's shape (walls/, kept in step by kukabara:
     // `angelos sddm walls`), else the other shape's, else the one copied at install
     readonly property var wallCandidates: {
         const own = portrait ? "walls/tall.jpg" : "walls/wide.jpg", other = portrait ? "walls/wide.jpg" : "walls/tall.jpg";

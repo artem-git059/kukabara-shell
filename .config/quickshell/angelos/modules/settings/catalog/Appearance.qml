@@ -9,7 +9,7 @@ import qs.modules.settings.kit
 
 CatPage {
     heading: I18n.t("Внешний вид", "Appearance")
-    subtitle: I18n.t("Основная тема angelOS и дополнительные светлые и тёмные палитры.", "The original angelOS theme and additional light and dark palettes.")
+    subtitle: I18n.t("Основная тема kukabara и дополнительные светлые и тёмные палитры.", "The original kukabara theme and additional light and dark palettes.")
     Component.onCompleted: BlurConfig.refresh()
     // how the Settings window looks (services/SettingsLook); Golden Gate has System Settings instead
     CatGroup {
@@ -46,7 +46,7 @@ CatPage {
             onToggled: c => Config.settingsUi.p5Silhouette = c
         }
     }
-    // what the whole desktop wears: angelOS classic, Win10, Windose, Stream, or Golden Gate (macOS 27)
+    // what the whole desktop wears: kukabara classic, Win10, Windose, Stream, or Golden Gate (macOS 27)
     CatGroup {
         name: "skin"
         id: skinGroup
@@ -522,7 +522,7 @@ CatPage {
         CatChoice {
             label: I18n.t("Окончание в названиях", "Name ending")
             // suffix-ok: the three endings themselves
-            hint: I18n.t("calendar.exe, .sh или .bin — для красоты, в подписях окошек angelOS", "calendar.exe, .sh or .bin — just for looks, in angelOS's window titles")
+            hint: I18n.t("calendar.exe, .sh или .bin — для красоты, в подписях окошек kukabara", "calendar.exe, .sh or .bin — just for looks, in kukabara's window titles")
             model: I18n.suffixes.map(s => ({
                         "label": "." + s,
                         "value": s
@@ -642,7 +642,7 @@ CatPage {
         }
         CatToggle {
             present: Config.appearance.themeApps
-            label: I18n.t("Qt-приложения в стиле angelOS", "Qt apps in the angelOS look")
+            label: I18n.t("Qt-приложения в стиле kukabara", "Qt apps in the kukabara look")
             hint: I18n.t("Программы на Qt (qBittorrent, kdenlive…) в цветах темы. Открытые меняются сразу, остальные — при запуске.", "Qt apps (qBittorrent, kdenlive…) in the theme's colours. Open ones change at once, others on start.")
             checked: Config.appearance.qtStyle
             onToggled: c => Config.appearance.qtStyle = c

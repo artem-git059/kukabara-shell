@@ -8,7 +8,7 @@ import qs.config
 
 // The lock screen's NGO "stream" (modules/lock/StreamOverlay): how long it has been
 // going and what the chat may talk about.
-//   days     the stream day: day 1 is the day angelOS came, every later day it runs
+//   days     the stream day: day 1 is the day kukabara came, every later day it runs
 //            adds one (~/.local/state/angelos/lock-stream.json)
 //   viewers  grow with the days: nobody on day 1 (a 1 or a 2 now and then), about
 //            1000–1500 by day 30, slower after that
@@ -52,7 +52,7 @@ Singleton {
     function dayKey(d) {
         return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
     }
-    // a new day of angelOS counts once, whenever the shell first sees it
+    // a new day of kukabara counts once, whenever the shell first sees it
     function touch() {
         if (!loaded)
             return;
@@ -89,7 +89,7 @@ Singleton {
                 firstSeen.running = true;
         }
     }
-    // no file yet: day 1 is the day the angelOS config appeared (an old install is not a newcomer)
+    // no file yet: day 1 is the day the kukabara config appeared (an old install is not a newcomer)
     Process {
         id: firstSeen
         command: ["sh", "-c", 'stat -c "%W %Y" "$1" 2>/dev/null', "sh", Config.dir]

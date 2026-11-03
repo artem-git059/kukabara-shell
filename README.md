@@ -1,4 +1,4 @@
-## kukabara-shell - is a fork of angelOS’s dotfiles that receives more frequent updates.
+## kukabara-shell is a fork of the original AngelOS dotfiles that receives more frequent updates.
 <img width="1920" height="1440" alt="kukabara-shell-logo" src="https://github.com/user-attachments/assets/9ad30b4e-b059-46d5-8a6f-661810c483f3" />
 
 ## An Aero theme, like the one in Windows 7 and Vista, has been added.
@@ -15,7 +15,7 @@
 ```bash
 git clone https://github.com/artem-git059/kukabara-shell.git
 
-cd AngelOS-Dotfiles
+cd kukabara-shell
 
 ./install.sh
 ```

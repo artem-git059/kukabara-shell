@@ -3,12 +3,12 @@
 The Golden Gate skin (macOS 27 for people coming from a Mac) puts the focused app's menus —
 File, Edit, View… — into the menu bar at the top of the screen, and they have to work, not just
 look like menus. Wayland has no common way for that and niri ties no menu to a window, so this
-is what apps actually offer and how angelOS gets at it. Checked on CachyOS on 2026-10-04: niri
+is what apps actually offer and how kukabara gets at it. Checked on CachyOS on 2026-10-04: niri
 26.04, Qt 6.11.2 with qt6ct, GTK 3.24.52, GTK 4.22.5, appmenu-gtk-module 25.04, Quickshell 0.3.1.
 
 ## What apps offer
 
-| Toolkit | What it exports | How angelOS finds it |
+| Toolkit | What it exports | How kukabara finds it |
 |---|---|---|
 | Qt 5/6 (qt6ct, the generic Unix theme) | Its `QMenuBar` as `com.canonical.dbusmenu` at `/MenuBar/<n>`, **only if `com.canonical.AppMenu.Registrar` is on the session bus when the app starts**; the bar inside the window disappears then | On Wayland Qt does **not** call `RegisterWindow` (it has no window id to give). The object is found on the app's own bus connections, by the pid niri reports for the focused window. The tray icon's menu (the `Menu` of its `StatusNotifierItem`, `/MenuBar`) is told apart and never taken |
 | GTK 3 with `appmenu-gtk-module` (`gtk-modules` in `settings.ini`) | Every `GtkMenuBar` as a `GMenuModel` (`org.gtk.Menus`) at `/org/appmenu/gtk/window/menus/menubar/<n>`, its actions (`org.gtk.Actions`, prefix `unity.`) on the same object; works on Wayland | The non-empty menubar of the pid. Its action group fills only after the menus are subscribed to (`Start`), so the actions are read after that. A submenu's `submenu-action` is set to true while it shows (the app may update it, as GTK does) |

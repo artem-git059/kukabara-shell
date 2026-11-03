@@ -6,7 +6,7 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 
-// Every theme has its own niri keys (scripts/keyprofile.py): the pixel theme angelOS's own,
+// Every theme has its own niri keys (scripts/keyprofile.py): the pixel theme kukabara's own,
 // Golden Gate the Mac ones (⌘Q ⌘H ⌘M ⌘Tab …, tiling on Super+Alt), both the common file.
 // The profile follows the theme — Settings, the setup wizard, `angelos skin`, the debug
 // panel all just set Config.settingsUi.skin — in one step: the selector cfg/keybinds.kdl is
@@ -66,8 +66,8 @@ Singleton {
                     // this was the first switch since the shell started.
                     root.profile = r.profile || "";
                     root.error = r.error;
-                    console.warn("angelOS keys: the", root.want, "profile was refused, the keys stay as they were:", r.error);
-                    Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-warning", I18n.t("Горячие клавиши темы не переключились", "The theme's shortcuts did not switch"), r.error.slice(-300)]);
+                    console.warn("kukabara keys: the", root.want, "profile was refused, the keys stay as they were:", r.error);
+                    Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-warning", I18n.t("Горячие клавиши темы не переключились", "The theme's shortcuts did not switch"), r.error.slice(-300)]);
                 } else {
                     root.profile = r.profile;
                     if (r.changed)

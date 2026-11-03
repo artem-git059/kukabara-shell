@@ -1,4 +1,4 @@
-// angelOS open: pops up like a Y2K bubble — springs a little past full size, a shine rim from the theme's accent to its second one and a glossy glint fade away.
+// kukabara open: pops up like a Y2K bubble — springs a little past full size, a shine rim from the theme's accent to its second one and a glossy glint fade away.
 vec4 open_color(vec3 coords_geo, vec3 size_geo) {
     float p = niri_clamped_progress;
     // a damped spring: overshoots ~8 %, settles

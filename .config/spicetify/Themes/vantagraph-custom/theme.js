@@ -1,5 +1,5 @@
 // Vantagraph Custom - Core Engine
-// Modified 2026-10-03 by MixaDoDs for angelOS (github.com/MixaDoDs/AngelOS-Dotfiles): waveLoop draws
+// Modified 2026-10-03 by MixaDoDs for kukabara (github.com/MixaDoDs/AngelOS-Dotfiles): waveLoop draws
 // at ~30 fps instead of the monitor rate (Spotify sat at ~150 % CPU). Not Miabeyefendi's code.
 
 (function vantagraph() {

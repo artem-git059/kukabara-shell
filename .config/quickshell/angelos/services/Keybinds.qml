@@ -178,7 +178,7 @@ Singleton {
             "toggle-column-tabbed-display": I18n.t("Колонка вкладками", "Tabbed column"),
             "switch-layout": I18n.t("Раскладка клавиатуры", "Keyboard layout")
         })
-    // angelOS actions that can be put on a key (label, ipc call, icon)
+    // kukabara actions that can be put on a key (label, ipc call, icon)
     readonly property var angelosActions: [
         {
             "id": "launcher",
@@ -194,7 +194,7 @@ Singleton {
         },
         {
             "id": "settings",
-            "label": I18n.t("Настройки angelOS", "angelOS settings"),
+            "label": I18n.t("Настройки kukabara", "kukabara settings"),
             "call": "settings appearance",
             "icon": "gear"
         },
@@ -304,7 +304,7 @@ Singleton {
     // niri actions offered when adding a shortcut
     readonly property var niriActions: ["close-window", "fullscreen-window", "maximize-column", "maximize-window-to-edges", "toggle-window-floating", "toggle-overview", "center-column", "toggle-column-tabbed-display", "switch-preset-column-width", "focus-workspace-previous", "screenshot", "screenshot-screen", "screenshot-window", "power-off-monitors", "show-hotkey-overlay"]
     readonly property var catalog: angelosActions.map(a => ({
-                "label": "angelOS · " + a.label,
+                "label": "kukabara · " + a.label,
                 "action": "spawn-sh " + JSON.stringify(ipc + a.call),
                 "icon": a.icon
             })).concat(niriActions.map(n => ({
@@ -340,8 +340,8 @@ Singleton {
                 const call = (m[1] + m[2]).trim();
                 const known = angelosActions.find(x => x.call === call || x.call.split(" ")[0] === m[1] && !x.call.includes(" "));
                 return {
-                    "label": known ? known.label : (b.title || call).replace(/^angelOS:\s*/, ""),
-                    "detail": "angelOS · " + call,
+                    "label": known ? known.label : (b.title || call).replace(/^kukabara:\s*/, ""),
+                    "detail": "kukabara · " + call,
                     "icon": known ? known.icon : "heart",
                     "appId": ""
                 };

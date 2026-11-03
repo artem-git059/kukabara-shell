@@ -7,7 +7,7 @@ import qs.widgets
 import qs.modules.settings.kit
 
 // A page of the settings catalog (modules/settings/catalog/<Name>.qml) in the looks that draw
-// settings with the pixel widgets — angelOS, Golden Gate, hell's dresses, the setup wizard:
+// settings with the pixel widgets — kukabara, Golden Gate, hell's dresses, the setup wizard:
 // every group a PxGroup, every entry a SettingRow with its control, bound both ways to the
 // entry. ComposedPage and the wizard load it as they loaded a page file (embedded, only, …).
 PxPage {

@@ -469,13 +469,15 @@
           "ru": "Пиксели и сцена",
           "en": "Pixels and scene",
           "icon": "grid",
-          "hintRu": "пиксельные обои, варианты, слои сцены, надпись релиза",
-          "hintEn": "pixel wallpaper, variants, the scene's layers, the release mark",
+          "hintRu": "пиксельные обои, варианты, слои сцены, время суток и звуки, надпись релиза",
+          "hintEn": "pixel wallpaper, variants, the scene's layers, time of day and sounds, the release mark",
           "blocks": [
             "wallpaper/pixel",
             "wallpaper/variants",
             "wallpaper/scene-depth",
-            "wallpaper/scene-behind"
+            "wallpaper/scene-behind",
+            "wallpaper/scene-time",
+            "wallpaper/scene-sounds"
           ],
           "more": [
             "wallpaper/release-mark"
@@ -1168,8 +1170,8 @@
           "ru": "Обновления",
           "en": "Updates",
           "icon": "download",
-          "hintRu": "обновить angelOS, вернуть прежнюю версию",
-          "hintEn": "update angelOS, go back to the previous version",
+          "hintRu": "обновить kukabara, вернуть прежнюю версию",
+          "hintEn": "update kukabara, go back to the previous version",
           "blocks": [
             "updates/status",
             "updates/what-s-new"
@@ -1184,8 +1186,8 @@
           "ru": "О системе",
           "en": "About",
           "icon": "info",
-          "hintRu": "этот компьютер, версия angelOS, сообщить о проблеме",
-          "hintEn": "this computer, the angelOS version, report a problem",
+          "hintRu": "этот компьютер, версия kukabara, сообщить о проблеме",
+          "hintEn": "this computer, the kukabara version, report a problem",
           "blocks": [
             "system/this-computer",
             "system/angelos",
@@ -1540,8 +1542,8 @@
             "ru": "О системе",
             "en": "About",
             "icon": "info",
-            "hintRu": "этот компьютер, версия angelOS, сообщить о проблеме",
-            "hintEn": "this computer, the angelOS version, report a problem",
+            "hintRu": "этот компьютер, версия kukabara, сообщить о проблеме",
+            "hintEn": "this computer, the kukabara version, report a problem",
             "blocks": [
               "system/this-computer",
               "system/angelos",
@@ -1568,8 +1570,8 @@
             "ru": "Обновление ПО",
             "en": "Software Update",
             "icon": "download",
-            "hintRu": "обновить angelOS, вернуть прежнюю версию",
-            "hintEn": "update angelOS, go back to the previous version",
+            "hintRu": "обновить kukabara, вернуть прежнюю версию",
+            "hintEn": "update kukabara, go back to the previous version",
             "blocks": [
               "updates/status",
               "updates/what-s-new"
@@ -2241,8 +2243,8 @@
         "en": "Sponsor",
         "icon": "heart",
         "tint": "#ff4f9a",
-        "hintRu": "поддержать angelOS, стена спонсоров, телеметрия",
-        "hintEn": "support angelOS, the sponsor wall, telemetry",
+        "hintRu": "поддержать kukabara, стена спонсоров, телеметрия",
+        "hintEn": "support kukabara, the sponsor wall, telemetry",
         "pages": [
           {
             "id": "sponsor",

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""fastfetch in angelOS's styles (Settings → System → fastfetch).
+"""fastfetch in kukabara's styles (Settings → System → fastfetch).
 
   fastfetch_style.py apply --style STYLE --emblem-rows JSON --emblem-palette JSON --colors JSON
       writes ~/.config/fastfetch/config.jsonc in that style, its picture in
-      ~/.config/fastfetch/angelos-logo.txt. Only a config angelOS wrote (or the one the
+      ~/.config/fastfetch/angelos-logo.txt. Only a config kukabara wrote (or the one the
       dotfiles shipped) is replaced; the first time, the one that was there is kept as
       config.before-angelos.jsonc. A config of the user's own is left alone.
   fastfetch_style.py restore
@@ -19,7 +19,7 @@ gear with its price (scripts/gear.py): that's what people giggle at, never leave
   compact  the emblem of Settings → Bar → Logo at twice the size, short lines, the gear priced
   angel    the winged heart with the halo and the pill, every reading and the gear's total
   helper   the Y2K corner's angel herself: says hi, the readings, her word on the total
-  receipt  an angelOS store receipt: the paper (with the emblem) is the logo, the readings are
+  receipt  an kukabara store receipt: the paper (with the emblem) is the logo, the readings are
            printed onto it (each paper line leaves the cursor at its margin), ИТОГО at the end
   stream   the emblem on a LIVE webcam, the readings as the chat, the gear as superchats
   window   the emblem and the readings in a Y2K window frame
@@ -50,11 +50,11 @@ LOGO = FF_DIR / "angelos-logo.txt"
 BEFORE = FF_DIR / "config.before-angelos.jsonc"
 ANIM = FF_DIR / "angelos-anim.json"            # what moves (scripts/fastfetch_anim.py)
 FISH = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config")) / "fish" / "conf.d" / "angelos-fastfetch.fish"
-FISH_HOOK = r"""# angelOS: fastfetch's picture moves for a moment when it greets a new terminal
+FISH_HOOK = r"""# kukabara: fastfetch's picture moves for a moment when it greets a new terminal
 # (Settings → System → fastfetch → Animation: scripts/fastfetch_anim.py). Written by
 # scripts/fastfetch_style.py; without angelos-anim.json fastfetch is plain.
 status is-interactive; or return
-function fastfetch --wraps fastfetch --description 'fastfetch (angelOS: its picture moves for a moment)'
+function fastfetch --wraps fastfetch --description 'fastfetch (kukabara: its picture moves for a moment)'
     set -l conf
     set -l spec (set -q XDG_CONFIG_HOME; and echo $XDG_CONFIG_HOME; or echo $HOME/.config)/fastfetch/angelos-anim.json
     set -l term (set -q XDG_DATA_HOME; and echo $XDG_DATA_HOME; or echo $HOME/.local/share)/angelos/terminal
@@ -70,7 +70,7 @@ function fastfetch --wraps fastfetch --description 'fastfetch (angelOS: its pict
     end
 end
 """
-MARK = "// angelOS fastfetch style:"
+MARK = "// kukabara fastfetch style:"
 # the config the dotfiles shipped before the styles: ours to replace
 SHIPPED = "NEEDY GIRL OVERDOSE: KAngel's winged heart"
 STYLES = ("compact", "angel", "helper", "receipt", "passport", "scroll", "bios", "stream", "window", "mini")
@@ -327,7 +327,7 @@ def paper_picture(style, emblem_rows, emblem_pal, colors, hell, lang, text_rows,
     heads = {
         "receipt": ("♡ " + tr(lang, "МАГАЗИН ANGELOS", "ANGELOS STORE") + " ♡", "⛧ " + tr(lang, "ДОГОВОР", "CONTRACT") + " ⛧"),
         "scroll": ("✦ " + tr(lang, "СВИТОК ГЕРОЯ", "THE HERO'S SCROLL") + " ✦", "⛧ " + tr(lang, "СВИТОК ГРЕШНИКА", "THE SINNER'S SCROLL") + " ⛧"),
-        "bios": ("AngelOS BIOS v2004", "⛧ AngelOS BIOS v2004 ⛧"),
+        "bios": ("kukabara BIOS v2004", "⛧ kukabara BIOS v2004 ⛧"),
     }
     head = heads[style][1 if hell else 0]
     if style != "bios":
@@ -335,7 +335,7 @@ def paper_picture(style, emblem_rows, emblem_pal, colors, hell, lang, text_rows,
     lines.append(bg + fg(accent, True) + bg + (" " + head + " " * PAPER)[:PAPER] if style == "bios" else bg + fg(accent, True) + bg + centred(head, PAPER))
     lines[-1] += "\x1b[0m"
     if style == "bios":
-        lines.append(bg + fg(ink) + bg + (" (C) 2004 AngelOS" + " " * PAPER)[:PAPER] + "\x1b[0m")
+        lines.append(bg + fg(ink) + bg + (" (C) 2004 kukabara" + " " * PAPER)[:PAPER] + "\x1b[0m")
         lines.append(blank)
     top = len(lines)
     for _ in range(text_rows):
@@ -381,7 +381,7 @@ def picture(style, emblem_rows, emblem_pal, colors, hell, emblem=""):
         badge = "\x1b[1;38;2;255;255;255m\x1b[48;2;230;33;23m"
         live = badge + (" ⛧ LIVE " if hell else " ● LIVE ") + "\x1b[0m"
         inner = w + 4
-        who = (hell.get("circleWord", "Circle") + " " + hell.get("roman", "")).strip() if hell and hell.get("roman") else tr(lang, "AngelOS-тян", "AngelOS-chan")
+        who = (hell.get("circleWord", "Circle") + " " + hell.get("roman", "")).strip() if hell and hell.get("roman") else tr(lang, "kukabara-тян", "kukabara-chan")
         tail = " " + who + " "
         out = [edge + "╭─" + "\x1b[0m" + live + edge + "─" * (inner - 9) + "╮\x1b[0m"]
         out += [edge + "│\x1b[0m" + " " * inner + edge + "│\x1b[0m"]
@@ -398,7 +398,7 @@ def picture(style, emblem_rows, emblem_pal, colors, hell, emblem=""):
         pal = hell.get("palette") or emblem_pal
         k = 2 if style in ("angel", "compact", "window") else 1
         art, w = half_blocks(scaled(rows, k), pal)
-        head = "⛧ %s %s ⛧" % (hell.get("circleWord", "Circle").upper(), hell.get("roman", "")) if hell.get("roman") else "⛧ AngelOS ⛧"
+        head = "⛧ %s %s ⛧" % (hell.get("circleWord", "Circle").upper(), hell.get("roman", "")) if hell.get("roman") else "⛧ kukabara ⛧"
         name = str(hell.get("name", "")).upper()
         caps = [(fg(hell.get("keys", accent), True) + head + "\x1b[0m", len(head))]
         if hell.get("roman") and name:
@@ -408,12 +408,12 @@ def picture(style, emblem_rows, emblem_pal, colors, hell, emblem=""):
     if style == "angel":
         data = json.loads((ROOT / "data" / "fastfetch" / "angel.json").read_text())
         art, w = half_blocks(data["rows"], data["palette"])
-        word = "✧ AngelOS ✧"
+        word = "✧ kukabara ✧"
         text, W, H, x = logo_text(art, w, [(fg(accent, True) + word + "\x1b[0m", len(word))])
         return text, W, H, {"layers": [layer(data["rows"], data["palette"], 0, x, fx=motion("heart", data["rows"], colors, hell))], "texts": []}
     # compact, window: the Start emblem at twice the size (one pixel was too small to see)
     art, w = half_blocks(scaled(emblem_rows, 2), emblem_pal)
-    word = "AngelOS"
+    word = "kukabara"
     text, W, H, x = logo_text(art, w, [(fg(accent, True) + word + "\x1b[0m", len(word))])
     return text, W, H, {"layers": [layer(emblem_rows, emblem_pal, 0, x, 2, fx=motion("emblem", emblem_rows, colors, hell, emblem))], "texts": []}
 
@@ -508,7 +508,7 @@ def modules(style, colors, hell):
         return [{"type": "command", "key": " ", "text": gear(fmt, nth=i, lang=lang)} for i in range(SLOTS)]
 
     if style == "mini":
-        head = "{#%s}%s AngelOS{#} {#%s}·{#} {user-name}@{host-name}" % (sgr(accent, True), "⛧" if hell else "♡", sgr(dim))
+        head = "{#%s}%s kukabara{#} {#%s}·{#} {user-name}@{host-name}" % (sgr(accent, True), "⛧" if hell else "♡", sgr(dim))
         return [{"type": "title", "format": head}] + circle + [
             {"type": "os", "key": "os", "format": "{pretty-name}"},
             {"type": "uptime", "key": "up", "format": UPTIME},
@@ -522,7 +522,7 @@ def modules(style, colors, hell):
 
     if style == "window":
         bar = "─" * 15
-        name = str(colors.get("windowTitle") or (hell or {}).get("windowTitle") or "AngelOS.exe")
+        name = str(colors.get("windowTitle") or (hell or {}).get("windowTitle") or "kukabara.exe")
         top = "{#%s}╭─{#} {#%s}%s %s{#} {#%s}%s ─ □ ✕{#}" % (sgr(accent), sgr(title, True), "⛧" if hell else "♡", name, sgr(accent), bar)
         side = "│ "
         mods = [{"type": "custom", "format": top},
@@ -783,7 +783,7 @@ def render_all(style, colors, emblem_rows, emblem_pal, logo_path, hell=None, emb
     else:
         pic = picture(style, emblem_rows, emblem_pal, colors, hell, emblem)
         cfg = config(style, colors, (logo_path, pic[1], pic[2]) if pic else None, hell)
-    head = "%s %s\n// Written by angelOS (Settings → System → fastfetch). Pick \"own\" there and this file\n// is yours again (the one you had first is config.before-angelos.jsonc).\n" % (MARK, style)
+    head = "%s %s\n// Written by kukabara (Settings → System → fastfetch). Pick \"own\" there and this file\n// is yours again (the one you had first is config.before-angelos.jsonc).\n" % (MARK, style)
     spec = None
     if pic and seconds > 0:
         pad = cfg["logo"].get("padding", {})

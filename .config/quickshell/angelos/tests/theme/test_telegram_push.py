@@ -69,7 +69,7 @@ class TelegramPush(unittest.TestCase):
         m = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(m)
         m.BASE = Path(tmp.name) / "tg"
-        m.THEME = m.BASE / "angelOS.tdesktop-theme"
+        m.THEME = m.BASE / "kukabara.tdesktop-theme"
         m.STATE = m.BASE / "applied.json"
         m.BASE.mkdir()
         m.THEME.write_bytes(b"theme")

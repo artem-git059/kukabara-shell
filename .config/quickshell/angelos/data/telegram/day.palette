@@ -1,5 +1,5 @@
 // Telegram Desktop's own day palette, every key resolved to a colour: the base
-// scripts/telegram-theme.py recolours into angelOS's theme. From telegramdesktop/tdesktop
+// scripts/telegram-theme.py recolours into kukabara's theme. From telegramdesktop/tdesktop
 // (Telegram/Resources/night.tdesktop-theme) and desktop-app/lib_ui (ui/colors.palette), GPLv3.
 windowBg: #ffffff;
 windowFg: #000000;

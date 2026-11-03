@@ -5,7 +5,7 @@
                                scene.json gets "twilight"
 
 Run after scripts/scene-night.py (it reads the night's neutral frame). No picture of the hour is
-needed: angelOS's own grade over the day's colours, in OKLab, as the night has its own deep blue.
+needed: kukabara's own grade over the day's colours, in OKLab, as the night has its own deep blue.
 
   dusk   the golden hour going blue: everything a little darker, what the sun lights golden, the
          shadows violet; the open sky peach at the horizon, pink, dusky violet at the top; the

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# The gaming edition of angelOS: what games need to run (Steam, Proton, the 32-bit drivers),
+# The gaming edition of kukabara: what games need to run (Steam, Proton, the 32-bit drivers),
 # what makes them faster (gamemode, MangoHud, gamescope, sched-ext, a big shader cache; the
 # boost itself is .local/bin/niri-game-mode, there for everyone; OBS's game capture when OBS
 # comes from the repositories) and what keeps the system whole (a snapshot before every pacman transaction, bootable from the boot menu on btrfs).
@@ -109,7 +109,7 @@ sudo pacman -Syu --needed "${noconfirm[@]}" "${PKGS[@]}"
 # shader caches: compiled once, kept (NVIDIA's own cap of 1 GB threw them away mid-game)
 mkdir -p "$(dirname "$ENV_FILE")"
 cat >"$ENV_FILE" <<'EOF'
-# angelOS gaming edition (scripts/game-setup.sh): shader caches big enough to keep
+# kukabara gaming edition (scripts/game-setup.sh): shader caches big enough to keep
 __GL_SHADER_DISK_CACHE_SIZE=10737418240
 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1
 MESA_SHADER_CACHE_MAX_SIZE=10G

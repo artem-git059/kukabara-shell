@@ -3,14 +3,14 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 
-// angelOS's live lens, a process of its own (services/Lens starts it when Settings →
+// kukabara's live lens, a process of its own (services/Lens starts it when Settings →
 // Keyboard and mouse → Lens is "live"): a round (or square) glass beside the pointer
 // that magnifies what is around it, frame by frame (ScreencopyView). Beside it, not on
 // it: niri's frame of the screen has the lens in it too, so a glass over the very spot
 // it shows would show itself — a tunnel. It moves to the other side near an edge.
 // Its own process because ScreencopyView can take Quickshell down (Qt Wayland, two
 // monitors; in 0.3.2 a view made again after one went) — one view per process lifetime,
-// and if it falls only the lens goes, the shell stays. No angelOS modules here (they
+// and if it falls only the lens goes, the shell stays. No kukabara modules here (they
 // would read and write settings.json from a second process): all it needs comes in
 // ANGELOS_LENS, JSON — screen, x, y, zoom, size, shape, crisp, colours, control, shot.
 // Inside: the wheel zooms, Shift+wheel resizes, Esc / Q / a right click closes. The
@@ -260,7 +260,7 @@ ShellRoot {
                 e.accepted = true;
             }
         }
-        // the shell's RightClickGuard (no angelOS modules in this process): Qt 6.11
+        // the shell's RightClickGuard (no kukabara modules in this process): Qt 6.11
         // segfaults on a right press on a window's very first pixel with nothing focused
         MouseArea {
             z: -1

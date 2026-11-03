@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Default applications for angelOS settings.
+"""Default applications for kukabara settings.
 
   default-apps.py list [lang]          -> JSON {category: {current, candidates:[{id,name,icon}]}}
   default-apps.py set CATEGORY ID      -> make ID (a .desktop id) the default for the category
@@ -10,7 +10,7 @@
   default-apps.py open-files [DIR]     -> the default file manager on DIR (Mod+E, `angelos files`; home)
 
 The file manager also answers «show in folder» (org.freedesktop.FileManager1, browsers and GTK
-apps): one that ships no D-Bus service of its own (Strata, installed per user) gets angelOS's in
+apps): one that ships no D-Bus service of its own (Strata, installed per user) gets kukabara's in
 ~/.local/share/dbus-1/services when it becomes the default; another default moves that file into
 the backup, and the system's provider (Nautilus) answers again.
 
@@ -42,7 +42,7 @@ CATEGORIES = {
 HOME = Path.home()
 RU = (os.environ.get("ANGELOS_LANG") or os.environ.get("LANG", "ru")).startswith("ru")
 # who takes over when the default browser isn't installed: the catalog's browsers first
-# file managers whose «show in folder» angelOS sets up per user: desktop id -> its service's argument
+# file managers whose «show in folder» kukabara sets up per user: desktop id -> its service's argument
 FILE_MANAGER1 = {"io.github.lgse.Strata.desktop": "--gapplication-service"}
 DBUS_SERVICES = Path(os.environ.get("XDG_DATA_HOME") or HOME / ".local/share") / "dbus-1/services"
 BROWSERS = ["helium.desktop", "firefox.desktop", "org.mozilla.firefox.desktop", "chromium.desktop",
@@ -182,7 +182,7 @@ def open_browser():
         os.execvp("helium-browser", ["helium-browser", "--profile-directory=Default"])
     path = desktop_file(did) if did else None
     if not path:
-        subprocess.run(["notify-send", "-i", "dialog-warning", "angelOS",
+        subprocess.run(["notify-send", "-i", "dialog-warning", "kukabara",
                         "Браузер не установлен (Настройки → Обновления → программы)" if RU else
                         "No browser installed (Settings → Updates → the apps)"], stderr=subprocess.DEVNULL)
         raise SystemExit(1)

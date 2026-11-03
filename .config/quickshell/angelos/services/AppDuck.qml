@@ -6,7 +6,7 @@ import Quickshell.Io
 import qs.config
 
 // Programs go quiet while hell's circles change (services/CircleFx): every stream the mixer
-// lists (Audio.appStreams — not angelOS's own sounds) slides to 0 as the dark comes down, and
+// lists (Audio.appStreams — not kukabara's own sounds) slides to 0 as the dark comes down, and
 // once the dark has lifted climbs slowly back to where its fader was, on a power curve (quiet
 // for a while, then the swell). Y2K → System sounds → "Programs quiet between circles".
 //

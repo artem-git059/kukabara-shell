@@ -5,7 +5,7 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 
-// angelOS defaults for Nautilus (scripts/nautilus-setup.py): «Open in terminal»
+// kukabara defaults for Nautilus (scripts/nautilus-setup.py): «Open in terminal»
 // and mediafix in the context menu, plus the preference defaults. Applied once
 // on the first run; Settings → Default apps can re-apply or remove them.
 Singleton {
@@ -19,7 +19,7 @@ Singleton {
     // background: what changed since shows after a restart (Settings says so, with the button)
     property bool needsRestart: false
     readonly property bool running: !!status.running
-    // the angelOS look changed (ThemeExport rendered the GTK 4 CSS anew) while Nautilus ran.
+    // the kukabara look changed (ThemeExport rendered the GTK 4 CSS anew) while Nautilus ran.
     // Nothing of it on the screen: it quits at once (`nautilus -q`; the next window starts it
     // in the new look). Windows of it open: it quits when the last one closes — never under them.
     property bool _stale: false

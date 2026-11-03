@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # «Позвать помощника» (Settings → Maintenance → Helper): something broke → an AI agent the user
 # picked (Claude Code, Codex or opencode, settings.json system.helpAgent) opens in a terminal with
-# this machine's logs already gathered and angelOS's rules for it: plain words, a snapshot first,
+# this machine's logs already gathered and kukabara's rules for it: plain words, a snapshot first,
 # a question before every change, the user's own files left alone. The user logs in to their own
-# account in the agent; angelOS ships no keys.
+# account in the agent; kukabara ships no keys.
 #
 #   help-agent.sh [--context FILE] [TEXT…]
 #   help-agent.sh --which          which account would open (each one asked in turn), nothing opened
@@ -140,15 +140,15 @@ c hardware.txt sh -c 'uname -srm; grep -h PRETTY_NAME /etc/os-release; echo; lsp
 printf '%s\n' "${TASK:-$(_ '(not said: ask)' '(не сказал: спроси)')}" >"$DIR/context/task.txt"
 
 if [[ -f /etc/snapper/configs/root ]]; then
-  SNAP="Before the first change to the system take a snapshot and say so: \`sudo snapper -c root create -c number --userdata important=yes -d 'angelOS helper: before <what>'\`. It is undone with \`sudo snapper -c root undochange <n>..0\` or by booting the snapshot from the boot menu."
+  SNAP="Before the first change to the system take a snapshot and say so: \`sudo snapper -c root create -c number --userdata important=yes -d 'kukabara helper: before <what>'\`. It is undone with \`sudo snapper -c root undochange <n>..0\` or by booting the snapshot from the boot menu."
 else
   SNAP="This system has no snapshots (snapper is not set up). Before changing a file, copy it to ~/backups/<what>-<date-time>/ (a new folder each time) and say where."
 fi
 cat >"$DIR/AGENTS.md" <<EOF
-# You are the angelOS helper
+# You are the kukabara helper
 
-The user pressed «Позвать помощника» in angelOS (Settings → Maintenance) because something broke.
-angelOS is a desktop for the niri compositor on Arch Linux / CachyOS: a Quickshell (QML) shell.
+The user pressed «Позвать помощника» in kukabara (Settings → Maintenance) because something broke.
+kukabara is a desktop for the niri compositor on Arch Linux / CachyOS: a Quickshell (QML) shell.
 
 ## How to talk
 - Speak $(_ English Russian), in plain words, short. No jargon without a word of explanation.
@@ -180,17 +180,17 @@ angelOS is a desktop for the niri compositor on Arch Linux / CachyOS: a Quickshe
    what keeps a mod loader (BepInEx, CET, RED4ext, UE4SS, ReShade…) on — add to such lines, never
    drop parts of them; mod files are moved aside, not deleted. Asked to turn a mod on: help with
    its loader, the override and its config.
-8. angelOS's own code (~/.config/quickshell/angelos, ~/.local/bin) comes with its updates: don't edit
+8. kukabara's own code (~/.config/quickshell/angelos, ~/.local/bin) comes with its updates: don't edit
    it. A bug there: tell the user and offer an issue text for https://github.com/artem-git059/kukabara-shell/issues
 9. At the end: what you changed, and how to undo it.
 10. Keep progress.md here up to date as you go: the cause found, each change made and how to undo it.
    If your limit runs out, another helper reads it and goes on from there.
 
-## angelOS, where things are
+## kukabara, where things are
 - settings: ~/.config/angelos/settings.json (the shell writes it; change it through Settings when you can)
 - restart the shell: \`angelos restart\`; its log: \`journalctl --user -u angelos.service -b\`
 - niri: ~/.config/niri/config.kdl (+ cfg/*.kdl); check with \`niri validate\`
-- updates of angelOS: Settings → Updates; the system: \`sudo pacman -Syu\`
+- updates of kukabara: Settings → Updates; the system: \`sudo pacman -Syu\`
 - games: \`python3 ~/.config/quickshell/angelos/scripts/game-doctor.py scan | reset-prefix ID | clear-shaders ID|all | ge-proton\`
   (a prefix reset moves it aside, never deletes). A game's Proton and launch options are the user's pick in Steam.
 EOF

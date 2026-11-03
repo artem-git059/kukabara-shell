@@ -1607,7 +1607,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 y: parent.height * 0.82
                 kind: "tiny"
-                text: "angelOS"
+                text: "kukabara"
                 color: Qt.alpha(root.ink, 0.7)
             }
         }
@@ -1729,7 +1729,7 @@ Item {
             visible: root.bar
             anchors.horizontalCenter: parent.horizontalCenter
             y: root.taco ? parent.height - root.k * 8 : root.k * 113
-            text: "angelOS"
+            text: "kukabara"
             kind: "tiny"
             color: root.trim
         }
@@ -1994,7 +1994,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
             anchors.bottomMargin: root.k * 3
-            text: "angelOS"
+            text: "kukabara"
             kind: "tiny"
             color: root.trim
         }

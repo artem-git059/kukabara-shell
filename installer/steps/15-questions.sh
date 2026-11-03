@@ -1,9 +1,9 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # ── Interactive questions ────────────────────────────────────────────────────
 
-# the setup wizard asks the rest on the first login (angelOS, full profile): the look, the game,
+# the setup wizard asks the rest on the first login (kukabara, full profile): the look, the game,
 # the keyboard layouts, the apps (and the browser), voice input — so this run doesn't
 wizard_next() {
   [[ "${DESKTOP_SHELL:-angelos}" == angelos && "$MODE" == full ]]
@@ -11,7 +11,7 @@ wizard_next() {
 
 # Asked here: only what the system needs before the first login (the rest is the setup wizard's).
 # The profile (DOTFILES_MODE=tech) and plain niri (DESKTOP_SHELL=none) are for those who know
-# them: set from outside, never asked — whoever runs this came for angelOS
+# them: set from outside, never asked — whoever runs this came for kukabara
 ask_profile() {
   ((INTERACTIVE)) || return 0
   if wizard_next; then
@@ -37,12 +37,12 @@ ask_profile() {
     dm="$(basename "$(readlink /etc/systemd/system/display-manager.service 2>/dev/null)" .service 2>/dev/null)"
     if [[ -n "$dm" && "$dm" != sddm ]]; then
       # GDM, plasmalogin and the others list the niri session already: keeping them is the default
-      ui_confirm "$(_ "The angelOS login screen (SDDM) instead of your $dm? ($dm is turned off; niri is in its list either way)" \
-                      "Экран входа angelOS (SDDM) вместо твоего $dm? ($dm выключится; niri в его списке есть и так)")" n \
+      ui_confirm "$(_ "The kukabara login screen (SDDM) instead of your $dm? ($dm is turned off; niri is in its list either way)" \
+                      "Экран входа kukabara (SDDM) вместо твоего $dm? ($dm выключится; niri в его списке есть и так)")" n \
         && INSTALL_SDDM=1 || INSTALL_SDDM=0
     else
-      ui_confirm "$(_ 'The angelOS login screen (pixel, with your wallpaper)?' \
-                      'Экран входа angelOS (пиксельный, с твоими обоями)?')" "$( ((INSTALL_SDDM)) && echo y || echo n)" \
+      ui_confirm "$(_ 'The kukabara login screen (pixel, with your wallpaper)?' \
+                      'Экран входа kukabara (пиксельный, с твоими обоями)?')" "$( ((INSTALL_SDDM)) && echo y || echo n)" \
         && INSTALL_SDDM=1 || INSTALL_SDDM=0
     fi
     # shellcheck disable=SC2034  # the DM question in sddm_enable is answered here
@@ -132,8 +132,8 @@ review() {
     wanted_packages
     n="$(printf '%s\n' "${PACKAGES[@]}" | xargs -r pacman -T 2>/dev/null | wc -l || true)"
     mb="$(pacman -Sp --needed --print-format '%s' "${PACKAGES[@]}" 2>/dev/null | awk '{s+=$1} END {printf "%d", s/1048576}' || true)"
-    lines+=("$(_ "• the system is updated (pacman -Syu) and $n packages of angelOS come${mb:+ (~$mb MB)}" \
-                 "• система обновится (pacman -Syu) и встанут $n пакетов angelOS${mb:+ (~$mb МБ)}")")
+    lines+=("$(_ "• the system is updated (pacman -Syu) and $n packages of kukabara come${mb:+ (~$mb MB)}" \
+                 "• система обновится (pacman -Syu) и встанут $n пакетов kukabara${mb:+ (~$mb МБ)}")")
   fi
   [[ "$MODE" == full ]] && for id in "${WALLPAPER_LIST[@]}"; do
     IFS='|' read -r id count size en ru <<<"$id"
@@ -145,7 +145,7 @@ review() {
                  "• Arch: репозитории автора [cachyos] (ниже арчевых) и [multilib], с ключом подписи CachyOS")")
   if [[ "$INSTALL_SDDM" == 1 ]]; then
     dm="$(basename "$(readlink /etc/systemd/system/display-manager.service 2>/dev/null)" .service 2>/dev/null)"
-    lines+=("$(_ "• the angelOS login screen (SDDM)${dm:+, $dm is turned off}" "• экран входа angelOS (SDDM)${dm:+, $dm выключится}")")
+    lines+=("$(_ "• the kukabara login screen (SDDM)${dm:+, $dm is turned off}" "• экран входа kukabara (SDDM)${dm:+, $dm выключится}")")
   fi
   [[ "$FISH_DEFAULT" == 1 ]] && [[ "$(getent passwd "$(id -un)" | cut -d: -f7)" != */fish ]] &&
     lines+=("$(_ '• fish becomes your login shell' '• fish станет оболочкой входа')")
@@ -162,8 +162,8 @@ review() {
     done < <(bash "$ROOT/.config/quickshell/angelos/scripts/game-setup.sh" --plan 2>/dev/null || true)
   fi
   [[ "${ANGEL_NIRI:-1}" == 1 ]] &&
-    lines+=("$(_ "• angel-niri, angelOS's own niri, is downloaded (~10 MB) and starts from the next login; the niri package stays" \
-                 "• скачается angel-niri, свой niri angelOS (~10 МБ), и запустится со следующего входа; niri из пакета остаётся")")
+    lines+=("$(_ "• angel-niri, kukabara's own niri, is downloaded (~10 MB) and starts from the next login; the niri package stays" \
+                 "• скачается angel-niri, свой niri kukabara (~10 МБ), и запустится со следующего входа; niri из пакета остаётся")")
   lines+=("$(_ "• your configs that differ are kept or backed up (*.bak.$STAMP); a log: ${INSTALL_LOG/#$HOME_DIR/\~}" \
                "• твои отличающиеся конфиги остаются или уходят в копию (*.bak.$STAMP); журнал: ${INSTALL_LOG/#$HOME_DIR/\~}")")
   lines+=("$(_ '• about 10–30 minutes, mostly the download; the admin password is asked once' \

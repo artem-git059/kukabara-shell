@@ -5,7 +5,7 @@
   angelos updates check               fetch and say what's new
   angelos updates update              update, the log as it goes, then the outcome (exit 1 on a failure)
 
-With angelOS running, the shell does the work (as its Updates page does, so the page, the
+With kukabara running, the shell does the work (as its Updates page does, so the page, the
 restart question and the record agree) and this follows it over IPC until the run ends.
 Without it — or a shell too old to answer — scripts/dotfiles-update.sh runs right here.
 """
@@ -180,8 +180,8 @@ def main(argv):
     if cmd == "status":
         s = status()
         if s is None:
-            print(t("angelOS не отвечает — `angelos updates check` проверит и без него.",
-                    "angelOS doesn't answer — `angelos updates check` works without it."), file=sys.stderr)
+            print(t("kukabara не отвечает — `angelos updates check` проверит и без него.",
+                    "kukabara doesn't answer — `angelos updates check` works without it."), file=sys.stderr)
             return 1
         print(json.dumps(s, ensure_ascii=False, indent=1) if as_json else summary(s))
         return 0
@@ -206,7 +206,7 @@ def main(argv):
         return 1 if s.get("error") else 0
     if cmd in ("prompt", "later", "restart"):
         out = ipc(cmd)
-        print(out or t("angelOS не отвечает", "angelOS doesn't answer"))
+        print(out or t("kukabara не отвечает", "kukabara doesn't answer"))
         return 0 if out else 1
     print(__doc__.strip().split("\n\n")[0])
     return 2

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Pulse hook dispatcher — angelOS port of lowcache/claude-companion (MIT).
+"""Pulse hook dispatcher — kukabara port of lowcache/claude-companion (MIT).
 
 Original: https://github.com/lowcache/noctalia-claude-plugin — transport changed from
-`noctalia msg plugin …` to angelOS IPC: `qs -c angelos ipc call claude event <event> <payload>`.
+`noctalia msg plugin …` to kukabara IPC: `qs -c angelos ipc call claude event <event> <payload>`.
 
 
 Bridges a Claude Code lifecycle hook to the pulse aggregator service, enriching the

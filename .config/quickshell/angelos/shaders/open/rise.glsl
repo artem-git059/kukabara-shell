@@ -1,4 +1,4 @@
-// angelOS open: unfolds up out of the taskbar, the lower part widening last (the reverse of "Into the bar").
+// kukabara open: unfolds up out of the taskbar, the lower part widening last (the reverse of "Into the bar").
 vec4 open_color(vec3 coords_geo, vec3 size_geo) {
     float p = niri_clamped_progress;
     float c = (1.0 - p) * (1.0 - p);

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS: a picture dragged from a browser onto the Halo's shelf, into a file.
+"""kukabara: a picture dragged from a browser onto the Halo's shelf, into a file.
 
   shelf-fetch.py OUT_DIR [REFERER] [--name NAME] < source
 

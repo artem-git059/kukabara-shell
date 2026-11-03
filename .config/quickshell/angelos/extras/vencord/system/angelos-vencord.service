@@ -1,5 +1,5 @@
 [Unit]
-Description=angelOS: Vencord back into the system's Discord after its update
+Description=kukabara: Vencord back into the system's Discord after its update
 ConditionPathExists=/usr/local/libexec/angelos-vencord
 
 [Service]

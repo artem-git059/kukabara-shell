@@ -6,10 +6,10 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 
-// Community Plugins: angelOS's one catalog of plugins (Settings → Plugins, the launcher's
+// Community Plugins: kukabara's one catalog of plugins (Settings → Plugins, the launcher's
 // "plugins …"). The approved entries of the official registry next to what is installed —
 // bundled, from the community, your own — with install, update, rollback (scripts/
-// community-plugins.py). Part of angelOS, not a plugin: always there, nothing to remove.
+// community-plugins.py). Part of kukabara, not a plugin: always there, nothing to remove.
 //
 // Updates: checked once a day (Config.plugins.autoCheck), a notification says which ones are
 // there and updates them on a click. Before an update the installed copy becomes a snapshot;
@@ -71,7 +71,7 @@ Singleton {
         const u = updates.find(e => e.id === id);
         return u ? u.version : "";
     }
-    // where a plugin came from: bundled with angelOS, the community catalog, or yours (Studio, by hand)
+    // where a plugin came from: bundled with kukabara, the community catalog, or yours (Studio, by hand)
     function origin(p) {
         if (!p)
             return "";
@@ -191,7 +191,7 @@ Singleton {
                 Qt.callLater(root._next);
                 return;
             }
-            console.warn("angelOS community plugins:", v.id, "does not load:", why);
+            console.warn("kukabara community plugins:", v.id, "does not load:", why);
             root.error = root._name(v.id) + " v" + v.version + I18n.t(" не загрузился: ", " does not load: ") + why;
             if (v.update) {
                 root.failed = root.failed.concat([v.id]);
@@ -315,7 +315,7 @@ Singleton {
                 Plugins.setLoadDir(r.id, r.loadDir);
                 root.message = I18n.t("Вернул прежнюю версию: ", "Back to the earlier version: ") + root._name(r.id) + (r.version ? " v" + r.version : "");
                 if (root.failed.includes(r.id))
-                    Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-warning", I18n.t("Обновление плагина откатилось", "A plugin update was rolled back"), root.error]);
+                    Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-warning", I18n.t("Обновление плагина откатилось", "A plugin update was rolled back"), root.error]);
             } catch (e) {
                 root.error = String(e);
             }
@@ -331,7 +331,7 @@ Singleton {
             return;
         Config.plugins.notifiedFor = ids;
         const names = updates.map(e => _name(e.id) + " " + e.version).join(", ");
-        notifier.command = ["notify-send", "-a", "angelOS", "-i", "system-software-update", "--wait", "-A", "update=" + I18n.t("Обновить", "Update"), "-A", "open=" + I18n.t("Подробнее", "Details"), I18n.t("Обновления плагинов: ", "Plugin updates: ") + updates.length, names];
+        notifier.command = ["notify-send", "-a", "kukabara", "-i", "system-software-update", "--wait", "-A", "update=" + I18n.t("Обновить", "Update"), "-A", "open=" + I18n.t("Подробнее", "Details"), I18n.t("Обновления плагинов: ", "Plugin updates: ") + updates.length, names];
         notifier.running = true;
     }
     Process {
@@ -358,7 +358,7 @@ Singleton {
     }
 
     // ---- once: the old stand-alone Community Store plugin steps aside ----
-    // its catalog, updates and launcher are angelOS's own now (two lists of the same plugins
+    // its catalog, updates and launcher are kukabara's own now (two lists of the same plugins
     // were one too many). Its folder becomes a snapshot (plugin-backups/community-store), its
     // settings carry over: auto-update on means the daily check stays on.
     Timer {

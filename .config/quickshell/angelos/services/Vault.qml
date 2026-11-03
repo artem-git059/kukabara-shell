@@ -415,7 +415,7 @@ Singleton {
     }
     function say(title, body) {
         if (!Shell.dev)
-            Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-password", "-t", "4000", title, body || ""]);
+            Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-password", "-t", "4000", title, body || ""]);
     }
     // the first sign-in and the CLI's install are a terminal's business
     function setup(id, what) {

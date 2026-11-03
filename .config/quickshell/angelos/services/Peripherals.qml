@@ -422,7 +422,7 @@ Singleton {
             else if (rank[d.level] > rank[_told[d.id] || "ok"]) {
                 _told[d.id] = d.level;
                 if (c.alerts && !Shell.locked)
-                    Quickshell.execDetached(["notify-send", "-a", "angelOS", "-u", d.level === "low" ? "normal" : "critical", "-h", "string:x-angelos-sound:" + (d.level === "low" ? "notify" : "error"), "-i", iconDir + (d.level === "low" ? "battery-low.svg" : "battery-empty.svg"), d.name + ": " + d.percent + " %", d.level === "low" ? I18n.t("Пора на зарядку ♡", "Time to charge ♡") : I18n.t("Почти пусто. Заряди, пока не отключилось.", "Almost empty. Charge it before it goes off.")]);
+                    Quickshell.execDetached(["notify-send", "-a", "kukabara", "-u", d.level === "low" ? "normal" : "critical", "-h", "string:x-angelos-sound:" + (d.level === "low" ? "notify" : "error"), "-i", iconDir + (d.level === "low" ? "battery-low.svg" : "battery-empty.svg"), d.name + ": " + d.percent + " %", d.level === "low" ? I18n.t("Пора на зарядку ♡", "Time to charge ♡") : I18n.t("Почти пусто. Заряди, пока не отключилось.", "Almost empty. Charge it before it goes off.")]);
                 root.lowReached(d, d.level);
             }
             if (!d.full)
@@ -430,7 +430,7 @@ Singleton {
             else if (!_fullTold[d.id]) {
                 _fullTold[d.id] = true;
                 if (c.fullAlert && !Shell.locked)
-                    Quickshell.execDetached(["notify-send", "-a", "angelOS", "-h", "string:x-angelos-sound:notify", d.name + ": 100 %", I18n.t("Заряжено, можно снимать с провода.", "Charged, it can come off the cable.")]);
+                    Quickshell.execDetached(["notify-send", "-a", "kukabara", "-h", "string:x-angelos-sound:notify", d.name + ": 100 %", I18n.t("Заряжено, можно снимать с провода.", "Charged, it can come off the cable.")]);
             }
         }
     }

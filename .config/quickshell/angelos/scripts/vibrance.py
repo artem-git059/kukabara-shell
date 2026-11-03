@@ -49,7 +49,7 @@ def binary_path(ver):
 
 
 def fetch(url, sha=None):
-    req = urllib.request.Request(url, headers={"User-Agent": "angelOS"})
+    req = urllib.request.Request(url, headers={"User-Agent": "kukabara"})
     with urllib.request.urlopen(req, timeout=60) as r:
         data = r.read()
     if sha and hashlib.sha256(data).hexdigest() != sha:

@@ -94,7 +94,7 @@ Singleton {
                 if (r && r.path) {
                     root.last = r.path;
                     Capture.saved(r.path);
-                    Quickshell.execDetached(["notify-send", "-a", "angelOS", I18n.t("Таймлапс готов", "Timelapse ready"), r.path]);
+                    Quickshell.execDetached(["notify-send", "-a", "kukabara", I18n.t("Таймлапс готов", "Timelapse ready"), r.path]);
                 } else if (r && r.error && r.error !== "none")
                     console.warn("Timelapse:", r.error);
             }

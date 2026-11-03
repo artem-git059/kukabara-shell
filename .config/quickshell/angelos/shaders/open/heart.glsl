@@ -1,4 +1,4 @@
-// angelOS open: the window appears through a growing heart with a rim in the theme's accent.
+// kukabara open: the window appears through a growing heart with a rim in the theme's accent.
 float angelos_heart(vec2 q) {
     float a = q.x * q.x + q.y * q.y - 1.0;
     return a * a * a - q.x * q.x * q.y * q.y * q.y;

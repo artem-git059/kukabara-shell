@@ -63,7 +63,7 @@ launcher() {
   mkdir -p "${BIN%/*}" "$APPS"
   cat >"$BIN" <<'EOF'
 #!/bin/sh
-# qThrone, portable in ~/.local/opt/qThrone (angelOS's scripts/qthrone-install.sh): no -appdata, so
+# qThrone, portable in ~/.local/opt/qThrone (kukabara's scripts/qthrone-install.sh): no -appdata, so
 # its own updater works; settings in ~/.local/opt/qThrone/config.
 # For TUN qThrone gives its core root through pkexec, and pkexec refuses (exit 127) when $SHELL is
 # not in /etc/shells — after every update the core is new and asks again.

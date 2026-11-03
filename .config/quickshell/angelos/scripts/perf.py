@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""`angelos perf` — what angelOS spends while it runs, and where.
+"""`angelos perf` — what kukabara spends while it runs, and where.
 
   angelos perf [seconds]             a sample of the running shell (10 s): CPU and wake-ups by
                                      thread, its helper processes, memory, the frames each window
@@ -45,7 +45,7 @@ def qs():
 
 
 def quickshell():
-    """The quickshell binary and the variables it needs: the system one, else angelOS's own copy
+    """The quickshell binary and the variables it needs: the system one, else kukabara's own copy
     (~/.local/opt — the `qs` wrapper finds it through $HOME, which a stand changes)."""
     if os.path.exists("/usr/bin/quickshell"):
         return "/usr/bin/quickshell", {}
@@ -369,7 +369,7 @@ def check_budget(r, path):
 
 def show(r):
     sh = r.get("shell") or {}
-    print(t("angelOS за %.0f с (PID %d)" % (r["seconds"], r["pid"]), "angelOS over %.0f s (PID %d)" % (r["seconds"], r["pid"])))
+    print(t("kukabara за %.0f с (PID %d)" % (r["seconds"], r["pid"]), "kukabara over %.0f s (PID %d)" % (r["seconds"], r["pid"])))
     print(t("  CPU %.1f %%, пробуждений %.0f/с; помощники ещё %.1f %% (завершённые)" % (r["cpu"], r["wakeups"], r["childCpu"]),
             "  CPU %.1f %%, %.0f wake-ups/s; finished helpers another %.1f %%" % (r["cpu"], r["wakeups"], r["childCpu"])))
     print(t("  память: %.0f МБ (PSS), помощники %.0f МБ, процессов запущено: %d" % (r["pssMB"], r["helpersPssMB"], r["started"]),
@@ -479,7 +479,7 @@ def main(argv):
         else:
             pid = int(pid) if pid else shell_pid()
             if not pid:
-                die(t("angelOS не запущен", "angelOS is not running"))
+                die(t("kukabara не запущен", "kukabara is not running"))
             env = os.environ.copy()
         if want_profile:
             out = out or os.path.join(tempfile.gettempdir(), "angelos-perf-%d.qtd" % int(time.time()))

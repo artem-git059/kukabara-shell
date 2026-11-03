@@ -1,6 +1,6 @@
 #!/usr/bin/python3 -I
 """What install.sh puts into the system for the USB bridge, worked out from the device
-descriptions angelOS ships (data/devices): the bridge's list of devices and the udev rule.
+descriptions kukabara ships (data/devices): the bridge's list of devices and the udev rule.
 Only the shipped descriptions count: a file in a user's own folder never widens what root
 installs.   gen.py DATA_DIR allow | rule | ifaces"""
 import json
@@ -37,8 +37,8 @@ def allow(devs):
 
 def rule(devs):
     lines = [
-        "# angelOS: the USB bridge (extras/usb-bridge; docs/devices.md, «Доступ»). Written by its",
-        "# install.sh from the device descriptions angelOS ships; do not edit, an update writes it again.",
+        "# kukabara: the USB bridge (extras/usb-bridge; docs/devices.md, «Доступ»). Written by its",
+        "# install.sh from the device descriptions kukabara ships; do not edit, an update writes it again.",
         "#",
         "# For each device below:",
         "#   - its USB node goes to the group angelos-usb, whose only member is the bridge's own system",

@@ -10,7 +10,7 @@ and stand-in zenity; the session's own portal is never asked.
   failed       the portal couldn't show it (response 2): zenity is asked instead
   zenity       no portal on the bus: zenity
   none         no portal, no zenity, no kdialog: exit 2 and why — the avatar button used to do
-               nothing at all when zenity (never installed by angelOS) was missing
+               nothing at all when zenity (never installed by kukabara) was missing
   remember     the next chooser opens in the folder of the last pick (per --remember key), not ~
   start        --start DIR wins over the remembered folder; zenity gets it as --filename=DIR/
   multi        --multi: the portal is asked for several, every path printed on its own line
@@ -77,7 +77,7 @@ def check(name, ok, detail=""):
 def pick(zenity=False, opts=()):
     path = f"{withz}:{bare}" if zenity else str(bare)
     (tmp / "zenity-args").unlink(missing_ok=True)
-    r = subprocess.run([sys.executable, str(SCRIPT), *opts, "angelOS — аватарка", "Картинки", "*.png", "*.jpg"],
+    r = subprocess.run([sys.executable, str(SCRIPT), *opts, "kukabara — аватарка", "Картинки", "*.png", "*.jpg"],
                        env=dict(os.environ, PATH=path), capture_output=True, text=True, timeout=20)
     return r.returncode, r.stdout.strip(), r.stderr
 
@@ -93,7 +93,7 @@ rc, out, err = pick()
 call = json.loads(p.stdout.readline())
 p.terminate()
 check("portal", rc == 0 and out == "/home/me/My Pictures/angel.png", f"rc={rc} out={out!r} {err}")
-check("portal: title and filters", call["title"] == "angelOS — аватарка" and call["filters"] == [["Картинки", [[0, "*.png"], [0, "*.jpg"]]]], str(call))
+check("portal: title and filters", call["title"] == "kukabara — аватарка" and call["filters"] == [["Картинки", [[0, "*.png"], [0, "*.jpg"]]]], str(call))
 
 p = portal(1)
 rc, out, err = pick(zenity=True)

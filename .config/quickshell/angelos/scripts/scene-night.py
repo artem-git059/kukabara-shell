@@ -11,7 +11,7 @@ parallax, the clouds and the depth text all keep working, and day and night shar
 
   colour   for each colour of the scene's palette, the median the night picture has where the
            day's neutral frame shows it (the CRT's screen left out: it glows the same at night)
-  deep     then a night of angelOS's own over it (OKLab): darker, the shadows deepest, every hue
+  deep     then a night of kukabara's own over it (OKLab): darker, the shadows deepest, every hue
            drawn to a deep blue, the warm ones (the picture's dusk: pink clouds, rust trees) all
            but grey, the sky near black at the top. The night picture alone read as a sunset
   palette  every pixel snapped to one night palette (median cut of the recolouring): pixel art
@@ -109,7 +109,7 @@ def from_lab(lab):
 
 
 def deep(rgb):
-    """the night picture's colours → angelOS's night: darker (the shadows most), blue, the warm
+    """the night picture's colours → kukabara's night: darker (the shadows most), blue, the warm
     hues nearly grey, the open sky darker toward its top"""
     lab = to_lab(rgb)
     c, hue = np.hypot(lab[..., 1], lab[..., 2]), np.arctan2(lab[..., 2], lab[..., 1])

@@ -10,7 +10,7 @@ Used by ~/.local/bin/niri-screenshot-region (selection) and niri-record-overlay
   stream  — Ame-chan's stream: a chain of marching pixel hearts, LIVE badge, a
             "kawaii" size bubble, scanlines; while recording: LIVE + viewers + timer.
 
-Colours are the NGO palette, or the current angelOS theme when capture.themeColors
+Colours are the NGO palette, or the current kukabara theme when capture.themeColors
 is on. Pure cairo; everything snaps to a 3 px art pixel.
 """
 import json

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Find live Claude Code sessions without hooks (angelOS claude-companion).
+"""Find live Claude Code sessions without hooks (kukabara claude-companion).
 
 Looks at transcripts in ~/.claude/projects/*/*.jsonl touched in the last
 WINDOW minutes, infers each session's state from its last user/assistant record,

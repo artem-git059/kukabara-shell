@@ -52,8 +52,8 @@ Singleton {
         },
         {
             "id": "cursor.glitter",
-            "ru": "Курсор angelOS Glitter",
-            "en": "The angelOS Glitter cursor",
+            "ru": "Курсор kukabara Glitter",
+            "en": "The kukabara Glitter cursor",
             "icon": "cursor",
             "page": "cursor"
         },

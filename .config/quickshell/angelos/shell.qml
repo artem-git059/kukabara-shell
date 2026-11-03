@@ -44,7 +44,7 @@ import qs.modules.diary
 import qs.modules.mac
 import qs.widgets
 
-// angelOS — pixel pink shell for niri.
+// kukabara — pixel pink shell for niri.
 ShellRoot {
     // no hot reload on save: edits land via `angelos reload` once they are checked
     settings.watchFiles: Quickshell.env("ANGELOS_DEV") === "1"
@@ -160,7 +160,7 @@ ShellRoot {
         MetaTap.status; // Meta tap → Start menu
         Idle.active; // idle-minutes watcher
         NautilusSetup.status; // first run: Nautilus defaults + mediafix
-        StrataSetup.status; // Strata (the file manager): angelOS's menu items + theme, once it is there
+        StrataSetup.status; // Strata (the file manager): kukabara's menu items + theme, once it is there
         Outputs.monitorFile; // monitors nobody picked a mode for: their full refresh rate, not niri's 60 Hz
         PluginStudio.loaded; // make the worker available to dynamically loaded pages
         Updates.state; // daily update check (Settings → Updates)

@@ -13,7 +13,7 @@ Everything in this repository not listed here is © 2026 MixaDoDs under the MIT 
 | Jacquard 12, Jacquard 24 | `.config/quickshell/angelos/data/fonts/` | SIL OFL 1.1 | [Soft Type Jacquard](https://github.com/scfried/soft-type-jacquard) |
 | Jacquard 12 Hell (Jacquard 12 + Cyrillic) | `.config/quickshell/angelos/data/fonts/` | SIL OFL 1.1 (a modified version) | ours on top of Jacquard 12 |
 | Departure Mono | `.config/quickshell/angelos/data/fonts/` | SIL OFL 1.1 | [Departure Mono](https://departuremono.com) by Helena Zhang |
-| Pixora icon theme (`pixora`, `pixora-dark`) | `.local/share/icons/` | CC BY 4.0 | [tsora1603/pixora-icons](https://github.com/tsora1603/pixora-icons) by tsora1603 (based on Tux on Pixels by maxtron95, CC0; inspired by DeltaPixel). Included as obtained. Changes: at run time angelOS recolours copies of its folder icons (body #E3C896 and shade #AB947A → the chosen colour; `scripts/folder-tint.py`) into `~/.local/share/icons/angelos-folders-*`, a theme that inherits Pixora; the files here stay unchanged. [License](https://creativecommons.org/licenses/by/4.0/) |
+| Pixora icon theme (`pixora`, `pixora-dark`) | `.local/share/icons/` | CC BY 4.0 | [tsora1603/pixora-icons](https://github.com/tsora1603/pixora-icons) by tsora1603 (based on Tux on Pixels by maxtron95, CC0; inspired by DeltaPixel). Included as obtained. Changes: at run time kukabara recolours copies of its folder icons (body #E3C896 and shade #AB947A → the chosen colour; `scripts/folder-tint.py`) into `~/.local/share/icons/angelos-folders-*`, a theme that inherits Pixora; the files here stay unchanged. [License](https://creativecommons.org/licenses/by/4.0/) |
 | App icons of the setup wizard | `.config/quickshell/angelos/data/app-icons/` | the apps' own; Simple Icons: CC0 | 16×16 pixel versions (`scripts/app-icons.py`) of each app's icon from Flathub's appstream or of [Simple Icons](https://simpleicons.org) (CC0) for the tools without one. The logos are trademarks of their owners, used only to show which app is meant. |
 | pixelarticons (one of the shell's icon styles, converted) | `.config/quickshell/angelos/widgets/IconSets.js` | MIT | [halfmage/pixelarticons](https://github.com/halfmage/pixelarticons) — see [`ICON-CREDITS.md`](.config/quickshell/angelos/docs/ICON-CREDITS.md) |
 | Pixel Icon Library by HackerNoon (an icon style, converted) | `.config/quickshell/angelos/widgets/IconSets.js` | CC BY 4.0 | [hackernoon/pixel-icon-library](https://github.com/hackernoon/pixel-icon-library) — changes listed in [`ICON-CREDITS.md`](.config/quickshell/angelos/docs/ICON-CREDITS.md) |
@@ -22,13 +22,13 @@ Everything in this repository not listed here is © 2026 MixaDoDs under the MIT 
 | The first run's intro: its sounds (recordings from Freesound; «Swan Lake», an HMV record from Wikimedia Commons) | `.config/quickshell/angelos/data/sounds/intro/` | CC0 / public domain — each listed in [`SOURCES.md`](.config/quickshell/angelos/data/sounds/intro/SOURCES.md) | their authors, named there; `voice/` is the author's own |
 | Claude Companion plugin (a port) | `.config/quickshell/angelos/plugins/claude-companion/` | MIT (below) | [lowcache/noctalia-claude-plugin](https://github.com/lowcache/noctalia-claude-plugin) |
 | OpenCode Companion plugin (a community plugin, unmodified) | `.config/quickshell/angelos/plugins/opencode-companion/` | MIT (below) | abubakir, 2026 |
-| Spicetify theme *Vantagraph Custom* and its extensions (the Spotify look of the author's system) | `.config/spicetify/Themes/vantagraph-custom/`, `.config/spicetify/Extensions/vantagraph-custom-*.js` | GNU AGPL v3 + its Section 7(b) attribution ([`LICENSE`](.config/spicetify/Themes/vantagraph-custom/LICENSE), [`NOTICE`](.config/spicetify/Themes/vantagraph-custom/NOTICE)) | **Miabeyefendi (Mustafa Ihsan Albayrak) - https://github.com/Miabeyefendi** — [Vantagraph-Custom](https://github.com/Miabeyefendi/Vantagraph-Custom). Our changes: `theme.js` — the wave animation capped at ~30 fps (2026-10-03, marked at the top of the file); `color.ini` — the author's colours. Its design/ and archive/ folders are left out. It is a separate work shipped alongside angelOS, under its own license |
+| Spicetify theme *Vantagraph Custom* and its extensions (the Spotify look of the author's system) | `.config/spicetify/Themes/vantagraph-custom/`, `.config/spicetify/Extensions/vantagraph-custom-*.js` | GNU AGPL v3 + its Section 7(b) attribution ([`LICENSE`](.config/spicetify/Themes/vantagraph-custom/LICENSE), [`NOTICE`](.config/spicetify/Themes/vantagraph-custom/NOTICE)) | **Miabeyefendi (Mustafa Ihsan Albayrak) - https://github.com/Miabeyefendi** — [Vantagraph-Custom](https://github.com/Miabeyefendi/Vantagraph-Custom). Our changes: `theme.js` — the wave animation capped at ~30 fps (2026-10-03, marked at the top of the file); `color.ini` — the author's colours. Its design/ and archive/ folders are left out. It is a separate work shipped alongside kukabara, under its own license |
 
 The SIL OFL 1.1 text with every font's copyright line: [`LICENSES/OFL-1.1.txt`](LICENSES/OFL-1.1.txt).
 
 ## Ideas, no code taken
 
-The manifests credit these Noctalia plugins as the idea behind angelOS's own versions; their
+The manifests credit these Noctalia plugins as the idea behind kukabara's own versions; their
 code was not copied. Their licenses could not be checked (the repositories were not found):
 
 - `cat` — idea: DotNetRob/cat (credited as MIT)
@@ -52,8 +52,8 @@ Replace or remove them before relying on the repository being free to redistribu
 - `.config/quickshell/angelos/plugins/osu-mini/sfx/{hit,miss,perfect,break}.wav` — no source or generator recorded.
 
 Not third-party: the angel's and the demon's sprites (`modules/y2k/sprites/`) are the author's;
-all other sounds of angelOS are synthesised by `scripts/y2k-sounds.py`; the GIFs and screenshots in
-`docs/` are recordings of angelOS in a clean demo stand (`scripts/demo/`), on a wallpaper drawn by
+all other sounds of kukabara are synthesised by `scripts/y2k-sounds.py`; the GIFs and screenshots in
+`docs/` are recordings of kukabara in a clean demo stand (`scripts/demo/`), on a wallpaper drawn by
 `scripts/demo/wallpaper.py`. NEEDY GIRL OVERDOSE and Undertale are only referenced
 (names, a voice style made by the synthesiser) — none of their art or sound is included.
 

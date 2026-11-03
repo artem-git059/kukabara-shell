@@ -658,7 +658,7 @@ Singleton {
         // timeout but the notification stays, so --wait never ended (and the next question was lost)
         askRun.createObject(root, {
             "items": items,
-            "command": ["timeout", "35", "notify-send", "-a", "angelOS", "-i", "edit-select-all", "--wait", "-t", "30000", "-A", "yes=" + I18n.t("Запомнить", "Remember"), "-A", "no=" + I18n.t("Разово", "Just this once"), I18n.t("Скриншот: запомнить?", "Screenshot: remember?"), lines.join("\n")]
+            "command": ["timeout", "35", "notify-send", "-a", "kukabara", "-i", "edit-select-all", "--wait", "-t", "30000", "-A", "yes=" + I18n.t("Запомнить", "Remember"), "-A", "no=" + I18n.t("Разово", "Just this once"), I18n.t("Скриншот: запомнить?", "Screenshot: remember?"), lines.join("\n")]
         });
     }
     function remember(items) {
@@ -878,7 +878,7 @@ Singleton {
         close();
     }
     function say(title, body) {
-        Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "edit-copy", "-h", "string:x-canonical-private-synchronous:angelos-circle", "--", title, body]);
+        Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "edit-copy", "-h", "string:x-canonical-private-synchronous:angelos-circle", "--", title, body]);
     }
 
     Process {

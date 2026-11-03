@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS port of lowcache/claude-companion shim (MIT) — noctalia msg calls replaced by angelOS IPC.
+"""kukabara port of lowcache/claude-companion shim (MIT) — noctalia msg calls replaced by kukabara IPC.
 
 noctalia-mcp — stdio MCP shim bridging Claude Code <-> the Noctalia shell.
 
@@ -458,7 +458,7 @@ TOOLS = {
         lambda a: sh(["playerctl", "metadata", "--format", "{{artist}} - {{title}}"]),
     ),
     "get_shell_state": (
-        "angelOS shell state (theme, bar edge, lyrics, plugins, screens) as JSON.",
+        "kukabara shell state (theme, bar edge, lyrics, plugins, screens) as JSON.",
         {},
         lambda a: sh(["qs", "-c", "angelos", "ipc", "call", "angelos", "status"]),
     ),
@@ -527,7 +527,7 @@ TOOLS = {
         lambda a: sh(["qs", "-c", "angelos", "ipc", "call", "angelos", "theme", a.get("mode", "auto")]),
     ),
     "set_color_scheme": (
-        "Set the angelOS palette flavor.",
+        "Set the kukabara palette flavor.",
         {
             "name": {"type": "string",
                      "enum": ["overdose", "bubblegum", "cyberangel", "wallpaper", "gruvbox", "rosepine",

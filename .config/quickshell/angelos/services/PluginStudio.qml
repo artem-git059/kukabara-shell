@@ -94,10 +94,10 @@ Singleton {
         if (key)
             Config.developer[key] = value;
     }
-    // the CLIs sign in through the browser themselves; angelOS never sees the tokens
+    // the CLIs sign in through the browser themselves; kukabara never sees the tokens
     function login() {
         const argv = Config.developer.provider === "codex-cli" ? ["codex", "login"] : ["claude", "auth", "login"];
-        Quickshell.execDetached(Shell.terminalArgv(["sh", "-c", 'PATH="$HOME/.local/bin:$PATH"; "$@"; printf "\\n♡ Готово — вернись в angelOS и нажми «Проверить вход». Enter закроет окно."; read _', "sh"].concat(argv)));
+        Quickshell.execDetached(Shell.terminalArgv(["sh", "-c", 'PATH="$HOME/.local/bin:$PATH"; "$@"; printf "\\n♡ Готово — вернись в kukabara и нажми «Проверить вход». Enter закроет окно."; read _', "sh"].concat(argv)));
     }
     readonly property string elapsedText: elapsed >= 60 ? Math.floor(elapsed / 60) + I18n.t(" мин ", " min ") + (elapsed % 60) + I18n.t(" с", " s") : elapsed + I18n.t(" с", " s")
     readonly property string statusText: !busy ? "" : (action === "update" ? I18n.t("Обновляю плагин…", "Updating the plugin…")

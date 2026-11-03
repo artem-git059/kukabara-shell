@@ -350,15 +350,15 @@ CatPage {
             }
         }
     }
-    // every big release of angelOS brings wallpapers drawn for it (services/Wallpapers: releases)
+    // every big release of kukabara brings wallpapers drawn for it (services/Wallpapers: releases)
     CatGroup {
         name: "releases"
-        title: I18n.t("Обои релизов angelOS", "angelOS release wallpapers")
+        title: I18n.t("Обои релизов kukabara", "kukabara release wallpapers")
         icon: "sparkle"
         present: !page.hell && Wallpapers.releasesShown.length > 0
         CatNote {
             dim: true
-            text: Wallpapers.variantsOn ? I18n.t("С каждым крупным релизом приходят свои обои, нарисованные для angelOS: днём и ночью — сами сменятся вместе с темой. Клик — поставить.", "Every big release comes with wallpapers drawn for angelOS, a day and a night one: they follow the theme. Click to apply.") : I18n.t("С каждым крупным релизом приходят свои обои, нарисованные для angelOS: днём и ночью. Клик — поставить.", "Every big release comes with wallpapers drawn for angelOS, a day and a night one. Click to apply.")
+            text: Wallpapers.variantsOn ? I18n.t("С каждым крупным релизом приходят свои обои, нарисованные для kukabara: днём и ночью — сами сменятся вместе с темой. Клик — поставить.", "Every big release comes with wallpapers drawn for kukabara, a day and a night one: they follow the theme. Click to apply.") : I18n.t("С каждым крупным релизом приходят свои обои, нарисованные для kukabara: днём и ночью. Клик — поставить.", "Every big release comes with wallpapers drawn for kukabara, a day and a night one. Click to apply.")
         }
         CatCustom {
             wide: true
@@ -724,7 +724,7 @@ CatPage {
         }
         CatNote {
             dim: true
-            text: I18n.t("Любая картинка перерисовывается крупными пикселями, как всё в angelOS. Сам файл не меняется.", "Any picture is redrawn in big pixels, like the rest of angelOS. The file itself stays as it is.")
+            text: I18n.t("Любая картинка перерисовывается крупными пикселями, как всё в kukabara. Сам файл не меняется.", "Any picture is redrawn in big pixels, like the rest of kukabara. The file itself stays as it is.")
         }
         CatToggle {
             label: I18n.t("Пиксельные обои", "Pixel wallpaper")
@@ -926,7 +926,7 @@ CatPage {
         present: !!Updates.release
         CatToggle {
             label: I18n.t("Показывать на рабочем столе", "Show on the desktop")
-            hint: Updates.release ? "angelOS " + Updates.release.number + (Updates.release.codename ? " · " + Updates.release.codename : "") + I18n.t(" — мелко и прозрачно, в свободном углу", ": small and see-through, in a free corner") : ""
+            hint: Updates.release ? "kukabara " + Updates.release.number + (Updates.release.codename ? " · " + Updates.release.codename : "") + I18n.t(" — мелко и прозрачно, в свободном углу", ": small and see-through, in a free corner") : ""
             checked: Config.wallpaper.releaseMark
             onToggled: c => Config.wallpaper.releaseMark = c
         }

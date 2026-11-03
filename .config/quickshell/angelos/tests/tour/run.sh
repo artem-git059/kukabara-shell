@@ -3,10 +3,10 @@
 # screens (Qt's offscreen platform, a screens file): always on the main one, the circled
 # element on that screen, never the streamed one. scripts/test-ui.sh runs it.
 #
-#   tests/tour/run.sh [angelOS dir]     exit 0 = all good, 77 = no quickshell
+#   tests/tour/run.sh [kukabara dir]     exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

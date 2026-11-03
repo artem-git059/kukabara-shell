@@ -145,7 +145,7 @@ CatPage {
         present: Laptop.has("lid")
         CatNote {
             dim: true
-            text: I18n.t("Когда подключён второй экран, закрытая крышка просто гасит экран ноутбука — работа идёт дальше. Блокировать ли перед сном — в карточке «Когда отошёл от компьютера».", "With a second screen plugged in, closing the lid only turns the laptop's panel off and you keep working. Whether to lock before sleep: the «When you step away» card.") + (Laptop.lidOurs ? I18n.t(" Сейчас крышку обрабатывает angelOS.", " angelOS handles the lid now.") : "")
+            text: I18n.t("Когда подключён второй экран, закрытая крышка просто гасит экран ноутбука — работа идёт дальше. Блокировать ли перед сном — в карточке «Когда отошёл от компьютера».", "With a second screen plugged in, closing the lid only turns the laptop's panel off and you keep working. Whether to lock before sleep: the «When you step away» card.") + (Laptop.lidOurs ? I18n.t(" Сейчас крышку обрабатывает kukabara.", " kukabara handles the lid now.") : "")
         }
         CatCustom {
             label: I18n.t("От батареи", "On battery")
@@ -223,7 +223,7 @@ CatPage {
         icon: "keyboard"
         present: Laptop.has("laptop")
         CatToggle {
-            label: I18n.t("Клавиши angelOS", "angelOS keys")
+            label: I18n.t("Клавиши kukabara", "kukabara keys")
             hint: I18n.t("яркость, подсветка клавиатуры, тачпад, режим полёта, калькулятор и Win+P — меню экранов", "Brightness, keyboard light, touchpad, airplane mode, calculator and Win+P — the screens menu")
             checked: Config.laptop.keys
             onToggled: v => Config.laptop.keys = v

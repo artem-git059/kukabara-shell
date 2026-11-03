@@ -1,4 +1,4 @@
-// angelOS open: an old TV switching on — a dot, a bright line, then the picture opens up with a white flash and scanlines.
+// kukabara open: an old TV switching on — a dot, a bright line, then the picture opens up with a white flash and scanlines.
 vec4 open_color(vec3 coords_geo, vec3 size_geo) {
     float p = niri_clamped_progress;
     // dot → line, then the line opens up

@@ -5,7 +5,7 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 
-// Is the Quickshell under angelOS new enough (scripts/qs-version.sh, the installer asks the
+// Is the Quickshell under kukabara new enough (scripts/qs-version.sh, the installer asks the
 // same)? Older than 0.3.2 runs, but without its crash fixes: one notification per version
 // found, and Settings → System → This computer says it next to the version.
 Singleton {
@@ -39,7 +39,7 @@ Singleton {
         if (!outdated || !Config.ready || Quickshell.env("ANGELOS_TEST") === "1" || Config.system.qsWarned === found)
             return;
         Config.system.qsWarned = found;
-        Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-warning", I18n.t("Устаревший Quickshell", "Quickshell is outdated"), advice]);
+        Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-warning", I18n.t("Устаревший Quickshell", "Quickshell is outdated"), advice]);
     }
     // settings.json may come after the answer
     Connections {

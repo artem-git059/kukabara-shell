@@ -10,7 +10,7 @@ import qs.services
 // it, MacMenuBar's titles open it). ←/→ walk the bar's menus like on a Mac; moving the pointer
 // over another title while one is open opens that one. The menus are live: the app changes its
 // own, Wi-Fi turns on — the open menu follows. Here are also the emblem's menu (the Apple menu
-// of macOS, angelOS's here: About This Computer, System Settings, Updates, Force Quit, Sleep,
+// of macOS, kukabara's here: About This Computer, System Settings, Updates, Force Quit, Sleep,
 // Restart, Shut Down, Lock Screen, Log Out) and the menus of the bar's status items (Wi-Fi,
 // Bluetooth, sound, the input source, a tray icon).
 Singleton {
@@ -234,7 +234,7 @@ Singleton {
     }
     readonly property var angelMenu: ({
             "id": "m:angel",
-            "title": "angelOS",
+            "title": "kukabara",
             "emblem": true,
             "items": AppMenu.tidy([fn("a:about", I18n.t("Об этом компьютере", "About This Computer"), () => Shell.openSettings("about")), AppMenu.sep("a1"), fn("a:settings", I18n.t("Системные настройки…", "System Settings…"), () => Shell.openSettings()), fn("a:updates", Updates.available ? I18n.t("Обновления — есть новое", "Updates — something new") : I18n.t("Обновления…", "Updates…"), () => Shell.openSettings("updates")), AppMenu.sep("a2"), AppMenu.submenu("a:force", I18n.t("Завершить принудительно", "Force Quit"), runningApps.map(a => fn("a:kill" + a.pid, a.name, () => Quickshell.execDetached(["kill", "-KILL", String(a.pid)])))), AppMenu.sep("a3"), fn("a:sleep", I18n.t("Сон", "Sleep"), () => Shell.suspend()), fn("a:restart", I18n.t("Перезагрузить…", "Restart…"), () => Shell.sessionOpen = true), fn("a:off", I18n.t("Выключить…", "Shut Down…"), () => Shell.sessionOpen = true), AppMenu.sep("a4"), fn("a:lock", I18n.t("Заблокировать экран", "Lock Screen"), () => Shell.lock(), {
                     "keys": Config.mac.keys ? ["ctrl", "logo", "q"] : []
@@ -316,8 +316,8 @@ Singleton {
         }
         return null;
     }
-    // Finder's desktop menu, of what angelOS's desktop has: no files on it, so no New Folder or
-    // Sort By; the wallpaper, the desktop widgets (angelOS's own, toggled per screen) and
+    // Finder's desktop menu, of what kukabara's desktop has: no files on it, so no New Folder or
+    // Sort By; the wallpaper, the desktop widgets (kukabara's own, toggled per screen) and
     // the Desktop folder in the file manager
     function deskItems() {
         const scr = deskScreen;
@@ -421,7 +421,7 @@ Singleton {
         }
         out.push(AppMenu.sep("p2"), {
             "id": "p:eco",
-            "label": I18n.t("Режим экономии angelOS", "angelOS Eco Mode"),
+            "label": I18n.t("Режим экономии kukabara", "kukabara Eco Mode"),
             "type": "switch",
             "checked": Power.eco,
             "keepOpen": true,

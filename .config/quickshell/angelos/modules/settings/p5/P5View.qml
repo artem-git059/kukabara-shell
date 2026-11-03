@@ -9,7 +9,7 @@ import qs.widgets
 import qs.modules.settings.kit
 import "P5Lines.js" as Lines
 
-// The Settings window in the angelOS look, the Persona 5 way: the sections slanted down the
+// The Settings window in the kukabara look, the Persona 5 way: the sections slanted down the
 // left, the section's card on the right with its pages as tabs (Q/E) and its settings as a
 // game's option lines (↑↓ to pick, ←→ to change, Enter), the picked line's hint and preview
 // under it, typing anywhere searches, Tab held shows the desk under the window.

@@ -3,11 +3,11 @@
 # so does scripts/check.sh): every query finds what it must among its first results, the author's
 # debug panel only for the author, and no query is slow.
 #
-#   tests/search/run.sh [angelOS dir]          exit 0 = all good, 77 = no quickshell
+#   tests/search/run.sh [kukabara dir]          exit 0 = all good, 77 = no quickshell
 #   ANGELOS_SEARCH_DUMP=file tests/search/run.sh   print the first results of each line of file
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

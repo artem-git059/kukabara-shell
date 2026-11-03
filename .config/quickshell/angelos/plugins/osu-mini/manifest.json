@@ -2,7 +2,7 @@
   "id": "osu-mini",
   "name": "osu!mini",
   "version": "1.0.0",
-  "author": "angelOS",
+  "author": "kukabara",
   "description": {"ru": "Мини-игра в духе osu!: пиксельные сердечки в такт, клик или Z/X, комбо, ранги и рекорды. Режим «Ритм» — два барабана D/K под трек, который играет сейчас (слова песни и бит), рекорд на каждый трек. Пуск → Мини-игра, «osu» в лаунчере, «Ритм» в Нимбе у музыки.", "en": "An osu!-style mini game: pixel hearts on the beat, click or Z/X, combos, ranks and high scores. The rhythm mode: two drums, D/K, under the track playing now (the song's words and its beat), a best for each track. Start → Mini game, “osu” in the launcher, “Rhythm” on the Halo by the music."},
   "icon": "heart",
   "enabledByDefault": true,

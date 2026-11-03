@@ -17,7 +17,7 @@ SELECTOR="${HOME}/.local/bin/niri-screenshot-region"
 # --pause: pause a running one, or go on with a paused one (the Halo)
 STOP_ONLY=0; [[ "${1:-}" == --stop ]] && STOP_ONLY=1
 PAUSE=0; [[ "${1:-}" == --pause ]] && PAUSE=1
-# angelOS Settings → System → Screenshots and recording (settings.json "capture"):
+# kukabara Settings → System → Screenshots and recording (settings.json "capture"):
 # folder, frame rate, sound, codec — one line each
 mapfile -t CAP < <(python3 - <<'PY' 2>/dev/null
 import json, os
@@ -87,7 +87,7 @@ stop_overlay() {
   pkill -f '/niri-record-overlay ' 2>/dev/null || true
 }
 
-# angelOS re-reads the pid file (services/Capture: the Halo's record capsule); recSaved puts the
+# kukabara re-reads the pid file (services/Capture: the Halo's record capsule); recSaved puts the
 # finished file on the Halo's shelf
 tell_shell() {
   (qs -c angelos ipc call angelos recChanged >/dev/null 2>&1 &) || true

@@ -1,6 +1,6 @@
 """Device descriptions: one JSON file a device, data and not code (docs/devices.md).
 
-  <shell>/data/devices/<family>/<vid>-<pid>.json     the ones angelOS ships
+  <shell>/data/devices/<family>/<vid>-<pid>.json     the ones kukabara ships
   ~/.config/angelos/devices/*.json                   yours (a file of the same id wins)
 
 A description names the device (USB ids), the protocol family that talks to it, the channel
@@ -278,7 +278,7 @@ def schema():
     hex4 = {"type": "string", "pattern": "^[0-9a-fA-F]{4}$"}
     return {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "title": "angelOS device description",
+        "title": "kukabara device description",
         "description": "One device of the devices' driver (docs/devices.md). `angelos devices check FILE` is the checker the shell itself uses; this schema is the same rules for editors.",
         "type": "object",
         "required": ["schema", "id", "name", "kind", "family", "usb", "channel", "support", "capabilities"],

@@ -143,7 +143,7 @@ PanelWindow {
     property real camZ: 1
     // where it goes for this step: close enough that the element is about a fifth of the
     // screen, in whole steps only (2×, 3×: at rest every pixel of the picture is a square of
-    // pixels, as angelOS draws), never past the picture's edges (an element at the edge keeps
+    // pixels, as kukabara draws), never past the picture's edges (an element at the edge keeps
     // its place at the edge, its ring cut there); the key tips and the desktop stay at the
     // whole screen
     readonly property var aim: {
@@ -294,7 +294,7 @@ PanelWindow {
     onSelChanged: dim.requestPaint()
     onDemoChanged: dim.requestPaint()
 
-    // the picture through the camera, pixel for pixel (no smoothing: angelOS's pixels); at
+    // the picture through the camera, pixel for pixel (no smoothing: kukabara's pixels); at
     // the whole screen the live one shows instead
     Image {
         id: shotImg

@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell.Io
 
-// Every angelOS setting with its default value. Config.qml loads the user's
+// Every kukabara setting with its default value. Config.qml loads the user's
 // ~/.config/angelos/settings.json into one copy and keeps a second, untouched
 // copy as `Config.defaults` ("Reset this page", undo labels).
 JsonAdapter {
@@ -25,7 +25,7 @@ JsonAdapter {
         property bool shadows: true         // hard pixel drop shadows
         property bool themeApps: true       // render templates for kitty/foot/gtk/niri
         property var disabledTemplates: []
-        property bool qtStyle: false        // Qt apps in angelOS colours and a pixel style through qt6ct (scripts/qt-theme.py switches QT_QPA_PLATFORMTHEME for apps)
+        property bool qtStyle: false        // Qt apps in kukabara colours and a pixel style through qt6ct (scripts/qt-theme.py switches QT_QPA_PLATFORMTHEME for apps)
         property string fontTitle: ""       // "" = Pixeloid Sans
         property string fontBody: ""        // "" = CozetteVector
         property string fontMono: ""        // "" = Pixeloid Mono
@@ -52,7 +52,7 @@ JsonAdapter {
         property bool showMedia: true
         property bool showSeconds: false
         property string clockFormat: "auto" // auto (12 h in English, 24 h in Russian) | 24 | 12
-        property string startLabel: "angelOS"
+        property string startLabel: "kukabara"
         property string startButtonStyle: "classic" // the bar's Start button: classic (bevelled, the logo) | capsule (an XP-like "start" pill in the accent)
         property string startStyle: "classic" // classic (Win98 list) | win11 (centred, pinned grid) | tiles (Windows 10: all apps + live tiles) | fullscreen (iPhone-like app grid) | xmb (PSP) | spotlight (a search pill)
         property var startPinned: []        // desktop entry ids pinned in Start
@@ -66,7 +66,7 @@ JsonAdapter {
         property int startRows: 3           // win11: rows of pinned apps
         property var startPrefs: ({})       // deep settings per Start look: {"win11": {"columns": 8, …}} (services/StartPrefs)
         property string avatar: ""          // the user's picture in Start (a copy in ~/.local/share/angelos); "" = the system's (AccountsService, ~/.face)
-        property bool avatarPixel: false    // the avatar drawn in big pixels, like the rest of angelOS
+        property bool avatarPixel: false    // the avatar drawn in big pixels, like the rest of kukabara
         property string userName: ""        // the name under / next to it; "" = the login name
         property string logoStyle: "classic" // wordmark: classic | angel | windose (NGO, pill O) | hell (gothic, drips) | chrome (Y2K)
         property string logoEmblem: "heart" // emblem: heart (winged, halo) | pill | star | cd | kitty
@@ -165,15 +165,15 @@ JsonAdapter {
         property string heartAnim: "smart"  // hearts/icons indicator: smart | collide | ender | hop | worm | pixel | beat | sparkle | drop | glitch | slide | off
         property string sprite: "heart"     // the desk sprite on the bar/strip/popup: heart | star | cd
         property real heartSpeed: 1.0       // × speed of the indicator animation (2 = twice as fast)
-        property real switchSpeed: 1.0      // × speed of the switch animation: niri's slide (cfg/animation.kdl) and angelOS's captured ones
+        property real switchSpeed: 1.0      // × speed of the switch animation: niri's slide (cfg/animation.kdl) and kukabara's captured ones
         property var names: ({})            // "DP-1:1" -> "работа"
     }
 
     // the apps' own window buttons (their client-side decorations; Settings → Windows → Decorations,
-    // the pixel skins only — Golden Gate always has the traffic lights): angelOS draws no title
+    // the pixel skins only — Golden Gate always has the traffic lights): kukabara draws no title
     // bars over windows
     property JsonObject decor: JsonObject {
-        property bool gtkButtons: true      // GTK 3/4 window buttons drawn like angelOS's (templates gtk3/gtk4)
+        property bool gtkButtons: true      // GTK 3/4 window buttons drawn like kukabara's (templates gtk3/gtk4)
         property string gtkLayout: "maximize,close" // GTK title bar buttons, in order (gsettings button-layout, right side)
         // the bar of Helium and Chromium on their "GTK" theme — the tab strip, the open tab and
         // the toolbar are one colour there (templates/gtk3.css): "" = the title bars', or #rrggbb
@@ -222,7 +222,7 @@ JsonAdapter {
     }
 
     property JsonObject alttab: JsonObject {
-        property string style: "angelos"    // angelos | ngo | y2k — angelOS's own switcher; niri = niri's with live previews
+        property string style: "angelos"    // angelos | ngo | y2k — kukabara's own switcher; niri = niri's with live previews
         property string scope: "all"        // all | output (this monitor) | workspace (this desk)
         property int delayMs: 150           // a quick Alt+Tab tap switches without showing anything
         property bool titles: true          // window titles under the icons
@@ -287,8 +287,8 @@ JsonAdapter {
         property string weatherCity: ""     // the clock's weather: "" = where the IP says (ip-api.com), else a city name (Open-Meteo's geocoding)
         property string widgetSet: ""       // the wizard's widget set: empty | minimum | center ("" = never asked)
         property bool snap: true
-        property int gridStep: 8            // the widgets' grid cell, in angelOS pixels: 4 | 8 | 16 | 32 (used while `snap` is on)
-        property string titleSuffix: "exe"  // every angelOS window, widget and caption ends in .exe | .sh | .bin (I18n.exe)
+        property int gridStep: 8            // the widgets' grid cell, in kukabara pixels: 4 | 8 | 16 | 32 (used while `snap` is on)
+        property string titleSuffix: "exe"  // every kukabara window, widget and caption ends in .exe | .sh | .bin (I18n.exe)
         property string widgetStyle: "auto" // desktop widgets: auto (macOS cards with the Golden Gate skin, pixel windows otherwise) | pixel | mac (DesktopWidgets.macStyle)
         // the right-click menu on the wallpaper (services/DeskMenu, Settings → Right-click menu)
         property string menuStyle: "list"   // list (the usual) | wings | harp (heaven's own; in hell the circle's own takes their place) | pentagram
@@ -361,7 +361,7 @@ JsonAdapter {
         property bool hearts: true          // floating pixel hearts
         property bool reactions: true       // hearts on typing, a broken heart on a mistake, a burst on unlock
         property bool indicators: true      // Caps Lock, layout, battery, time locked, missed notifications
-        property bool logo: true            // the angelOS logo above the clock
+        property bool logo: true            // the kukabara logo above the clock
         property bool stream: false         // NGO stream overlay: LIVE badge, viewers, cute chat
         property string streamTitle: ""      // "" = "angel is on a break" 
         property string style: "ngo"        // ngo (the NGO stream) | heaven (a game's login screen at heaven's gate)
@@ -387,7 +387,7 @@ JsonAdapter {
 
     property JsonObject idle: JsonObject {
         property int minutes: 0             // start the idle screen after N idle minutes; 0 = by hand only
-        property string text: ""            // "" = angelOS ASCII art
+        property string text: ""            // "" = kukabara ASCII art
         property string effect: "random"    // random | decrypt | rain | beams | wave | typewriter | hearts | glitch
         property string colors: "accent"    // accent | mono | rainbow
         property bool clock: true
@@ -424,7 +424,7 @@ JsonAdapter {
 
     property JsonObject capture: JsonObject {
         property string skin: "ropes"       // ropes | window | stream — region selector and recording overlay
-        property bool themeColors: false    // NGO skins in the angelOS theme instead of the NGO palette
+        property bool themeColors: false    // NGO skins in the kukabara theme instead of the NGO palette
         // Settings → System → Screenshots and recording (read by ~/.local/bin/niri-screenshot-region
         // and niri-record-region straight from settings.json)
         property string shotDir: ""         // "" = ~/Pictures/Screenshots
@@ -479,8 +479,8 @@ JsonAdapter {
         property int monitorWidth: 1200     // custom size, logical px
         property int monitorHeight: 760
         property string monitorPlace: "center" // center | corner (bottom-right, next to the tray)
-        property bool nautilusDefaults: false // angelOS Nautilus extensions + prefs applied once
-        property bool strataDefaults: false // angelOS items in Strata's menu + its theme applied once (services/StrataSetup)
+        property bool nautilusDefaults: false // kukabara Nautilus extensions + prefs applied once
+        property bool strataDefaults: false // kukabara items in Strata's menu + its theme applied once (services/StrataSetup)
         property string qsWarned: ""        // the outdated Quickshell version already warned about (services/QsVersion)
         property bool rebarWarned: false    // Resizable BAR off, already told; back to false once it is on (services/Care)
         property string primaryScreen: ""   // the main screen (widgets, the angel, the lock…); "" = the widest
@@ -498,8 +498,8 @@ JsonAdapter {
         property string shakeSensitivity: "normal" // low | normal | high — how hard a shake has to be
         property real shakeScale: 4         // how big it grows, × the cursor size
         property string hell: "circle"      // the demon's cursor while she rules: circle (the circle's own, scripts/cursors.py) | a hell theme | "" = she leaves it alone
-        property string hellPick: "angelOS-Hell" // the hell theme last picked by hand (Settings → Cursor → Hell → One theme)
-        property bool hellByCircle: false   // the old default "angelOS-Hell" became "circle" once (services/Cursors)
+        property string hellPick: "kukabara-Hell" // the hell theme last picked by hand (Settings → Cursor → Hell → One theme)
+        property bool hellByCircle: false   // the old default "kukabara-Hell" became "circle" once (services/Cursors)
         property string beforeHell: ""      // never picked one: the cursor she replaced, put back by the angel
         property int beforeHellSize: 0
         property string beforeMac: ""       // the cursor the Golden Gate skin's arrow replaced (services/Cursors)
@@ -507,7 +507,7 @@ JsonAdapter {
 
     property JsonObject updates: JsonObject {
         property string repo: ""            // "" = found automatically (installer marker, ~/AngelOS-Dotfiles)
-        property bool autoCheck: false      // no daily dotfiles check: this fork is detached from the original angelOS repository (Settings → Updates still checks by hand)
+        property bool autoCheck: false      // no daily dotfiles check: this fork is detached from the original kukabara repository (Settings → Updates still checks by hand)
         property string lastCheck: ""
         property int available: 0
         property int paperSeen: 0           // the release whose «what's new» paper was put away (ChangelogPaper)
@@ -596,7 +596,7 @@ JsonAdapter {
         property bool batteryHz: false      // the laptop's screen (eDP) at about 60 Hz off the charger (services/Outputs, #120)
     }
 
-    // touchpad gestures of angelOS's own (scripts/gesture-watch.py; niri keeps its 3-finger
+    // touchpad gestures of kukabara's own (scripts/gesture-watch.py; niri keeps its 3-finger
     // swipes and the 4-finger one up/down); gesture -> action id (services/Gestures.actions)
     property JsonObject gestures: JsonObject {
         property bool enabled: true
@@ -700,7 +700,7 @@ JsonAdapter {
         property int keepDays: 60           // history kept
     }
 
-    // the game: angelOS is a story played over the real desktop (services/Story, story/).
+    // the game: kukabara is a story played over the real desktop (services/Story, story/).
     // The player's save is its own file (~/.config/angelos/save.json), not here.
     property JsonObject game: JsonObject {
         property bool enabled: true         // false: plain dotfiles — no angel, demon, novel or hell (installer ANGELOS_GAME=0, the setup wizard, `angelos game off`)
@@ -733,7 +733,7 @@ JsonAdapter {
     // Quick Share: LocalSend's protocol without the app (services/QuickShare, scripts/quickshare.py)
     property JsonObject quickshare: JsonObject {
         property bool enabled: true         // be seen by and find LocalSend devices on this network
-        property string alias: ""           // how others see this computer; "" = "angelOS <hostname>"
+        property string alias: ""           // how others see this computer; "" = "kukabara <hostname>"
         property string receive: "ask"      // ask (everyone, with a question) | trusted (only trusted, no question) | off
         property string dir: ""             // "" = ~/Downloads/LocalSend
         property var trusted: []            // [{fp, alias}] — their files come without a question
@@ -808,7 +808,7 @@ JsonAdapter {
         property string translateTo: "auto" // auto (Cyrillic → en, else → ru) | ru | en | uk | de | ja | …
         property bool liveText: true        // read the whole screen at once and outline the words
         property bool lens: true            // the "search the picture" button (Google Lens)
-        property bool lensWindow: true      // Lens's results in angelOS's own window (services/LensSearch), else Google's page in the island
+        property bool lensWindow: true      // Lens's results in kukabara's own window (services/LensSearch), else Google's page in the island
     }
 
     // the lens at the pointer (services/Lens, Settings → Keyboard and mouse → Lens)
@@ -828,7 +828,7 @@ JsonAdapter {
         property int port: 4455             // obs-websocket port (OBS → Tools → WebSocket Server Settings)
         property var screens: []            // the streamed screens; empty = every screen
         property bool hideAngel: true       // the angel leaves the streamed screens (or hides)
-        property bool mute: true            // angelOS sounds stay quiet
+        property bool mute: true            // kukabara sounds stay quiet
         property bool dnd: true             // Do not disturb while live
         property bool effects: true         // no sparkles, loading screen or angel/demon effects on the streamed screens
         property bool dndSet: false         // stream mode switched DND on (switched off again when the stream ends)
@@ -861,7 +861,7 @@ JsonAdapter {
         property string streamerScreen: ""  // "" = the first streamed screen (else the main one)
         // where you see her (Mod+Alt+A switches): screen — on your screen too | obs — only in
         // her own window for OBS (modules/y2k/StreamerCast: "Window capture (PipeWire)" →
-        // "angelOS · ангел для OBS"), which draws her all the time OBS runs either way
+        // "kukabara · ангел для OBS"), which draws her all the time OBS runs either way
         property string streamerView: "screen"
         property bool streamerKeys: true    // the niri key Mod+Alt+A (cfg/angelos-windows.kdl)
     }
@@ -875,7 +875,7 @@ JsonAdapter {
         property string view: "win11"
         property bool win11Once: false      // an install still on the old default (sidebar) moved to win11 once
         property string viewPicked: ""      // the view picked in the setup wizard — the player's first choice, kept when changed later
-        property string skin: "classic"     // classic angelOS | win10 (classic + Windows 10 tiles, Theme.win10) | aero (Windows 7 glass, Theme.aeroLook) | Windose desktop | stream studio | goldengate
+        property string skin: "classic"     // classic kukabara | win10 (classic + Windows 10 tiles, Theme.win10) | aero (Windows 7 glass, Theme.aeroLook) | Windose desktop | stream studio | goldengate
         // the Settings window's look (services/SettingsLook): win11 (the Windows 11 view, the default
         // while P5 is being redone) | p5 (the P5 window over the desk); asked once (SettingsLookPrompt)
         property string look: "win11"

@@ -6,7 +6,7 @@ bind by bind (the profile merge, scripts/keyprofile.py, needs that). No hotkey-o
 no line of docs/KEYBINDS.md or scripts/keyprofile.py speaks of Mod+Shift+T or Circle any more;
 the IPC has capture/captureOn (circle/circleOn stay as old names); Settings search finds the
 classic region tool under "capture".
-  test_capture_keys.py <angelOS dir> [templates dir]     exit 0 = all good"""
+  test_capture_keys.py <kukabara dir> [templates dir]     exit 0 = all good"""
 import importlib.util
 import pathlib
 import sys

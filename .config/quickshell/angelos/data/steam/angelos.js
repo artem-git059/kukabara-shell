@@ -1,8 +1,8 @@
-// angelOS for Steam (Millennium; scripts/steam-theme.py writes this theme). Steam keeps its
+// kukabara for Steam (Millennium; scripts/steam-theme.py writes this theme). Steam keeps its
 // colours in its own stylesheets, under class names that change with every update — so
 // they are not named here: every colour Steam writes is recoloured by what it is, the way
 // scripts/telegram-theme.py recolours Telegram. Greys (Steam's are a little blue) go onto
-// angelOS's surfaces and text by their brightness, Steam's blues onto the accent, its greens
+// kukabara's surfaces and text by their brightness, Steam's blues onto the accent, its greens
 // onto "ok", its reds onto "danger"; the rest stays. They become the --ao-* variables, which
 // colors.json fills in — fetched again every few seconds, so a new palette, the dark or light
 // mode, the demon's hell and each of its circles show up at once.
@@ -39,7 +39,7 @@ function mix(a, b, t) {
     const pct = Math.round(t * 100);
     return pct <= 0 ? "var(--ao-" + a + ")" : pct >= 100 ? "var(--ao-" + b + ")" : "color-mix(in srgb, var(--ao-" + a + ") " + (100 - pct) + "%, var(--ao-" + b + "))";
 }
-// one of Steam's colours, as angelOS's
+// one of Steam's colours, as kukabara's
 function recolour(text) {
     const [r, g, b, a] = parse(text);
     const y = 0.299 * r + 0.587 * g + 0.114 * b;
@@ -97,8 +97,8 @@ function sheet(s) {
     // still loading: next time
     if (!list || !list.length)
         return;
-    // ours are already in angelOS's colours
-    if (s.href && s.href.indexOf("/themes/angelOS/") >= 0) {
+    // ours are already in kukabara's colours
+    if (s.href && s.href.indexOf("/themes/kukabara/") >= 0) {
         done.add(s);
         return;
     }

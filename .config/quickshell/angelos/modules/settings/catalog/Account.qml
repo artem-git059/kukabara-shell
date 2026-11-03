@@ -139,7 +139,7 @@ CatPage {
         }
         CatToggle {
             label: I18n.t("Пиксельная аватарка", "Pixel avatar")
-            hint: I18n.t("картинка крупными пикселями, как всё в angelOS", "The picture in big pixels, like the rest of angelOS")
+            hint: I18n.t("картинка крупными пикселями, как всё в kukabara", "The picture in big pixels, like the rest of kukabara")
             checked: Config.bar.avatarPixel
             onToggled: c => Config.bar.avatarPixel = c
         }
@@ -205,7 +205,7 @@ CatPage {
         CatButton {
             present: Config.game.enabled !== false && !Shell.setupOpen
             label: I18n.t("Вступление", "The intro")
-            hint: I18n.t("ролик angelOS, около пяти минут: звук, тряска, вспышки", "angelOS's opening, about five minutes: sound, shaking, flashes")
+            hint: I18n.t("ролик kukabara, около пяти минут: звук, тряска, вспышки", "kukabara's opening, about five minutes: sound, shaking, flashes")
             compact: true
             text: I18n.t("Посмотреть", "Watch")
             icon: "play"

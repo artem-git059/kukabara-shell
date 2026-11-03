@@ -5,7 +5,7 @@ import qs.config
 import qs.services
 
 // Which big release this is, small and see-through on the wallpaper (Settings → Wallpaper →
-// Release name): «angelOS 3» over its codename, from data/release.json (Updates.release),
+// Release name): «kukabara 3» over its codename, from data/release.json (Updates.release),
 // so every new release names itself. It sits in a free corner: none a desktop widget covers
 // (`obstacles`: the widgets' faces) and not the angel's (modules/y2k/AngelHelper stands in a
 // bottom corner of her screen), off the bar's edge; Config.wallpaper.releaseMarkCorner
@@ -104,7 +104,7 @@ Item {
         Repeater {
             model: [
                 {
-                    "text": "angelOS " + (root.release ? root.release.number : ""),
+                    "text": "kukabara " + (root.release ? root.release.number : ""),
                     "kind": "tiny"
                 },
                 {

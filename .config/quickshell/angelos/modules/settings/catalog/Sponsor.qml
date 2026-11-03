@@ -12,7 +12,7 @@ import qs.modules.settings.kit
 // the telemetry answer with exactly what goes.
 CatPage {
     heading: I18n.t("Спонсор", "Sponsor")
-    subtitle: I18n.t("angelOS делает один человек. Донат помогает ему не бросать — и попасть на стену спонсоров.", "angelOS is made by one person. A donation keeps it going, and puts you on the sponsor wall.")
+    subtitle: I18n.t("kukabara делает один человек. Донат помогает ему не бросать — и попасть на стену спонсоров.", "kukabara is made by one person. A donation keeps it going, and puts you on the sponsor wall.")
     Component.onCompleted: {
         Telemetry.loadSponsors();
         Telemetry.loadPreview();
@@ -124,7 +124,7 @@ CatPage {
                 "value": String(v)
             };
         }
-        readonly property var rows: !r ? [] : [line("angelOS", "angelOS", r.angelos ? I18n.t("релиз ", "release ") + r.angelos.release + (r.angelos.codename ? " «" + r.angelos.codename + "»" : "") + (r.angelos.commit ? ", " + r.angelos.commit : "") : ""), line("Quickshell · Qt · niri", "Quickshell · Qt · niri", [r.quickshell, r.qt, r.niri].join(" · ")), line("Система", "System", r.os ? r.os.distro + ", " + r.os.kernel : ""), line("Процессор", "CPU", r.cpu ? r.cpu.model + I18n.t(", потоков: ", ", threads: ") + r.cpu.threads : ""), line("Память", "Memory", r.ram_gb + I18n.t(" ГБ", " GB")), line("Видеокарта", "Graphics", (r.gpus || []).join("; ")), line("Экраны", "Screens", (r.screens || []).map(s => s.mode + (s.scale && s.scale !== 1 ? " ×" + s.scale : "")).join(", ")), line("Ноутбук", "Laptop", r.laptop ? I18n.t("да", "yes") : I18n.t("нет", "no")), line("Выбор в настройках", "Settings picked", r.choices ? Object.keys(r.choices).filter(k => r.choices[k] !== null && r.choices[k] !== "").map(k => k + ": " + r.choices[k]).join(", ") : ""), line("Номер компьютера", "Computer number", I18n.t("случайный, не связан с тобой", "random, not tied to you"))].filter(x => !!x)
+        readonly property var rows: !r ? [] : [line("kukabara", "kukabara", r.angelos ? I18n.t("релиз ", "release ") + r.angelos.release + (r.angelos.codename ? " «" + r.angelos.codename + "»" : "") + (r.angelos.commit ? ", " + r.angelos.commit : "") : ""), line("Quickshell · Qt · niri", "Quickshell · Qt · niri", [r.quickshell, r.qt, r.niri].join(" · ")), line("Система", "System", r.os ? r.os.distro + ", " + r.os.kernel : ""), line("Процессор", "CPU", r.cpu ? r.cpu.model + I18n.t(", потоков: ", ", threads: ") + r.cpu.threads : ""), line("Память", "Memory", r.ram_gb + I18n.t(" ГБ", " GB")), line("Видеокарта", "Graphics", (r.gpus || []).join("; ")), line("Экраны", "Screens", (r.screens || []).map(s => s.mode + (s.scale && s.scale !== 1 ? " ×" + s.scale : "")).join(", ")), line("Ноутбук", "Laptop", r.laptop ? I18n.t("да", "yes") : I18n.t("нет", "no")), line("Выбор в настройках", "Settings picked", r.choices ? Object.keys(r.choices).filter(k => r.choices[k] !== null && r.choices[k] !== "").map(k => k + ": " + r.choices[k]).join(", ") : ""), line("Номер компьютера", "Computer number", I18n.t("случайный, не связан с тобой", "random, not tied to you"))].filter(x => !!x)
         CatToggle {
             label: I18n.t("Отправлять телеметрию автору", "Send telemetry to the author")
             hint: I18n.t("Раз в неделю версии и железо — автору видно, что чинить первым. Выключишь — данные удалятся.", "Once a week: versions and hardware, so the author knows what to fix. Off deletes them.")

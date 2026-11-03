@@ -16,13 +16,13 @@ file may be bound again here: the profile is read after it and wins, for this th
       {"op": "add", "key": "Mod+Alt+K", "action": "spawn \\"gtk-launch\\" \\"kitty\\"", "title": "…"}
 
 Only one-line binds (`Key props { action; }`) are editable; anything else is shown
-read-only. The binds angelOS writes into the files niri reads after this one are listed
+read-only. The binds kukabara writes into the files niri reads after this one are listed
 read-only too, as their own sections ({"file": …}): cfg/angelos-windows.kdl (Alt+Tab, the
 lens) and angelos.kdl (the Golden Gate skin's Mac keys) — niri would let them replace a bind
 here on the same key, so a key they hold can't be given to a bind here either. The file is edited line by line, so comments and alignment stay. A copy
 of the niri config with the change must pass `niri validate` first; the old file is
 backed up under ~/.local/state/angelos/backups/keybinds-* and restored if the final
-validation fails. New binds go to an "angelOS: my shortcuts" section at the end.
+validation fails. New binds go to an "kukabara: my shortcuts" section at the end.
 """
 import fcntl
 import json
@@ -41,7 +41,7 @@ CONFIG = Path.home() / ".config/niri/config.kdl"
 PROFILE = keyprofile.current()          # "pixel" | "macos" | "" (a config from before profiles)
 KEYBINDS = keyprofile.path()            # the profile in front
 BACKUPS = Path.home() / ".local/state/angelos/backups"
-MY_SECTION = "// ─── angelOS: мои хоткеи (Настройки → Горячие клавиши) ───"
+MY_SECTION = "// ─── kukabara: мои хоткеи (Настройки → Горячие клавиши) ───"
 THEMES = {"pixel": "пиксельная тема", "macos": "тема macOS (Golden Gate)"}
 # other files with binds, read-only here: (path, section, read after the profile?). Files niri
 # reads after the profile (config.kdl's include order) replace a key of it — their keys can't be
@@ -49,9 +49,9 @@ THEMES = {"pixel": "пиксельная тема", "macos": "тема macOS (Go
 EXTRA = ([(CONFIG.parent / "cfg/keybinds-common.kdl", "Общие для обеих тем (cfg/keybinds-common.kdl)", False),
           # a binds block written by hand into the selector: both themes, read after the profile
           (keyprofile.SELECTOR, "Свои, для обеих тем (cfg/keybinds.kdl, правятся в файле)", True)] if PROFILE else []) + [
-    (CONFIG.parent / "cfg/angelos-windows.kdl", "angelOS: Alt+Tab, лупа, мелок (Настройки → Окна, Клавиатура и мышь)", True),
-    (CONFIG.parent / "angelos.kdl", "angelOS: сгенерировано темой", True),
-    (CONFIG.parent / "cfg/angelos-laptop.kdl", "angelOS: клавиши ноутбука и Mod+P (Настройки → Клавиатура → Клавиши ноутбука)", True),
+    (CONFIG.parent / "cfg/angelos-windows.kdl", "kukabara: Alt+Tab, лупа, мелок (Настройки → Окна, Клавиатура и мышь)", True),
+    (CONFIG.parent / "angelos.kdl", "kukabara: сгенерировано темой", True),
+    (CONFIG.parent / "cfg/angelos-laptop.kdl", "kukabara: клавиши ноутбука и Mod+P (Настройки → Клавиатура → Клавиши ноутбука)", True),
 ]
 
 BIND = re.compile(
@@ -219,7 +219,7 @@ def apply_ops(text, ops):
         if k in seen:
             raise ValueError(f"{a['key']} is already used: {seen[k]}")
         seen[k] = a["key"]
-    # a key angelOS's own files hold would be taken over by them (only the keys asked for now:
+    # a key kukabara's own files hold would be taken over by them (only the keys asked for now:
     # an old clash in the file doesn't stop other edits)
     for b in extra_binds():
         k = norm_key(b["key"])

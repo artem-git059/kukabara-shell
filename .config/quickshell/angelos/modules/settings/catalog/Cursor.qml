@@ -24,7 +24,7 @@ CatPage {
         property real gap: 0
         readonly property bool current: hell ? (Cursors.byCircle ? Cursors.circleTheme.startsWith(modelData.theme) && !!modelData.circle : Config.cursor.hell === modelData.theme) : Cursors.theme === modelData.theme
         readonly property bool working: Cursors.busy && (Cursors.working === modelData.id || Cursors.working === modelData.theme)
-        // heaven's own (services/Heaven): angelOS Glitter is earned
+        // heaven's own (services/Heaven): kukabara Glitter is earned
         readonly property bool locked: !hell && Cursors.allowed(modelData.theme) !== modelData.theme
         width: (parent.width - (columns - 1) * gap) / columns
         height: cardCol.implicitHeight + Theme.u * 8
@@ -191,7 +191,7 @@ CatPage {
                 }
             ]
             currentValue: Cursors.byCircle ? "circle" : "one"
-            onActivated: v => Cursors.setHell(v === "circle" ? "circle" : (Config.cursor.hellPick || "angelOS-Hell"))
+            onActivated: v => Cursors.setHell(v === "circle" ? "circle" : (Config.cursor.hellPick || "kukabara-Hell"))
         }
         CatCustom {
             wide: true
@@ -281,7 +281,7 @@ CatPage {
         icon: "gear"
         CatChoice {
             label: I18n.t("Размер курсора", "Cursor size")
-            hint: I18n.t("пиксельные темы angelOS чётче всего в 24, 36 и 48", "angelOS pixel themes are crispest at 24, 36 and 48")
+            hint: I18n.t("пиксельные темы kukabara чётче всего в 24, 36 и 48", "kukabara pixel themes are crispest at 24, 36 and 48")
             model: [24, 32, 36, 48].map(v => ({
                         "label": String(v),
                         "value": v

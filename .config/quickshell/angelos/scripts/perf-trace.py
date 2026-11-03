@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Summarise a qmlprofiler trace (.qtd) of angelOS: where the QML engine spends its time.
+"""Summarise a qmlprofiler trace (.qtd) of kukabara: where the QML engine spends its time.
 
 usage: perf-trace.py TRACE.qtd [--top N] [--json]
 

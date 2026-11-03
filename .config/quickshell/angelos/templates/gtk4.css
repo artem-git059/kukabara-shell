@@ -1,4 +1,4 @@
-/* angelOS {{flavor}} / {{mode}} (GTK4) — generated */
+/* kukabara {{flavor}} / {{mode}} (GTK4) — generated */
 @import url("angelos-decor.css");
 @define-color accent_color {{accent}};
 @define-color accent_bg_color {{accent}};
@@ -64,7 +64,7 @@ window {
     --window-radius: 0px;
 }
 
-/* angelOS pixel frames, like the shell's own boxes (PxBox): a 2 px outline whose corners step
+/* kukabara pixel frames, like the shell's own boxes (PxBox): a 2 px outline whose corners step
    in by one art pixel, and a 2 px bevel inside — light top-left, dark bottom-right on buttons,
    the other way round on fields and pressed buttons. The outline is an image
    (assets/frame-*.svg, drawn by scripts/gtk-live.py in the palette's edge colour) laid 4 px wide

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS audio tap: what the cava widget listens to.
+"""kukabara audio tap: what the cava widget listens to.
 
   audio-tap.py list
       JSON with every output (sink monitor) and input, their channels and
@@ -274,7 +274,7 @@ def write_all(fd, data, timeout=3.0):
 
 def record(route):
     target, sink, pos, _, _ = route
-    props = ("{ node.name = angelos-cava node.description = \"angelOS visualizer\" media.role = Music "
+    props = ("{ node.name = angelos-cava node.description = \"kukabara visualizer\" media.role = Music "
              "node.always-process = true node.dont-fallback = true node.dont-reconnect = true node.dont-move = true "
              + ("stream.capture.sink = true " if sink else "") + "}")
     cmd = ["pw-record", "--target", target, "-P", props, "--rate", str(RATE), "--channels", str(len(pos)),

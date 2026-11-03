@@ -1,9 +1,9 @@
-# angelOS shell as a systemd user service: brought back up whenever it dies
+# kukabara shell as a systemd user service: brought back up whenever it dies
 # (killed, crashed past Quickshell's own restart). `angelos start` installs this
 # file with the paths filled in and starts it; `angelos stop|restart` go through
 # systemctl. Template: ~/.config/quickshell/angelos/systemd/angelos.service.in
 [Unit]
-Description=angelOS shell (Quickshell)
+Description=kukabara shell (Quickshell)
 PartOf=graphical-session.target
 After=graphical-session.target
 # a crash loop (broken Qt, missing libraries) gives up after 5 tries a minute

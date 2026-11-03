@@ -8,7 +8,7 @@ import qs.config
 // Settings search: pages, groups and single settings, found by name or by a
 // rough description ("прозрачность панели", "display", "ифк" typed in the wrong
 // layout). The index comes from the pages' own QML (scripts/settings-index.py);
-// the synonyms below connect everyday words to the angelOS names.
+// the synonyms below connect everyday words to the kukabara names.
 Singleton {
     id: root
 

@@ -11,11 +11,11 @@
 #   refused    qs says no three times running: SIGABRT
 #   silent     qs never comes back (a hung shell answers nobody): cut off, SIGABRT
 #
-#   tests/guard/run.sh [angelOS dir]     exit 0 = all good
+#   tests/guard/run.sh [kukabara dir]     exit 0 = all good
 #   GUARD_SPAN=s                         how long the first five are watched (10)
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/bin/angelos" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/bin/angelos" ]] || { echo "no kukabara in $DIR"; exit 2; }
 SPAN="${GUARD_SPAN:-10}"
 fail=0
 ok()  { printf '  ✓ %s\n' "$*"; }

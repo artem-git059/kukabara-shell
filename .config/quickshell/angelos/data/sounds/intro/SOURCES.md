@@ -49,7 +49,7 @@ by `scripts/intro-sounds.py`.
 
 ## The author's voice
 
-`voice/*.ogg` — recorded for angelOS by its author (MixaDoDs), 12.10.2026; cut and levelled by
+`voice/*.ogg` — recorded for kukabara by its author (MixaDoDs), 12.10.2026; cut and levelled by
 `owner/intro-art/voice_cut.py`. `a.ogg`…`z.ogg`, `0.ogg`…`9.ogg`, `dash.ogg`, `underscore.ogg`, `dot.ogg`: the
 ophanim reads the user's name from these, a letter at a time. `tv-1…3.ogg`: the announcer on the neighbours'
 television in the minute before (prequel.ogg). `ex-1…3.ogg`: him, far off, as she hears his messages in her head there.

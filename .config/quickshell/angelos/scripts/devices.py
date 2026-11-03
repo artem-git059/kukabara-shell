@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The devices' driver of angelOS: Hall-effect keyboards and mice set up from the shell
+"""The devices' driver of kukabara: Hall-effect keyboards and mice set up from the shell
 (services/Devices; Settings → Devices → Device driver; docs/devices.md).
 
   devices.py list [--json]            the devices connected that a description knows, and the

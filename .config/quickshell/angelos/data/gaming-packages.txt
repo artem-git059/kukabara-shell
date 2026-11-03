@@ -1,4 +1,4 @@
-# angelOS gaming edition (scripts/game-setup.sh; the installer's INSTALL_GAMING=1, Settings →
+# kukabara gaming edition (scripts/game-setup.sh; the installer's INSTALL_GAMING=1, Settings →
 # Maintenance → Games). Updates keep this list installed once it was set up ($STATE_DIR/gaming).
 # The 32-bit driver of the video card and the snapshots (snapper, snap-pac, the boot menu's
 # limine-snapper-sync or grub-btrfs) are picked by game-setup.sh for this machine.

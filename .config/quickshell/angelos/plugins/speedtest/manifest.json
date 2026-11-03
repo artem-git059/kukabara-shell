@@ -2,7 +2,7 @@
   "id": "speedtest",
   "name": "Спидтест",
   "version": "1.0.0",
-  "author": "angelOS (идея: nilsonlinux/speedtest-meter, MIT)",
+  "author": "kukabara (идея: nilsonlinux/speedtest-meter, MIT)",
   "description": "Замер скорости интернета со спидометром и историей. Кнопка на панели, работает через speedtest-cli.",
   "icon": "gauge",
   "enabledByDefault": true,

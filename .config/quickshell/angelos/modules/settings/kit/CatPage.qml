@@ -4,7 +4,7 @@ import qs.services
 
 // One settings page as data (modules/settings/catalog/<Name>.qml): its groups (CatGroup) of
 // settings (CatToggle, CatChoice, …) and whatever state, processes and helpers the page needs.
-// It draws nothing: a look renders it — the angelOS/Mac/hell looks through CatalogPage, the
+// It draws nothing: a look renders it — the kukabara/Mac/hell looks through CatalogPage, the
 // P5 window through its own rows. A look puts the page inside itself (invisible), so lookups
 // up the parents (the window's place, its skin) work from here as from a page; the custom
 // parts (CatCustom) are moved into the look's rows while shown.

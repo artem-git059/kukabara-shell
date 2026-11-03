@@ -3,7 +3,7 @@ import qs.config
 import qs.services
 import "MacIcons.js" as MacIcons
 
-// A group of settings. In Settings (the angelOS look, `fluent`): a raised pixel card with its
+// A group of settings. In Settings (the kukabara look, `fluent`): a raised pixel card with its
 // caption inside, the rows under it with hairlines between them (SettingRow); the page lays
 // the cards out in columns (PxPage, PxCards) — `wide` keeps one across the whole page. Classic:
 // like macOS's System Settings — a caption above a raised pixel card; Windose and Stream:
@@ -28,10 +28,10 @@ Item {
     readonly property bool fluent: Theme.fluentFor(root.parent)
     // the Golden Gate skin's System Settings: the rows in one rounded box, a shade off the page
     readonly property bool mac: settingsSkin === "goldengate"
-    // the angelOS look: the caption inside the card
+    // the kukabara look: the caption inside the card
     readonly property bool angel: fluent && !mac
     property bool unfolded: false
-    // only the Golden Gate skin folds a sub-page into a "Title ›" row; in the angelOS look the
+    // only the Golden Gate skin folds a sub-page into a "Title ›" row; in the kukabara look the
     // settings tree alone says what waits under «Ещё…» (tree.json "more"), a card never folds
     readonly property bool foldable: fluent && mac && advanced
     readonly property bool folded: foldable && !unfolded && openSub !== title
@@ -83,7 +83,7 @@ Item {
     implicitWidth: col.implicitWidth + Theme.pad * 2
     implicitHeight: bare ? col.implicitHeight : fluent ? (foldable ? fold.y + fold.height + (folded ? 0 : col.implicitHeight + Theme.u * 4) : col.y + col.implicitHeight + Theme.u * (angel ? 4 : 3)) : classic ? card.y + col.implicitHeight + Theme.pad * 2 : col.y + col.implicitHeight + Theme.pad
 
-    // ---- the angelOS look: one raised card, the caption inside ----
+    // ---- the kukabara look: one raised card, the caption inside ----
     PxBox {
         visible: root.angel && !root.bare
         width: root.width

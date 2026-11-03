@@ -6,7 +6,7 @@ import Quickshell.Io
 import Quickshell.Services.UPower
 import qs.config
 
-// angelOS sounds, Settings → Y2K → Sounds. Three packs:
+// kukabara sounds, Settings → Y2K → Sounds. Three packs:
 //   y2k       synthesised by scripts/y2k-sounds.py into ~/.local/share/angelos/sounds/y2k
 //   overdose  NEEDY GIRL OVERDOSE (Windose) sounds, fetched on first use by
 //             scripts/sound-pack.py into …/sounds/overdose
@@ -153,7 +153,7 @@ Singleton {
     }
     Process {
         id: picker
-        command: ["zenity", "--file-selection", "--title=angelOS", "--file-filter=Sounds | *.ogg *.oga *.wav *.mp3 *.flac *.opus"]
+        command: ["zenity", "--file-selection", "--title=kukabara", "--file-filter=Sounds | *.ogg *.oga *.wav *.mp3 *.flac *.opus"]
         stdout: StdioCollector {
             onStreamFinished: {
                 const f = text.trim();

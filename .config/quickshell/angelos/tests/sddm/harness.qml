@@ -141,8 +141,8 @@ ShellRoot {
     }
 
     FloatingWindow {
-        // niri keeps "angelOS [dev]" windows on the side monitor, out of the screencast
-        title: "angelOS [dev] sddm test"
+        // niri keeps "kukabara [dev]" windows on the side monitor, out of the screencast
+        title: "kukabara [dev] sddm test"
         implicitWidth: 1280
         implicitHeight: 720
         color: "black"

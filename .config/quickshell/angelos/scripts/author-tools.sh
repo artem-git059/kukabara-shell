@@ -1,9 +1,9 @@
 #!/bin/sh
-# angelOS author's tools (E): the chapter editor and the owner's Dotfiles tools live in the
+# kukabara author's tools (E): the chapter editor and the owner's Dotfiles tools live in the
 # shell's owner/ folder, which is never published. They come from the author's private
 # repository — only to a GitHub account that can see it. GitHub decides: the repository is
 # private, `gh api` gets a 404 for anyone else, so nothing here can be edited into access.
-# angelOS keeps no token: gh keeps its own login (`gh auth login`, its usual permissions).
+# kukabara keeps no token: gh keeps its own login (`gh auth login`, its usual permissions).
 #
 #   author-tools.sh status    one line: "here|partial|absent access|no-access|no-login|no-gh <login>"
 #                             (partial: owner/ is there but not all of it — the game's debug
@@ -47,9 +47,9 @@ fetch() {
   a=$(access)
   case "$a" in
     access\ *) ;;
-    no-gh) echo "gh не установлен — инструменты автора не нужны для angelOS, пропускаю" >&2; return 2 ;;
+    no-gh) echo "gh не установлен — инструменты автора не нужны для kukabara, пропускаю" >&2; return 2 ;;
     no-login) echo "gh: вход не выполнен — нечего проверять, пропускаю (angelos author login)" >&2; return 2 ;;
-    *) echo "у аккаунта ${a#no-access } нет доступа к инструментам автора — для angelOS это ничего не меняет" >&2; return 3 ;;
+    *) echo "у аккаунта ${a#no-access } нет доступа к инструментам автора — для kukabara это ничего не меняет" >&2; return 3 ;;
   esac
   tmp=$(mktemp -d) || return 1
   trap 'rm -rf "$tmp"' EXIT

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""angelOS defaults for Nautilus, plus the bundled mediafix.
+"""kukabara defaults for Nautilus, plus the bundled mediafix.
 
   nautilus-setup.py status               -> JSON: what is installed and applied
-  nautilus-setup.py apply [--no-prefs]   -> install the angelOS Nautilus extensions
+  nautilus-setup.py apply [--no-prefs]   -> install the kukabara Nautilus extensions
                                             (open in terminal, mediafix) and the
                                             preference defaults below
-  nautilus-setup.py remove               -> remove the angelOS extensions
+  nautilus-setup.py remove               -> remove the kukabara extensions
   nautilus-setup.py restart              -> quit a running Nautilus (`nautilus -q`); the next
                                             window starts it fresh
-  nautilus-setup.py mediafix [FILE…]     -> run mediafix in the angelOS terminal
+  nautilus-setup.py mediafix [FILE…]     -> run mediafix in the kukabara terminal
 
 Why a restart: Nautilus loads its python extensions and the GTK 4 user CSS
 (~/.config/gtk-4.0/gtk.css → angelos.css) once, when it starts, and it keeps
@@ -38,7 +38,7 @@ BACKUPS = Path.home() / ".local/state/angelos/backups"
 OURS = ("angelos_open_terminal.py", "angelos_mediafix.py", "angelos_share.py")
 # earlier stand-alone versions of the same menu items (dotfiles / mediafix install.sh)
 LEGACY = {"open_in_kitty.py": "class OpenInKitty", "mediafix.py": "class MediafixNautilus"}
-# the author's Nautilus preferences, shipped as angelOS defaults
+# the author's Nautilus preferences, shipped as kukabara defaults
 PREFS = [
     ("org.gnome.nautilus.compression", "default-compression-format", "'7z'"),
     ("org.gnome.nautilus.icon-view", "default-zoom-level", "'small-plus'"),

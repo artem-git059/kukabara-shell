@@ -10,7 +10,7 @@ import qs.widgets
 // «Privacy ON» for the viewers, where a hidden window is. niri can only paint a hidden window
 // black in the screencast (block-out-from); this window, as big as the streamed screen, draws a
 // plate over each hidden window's place, and OBS lays it over the screen capture ("Window
-// capture (PipeWire)" → "angelOS · Privacy для OBS", stretched over the whole screen, above
+// capture (PipeWire)" → "kukabara · Privacy для OBS", stretched over the whole screen, above
 // it): the viewers see the plate, you see your window. Like the angel's window for OBS
 // (StreamerCast) it is see-through on your own screens (its niri rule: opacity 0, rules.kdl;
 // a window cast takes it as drawn), click-through, tucked into a corner of a screen nobody

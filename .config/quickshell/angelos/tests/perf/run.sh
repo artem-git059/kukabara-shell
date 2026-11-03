@@ -5,13 +5,13 @@
 # index, 2026-10-01), a poll that got fast or a helper started over and over fail here.
 # The windows' own cost (frames, the live wallpaper) needs a screen: `angelos perf --stand --budget`.
 #
-#   tests/perf/run.sh [angelOS dir]     exit 0 = within, 77 = no quickshell
+#   tests/perf/run.sh [kukabara dir]     exit 0 = within, 77 = no quickshell
 #   PERF_SETTLE=s PERF_SPAN=s           how long it settles (30), how long it is measured (20)
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
-# the budget: an idle angelOS without windows, every service made, sits at 0.0 % CPU and under
+# the budget: an idle kukabara without windows, every service made, sits at 0.0 % CPU and under
 # one wake-up a second (2026-10-11) — nothing here waits for a screen, niri or sound. A 20 ms
 # timer left running (50/s) or a binding that never settles is over it
 MAX_CPU="${PERF_MAX_CPU:-1.0}"         # % of one core

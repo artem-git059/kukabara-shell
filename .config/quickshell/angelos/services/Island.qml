@@ -67,7 +67,7 @@ Singleton {
     }
 
     readonly property string cmdFile: (Quickshell.env("XDG_RUNTIME_DIR") || "/tmp") + "/angelos-island.json"
-    readonly property var win: Niri.windows.find(w => w.title === (Shell.dev ? "angelOS · Остров [dev]" : "angelOS · Остров")) || null
+    readonly property var win: Niri.windows.find(w => w.title === (Shell.dev ? "kukabara · Остров [dev]" : "kukabara · Остров")) || null
 
     // "github.com/x" → "https://github.com/x"; mail and phones as their own schemes
     function normalize(u) {
@@ -164,7 +164,7 @@ Singleton {
             lensFailed();
             return;
         }
-        // the results in angelOS's own window (services/LensSearch); off: Google's page here
+        // the results in kukabara's own window (services/LensSearch); off: Google's page here
         if (Config.circle.lensWindow) {
             LensSearch.search(png);
             return;
@@ -178,7 +178,7 @@ Singleton {
         lensReader.running = true;
     }
     function lensFailed() {
-        Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-warning", "-t", "5000", I18n.t("Поиск по картинке не открылся", "Search by picture didn't open"), I18n.t("Снимок не сохранился — попробуйте ещё раз", "The shot wasn't saved — try again")]);
+        Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-warning", "-t", "5000", I18n.t("Поиск по картинке не открылся", "Search by picture didn't open"), I18n.t("Снимок не сохранился — попробуйте ещё раз", "The shot wasn't saved — try again")]);
     }
     Process {
         id: lensReader
@@ -280,7 +280,7 @@ Singleton {
             "cmd": "through",
             "on": on
         });
-        Quickshell.execDetached(["notify-send", "-a", "angelOS", "-t", "2500", "-i", "web-browser", on ? I18n.t("Мини-браузер пропускает клики", "The mini browser lets clicks through") : I18n.t("Мини-браузер снова кликается", "The mini browser takes clicks again"), on ? I18n.t("Вернуть: Mod+Alt+I", "Back: Mod+Alt+I") : ""]);
+        Quickshell.execDetached(["notify-send", "-a", "kukabara", "-t", "2500", "-i", "web-browser", on ? I18n.t("Мини-браузер пропускает клики", "The mini browser lets clicks through") : I18n.t("Мини-браузер снова кликается", "The mini browser takes clicks again"), on ? I18n.t("Вернуть: Mod+Alt+I", "Back: Mod+Alt+I") : ""]);
     }
 
     FileView {

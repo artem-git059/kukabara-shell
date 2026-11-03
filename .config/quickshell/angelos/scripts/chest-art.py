@@ -5,7 +5,7 @@
                              overlay scales them up by whole factors without smoothing)
 
 A wooden chest with gold bands and a heart-shaped lock plate; open, its inside is dark (the
-overlay pours the rarity's light into it). numpy + Pillow (angelOS dependencies).
+overlay pours the rarity's light into it). numpy + Pillow (kukabara dependencies).
 """
 import sys
 from pathlib import Path

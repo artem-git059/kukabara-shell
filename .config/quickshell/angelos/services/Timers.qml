@@ -187,7 +187,7 @@ Singleton {
         // Do not disturb (a stream turns it on) hides the card: the harp still rings, as asked
         if (Config.notifications.dnd)
             Sounds.play("harp");
-        Quickshell.execDetached(["notify-send", "-a", "angelOS", "-h", "string:x-angelos-sound:harp", "-i", "alarm-symbolic", head, body]);
+        Quickshell.execDetached(["notify-send", "-a", "kukabara", "-h", "string:x-angelos-sound:harp", "-i", "alarm-symbolic", head, body]);
         rang(head, body);
     }
 

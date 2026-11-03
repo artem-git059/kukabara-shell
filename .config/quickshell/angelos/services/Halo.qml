@@ -6,7 +6,7 @@ import Quickshell.Io
 import qs.config
 
 // The Halo (Нимб): what the pixel Dynamic Island at the top centre shows (modules/halo), as
-// capsules: our own screen recording and OBS's, every timer, the music, an angelOS update and
+// capsules: our own screen recording and OBS's, every timer, the music, an kukabara update and
 // browser downloads in progress, the day's chest; for a moment: a picked colour, the network
 // gone or back, the charger plugged in, a download or an update done, an achievement. A timer's
 // end is `rang` for a few seconds, the only thing shown over a full-screen game. Settings → Halo.
@@ -400,7 +400,7 @@ Singleton {
                 }, 3500);
         }
     }
-    // an angelOS update (Settings → Updates) ran: done or not, a moment; the restart question
+    // an kukabara update (Settings → Updates) ran: done or not, a moment; the restart question
     // stays the UpdatePrompt's
     readonly property bool updating: Updates.state === "updating" || Updates.state === "restoring" || Updates.state === "cloning"
     onUpdatingChanged: if (!updating && Updates.state !== "idle")

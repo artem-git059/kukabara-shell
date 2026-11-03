@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # step ORDER FUNCTION ENGLISH RUSSIAN — a step of the run. A module registers its own; they run
 # by ORDER (two digits), so a new step is a new file in installer/steps with one line like this

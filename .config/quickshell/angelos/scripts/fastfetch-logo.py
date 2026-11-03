@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""fastfetch draws the angelOS emblem (Settings → Bar → Logo).
+"""fastfetch draws the kukabara emblem (Settings → Bar → Logo).
 
   fastfetch-logo.py --emblem NAME --rows JSON --palette JSON   write the emblem
   fastfetch-logo.py --restore                                   put the original back

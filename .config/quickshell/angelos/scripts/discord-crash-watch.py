@@ -3,7 +3,7 @@
 
 Discord sharing the screen with sound opens a capture of its own for every app's audio stream
 and drops it when that stream ends; now and then its Voice thread dies right then (2026-10-21,
-SIGTRAP: "sink … deleted", then "sample rate diff: 67797%", 8 s later the crash). angelOS keeps
+SIGTRAP: "sink … deleted", then "sample rate diff: 67797%", 8 s later the crash). kukabara keeps
 its own stream open for good (sfx-player), but another app or a Discord update can bring it
 back. This follows systemd-coredump in the journal and, when Discord dies, reads its WebRTC log
 for audio streams that went away just before.

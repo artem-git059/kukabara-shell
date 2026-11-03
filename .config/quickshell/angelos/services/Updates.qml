@@ -103,10 +103,10 @@ Singleton {
             "local-commits": I18n.t("в репозитории свои коммиты", "the repository has commits of its own"),
             "snapshot": I18n.t("не удалось сделать резервную копию — ничего не менялось", "the snapshot could not be taken — nothing was changed"),
             "pull": I18n.t("git не смог подтянуть новую версию", "git could not fetch the new version"),
-            "system": I18n.t("система не обновилась — angelOS не трогали", "the system was not updated — angelOS was left as it is"),
-            "quickshell": I18n.t("новой версии нужен Quickshell новее — angelOS не трогали", "the new version needs a newer Quickshell — angelOS was left as it is"),
+            "system": I18n.t("система не обновилась — kukabara не трогали", "the system was not updated — kukabara was left as it is"),
+            "quickshell": I18n.t("новой версии нужен Quickshell новее — kukabara не трогали", "the new version needs a newer Quickshell — kukabara was left as it is"),
             "install": I18n.t("установщик завершился с ошибкой", "the installer failed"),
-            "niri-integration": I18n.t("не удалось подключить angelOS к niri", "angelOS could not be wired into niri"),
+            "niri-integration": I18n.t("не удалось подключить kukabara к niri", "kukabara could not be wired into niri"),
             "niri-validate": I18n.t("конфиг niri не прошёл проверку", "the niri config failed validation"),
             "niri-missing": I18n.t("niri не найден — конфиг нельзя проверить", "niri is not installed — the config cannot be checked"),
             "snapshot-started": I18n.t("обновление прервалось на середине", "the update was cut short")
@@ -123,8 +123,8 @@ Singleton {
             "local-commits": I18n.t("Ничего не менялось. Это рабочий клон со своими коммитами: перенеси их поверх новых (git pull --rebase) или ставь свою версию её установщиком (./install.sh).", "Nothing changed. This is a working clone with commits of its own: put them on top of the new ones (git pull --rebase), or install your version with its installer (./install.sh)."),
             "snapshot": I18n.t("Ничего не менялось. Освободи место на диске и проверь права на ~/.local/state/angelos, потом попробуй снова.", "Nothing changed. Free some disk space and check that ~/.local/state/angelos is writable, then try again."),
             "pull": I18n.t("Проверь подключение к интернету и попробуй ещё раз. Если снимок уже сделан — можно вернуть как было.", "Check the internet connection and try again. If a snapshot was taken, you can restore it."),
-            "system": I18n.t("Ничего из angelOS не менялось. Причина — в сообщении: введи пароль, дождись другого менеджера пакетов или обнови систему в терминале (sudo pacman -Syu), потом «Обновить» снова.", "Nothing of angelOS changed. The reason is in the message: give the password, wait for the other package manager, or update the system in a terminal (sudo pacman -Syu), then Update again."),
-            "quickshell": I18n.t("Ничего из angelOS не менялось, рабочий стол работает как прежде. Обнови пакет quickshell, когда в репозиториях появится нужная версия, и обнови снова.", "Nothing of angelOS changed, the desktop keeps working as it was. Update the quickshell package once the repositories have the needed version, then update again."),
+            "system": I18n.t("Ничего из kukabara не менялось. Причина — в сообщении: введи пароль, дождись другого менеджера пакетов или обнови систему в терминале (sudo pacman -Syu), потом «Обновить» снова.", "Nothing of kukabara changed. The reason is in the message: give the password, wait for the other package manager, or update the system in a terminal (sudo pacman -Syu), then Update again."),
+            "quickshell": I18n.t("Ничего из kukabara не менялось, рабочий стол работает как прежде. Обнови пакет quickshell, когда в репозиториях появится нужная версия, и обнови снова.", "Nothing of kukabara changed, the desktop keeps working as it was. Update the quickshell package once the repositories have the needed version, then update again."),
             "install": I18n.t("Верни как было кнопкой ниже: система вернётся к версии до попытки. Причина — в сообщении, весь вывод установщика — в install.log в папке снимка; если повторяется, приложи его к issue (angelos report).", "Restore with the button below: the system goes back to the version before the attempt. The reason is in the message, the installer's whole output is install.log in the snapshot folder; if it happens again, attach it to an issue (angelos report)."),
             "niri-integration": I18n.t("Верни как было кнопкой ниже, затем приложи журнал к issue (angelos report).", "Restore with the button below, then attach the log to an issue (angelos report)."),
             "niri-validate": I18n.t("Новый конфиг niri не прошёл проверку — со следующим входом niri бы его не принял. Верни как было кнопкой ниже.", "niri refuses the new config — the next login would fail with it. Restore with the button below."),
@@ -232,7 +232,7 @@ Singleton {
         askRestart = false;
         // `angelos restart` restarts the live instance: never from a dev one
         if (Shell.dev) {
-            console.log("angelOS dev: restart skipped");
+            console.log("kukabara dev: restart skipped");
             return;
         }
         Quickshell.execDetached([Quickshell.shellDir + "/bin/angelos", "restart"]);
@@ -361,7 +361,7 @@ Singleton {
                     root._shellChanged = p[2] === "1";
                 else if (p[0] === "SYSTEM") {
                     root.systemPackages = parseInt(p[1]) || 0;
-                    // the packages are in whatever happens to angelOS after this
+                    // the packages are in whatever happens to kukabara after this
                     root._systemQt = p[2] === "1";
                     if (root._systemQt)
                         root.needsRestart = true;
@@ -514,7 +514,7 @@ Singleton {
         if (head === Config.updates.notifiedFor)
             return;
         Config.updates.notifiedFor = head;
-        Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "system-software-update", I18n.t("Доступно обновление angelOS", "An angelOS update is available"), I18n.t("Новых изменений: ", "New changes: ") + behind + I18n.t(". Настройки → Обновления.", ". Settings → Updates.")]);
+        Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "system-software-update", I18n.t("Доступно обновление kukabara", "An kukabara update is available"), I18n.t("Новых изменений: ", "New changes: ") + behind + I18n.t(". Настройки → Обновления.", ". Settings → Updates.")]);
     }
     Timer {
         interval: 90 * 1000
@@ -546,7 +546,7 @@ Singleton {
                     return;
                 root._qtTold = root.qtMismatch;
                 const fix = /SYSTEM/.test(text) ? I18n.t("Обнови систему (sudo pacman -Syu), затем angelos restart.", "Update the system (sudo pacman -Syu), then angelos restart.") : I18n.t("Поставь пакет: sudo pacman -S quickshell, затем angelos restart.", "Install the package: sudo pacman -S quickshell, then angelos restart.");
-                Quickshell.execDetached(["notify-send", "-a", "angelOS", "-u", "critical", "-i", "dialog-warning", I18n.t("Quickshell не подходит к Qt", "Quickshell doesn't match Qt"), I18n.t("Собран под Qt ", "Built against Qt ") + m[1] + I18n.t(", а в системе ", ", the system has ") + m[2] + I18n.t(" — оболочка будет падать. ", " — the shell will crash. ") + fix]);
+                Quickshell.execDetached(["notify-send", "-a", "kukabara", "-u", "critical", "-i", "dialog-warning", I18n.t("Quickshell не подходит к Qt", "Quickshell doesn't match Qt"), I18n.t("Собран под Qt ", "Built against Qt ") + m[1] + I18n.t(", а в системе ", ", the system has ") + m[2] + I18n.t(" — оболочка будет падать. ", " — the shell will crash. ") + fix]);
             }
         }
     }

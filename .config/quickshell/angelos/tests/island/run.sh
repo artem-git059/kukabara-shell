@@ -7,10 +7,10 @@
 # little web on 127.0.0.1 (web.py): our Lens page, loaded from a file, posts the picture;
 # ↗ ("browser") hands the default browser the page it is on now. Skipped without QtWebEngine.
 #
-#   tests/island/run.sh [angelOS dir]      exit 0 = all good, 77 = no quickshell
+#   tests/island/run.sh [kukabara dir]      exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"
@@ -61,7 +61,7 @@ done
 EOF2
 printf '#!/bin/sh\nexit 0\n' >"$T/bin/notify-send"
 chmod +x "$T/bin/"*
-printf '\x89PNG\r\n\x1a\nangelOS-lens-test\x00\xff' >"$T/fake/pic.png"
+printf '\x89PNG\r\n\x1a\nkukabara-lens-test\x00\xff' >"$T/fake/pic.png"
 
 log="${ANGELOS_TEST_LOG:-$T/qs.log}"
 env -i PATH="$T/bin:$PATH" LANG=C.UTF-8 HOME="$H" USER="${USER:-angel}" \

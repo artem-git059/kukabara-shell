@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Keep a polkit authentication agent registered for the niri session, always.
 
-The shell's agent (angelOS's) is preferred because it follows the theme.
+The shell's agent (kukabara's) is preferred because it follows the theme.
 Whenever no shell is running, or its agent will not register, a fallback
 agent is started at once. When the shell comes back, the fallback steps aside
 and the shell is asked to register again
@@ -74,7 +74,7 @@ def probe() -> str:
 
 
 def shell_pid() -> int | None:
-    """Pid of the shell daemon: angelOS (quickshell -c angelos), not its IPC clients."""
+    """Pid of the shell daemon: kukabara (quickshell -c angelos), not its IPC clients."""
     uid = os.getuid()
     found = []
     for d in os.listdir("/proc"):

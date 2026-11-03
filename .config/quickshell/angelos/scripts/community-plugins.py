@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS Community Plugins: the one catalog of plugins (Settings → Plugins).
+"""kukabara Community Plugins: the one catalog of plugins (Settings → Plugins).
 No third-party Python dependencies.
 
   community-plugins.py list                          -> {"plugins": [approved registry entries]}
@@ -13,7 +13,7 @@ No third-party Python dependencies.
   community-plugins.py sideload-check                -> the sideloaded ones; GitHub's: newer release/commit?
   community-plugins.py sideload-update ID            -> a GitHub one to its latest release/commit
   community-plugins.py retire                        -> the old stand-alone Community Store plugin out
-                                                        of the plugin folder (its job is angelOS's now)
+                                                        of the plugin folder (its job is kukabara's now)
 
 The catalog and the installer both read the official registry; a GUI-supplied
 URL can never bypass moderation. Before an update the installed copy is kept as a
@@ -47,7 +47,7 @@ PLUGIN_ID = re.compile(r"^[a-z0-9][a-z0-9_-]{1,63}$")
 SHELL = Path(__file__).resolve().parents[1]
 STAMP = re.compile(r"\d{8}-\d{6}(?:-\d+)?")
 SNAPSHOTS_KEEP = 10
-# plugins whose job angelOS does itself now: never installed, never loaded
+# plugins whose job kukabara does itself now: never installed, never loaded
 RETIRED = ("community-store",)
 
 
@@ -321,7 +321,7 @@ def _peek(data):
     if not isinstance(manifest, dict) or not isinstance(manifest.get("id"), str) or not PLUGIN_ID.fullmatch(manifest["id"]):
         raise ValueError("Plugin manifest has no valid id")
     if manifest["id"] in RETIRED:
-        raise ValueError("This plugin is built into angelOS now")
+        raise ValueError("This plugin is built into kukabara now")
     return manifest["id"], manifest.get("version")
 
 
@@ -430,7 +430,7 @@ def rollback(plugin_id, home=None):
 
 
 def retire(home=None):
-    """the old stand-alone Community Store plugin: its job is angelOS's own now. Its folder goes
+    """the old stand-alone Community Store plugin: its job is kukabara's own now. Its folder goes
     with its snapshots (nothing is deleted), its settings stay in settings.json"""
     out = []
     for plugin_id in RETIRED:
@@ -443,7 +443,7 @@ def retire(home=None):
             except (OSError, ValueError, AttributeError):
                 pass
             (target.parent / (target.name + ".json")).write_text(
-                json.dumps({"reason": "retired: built into angelOS", "version": str(version)}), encoding="utf-8")
+                json.dumps({"reason": "retired: built into kukabara", "version": str(version)}), encoding="utf-8")
             os.replace(folder, target)
             out.append({"id": plugin_id, "moved": str(target)})
     return {"retired": out}

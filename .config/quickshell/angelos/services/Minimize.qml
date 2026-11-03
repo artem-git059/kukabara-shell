@@ -263,7 +263,7 @@ Singleton {
         }
         onExited: code => {
             if (code !== 0)
-                console.warn("angelOS minimize: batch snapshots:", batchErr.text);
+                console.warn("kukabara minimize: batch snapshots:", batchErr.text);
             const js = jobs, ps = paths, rs = results;
             jobs = [];
             paths = [];
@@ -378,7 +378,7 @@ Singleton {
         onExited: code => {
             const q = job;
             if (code !== 0)
-                console.warn("angelOS minimize: no snapshot:", shotErr.text);
+                console.warn("kukabara minimize: no snapshot:", shotErr.text);
             if (code === 0 && q) {
                 const s = Object.assign({}, root.shots);
                 s[q.id] = "file://" + path;
@@ -853,7 +853,7 @@ Singleton {
                     root.hidden = Object.assign(pick(st.hidden), root.hidden);
                     root.order = (st.order || []).filter(id => !Niri.ready || alive(id)).concat(root.order.filter(id => (st.order || []).indexOf(id) < 0));
                 } catch (e) {
-                    console.warn("angelOS minimize: state", e);
+                    console.warn("kukabara minimize: state", e);
                 }
                 root._loaded = true;
             }

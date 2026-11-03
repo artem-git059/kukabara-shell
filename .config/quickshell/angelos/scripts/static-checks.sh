@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# angelOS's static checks: what can be seen in the files without running the shell — every window
+# kukabara's static checks: what can be seen in the files without running the shell — every window
 # guards its corner pixel (RightClickGuard), full-screen overlays let input through (or say why
 # not), Quickshell.Io types come with their import, the screenshot keys, no hard-coded ".exe",
 # python compiles, the lens-live shader copy. A second or two.
 #
-#   scripts/static-checks.sh [angelOS dir]     exit 0 = all good, 1 = something to fix (✕ lines)
+#   scripts/static-checks.sh [kukabara dir]     exit 0 = all good, 1 = something to fix (✕ lines)
 #
 # Run by scripts/test-ui.sh (the publish check) and by scripts/qml-check.sh (before every
 # `angelos restart`): one place, so a change that breaks them shows up at the restart already.

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# angelOS: update the dotfiles this system was installed from (Settings → Updates).
+# kukabara: update the dotfiles this system was installed from (Settings → Updates).
 #
 #   dotfiles-update.sh --find                 print the repository path, if any
 #   dotfiles-update.sh --check REPO           fetch; print BRANCH/UPSTREAM/BEHIND/AHEAD/DIRTY/REMOTE and IN <commit> lines
@@ -26,7 +26,7 @@
 # "SYSTEM <packages> <qt 0|1>": the system update went through, <packages> upgraded,
 # qt 1 = Quickshell or Qt among them (the running shell is the old one: restart it).
 #
-# The system goes first, before anything of angelOS changes: a new shell on an old
+# The system goes first, before anything of kukabara changes: a new shell on an old
 # Quickshell/Qt, or a Qt that moved without its rebuilt Quickshell (#50, #51), would
 # leave the user without a desktop. It asks for the admin password (pkexec: the
 # shell's own polkit dialog; sudo in a terminal). SYSTEM_UPGRADE=0 skips it.
@@ -43,7 +43,7 @@ say() { printf '» %s\n' "$*"; }
 # the messages in the shell's language (ANGELOS_LANG, Settings → Account), else the session's
 case "${ANGELOS_LANG:-${LC_ALL:-${LC_MESSAGES:-${LANG:-}}}}" in ru*) UI=ru ;; *) UI=en ;; esac
 _() { if [[ "$UI" == ru ]]; then printf '%s' "$2"; else printf '%s' "$1"; fi; }
-# this fork is the only source an update may come from: the original angelOS repository
+# this fork is the only source an update may come from: the original kukabara repository
 # no longer feeds this system (kukabara-shell is the fork's name since 2026-11-02)
 OFFICIAL="https://github.com/artem-git059/kukabara-shell"
 # the fork's earlier name: installs cloned from it keep it as their origin (GitHub redirects)
@@ -116,10 +116,10 @@ find_repo() {
 qt_packages() { pacman -Q quickshell quickshell-git qt6-base qt6-declarative qt6-wayland 2>/dev/null || true; }
 
 # pacman -Syu as root, before the snapshot: packages can't be put back by --restore,
-# so a failure here stops the update with angelOS untouched
+# so a failure here stops the update with kukabara untouched
 system_upgrade() {
   [[ "$SYSTEM_UPGRADE" == 1 ]] || { say "$(_ "SYSTEM_UPGRADE=0: the system is not updated" "SYSTEM_UPGRADE=0: система не обновляется")"; return 0; }
-  command -v pacman >/dev/null || { say "$(_ "pacman not found: only angelOS is updated" "pacman не найден: обновляется только angelOS")"; return 0; }
+  command -v pacman >/dev/null || { say "$(_ "pacman not found: only kukabara is updated" "pacman не найден: обновляется только kukabara")"; return 0; }
   local root=() log code why n before after qt=0
   if [[ -e "$PACMAN_DB/db.lck" ]]; then
     fail_early system "$(_ "another package manager is running ($PACMAN_DB/db.lck) — wait for it to finish and press Update again. Nothing changed" \
@@ -133,8 +133,8 @@ system_upgrade() {
   elif [[ -t 0 ]] && command -v sudo >/dev/null; then
     root=(sudo)
   else
-    fail_early system "$(_ "neither pkexec (polkit) nor sudo in a terminal: the system can't be updated, so angelOS was not either. Run sudo pacman -Syu, then update again" \
-                           "нет ни pkexec (polkit), ни sudo в терминале: систему не обновить, поэтому и angelOS не обновлялся. Выполни sudo pacman -Syu и обнови снова")" 8
+    fail_early system "$(_ "neither pkexec (polkit) nor sudo in a terminal: the system can't be updated, so kukabara was not either. Run sudo pacman -Syu, then update again" \
+                           "нет ни pkexec (polkit), ни sudo в терминале: систему не обновить, поэтому и kukabara не обновлялся. Выполни sudo pacman -Syu и обнови снова")" 8
   fi
   say "$(_ "updating the system first (pacman -Syu) — it asks for the admin password" "сначала обновляю систему (pacman -Syu) — попросит пароль администратора")"
   before="$(qt_packages)"
@@ -146,11 +146,11 @@ system_upgrade() {
     rm -f "$log"
     # pkexec: 126 = the password dialog was closed, 127 = not authorized / no polkit agent
     if [[ "${root[*]}" == *pkexec* ]] && ((code == 126 || code == 127)); then
-      fail_early system "$(_ "the admin password was not given, so the system and angelOS stay as they are. Press Update again and enter the password" \
-                             "пароль администратора не введён — система и angelOS остались как были. Нажми «Обновить» ещё раз и введи пароль")" 8
+      fail_early system "$(_ "the admin password was not given, so the system and kukabara stay as they are. Press Update again and enter the password" \
+                             "пароль администратора не введён — система и kukabara остались как были. Нажми «Обновить» ещё раз и введи пароль")" 8
     fi
-    fail_early system "$(_ "the system update (pacman -Syu) stopped${why:+: $why}. angelOS was not updated: its new version may need the new packages. Update the system in a terminal (sudo pacman -Syu), then press Update again" \
-                           "обновление системы (pacman -Syu) остановилось${why:+: $why}. angelOS не обновлялся: новой версии могут быть нужны новые пакеты. Обнови систему в терминале (sudo pacman -Syu) и нажми «Обновить» ещё раз")" 8
+    fail_early system "$(_ "the system update (pacman -Syu) stopped${why:+: $why}. kukabara was not updated: its new version may need the new packages. Update the system in a terminal (sudo pacman -Syu), then press Update again" \
+                           "обновление системы (pacman -Syu) остановилось${why:+: $why}. kukabara не обновлялся: новой версии могут быть нужны новые пакеты. Обнови систему в терминале (sudo pacman -Syu) и нажми «Обновить» ещё раз")" 8
   fi
   n="$(sed -n 's/^Packages (\([0-9]*\)).*/\1/p' "$log" | tail -n 1)"
   rm -f "$log"
@@ -168,9 +168,9 @@ quickshell_fits() {
   read -r state found want < <(printf '%s\n' "$script" | sh -s 2>/dev/null || true) || true
   case "$state" in
     too-old)
-      fail_early quickshell "$(_ "the new angelOS needs Quickshell $want, the system has $found even after its update — angelOS was not updated, so the desktop keeps working. Update the quickshell package when the repositories have it, then update again" \
-                                 "новому angelOS нужен Quickshell $want, а в системе даже после обновления $found — angelOS не обновлялся, рабочий стол продолжает работать. Обнови пакет quickshell, когда он появится в репозиториях, и обнови снова")" 9 ;;
-    old) say "$(_ "Quickshell $found is older than $want: angelOS runs, without its crash fixes" "Quickshell $found старее $want: angelOS работает, но без исправлений падений")" ;;
+      fail_early quickshell "$(_ "the new kukabara needs Quickshell $want, the system has $found even after its update — kukabara was not updated, so the desktop keeps working. Update the quickshell package when the repositories have it, then update again" \
+                                 "новому kukabara нужен Quickshell $want, а в системе даже после обновления $found — kukabara не обновлялся, рабочий стол продолжает работать. Обнови пакет quickshell, когда он появится в репозиториях, и обнови снова")" 9 ;;
+    old) say "$(_ "Quickshell $found is older than $want: kukabara runs, without its crash fixes" "Quickshell $found старее $want: kukabara работает, но без исправлений падений")" ;;
     missing) say "$(_ "the quickshell package was not found on PATH: its version is not checked" "пакет quickshell не найден в PATH: его версия не проверяется")" ;;
   esac
   return 0
@@ -281,7 +281,7 @@ elif ((ahead > 0)); then
                                 "ветка разошлась с $up: $ahead своих коммит(а/ов) и $behind новых — перемотать нельзя. Ничего не менялось. Перенеси свои коммиты поверх новых (git -C \"$REPO\" pull --rebase), потом обнови снова")" 7
 fi
 
-# the system before angelOS (see the top): nothing of angelOS has changed yet
+# the system before kukabara (see the top): nothing of kukabara has changed yet
 system_upgrade
 quickshell_fits "$new"
 
@@ -345,10 +345,10 @@ fi
 
 STAGE=niri-integration
 if [[ -f "$CONF/angelos/active" ]]; then
-  say "$(_ "angelOS is active — wiring it into niri again" "angelOS активен — перепроверяю интеграцию с niri")"
+  say "$(_ "kukabara is active — wiring it into niri again" "kukabara активен — перепроверяю интеграцию с niri")"
   # --no-validate: validated below; a failure is undone with the snapshot
   python3 "$CONF/quickshell/angelos/scripts/switch.py" angelos --no-restart --no-validate 2>&1 ||
-    fail niri-integration "$(_ "switch.py could not wire angelOS into niri (see the log above)" "switch.py не смог подключить angelOS к niri (подробности в журнале выше)")" 11
+    fail niri-integration "$(_ "switch.py could not wire kukabara into niri (see the log above)" "switch.py не смог подключить kukabara к niri (подробности в журнале выше)")" 11
 fi
 
 STAGE=niri-validate

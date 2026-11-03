@@ -8,7 +8,7 @@ import qs.widgets
 import qs.modules.settings.kit
 
 // The touchpad (laptops, 2026-10-08): niri's `touchpad { }` in cfg/input.kdl (services/InputConfig,
-// line edits with a backup and `niri validate`), and the gestures — niri's own and angelOS's
+// line edits with a backup and `niri validate`), and the gestures — niri's own and kukabara's
 // (services/Gestures, scripts/gesture-watch.py). The tree shows the page where there is a touchpad.
 CatPage {
     id: page
@@ -200,7 +200,7 @@ CatPage {
             text: I18n.t("Уже есть: 3 пальца вбок — колонки, вверх-вниз — столы, 4 вверх — обзор, щипок — масштаб.", "Built in: 3 fingers sideways for columns, up/down for desks, 4 up for overview, pinch to zoom.")
         }
         CatToggle {
-            label: I18n.t("Жесты angelOS", "angelOS gestures")
+            label: I18n.t("Жесты kukabara", "kukabara gestures")
             hint: Gestures.status === "ready" ? I18n.t("работают", "on") : Gestures.status === "noperm" ? I18n.t("нужна группа input: sudo usermod -aG input $USER и перезайти", "needs the input group: sudo usermod -aG input $USER, then log in again") : Gestures.status === "notouchpad" ? I18n.t("тачпад не найден", "no touchpad found") : Gestures.status === "error" ? I18n.t("демон упал, перезапускаю", "the watcher failed, restarting") : ""
             checked: Config.gestures.enabled
             onToggled: v => Config.gestures.enabled = v

@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS: Discord always with Vencord — the system's part (root: install.sh of the dotfiles
+# kukabara: Discord always with Vencord — the system's part (root: install.sh of the dotfiles
 # through sudo, or by hand). CachyOS only: elsewhere it does nothing. The guard itself is
 # angelos-vencord (what it patches and how is written there); here it is copied for root and
 # started whenever Discord can come back clean: pacman's hook after an update of its Discord,

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pixora's folders in angelOS's colours (Settings → Appearance → Folders; the wizard's look).
+"""Pixora's folders in kukabara's colours (Settings → Appearance → Folders; the wizard's look).
 
   folder-tint.py PALETTE.json     the render hook (templates.json "folders"): palette keys
                                   folderTint ("pixora" = as drawn | anything else = tinted),
@@ -138,8 +138,8 @@ def build(name, base, fill, shade):
     out = ICONS / name
     shutil.rmtree(out, ignore_errors=True)
     index = (src / "index.theme").read_text()
-    index = re.sub(r"^Name=.*$", "Name=angelOS folders", index, count=1, flags=re.M)
-    index = re.sub(r"^Comment=.*$", f"Comment=Pixora's folders in angelOS's colours (from {base})", index, count=1, flags=re.M)
+    index = re.sub(r"^Name=.*$", "Name=kukabara folders", index, count=1, flags=re.M)
+    index = re.sub(r"^Comment=.*$", f"Comment=Pixora's folders in kukabara's colours (from {base})", index, count=1, flags=re.M)
     index = re.sub(r"^Inherits=(.*)$", lambda m: f"Inherits={base},{m.group(1)}", index, count=1, flags=re.M)
     n = 0
     # pixora-dark's folders are links to pixora's: walk through them

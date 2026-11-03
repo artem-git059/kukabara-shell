@@ -1,4 +1,4 @@
-// angelOS open: glitches in — rows flicker in, slices jump sideways and colours split, then everything snaps together.
+// kukabara open: glitches in — rows flicker in, slices jump sideways and colours split, then everything snaps together.
 float angelos_hash1(float n) {
     return fract(sin(n) * 43758.5453);
 }

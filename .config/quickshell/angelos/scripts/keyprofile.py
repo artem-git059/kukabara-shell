@@ -9,10 +9,10 @@
   keyprofile.py merge BASE OURS NEW -> an update's profile: the repository's changes (BASE → NEW)
                                      brought into the user's file OURS, printed (install.sh)
 
-~/.config/niri/cfg/keybinds.kdl is a selector angelOS writes — two includes:
+~/.config/niri/cfg/keybinds.kdl is a selector kukabara writes — two includes:
 
   keybinds-common.kdl   both themes: media keys, emergency keys, screenshots, panels
-  keybinds-pixel.kdl    the pixel theme: angelOS's own keys (the repository's)
+  keybinds-pixel.kdl    the pixel theme: kukabara's own keys (the repository's)
   keybinds-macos.kdl    Golden Gate: tiling on Super+Alt, the Mac keys (⌘Q ⌘H ⌘M ⌘Tab …)
 
 The profile is read after the common file, so a key there replaces the common one for
@@ -33,7 +33,7 @@ other is backed up); the Golden Gate profile comes from the template.
 `merge`: an update's three-way merge, key by key — a bind the user left as it came follows
 the repository (changed, moved, removed), a key the repository adds comes in unless the
 user's file binds it or the user removed it, every change of the user's stays. Workspace keys
-routed through angelOS or not (workspace-anim.py) count the same and keep the user's way.
+routed through kukabara or not (workspace-anim.py) count the same and keep the user's way.
 """
 import fcntl
 import json
@@ -59,7 +59,7 @@ PROFILES = ("pixel", "macos")
 FILES = {"common": "keybinds-common.kdl", "pixel": "keybinds-pixel.kdl", "macos": "keybinds-macos.kdl"}
 BINDS = re.compile(r'(?m)^\s*binds\s*\{')
 INCLUDE = re.compile(r'(?m)^\s*include\s+"(?:\./)?keybinds-(pixel|macos)\.kdl"')
-HEADER = """// angelOS: the key profile of the theme in front — written by angelOS (scripts/keyprofile.py),
+HEADER = """// kukabara: the key profile of the theme in front — written by kukabara (scripts/keyprofile.py),
 // switched with the theme. Edit the profiles, not this file (Settings → Keyboard does):
 //   keybinds-common.kdl — both themes, keybinds-pixel.kdl — the pixel theme,
 //   keybinds-macos.kdl — Golden Gate (macOS). The profile is read last: its key wins.

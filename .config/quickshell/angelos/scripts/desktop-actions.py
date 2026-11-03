@@ -45,7 +45,7 @@ def directory(kind):
 
 
 def new_text():
-    fd, path = tempfile.mkstemp(prefix="angelOS-note-", suffix=".txt")
+    fd, path = tempfile.mkstemp(prefix="kukabara-note-", suffix=".txt")
     os.close(fd)
     return path
 

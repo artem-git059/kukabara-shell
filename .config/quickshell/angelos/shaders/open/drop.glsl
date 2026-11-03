@@ -1,4 +1,4 @@
-// angelOS open: the window drops in from above with a slight tilt and bounces on its spot.
+// kukabara open: the window drops in from above with a slight tilt and bounces on its spot.
 float angelos_bounce(float p) {
     float n = 7.5625;
     float d = 2.75;

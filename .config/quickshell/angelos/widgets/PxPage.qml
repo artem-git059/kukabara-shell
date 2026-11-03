@@ -133,7 +133,7 @@ PxScroll {
 
     contentHeight: embedded ? col.implicitHeight : col.implicitHeight + (footer.visible ? footer.height + Theme.u * 8 : 0) + Theme.u * 10
 
-    // the groups as cards, two columns once the page is wide enough (the angelOS look)
+    // the groups as cards, two columns once the page is wide enough (the kukabara look)
     readonly property int cardColumns: fluent && settingsSkin !== "goldengate" && col.width >= Theme.u * 300 ? 2 : 1
     PxCards {
         id: col
@@ -168,7 +168,7 @@ PxScroll {
             }
             PxText {
                 visible: root.settingsSkin !== "classic" && root.settingsSkin !== "goldengate"
-                text: root.settingsSkin === "stream" ? "● LIVE  /  angelOS" : "▸ " + I18n.exe("settings") + " / angelOS"
+                text: root.settingsSkin === "stream" ? "● LIVE  /  kukabara" : "▸ " + I18n.exe("settings") + " / kukabara"
                 kind: "tiny"
                 color: root.settingsSkin === "stream" ? Theme.streamLive : Theme.windoseLavender
                 font.bold: true

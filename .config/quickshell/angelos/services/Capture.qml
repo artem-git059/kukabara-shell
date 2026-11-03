@@ -138,7 +138,7 @@ Singleton {
                     } catch (e) {
                         // no answer at all (python died): said once here — quiet callers (Lens,
                         // share) said nothing; its own errors come with its own notification
-                        Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-error", "--", I18n.t("Скриншот не сохранился", "Screenshot not saved"), I18n.t("Не получилось сохранить снимок", "Could not keep the picture")]);
+                        Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-error", "--", I18n.t("Скриншот не сохранился", "Screenshot not saved"), I18n.t("Не получилось сохранить снимок", "Could not keep the picture")]);
                     }
                     if (sr.done)
                         sr.done(r);
@@ -237,7 +237,7 @@ Singleton {
                     return;
                 root.saved(line);
                 if (!Config.halo.enabled)
-                    Quickshell.execDetached(["notify-send", "-a", "angelOS", I18n.t("Клип сохранён", "Clip saved"), line]);
+                    Quickshell.execDetached(["notify-send", "-a", "kukabara", I18n.t("Клип сохранён", "Clip saved"), line]);
             }
         }
         onExited: if (root.replayOn)
@@ -253,10 +253,10 @@ Singleton {
             replay.signal(10);
             Achievements.note("explore", "replay");
         } else
-            Quickshell.execDetached(["notify-send", "-a", "angelOS", I18n.t("Мгновенный повтор выключен", "Instant replay is off"), canReplay ? I18n.t("Настройки → Скриншоты и запись → «Мгновенный повтор»", "Settings → Screenshots and recording → “Instant replay”") : I18n.t("Нужен gpu-screen-recorder", "It needs gpu-screen-recorder")]);
+            Quickshell.execDetached(["notify-send", "-a", "kukabara", I18n.t("Мгновенный повтор выключен", "Instant replay is off"), canReplay ? I18n.t("Настройки → Скриншоты и запись → «Мгновенный повтор»", "Settings → Screenshots and recording → “Instant replay”") : I18n.t("Нужен gpu-screen-recorder", "It needs gpu-screen-recorder")]);
     }
     function record() {
-        launch(recordTool, 'notify-send -a angelOS "' + I18n.t("Запись экрана не установлена: нет niri-record-region", "Screen recording isn't installed: niri-record-region is missing") + '"');
+        launch(recordTool, 'notify-send -a kukabara "' + I18n.t("Запись экрана не установлена: нет niri-record-region", "Screen recording isn't installed: niri-record-region is missing") + '"');
     }
     // the Golden Gate skin's ⇧⌘3 / ⇧⌘4 / ⇧⌘5 menu (scripts/mac-screenshot.sh: screen | region |
     // window | record): a picture of the screen, of a part, of the focused window, a video

@@ -114,7 +114,7 @@ Singleton {
     }
 
     // window decorations (templates gtk3-decor/gtk4-decor, scripts/gtk-live.py, Helium):
-    // heaven's title bars like angelOS's own windows, hell's in obsidian and blood
+    // heaven's title bars like kukabara's own windows, hell's in obsidian and blood
     // the browsers' bar when Settings → Windows picks no colour: a step brighter than the
     // title bars, so the open tab (the bar's colour) stands out from the dark ones
     readonly property color browserBarAuto: Theme.mix(Theme.faceAlt, Theme.accent, Theme.dark ? 0.30 : 0.16)
@@ -216,7 +216,7 @@ Singleton {
         const ink = Theme.mix(Theme.hellAccent, Theme.hellEdge, 0.55);
         return {
             "style": FastfetchLogo.style,
-            "windowTitle": I18n.exe("AngelOS"),
+            "windowTitle": I18n.exe("kukabara"),
             "lang": I18n.english ? "en" : "ru",
             "anim": FastfetchLogo.animSeconds,      // its picture moves for a moment (scripts/fastfetch_anim.py)
             "circle": HellLook.circle,
@@ -358,7 +358,7 @@ Singleton {
         }
         stderr: StdioCollector {
             onStreamFinished: if (text)
-                console.warn("angelOS templates:", text)
+                console.warn("kukabara templates:", text)
         }
         // what changed while it ran goes next: the last state is the one on disk
         onExited: {

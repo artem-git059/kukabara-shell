@@ -58,7 +58,7 @@ PanelWindow {
         anchors.centerIn: parent
         width: Theme.u * 200
         height: titleHeight + col.implicitHeight + Theme.pad * 2 + Theme.u * 8
-        title: Updates.restored ? I18n.t("angelOS: прежняя версия ♡", "angelOS: the previous version ♡") : I18n.t("angelOS обновлён ♡", "angelOS is updated ♡")
+        title: Updates.restored ? I18n.t("kukabara: прежняя версия ♡", "kukabara: the previous version ♡") : I18n.t("kukabara обновлён ♡", "kukabara is updated ♡")
         icon: "download"
         onCloseClicked: win.answer(false)
 

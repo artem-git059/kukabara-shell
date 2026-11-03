@@ -5,10 +5,10 @@
 # cancelled one says nothing; Firefox's way (an empty file beside its .part); files there before
 # say nothing. Without helium-browser the browser steps are made by hand, the same files.
 #
-#   tests/downloads/run.sh [angelOS dir]      exit 0 = all good, 77 = no quickshell
+#   tests/downloads/run.sh [kukabara dir]      exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"
@@ -55,10 +55,10 @@ if [[ -n "$HELIUM" ]]; then
   cat >"$T/helium/Default/Preferences" <<JSON
 {"download": {"default_directory": "$H/Downloads", "prompt_for_download": false, "directory_upgrade": true}}
 JSON
-  # the percent: angelOS's extension and its native host, as browser-downloads.py puts them
+  # the percent: kukabara's extension and its native host, as browser-downloads.py puts them
   mkdir -p "$T/helium/NativeMessagingHosts"
   cat >"$T/helium/NativeMessagingHosts/org.angelos.downloads.json" <<JSON
-{"name": "org.angelos.downloads", "description": "angelOS downloads", "path": "$DIR/scripts/browser-downloads-host.py", "type": "stdio",
+{"name": "org.angelos.downloads", "description": "kukabara downloads", "path": "$DIR/scripts/browser-downloads-host.py", "type": "stdio",
  "allowed_origins": ["chrome-extension://mblodkbgkjnmhkbecpmfgjannflbgncc/"]}
 JSON
   PORT=$((40000 + RANDOM % 20000))

@@ -154,7 +154,7 @@ Item {
                     PxText {
                         kind: "tiny"
                         color: Theme.mix(root.ink, root.paper, 0.35)
-                        text: root.release ? "angelOS " + root.release.number + (root.release.codename ? " «" + root.release.codename + "»" : "") : ""
+                        text: root.release ? "kukabara " + root.release.number + (root.release.codename ? " «" + root.release.codename + "»" : "") : ""
                     }
                 }
 

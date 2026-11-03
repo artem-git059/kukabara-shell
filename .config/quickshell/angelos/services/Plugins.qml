@@ -48,12 +48,12 @@ Singleton {
     readonly property var sidebarWidgets: enabledPlugins.filter(p => !!p.sidebarWidget)
     readonly property var launcherProviders: enabledPlugins.filter(p => !!p.launcher)
 
-    // a core plugin is a part of angelOS (manifest "core": true, bundled only): always on,
+    // a core plugin is a part of kukabara (manifest "core": true, bundled only): always on,
     // never removed (plugins/community — the catalog's launcher search)
     function isCore(p) {
         return !!p && p.core === true && !!p.bundled;
     }
-    // plugins whose job angelOS does itself now (the old stand-alone Community Store): skipped
+    // plugins whose job kukabara does itself now (the old stand-alone Community Store): skipped
     readonly property var retired: ["community-store"]
     function isEnabled(p) {
         if (isCore(p))
@@ -67,7 +67,7 @@ Singleton {
         Config.setIn(Config.plugins, "enabled", id, !!on);
     }
     // ---- the looks a plugin draws (manifest "themes", docs/PLUGINS.md → Theme API) ----
-    // "pixel" — angelOS's original pixel look, "mac" — Golden Gate. A plugin that declares
+    // "pixel" — kukabara's original pixel look, "mac" — Golden Gate. A plugin that declares
     // nothing was made before the Mac look: pixel only. The same rule reads a registry entry.
     readonly property var themeNames: ["pixel", "mac"]
     function themesOf(p) {
@@ -287,7 +287,7 @@ Singleton {
                             continue;
                         all.push(m);
                     } catch (e) {
-                        console.warn("angelOS plugin: bad manifest in", dir, e);
+                        console.warn("kukabara plugin: bad manifest in", dir, e);
                     }
                 }
                 root._all = all;

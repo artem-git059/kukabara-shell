@@ -5,14 +5,14 @@ binds {
     // Профиль биндов темы Golden Gate (macOS): Super = ⌘. Маковские сочетания — в разделе
     // «как на Mac» в конце; тайлинг niri и рабочие столы — на Super+Alt (+Ctrl — перенести
     // туда, +Shift — назад / высота); Super+Alt+= / − / 0 — лупа. Общие для обеих тем клавиши —
-    // в keybinds-common.kdl. Активный профиль выбирает angelOS (scripts/keyprofile.py).
+    // в keybinds-common.kdl. Активный профиль выбирает kukabara (scripts/keyprofile.py).
 
     // ─── Applications ───
     Mod+T                               hotkey-overlay-title="Open Terminal: kitty" { spawn "kitty" "--single-instance"; }
     Mod+B                               repeat=false hotkey-overlay-title="Open Browser" { spawn-sh "exec ~/.config/quickshell/angelos/bin/angelos browser"; }
 
-    // ─── angelOS ───
-    Mod+Alt+Space                       repeat=false allow-inhibiting=false hotkey-overlay-title="angelOS: программы (лаунчер; ⌘Пробел — Spotlight)" { spawn-sh "exec ~/.config/quickshell/angelos/bin/angelos open launcher"; }
+    // ─── kukabara ───
+    Mod+Alt+Space                       repeat=false allow-inhibiting=false hotkey-overlay-title="kukabara: программы (лаунчер; ⌘Пробел — Spotlight)" { spawn-sh "exec ~/.config/quickshell/angelos/bin/angelos open launcher"; }
 
     // Please set the text editor of your choice.
     // Mod+Shift+E                               hotkey-overlay-title="Open Text Editor: Zed" { spawn "zed"; }
@@ -103,7 +103,7 @@ binds {
     Mod+Alt+M                           hotkey-overlay-title="Развернуть окно до краёв" { maximize-window-to-edges; }
 
     // ─── Screenshots (Win+Shift+S style) ───
-    Mod+Alt+I                           repeat=false hotkey-overlay-title="angelOS: мини-браузер — клики насквозь вкл/выкл" { spawn-sh "exec ~/.config/quickshell/angelos/bin/angelos islandThrough"; }
+    Mod+Alt+I                           repeat=false hotkey-overlay-title="kukabara: мини-браузер — клики насквозь вкл/выкл" { spawn-sh "exec ~/.config/quickshell/angelos/bin/angelos islandThrough"; }
     Mod+Z                               repeat=false hotkey-overlay-title="Лупа у курсора" { spawn "qs" "-c" "angelos" "ipc" "call" "angelos" "lens" "toggle"; }
 
     // Use this when a fullscreen app blocks your keybinds.
@@ -119,7 +119,7 @@ binds {
     Mod+Grave                           hotkey-overlay-title="Mac: следующее окно этой программы" { spawn-sh "exec ~/.config/quickshell/angelos/bin/angelos alttab appwin"; }
     Mod+Shift+Grave                     hotkey-overlay-title="Mac: предыдущее окно этой программы" { spawn-sh "exec ~/.config/quickshell/angelos/bin/angelos alttab appwinback"; }
     Mod+Space                           repeat=false allow-inhibiting=false hotkey-overlay-title="Mac: Spotlight" { spawn-sh "qs -c angelos ipc call angelos startMenu ''"; }
-    Mod+Comma                           repeat=false allow-inhibiting=false hotkey-overlay-title="Mac: Системные настройки angelOS" { spawn-sh "qs -c angelos ipc call angelos settings ''"; }
+    Mod+Comma                           repeat=false allow-inhibiting=false hotkey-overlay-title="Mac: Системные настройки kukabara" { spawn-sh "qs -c angelos ipc call angelos settings ''"; }
     Mod+Ctrl+F                          hotkey-overlay-title="Mac: полноэкранный режим" { fullscreen-window; }
     Mod+Shift+3                         repeat=false hotkey-overlay-title="Mac: снимок экрана" { spawn "@HOME@/.config/quickshell/angelos/scripts/mac-screenshot.sh" "screen"; }
     Mod+Shift+4                         repeat=false hotkey-overlay-title="Mac: снимок области" { spawn "@HOME@/.config/quickshell/angelos/scripts/mac-screenshot.sh" "region"; }

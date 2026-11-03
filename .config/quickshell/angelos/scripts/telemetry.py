@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""angelOS telemetry and the sponsor wall (Settings → Sponsor, services/Telemetry.qml).
+"""kukabara telemetry and the sponsor wall (Settings → Sponsor, services/Telemetry.qml).
 
   telemetry.py preview          the report as it would go, JSON (nothing is sent)
   telemetry.py send [--force]   send it if the user said yes (settings.json setup.telemetry) and
-                                it is due: a week since the last one, or angelOS / Quickshell changed
+                                it is due: a week since the last one, or kukabara / Quickshell changed
   telemetry.py status           {"consent", "endpoint", "last", "result"}
   telemetry.py forget           ask the relay to delete this computer's reports, drop the local id
   telemetry.py sponsors         the sponsor wall {"names", "updated"} (cached in ~/.cache/angelos)
 
 Where to: data/sponsor.json "endpoint" — the author's relay (owner/telemetry-worker) that keeps
 the reports in his private repo; empty = nothing goes anywhere. What goes: a random id made on
-the first "yes" (not the machine id), versions (angelOS, Quickshell, Qt, niri, kernel, distro),
+the first "yes" (not the machine id), versions (kukabara, Quickshell, Qt, niri, kernel, distro),
 the hardware (CPU, threads, RAM, GPUs, screens' modes, laptop or not) and a few choices (language,
 look, game on/off). Never: the user or host name, paths, files, IP (the relay doesn't keep it).
 No "yes" — nothing is collected or sent. ANGELOS_TEST set — never sent.
@@ -36,7 +36,7 @@ ID_FILE = STATE / "telemetry-id"
 STATE_FILE = STATE / "telemetry.json"
 WALL_CACHE = CACHE / "sponsors.json"
 WEEK = 7 * 24 * 3600
-UA = "angelOS-telemetry/1"
+UA = "kukabara-telemetry/1"
 
 
 def out(obj):

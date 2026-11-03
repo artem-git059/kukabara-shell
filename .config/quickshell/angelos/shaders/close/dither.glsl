@@ -1,4 +1,4 @@
-// angelOS close: the window dissolves pixel by pixel through an ordered (Bayer) dither — 4 px
+// kukabara close: the window dissolves pixel by pixel through an ordered (Bayer) dither — 4 px
 // "pixels" go out evenly over the whole window, none of it blurred.
 float angelos_bayer2(vec2 c) {
     vec2 d = mod(c, 2.0);

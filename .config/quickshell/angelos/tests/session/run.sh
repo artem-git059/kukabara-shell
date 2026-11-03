@@ -5,10 +5,10 @@
 # and an early yes do nothing, Lock and Sleep never ask. Nothing real ends: the shell only writes
 # the action down (ANGELOS_TEST), and systemctl, loginctl and niri here are stand-ins that log.
 #
-#   tests/session/run.sh [angelOS dir]     exit 0 = all good, 77 = no quickshell
+#   tests/session/run.sh [kukabara dir]     exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 QS="$(command -v quickshell || true)"
 LIB="${LD_LIBRARY_PATH:-}" QML="${QML_IMPORT_PATH:-}"

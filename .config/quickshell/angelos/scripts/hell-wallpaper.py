@@ -195,7 +195,7 @@ def fetch_named(repo, cache, names):
             continue
         try:
             url = f"https://raw.githubusercontent.com/{repo}/main/Hell/{name}.png"
-            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "angelOS"}), timeout=15) as r:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "kukabara"}), timeout=15) as r:
                 tmp = dst.with_suffix(".png.part")
                 tmp.write_bytes(r.read())
                 tmp.replace(dst)
@@ -210,7 +210,7 @@ def fetch_pack(repo, cache):
     import urllib.request
     cache = Path(cache).expanduser()
     cache.mkdir(parents=True, exist_ok=True)
-    head = {"User-Agent": "angelOS", "Accept": "application/vnd.github+json"}
+    head = {"User-Agent": "kukabara", "Accept": "application/vnd.github+json"}
     req = urllib.request.Request(f"https://api.github.com/repos/{repo}/contents/Hell", headers=head)
     with urllib.request.urlopen(req, timeout=15) as r:
         items = json.load(r)
@@ -219,7 +219,7 @@ def fetch_pack(repo, cache):
             dst = cache / it["name"]
             if dst.exists() and dst.stat().st_size == it.get("size"):
                 continue
-            with urllib.request.urlopen(urllib.request.Request(it["download_url"], headers={"User-Agent": "angelOS"}), timeout=30) as r:
+            with urllib.request.urlopen(urllib.request.Request(it["download_url"], headers={"User-Agent": "kukabara"}), timeout=30) as r:
                 tmp = dst.with_suffix(dst.suffix + ".part")
                 tmp.write_bytes(r.read())
                 tmp.replace(dst)

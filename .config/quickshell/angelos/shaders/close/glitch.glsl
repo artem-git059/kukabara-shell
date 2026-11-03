@@ -1,4 +1,4 @@
-// angelOS close: slices jump sideways, colours split, rows drop out.
+// kukabara close: slices jump sideways, colours split, rows drop out.
 float angelos_hash1(float n) {
     return fract(sin(n) * 43758.5453);
 }

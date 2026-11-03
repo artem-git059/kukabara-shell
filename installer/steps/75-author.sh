@@ -1,13 +1,13 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # ── The author's tools (optional) ───────────────────────────────────────────
 
-# Only the author of angelOS has use for this: when the GitHub account logged in through gh
+# Only the author of kukabara has use for this: when the GitHub account logged in through gh
 # can see the author's private repository, the chapter editor (and the owner's Dotfiles
 # tools) are fetched into the shell's owner/ folder (scripts/author-tools.sh). GitHub
 # decides — the repository is private; for everyone else nothing is fetched and nothing
-# changes. angelOS keeps no token: gh keeps its own login, with its usual permissions.
+# changes. kukabara keeps no token: gh keeps its own login, with its usual permissions.
 offer_author_tools() {
   [[ "$DESKTOP_SHELL" == angelos ]] || return 0
   local script="$HOME_DIR/.config/quickshell/angelos/scripts/author-tools.sh" want="${GITHUB_LOGIN:-}"

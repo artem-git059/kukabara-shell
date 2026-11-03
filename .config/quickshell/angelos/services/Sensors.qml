@@ -8,7 +8,7 @@ import qs.config
 
 // Who records the microphone or has the camera on now: the Halo's privacy dot (as the
 // iPhone's: orange for the microphone, green for the camera; the pointer on it says who).
-//   microphone  PipeWire's capture streams (Stream/Input/Audio) of programs. Not angelOS's own
+//   microphone  PipeWire's capture streams (Stream/Input/Audio) of programs. Not kukabara's own
 //               taps (pw-record behind the spectrum, the lyrics level, the RØDE fader follower),
 //               not loopbacks and filter chains (no program name), not a sink's monitor (that
 //               listens to what plays, not to you)

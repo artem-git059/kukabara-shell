@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Qt apps in angelOS's look (Settings → Appearance → Qt apps), run by render-templates.py.
+"""Qt apps in kukabara's look (Settings → Appearance → Qt apps), run by render-templates.py.
 
 usage: qt-theme.py PALETTE.json
        qt-theme.py --status        JSON: {"on", "platformTheme", "niri", "qt6ct"}
 
 On (palette key qtStyle): qt6ct carries the look — a colour scheme from the palette
 (~/.config/qt6ct/colors/angelos.conf: heaven's, or hell's while the demon rules, the
-palette's "apps" overrides), a pixel stylesheet (~/.config/qt6ct/qss/angelos.qss: the angelOS
+palette's "apps" overrides), a pixel stylesheet (~/.config/qt6ct/qss/angelos.qss: the kukabara
 pixel frame on buttons and fields — a 2 px outline with corners stepped in by one art pixel and
 a 2 px bevel, the same frame GTK gets (templates/gtk3.css); the accent for selections) and
 Fusion underneath. The frames are small nine-slice PNGs next to the stylesheet; the stylesheet
@@ -14,11 +14,11 @@ names a hash of them, so new frames change its text and qt6ct reloads it.
 qt6ct watches its folder — only the folder itself, not qss/ or colors/ — so after a change a
 stamp is written there (.angelos-stamp) and running Qt apps take the new look on the fly
 (qt6ct waits 3 s), heaven ↔ hell included. Telegram draws its own fields: the stylesheet
-leaves them to it (its theme follows angelOS too, scripts/telegram-theme.py).
+leaves them to it (its theme follows kukabara too, scripts/telegram-theme.py).
 Apps only use qt6ct with QT_QPA_PLATFORMTHEME=qt6ct: this sets it in niri's environment
 block (cfg/misc.kdl, the old value kept in a comment), in systemd's user manager and
 D-Bus activation; the shell itself stays on its own (bin/angelos), apps started from
-angelOS get qt6ct right away (Shell.childEnv). Off: everything back as it was.
+kukabara get qt6ct right away (Shell.childEnv). Off: everything back as it was.
 The first change of qt6ct.conf keeps a copy in ~/.local/state/angelos/backups/.
 The Golden Gate skin (palette key skin "goldengate") turns it on as well, with macOS's look
 instead of the pixels (stylesheet_mac: rounded controls, the accent on selections), Inter and
@@ -42,7 +42,7 @@ CONF = QT6CT / "qt6ct.conf"
 SCHEME = QT6CT / "colors/angelos.conf"
 QSS = QT6CT / "qss/angelos.qss"
 NIRI = HOME / ".config/niri/cfg/misc.kdl"
-MARK = "// angelOS qt: was "
+MARK = "// kukabara qt: was "
 BACKUPS = HOME / ".local/state/angelos/backups"
 
 
@@ -148,7 +148,7 @@ def colours(p):
         disabled[i] = dim
     disabled[12] = mix(acc, bg, 0.5)
     inactive = list(active)
-    return "[ColorScheme]\n# angelOS %s (scripts/qt-theme.py) — generated, edits are overwritten\nactive_colors=%s\ndisabled_colors=%s\ninactive_colors=%s\n" % (
+    return "[ColorScheme]\n# kukabara %s (scripts/qt-theme.py) — generated, edits are overwritten\nactive_colors=%s\ndisabled_colors=%s\ninactive_colors=%s\n" % (
         p.get("appsRealm", "heaven"), ", ".join(active), ", ".join(disabled), ", ".join(inactive))
 
 
@@ -164,7 +164,7 @@ def stylesheet(p, frame=None):
     for kind in ("raised", "sunken", "default", "focus"):
         c["frame_" + kind] = ("border-image: url(%s) 4 4 4 4 stretch stretch;" % frame[kind]) if kind in frame else ""
     c["frames"] = frame.get("hash", "")
-    css = """/* angelOS pixel style for Qt (scripts/qt-theme.py, %(realm)s) — generated; frames %(frames)s */
+    css = """/* kukabara pixel style for Qt (scripts/qt-theme.py, %(realm)s) — generated; frames %(frames)s */
 QPushButton, QToolButton[popupMode="1"], QComboBox {
     background: %(face)s; color: %(fg)s;
     border: 4px solid %(edge)s; %(frame_raised)s
@@ -218,7 +218,7 @@ QSlider::groove:horizontal { height: 4px; background: %(sunken)s; border: 1px so
 QSlider::handle:horizontal { width: 10px; margin: -6px 0; background: %(face)s; border: 2px solid; border-color: %(hi)s %(lo)s %(lo)s %(hi)s; }
 QSlider::sub-page:horizontal { background: %(accent)s; }
 /* Telegram (and its forks) draws its own fields — background, underline, its focus — in its own
-   theme, which follows angelOS on the fly (scripts/telegram-theme.py). The field box above would
+   theme, which follows kukabara on the fly (scripts/telegram-theme.py). The field box above would
    sit inside them as a frame of other colours (the ones the app started with). Its widgets are
    Ui::RpWidget; its text fields have no class name of their own, so: any field inside one */
 Ui--RpWidget QTextEdit, Ui--RpWidget QLineEdit, Ui--MaskedInputField {
@@ -248,7 +248,7 @@ def stylesheet_mac(p):
         "track": "rgba(255,255,255,0.16)" if dark else "rgba(0,0,0,0.12)",
         "handle": "rgba(255,255,255,0.35)" if dark else "rgba(0,0,0,0.3)",
     }
-    return """/* angelOS Golden Gate style for Qt (scripts/qt-theme.py) — generated */
+    return """/* kukabara Golden Gate style for Qt (scripts/qt-theme.py) — generated */
 QPushButton, QToolButton[popupMode="1"], QComboBox {
     background: %(control)s; color: %(fg)s;
     border: 1px solid %(line)s; border-radius: 7px;

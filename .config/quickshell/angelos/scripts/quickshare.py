@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Quick Share for angelOS: the LocalSend v2 protocol, no LocalSend app needed
+"""Quick Share for kukabara: the LocalSend v2 protocol, no LocalSend app needed
 (services/QuickShare, modules/quickshare/ShareSheet).
 
   quickshare.py daemon [--alias NAME] [--receive ask|trusted|off] [--dir DIR]
@@ -72,7 +72,7 @@ def certificate():
     cert, key = os.path.join(STATE, "cert.pem"), os.path.join(STATE, "key.pem")
     if not (os.path.exists(cert) and os.path.exists(key)):
         subprocess.run(["openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "3650",
-                        "-keyout", key, "-out", cert, "-subj", "/CN=angelOS Quick Share"],
+                        "-keyout", key, "-out", cert, "-subj", "/CN=kukabara Quick Share"],
                        check=True, capture_output=True)
         os.chmod(key, 0o600)
     der = ssl.PEM_cert_to_DER_cert(open(cert).read())
@@ -92,7 +92,7 @@ def local_ip():
 
 class State:
     def __init__(self, args):
-        self.alias = args.get("alias") or "angelOS " + socket.gethostname()
+        self.alias = args.get("alias") or "kukabara " + socket.gethostname()
         self.receive = args.get("receive") or "ask"
         self.dir = os.path.expanduser(args.get("dir") or "~/Downloads/LocalSend")
         self.trusted = set(filter(None, (args.get("trusted") or "").split(",")))
@@ -109,7 +109,7 @@ class State:
         self.lock = threading.Lock()
 
     def info(self, announce=None):
-        d = {"alias": self.alias, "version": "2.1", "deviceModel": "angelOS", "deviceType": self.type,
+        d = {"alias": self.alias, "version": "2.1", "deviceModel": "kukabara", "deviceType": self.type,
              "fingerprint": self.fingerprint, "port": self.port, "protocol": "https", "download": False}
         if announce is not None:
             d["announce"] = announce

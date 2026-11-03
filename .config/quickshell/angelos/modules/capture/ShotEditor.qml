@@ -797,7 +797,7 @@ Item {
                         ed.restyle();
                     }
                 }
-                // stickers: angelOS's pixel icons
+                // stickers: kukabara's pixel icons
                 Grid {
                     visible: ed.tool === "sticker"
                     columns: 4

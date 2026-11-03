@@ -1,5 +1,5 @@
 #!/bin/sh
-# angelOS: install the charge-limit helper (root: pkexec from Settings → Battery, or install.sh
+# kukabara: install the charge-limit helper (root: pkexec from Settings → Battery, or install.sh
 # through sudo). Copies, never links: the helper must stay root's.
 #   install.sh            install / update
 #   install.sh --remove   take it away again

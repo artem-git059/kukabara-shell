@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Quick Look for angelOS (services/QuickLook, modules/quicklook/QuickLook).
+"""Quick Look for kukabara (services/QuickLook, modules/quicklook/QuickLook).
 
   quicklook.py serve
       owns org.gnome.NautilusPreviewer (interface NautilusPreviewer2), the name Nautilus

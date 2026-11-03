@@ -1,7 +1,7 @@
 import QtQuick
 import "Icons.js" as Icons
 
-// An angelOS pixel icon (Icons.js), painted cell by cell.
+// An kukabara pixel icon (Icons.js), painted cell by cell.
 Canvas {
     id: root
 

@@ -3,7 +3,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 
-// Where the pointer is, as far as angelOS can tell: niri tells nobody the global
+// Where the pointer is, as far as kukabara can tell: niri tells nobody the global
 // pointer position, so the shell's own surfaces report it while the pointer is
 // over them (the desktop under the windows, the taskbar), in screen coordinates.
 // Over an app window the last known spot stays and `over` turns false.

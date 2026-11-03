@@ -1,10 +1,10 @@
 import QtQuick
 
-// angelOS login, the "retro" look: angelOS 98. The wallpaper as a Y2K desktop with its
+// kukabara login, the "retro" look: kukabara 98. The wallpaper as a Y2K desktop with its
 // icons, a taskbar with Start (sleep, restart, shut down) and the tray clock, and in the
 // middle the logon dialog: the banner, "type your user name and password", OK / Clear /
 // Shut Down…. A wrong password: the error box; a right one: "loading your settings…".
-// Other screens: the desktop with the angelOS 98 screensaver drifting about.
+// Other screens: the desktop with the kukabara 98 screensaver drifting about.
 Item {
     id: root
 
@@ -170,7 +170,7 @@ Item {
                 },
                 {
                     "icon": "heart",
-                    "label": "angelOS"
+                    "label": "kukabara"
                 },
                 {
                     "icon": "chat",
@@ -216,7 +216,7 @@ Item {
         id: dialog
         objectName: "center"
         visible: root.primary
-        title: g.t("Вход в angelOS", "Log On to angelOS")
+        title: g.t("Вход в kukabara", "Log On to kukabara")
         icon: "lock"
         width: Math.min(root.u * 230, root.width - root.u * 20)
         height: barH + root.u * 8 + banner.height + form.implicitHeight + root.u * 14
@@ -224,7 +224,7 @@ Item {
         y: Math.round((root.height - taskbar.height - height) / 2)
         property real shakeX: 0
 
-        // the banner: angelOS 98 on the title gradient, little hearts, a rule under it
+        // the banner: kukabara 98 on the title gradient, little hearts, a rule under it
         Rectangle {
             id: banner
             width: parent.width
@@ -271,7 +271,7 @@ Item {
                     Row {
                         spacing: root.u * 2
                         Text {
-                            text: "angelOS"
+                            text: "kukabara"
                             color: "#ffffff"
                             font.family: g.titleFont
                             font.pixelSize: g.titlePx(36)
@@ -324,7 +324,7 @@ Item {
                     width: form.width - root.u * 30
                     wrapMode: Text.Wrap
                     anchors.verticalCenter: parent.verticalCenter
-                    text: g.t("Введите пароль для входа в angelOS. Сердечки вместо букв — так задумано ♡", "Type your password to log on to angelOS. Hearts instead of letters, on purpose ♡")
+                    text: g.t("Введите пароль для входа в kukabara. Сердечки вместо букв — так задумано ♡", "Type your password to log on to kukabara. Hearts instead of letters, on purpose ♡")
                 }
             }
 
@@ -596,7 +596,7 @@ Item {
     Win {
         id: shutdown
         visible: false
-        title: g.t("Завершение работы angelOS", "Shut Down angelOS")
+        title: g.t("Завершение работы kukabara", "Shut Down kukabara")
         icon: "power"
         width: Math.min(root.u * 190, root.width - root.u * 20)
         height: barH + root.u * 30 + choices.height
@@ -795,7 +795,7 @@ Item {
             Text {
                 anchors.centerIn: parent
                 rotation: -90
-                text: "angelOS 98"
+                text: "kukabara 98"
                 color: "#ffffff"
                 font.family: g.titleFont
                 font.pixelSize: g.titlePx(18)
@@ -843,7 +843,7 @@ Item {
         }
     }
 
-    // ---- the other screens: angelOS 98 drifting about, the clock under it ----
+    // ---- the other screens: kukabara 98 drifting about, the clock under it ----
     Item {
         id: camMain
         objectName: "camMain"
@@ -873,7 +873,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Text {
-                    text: "angelOS 98"
+                    text: "kukabara 98"
                     color: "#ffffff"
                     style: Text.Outline
                     styleColor: root.pal.edge

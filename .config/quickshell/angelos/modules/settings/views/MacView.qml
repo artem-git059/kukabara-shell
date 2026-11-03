@@ -156,7 +156,7 @@ Item {
                 width: parent.width - GoldenGate.px(20)
                 spacing: 0
 
-                // you: the avatar, the name, "angelOS account"
+                // you: the avatar, the name, "kukabara account"
                 Rectangle {
                     id: you
                     readonly property bool sel: root.view.sectionOf(root.view.settingsNav.settingsPage) === "account"
@@ -204,7 +204,7 @@ Item {
                         }
                         MacText {
                             width: parent.width
-                            text: I18n.t("Учётная запись angelOS", "angelOS Account")
+                            text: I18n.t("Учётная запись kukabara", "kukabara Account")
                             size: GoldenGate.smallSize
                             color: you.sel ? Qt.rgba(1, 1, 1, 0.8) : GoldenGate.secondaryLabel
                         }

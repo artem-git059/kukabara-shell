@@ -7,7 +7,7 @@ import Quickshell.Io
 import qs.config
 import "AngelLines.js" as Lines
 
-// angelOS's own touchpad gestures (Settings → Devices → Touchpad → Gestures): scripts/gesture-watch.py
+// kukabara's own touchpad gestures (Settings → Devices → Touchpad → Gestures): scripts/gesture-watch.py
 // tells which (four-finger pinches and swipes, edge swipes, taps, a hold) — niri keeps its own
 // three-finger swipes and the four-finger one up/down. Each gesture runs an action of `actions`
 // (Config.gestures.map, `defaults` where it says nothing). Needs the `input` group, like the

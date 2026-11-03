@@ -111,7 +111,7 @@ Variants {
                 }
             }
 
-            // «angelOS 3 · Principality», small, in a corner no widget covers
+            // «kukabara 3 · Principality», small, in a corner no widget covers
             ReleaseMark {
                 anchors.fill: parent
                 obstacles: faceArea
@@ -178,7 +178,7 @@ Variants {
                     if (m.button === Qt.MiddleButton)
                         return;
                     menu.close();
-                    // a popup's grab ends only on clicks outside angelOS: the Halo's or the bar's menu too
+                    // a popup's grab ends only on clicks outside kukabara: the Halo's or the bar's menu too
                     PopupManager.barPressed();
                     DesktopWidgets.editMode = false;
                 }

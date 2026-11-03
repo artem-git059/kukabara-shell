@@ -1,9 +1,9 @@
 #!/bin/sh
-# Is the Quickshell angelOS runs on new enough? Prints one line: <state> <found> <wanted>
+# Is the Quickshell kukabara runs on new enough? Prints one line: <state> <found> <wanted>
 #   ok       0.3.2 or newer
-#   old      0.3.0 or 0.3.1: angelOS runs, without 0.3.2's crash fixes (the lock on a monitor
+#   old      0.3.0 or 0.3.1: kukabara runs, without 0.3.2's crash fixes (the lock on a monitor
 #            plugged in later, a reload while a page loads, PAM, PipeWire volume, sockets)
-#   too-old  older than 0.3.0: angelOS uses its blur, networking and idle API and won't load
+#   too-old  older than 0.3.0: kukabara uses its blur, networking and idle API and won't load
 #   missing  no quickshell/qs found
 # Exit 0 for ok, 1 otherwise. Used by install.sh and the shell (services/QsVersion).
 # $1: the quickshell binary to ask (default: quickshell, else qs, on PATH).

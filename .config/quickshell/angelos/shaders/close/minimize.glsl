@@ -1,4 +1,4 @@
-// angelOS close: the window folds down towards the taskbar, narrowing at the bottom.
+// kukabara close: the window folds down towards the taskbar, narrowing at the bottom.
 vec4 close_color(vec3 coords_geo, vec3 size_geo) {
     float p = niri_clamped_progress;
     float e = p * p;

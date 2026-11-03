@@ -56,7 +56,7 @@ Singleton {
         try {
             data = JSON.parse(file.text());
         } catch (e) {
-            console.warn("angelOS settings: tree.json:", e);
+            console.warn("kukabara settings: tree.json:", e);
         }
     }
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gamepad tester backend for angelOS (Settings → Gamepad). Runs only while that
+"""Gamepad tester backend for kukabara (Settings → Gamepad). Runs only while that
 page is open. Devices are read, never grabbed, so games keep working.
 
 stdout (JSON lines):

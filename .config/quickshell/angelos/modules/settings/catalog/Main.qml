@@ -126,7 +126,7 @@ CatPage {
                         }
                         PxText {
                             width: parent.width
-                            text: Updates.release ? Wallpapers.releaseLabel(Updates.release) : "angelOS"
+                            text: Updates.release ? Wallpapers.releaseLabel(Updates.release) : "kukabara"
                             dim: true
                             elide: Text.ElideRight
                         }

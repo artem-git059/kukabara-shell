@@ -7,7 +7,7 @@ import qs.config
 
 // Workspace switch transitions.
 //   soft, dash, spring, snap — niri's own workspace-switch animation (cfg/animation.kdl)
-//   dissolve … crt           — angelOS: the old screen is captured, niri switches
+//   dissolve … crt           — kukabara: the old screen is captured, niri switches
 //                              instantly underneath, and the frozen frame is taken
 //                              away by shaders/ws_transition.frag (modules/workspace/SwitchFx),
 //                              following the direction of the switch (up / down).

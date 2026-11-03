@@ -11,7 +11,7 @@ import qs.modules.settings.kit
 // first what would really go (pacman takes along what only it needed) or why it can't, then the
 // removal with one admin password, its last lines shown — and the clean-up: packages nothing
 // needs any more, pacman's download cache, Flatpak's unused runtimes. On top «Лишнее» (like
-// Omarchy's «Remove preinstalls»): what angelOS's installer put here and angelOS never calls,
+// Omarchy's «Remove preinstalls»): what kukabara's installer put here and kukabara never calls,
 // ticked by groups, gone in one go with one password and a bar; updates don't bring it back.
 CatPage {
     id: page
@@ -52,7 +52,7 @@ CatPage {
         readonly property int picked: Programs.bloatPicked.length
         CatNote {
             dim: true
-            text: I18n.t("Что angelOS поставил, но сам не использует. Отметь ненужное и удали одной кнопкой; твои файлы останутся.", "What angelOS installed but doesn't use. Tick what you don't need and remove it; your files stay.")
+            text: I18n.t("Что kukabara поставил, но сам не использует. Отметь ненужное и удали одной кнопкой; твои файлы останутся.", "What kukabara installed but doesn't use. Tick what you don't need and remove it; your files stay.")
         }
         CatNote {
             present: !extras.st
@@ -269,7 +269,7 @@ CatPage {
         }
         CatChoice {
             label: I18n.t("Показать", "Show")
-            hint: I18n.t("«от автора» — то, что поставилось вместе с angelOS", "“the author's” is what came along with angelOS")
+            hint: I18n.t("«от автора» — то, что поставилось вместе с kukabara", "“the author's” is what came along with kukabara")
             model: [
                 {
                     "label": I18n.t("Всё", "All"),

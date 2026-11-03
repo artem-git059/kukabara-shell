@@ -266,7 +266,7 @@ def load_json(path, default):
 
 
 def fetch(url, timeout=20):
-    req = urllib.request.Request(url, headers={"User-Agent": "angelOS game-tune"})
+    req = urllib.request.Request(url, headers={"User-Agent": "kukabara game-tune"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
 
@@ -720,7 +720,7 @@ def write_mappings(root, changes):
 
 # ---------------------------------------------------------------- without a Steam restart (instant)
 # Steam keeps one tool for every Windows game: the switch (angelos-proton, Steam's default "0").
-# Each game's Proton and what angelOS adds to its start (variables, the game's own flags) are files
+# Each game's Proton and what kukabara adds to its start (variables, the game's own flags) are files
 # the switch reads at every start — STATE/switch/<appid> (or default), STATE/run/<appid>.env|.args —
 # so "Apply" counts from the game's next start, Steam left alone. The user's own launch options in
 # Steam stay and still apply; ours go on top. Turning it on (once) sets Steam's default: that one
@@ -1058,7 +1058,7 @@ def context(appid):
              "запуска: сломаешь моды. Новое добавляй к тому, что есть. Если я хочу включить мод — помоги: "
              "нужный оверрайд, загрузчик (BepInEx, CET, RED4ext, UE4SS, ReShade, OptiScaler…), его конфиг в папке игры. "
              "Файлы модов не удаляй: отключай переименованием или переносом в бэкап.",
-             "", "## Что предлагает angelOS", json.dumps(g["rec"], ensure_ascii=False),
+             "", "## Что предлагает kukabara", json.dumps(g["rec"], ensure_ascii=False),
              "", "Применять настройки только через `%s apply %s --proton NAME --options LINE` "
                  "(пишет в Steam сам, помнит старое; `undo %s` возвращает)." % (Path(__file__).resolve(), appid, appid)]
     # the game's and its mods' settings, copied aside first, the small ones in full: the helper
@@ -1095,8 +1095,8 @@ def context(appid):
 # $HOME and /usr/share/steam (checked with SteamLinuxRuntime_4/run), so the switch finds them all.
 BENCH_SECONDS = 60
 SWITCH_SCRIPT = """#!/bin/sh
-# angelOS game tuner (scripts/game-tune.py): Steam starts this for the game; it runs the Proton
-# chosen for it (STATE/switch/<appid>, else …/default) with what angelOS adds to its start
+# kukabara game tuner (scripts/game-tune.py): Steam starts this for the game; it runs the Proton
+# chosen for it (STATE/switch/<appid>, else …/default) with what kukabara adds to its start
 # (STATE/run/<appid>.env: VAR=value a line; …/<appid>.args: the game's flags, a line each)
 id="${SteamAppId:-${STEAM_COMPAT_APP_ID:-0}}"
 st="${XDG_STATE_HOME:-$HOME/.local/state}/angelos/game-tune"
@@ -1122,7 +1122,7 @@ def install_switch(root):
     new = not (d / "compatibilitytool.vdf").exists()
     d.mkdir(parents=True, exist_ok=True)
     (d / "compatibilitytool.vdf").write_text(vdf_dumps({"compatibilitytools": {"compat_tools": {SWITCH: {
-        "install_path": ".", "display_name": "angelOS: Proton per game", "from_oslist": "windows", "to_oslist": "linux"}}}}))
+        "install_path": ".", "display_name": "kukabara: Proton per game", "from_oslist": "windows", "to_oslist": "linux"}}}}))
     (d / "toolmanifest.vdf").write_text(vdf_dumps({"manifest": {
         "version": "2", "commandline": "/angelos-proton %verb%", "require_tool_appid": RUNTIME,
         "use_sessions": "1", "compatmanager_layer_name": "proton"}}))

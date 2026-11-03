@@ -79,7 +79,7 @@ Singleton {
                 const apps = j.apps || [];
                 const title = apps.length ? I18n.t("Discord упал во время стрима со звуком", "Discord fell while sharing with sound") : I18n.t("Discord упал", "Discord fell");
                 const body = apps.length ? I18n.t("Перед этим пропал звук: ", "Just before, this sound went away: ") + apps.join(", ") + I18n.t(". Discord падает, когда приложение закрывает свой звук посреди показа экрана.", ". Discord dies when an app closes its sound mid-share.") : I18n.t("Звук приложений тут ни при чём. Подробности: coredumpctl info ", "Not the apps' sound. Details: coredumpctl info ") + j.pid;
-                Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-warning", "--", title, body]);
+                Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-warning", "--", title, body]);
             }
         }
     }

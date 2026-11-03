@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds the installer's pictures (installer/art/) from angelOS's own sprites — run by hand when
+"""Builds the installer's pictures (installer/art/) from kukabara's own sprites — run by hand when
 a sprite changes (needs Pillow; the installer itself only reads the results).
 
   angel.gif, demon.gif          the wings flapping (the Y2K rigs: modules/y2k/sprites/*/rig.json)

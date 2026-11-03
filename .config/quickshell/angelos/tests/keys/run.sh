@@ -4,10 +4,10 @@
 # Screenshots → «Classic region selection» the old selector) and the desktop menus (an old
 # "circle" entry is the screenshot). grim, niri and the old selector are stand-ins.
 #
-#   tests/keys/run.sh [angelOS dir]      exit 0 = all good, 77 = no quickshell
+#   tests/keys/run.sh [kukabara dir]      exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 fail=0
 python3 "$DIR/tests/keys/test_capture_keys.py" "$DIR" || fail=1
 

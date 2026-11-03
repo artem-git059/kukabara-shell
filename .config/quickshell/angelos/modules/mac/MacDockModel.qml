@@ -67,7 +67,7 @@ Singleton {
                 "id": id,
                 "name": I18n.t("Системные настройки", "System Settings"),
                 "kept": true,
-                "windows": Niri.windows.filter(w => w.app_id === "org.quickshell" && String(w.title).indexOf("angelOS") === 0)
+                "windows": Niri.windows.filter(w => w.app_id === "org.quickshell" && String(w.title).indexOf("kukabara") === 0)
             };
         const e = entryOf(id);
         const key = e ? e.id : id;

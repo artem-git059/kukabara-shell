@@ -4,7 +4,7 @@ import qs.services
 import qs.widgets
 
 // Desktop widget content — one file, every look (docs/PLUGINS.md → «Theme API»):
-//   pixel  angelOS wraps it in a draggable window "__ID__.exe" (manifest "desktopTitle")
+//   pixel  kukabara wraps it in a draggable window "__ID__.exe" (manifest "desktopTitle")
 //   mac    Golden Gate: the host draws a Liquid Glass card, no title (Skin.macWidgets)
 //   hell   while the demon rules (Theme.hell): the host burns it over and draws the hell frame;
 //          the content draws its own hell version with the same data (manifest "realms")

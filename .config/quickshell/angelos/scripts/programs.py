@@ -7,7 +7,7 @@
                                     a package (all its launchers together), a Flatpak app, a
                                     launcher of the user's own (~/.local/share/applications).
                                     keep: why it must stay ("" = removable): part of the system
-                                    or of angelOS (DIR/packages: the dotfiles' base lists);
+                                    or of kukabara (DIR/packages: the dotfiles' base lists);
                                     needed: installed packages that need it
   programs.py plan [--repo DIR] ITEM…
                                     JSON {"remove": [{name, size}], "size": bytes, "refused": why}
@@ -25,7 +25,7 @@
   programs.py cleanup --events [orphans] [cache] [flatpak]
   programs.py bloat-status          JSON {"groups": [{id, title, hint, ticked, items: [{item, pkg, name,
                                     note, size, locked}]}]} — «Лишнее» (data/bloat.json): what the
-                                    installer put here that angelOS itself never calls, installed ones
+                                    installer put here that kukabara itself never calls, installed ones
                                     only; locked: why it stays ("" = it can go)
   programs.py bloat --events ITEM…  removes them in one pacman transaction (one password), progress per
                                     package; what something else needs is left and named. Removed
@@ -53,7 +53,7 @@ STATE_DIR = Path(os.environ.get("XDG_STATE_HOME") or HOME / ".local/state") / "a
 REMOVED = STATE_DIR / "removed-packages.txt"
 BLOAT = HERE.parent / "data/bloat.json"
 
-# what a desktop can't lose: the system, the session, angelOS's own legs
+# what a desktop can't lose: the system, the session, kukabara's own legs
 KEEP = {
     "base", "filesystem", "glibc", "bash", "coreutils", "util-linux", "systemd", "systemd-libs", "systemd-sysvcompat",
     "pacman", "sudo", "polkit", "dbus", "dbus-broker", "shadow", "pam", "networkmanager", "iwd", "openssh",
@@ -159,7 +159,7 @@ def base_lists(repo):
 
 
 def bloat_packages():
-    """every package data/bloat.json names: extras, never «angelOS needs it»"""
+    """every package data/bloat.json names: extras, never «kukabara needs it»"""
     try:
         groups = json.loads(BLOAT.read_text())["groups"]
     except (OSError, ValueError, KeyError):
@@ -171,7 +171,7 @@ def kept(pkg, base=()):
     if pkg in KEEP or KEEP_RX.match(pkg):
         return t("часть системы", "a part of the system")
     if pkg in base:
-        return t("нужна angelOS", "angelOS needs it")
+        return t("нужна kukabara", "kukabara needs it")
     return ""
 
 
@@ -427,7 +427,7 @@ def cleanup(what):
 
 
 
-# ── «Лишнее»: what came along and angelOS never calls (data/bloat.json) ──────────
+# ── «Лишнее»: what came along and kukabara never calls (data/bloat.json) ──────────
 
 def settings():
     base = Path(os.environ.get("XDG_CONFIG_HOME") or HOME / ".config")
@@ -464,7 +464,7 @@ def remember_removed(pkgs, catalog_ids=()):
         have = removed_list()
         new = have + [p for p in pkgs if p not in have]
         REMOVED.parent.mkdir(parents=True, exist_ok=True)
-        REMOVED.write_text("# packages removed in Settings → Programs → Extras: angelOS updates never bring them back\n"
+        REMOVED.write_text("# packages removed in Settings → Programs → Extras: kukabara updates never bring them back\n"
                            + "\n".join(new) + "\n")
     if catalog_ids:
         ai = installer()
@@ -474,12 +474,12 @@ def remember_removed(pkgs, catalog_ids=()):
             ai.save_state(st)
 
 
-# what an author's app does for angelOS itself: said next to it among the extras
+# what an author's app does for kukabara itself: said next to it among the extras
 ANGELOS_USES = {
     "com.github.wwmm.easyeffects": ("на ней держится эквалайзер на панели", "the bar's equaliser runs on it"),
     "easyeffects": ("на ней держится эквалайзер на панели", "the bar's equaliser runs on it"),
-    "com.obsproject.Studio": ("режим стрима angelOS следит за ней", "angelOS's stream mode follows it"),
-    "obs-studio": ("режим стрима angelOS следит за ней", "angelOS's stream mode follows it"),
+    "com.obsproject.Studio": ("режим стрима kukabara следит за ней", "kukabara's stream mode follows it"),
+    "obs-studio": ("режим стрима kukabara следит за ней", "kukabara's stream mode follows it"),
 }
 
 

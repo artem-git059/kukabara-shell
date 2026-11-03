@@ -147,7 +147,7 @@ Item {
             styleColor: Qt.colorEqual(root.mark.c, "#111111") ? "white" : Qt.rgba(0, 0, 0, 0.75)
         }
     }
-    // angelOS's own pixel icons as stickers
+    // kukabara's own pixel icons as stickers
     Loader {
         active: root.t === "sticker"
         sourceComponent: PxIcon {

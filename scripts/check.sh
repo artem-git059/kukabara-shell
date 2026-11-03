@@ -211,10 +211,10 @@ check_files() {
     check_file "$file"
   done
 
-  # the theme key profiles are angelOS's templates, and keybinds.kdl picks one of them
+  # the theme key profiles are kukabara's templates, and keybinds.kdl picks one of them
   for prof in common pixel macos; do
     if cmp -s "$ROOT/.config/niri/cfg/keybinds-$prof.kdl" "$ROOT/.config/quickshell/angelos/templates/keybinds/keybinds-$prof.kdl"; then
-      pass "niri keys: keybinds-$prof.kdl is angelOS's template"
+      pass "niri keys: keybinds-$prof.kdl is kukabara's template"
     else
       fail "niri keys: keybinds-$prof.kdl differs from templates/keybinds (copy the template)"
     fi
@@ -238,9 +238,9 @@ check_files() {
   current=angelos
   main_script="$(sed -n 's/^MainScript=//p' "$theme_dir/metadata.desktop")"
   if [[ "$current" == angelos && -n "$main_script" && -f "$theme_dir/$main_script" ]]; then
-    pass "SDDM: angelOS theme MainScript exists"
+    pass "SDDM: kukabara theme MainScript exists"
   else
-    fail "SDDM: angelOS theme MainScript ($main_script) missing"
+    fail "SDDM: kukabara theme MainScript ($main_script) missing"
   fi
   if [[ -f "$ROOT/.config/quickshell/angelos/data/fonts/Jacquard12Hell-Regular.ttf" ]]; then
     pass "SDDM: theme font source is bundled"
@@ -325,9 +325,9 @@ inst_default() {
           -f "$WORK/default/.config/quickshell/angelos/shell.qml" &&
           ! -e "$WORK/default/.config/angelos/owner" ]] &&
        grep -qx angelos "$WORK/default/.config/angelos/active"; then
-      pass "installer: angelOS is the default, fresh installs have no owner marker"
+      pass "installer: kukabara is the default, fresh installs have no owner marker"
     else
-      fail "installer: angelOS default/owner marker"
+      fail "installer: kukabara default/owner marker"
     fi
     expect_line default "$input" '^[[:space:]]*layout "us,ru"$'                  "installer: default layouts us,ru"
     expect_line default "$input" '^[[:space:]]*options "grp:alt_shift_toggle"$'  "installer: default switch Alt+Shift"
@@ -391,11 +391,11 @@ inst_default() {
     fi
     if grep -qx 'remote=fixture' "$WORK/default/.config/angelos/owner" &&
        grep -qx '{"setup":{"complete":true}}' "$WORK/default/.config/angelos/settings.json"; then
-      pass "installer: existing angelOS settings and owner marker survive an update"
+      pass "installer: existing kukabara settings and owner marker survive an update"
     else
-      fail "installer: existing angelOS settings and owner marker survive an update"
+      fail "installer: existing kukabara settings and owner marker survive an update"
     fi
-    # An update keeps what the user (or angelOS's settings) changed, and still
+    # An update keeps what the user (or kukabara's settings) changed, and still
     # brings new versions of the files nobody touched (issue #23).
     d="$WORK/default"
     echo '// my own binds' >>"$d/.config/niri/cfg/keybinds.kdl"
@@ -410,7 +410,7 @@ inst_default() {
     head -n -2 "$ROOT/$fish" >"$bases/$fish"
     sed -i "s|^[0-9a-f]*  $fish\$|$(sha256sum "$bases/$fish" | cut -d' ' -f1)  $fish|" "$manifest"
     { sed 's/^alias n nvim$/alias n micro/' "$bases/$fish"; echo '# my own line'; } >"$d/$fish"
-    # a file angelOS generates (the palette's kitty colours): the user's stays, the new one is parked
+    # a file kukabara generates (the palette's kitty colours): the user's stays, the new one is parked
     kt=".config/kitty/themes/angelos.conf"
     echo '# my colours' >>"$d/$kt"
     install_case default || fail "installer: update run with changed configs"
@@ -629,8 +629,8 @@ check_self_update() {
   fi
 }
 
-# No desktop shell: niri's plain variants land under the usual names (no angelOS wiring, fuzzel
-# and the like on the keys), angelOS itself is not installed. The old NOCTALIA=0 means the same.
+# No desktop shell: niri's plain variants land under the usual names (no kukabara wiring, fuzzel
+# and the like on the keys), kukabara itself is not installed. The old NOCTALIA=0 means the same.
 inst_noshell() {
   local c n
   for c in "noshell DESKTOP_SHELL=none" "noshell-legacy NOCTALIA=0"; do
@@ -673,9 +673,9 @@ inst_sddm() {
        grep -qx 'Current=angelos' "$sysroot/etc/sddm.conf.d/zz-angelos.conf" &&
        ! grep -q '^Current=' "$sysroot/etc/sddm.conf.d/zz-pixelstreetart.conf" &&
        compgen -G "$sysroot/usr/share/sddm/themes/.pixel-cyberpunk.bak.*" >/dev/null; then
-      pass "installer: angelOS replaces the old SDDM theme and drop-in (backup kept)"
+      pass "installer: kukabara replaces the old SDDM theme and drop-in (backup kept)"
     else
-      fail "installer: angelOS replaces the old SDDM theme and drop-in (backup kept)"
+      fail "installer: kukabara replaces the old SDDM theme and drop-in (backup kept)"
     fi
     if grep -Eq '^# .*Current=breeze' "$sysroot/etc/sddm.conf" && grep -q '^Current=keep-me' "$sysroot/etc/sddm.conf" &&
        compgen -G "$sysroot/etc/angelos-sddm-backups/sddm.conf.*" >/dev/null; then
@@ -738,9 +738,9 @@ inst_bad() {
   done
 }
 
-# A niri config that was there before angelOS (CachyOS's: cfg/keybinds.kdl with Noctalia's
-# keys, outputs in cfg/display.kdl) is replaced, backed up — kept, it left every angelOS key
-# unplugged. An angelOS config the user edited stays theirs.
+# A niri config that was there before kukabara (CachyOS's: cfg/keybinds.kdl with Noctalia's
+# keys, outputs in cfg/display.kdl) is replaced, backed up — kept, it left every kukabara key
+# unplugged. An kukabara config the user edited stays theirs.
 inst_foreignniri() {
   local h="$WORK/foreignniri" k=.config/niri/cfg/keybinds.kdl
   mkdir -p "$h/.config/niri/cfg"
@@ -750,15 +750,15 @@ inst_foreignniri() {
   if install_case foreignniri && grep -q 'include "keybinds-common.kdl"' "$h/$k" &&
      grep -q 'include "angelos.kdl"' "$h/.config/niri/config.kdl" &&
      ls "$h/$k".bak.* >/dev/null 2>&1 && grep -q 'output "DP-1"' "$h/.config/niri/monitor.kdl"; then
-    pass "installer: a niri config from before angelOS is replaced (backed up), its outputs kept"
+    pass "installer: a niri config from before kukabara is replaced (backed up), its outputs kept"
   else
-    fail "installer: a niri config from before angelOS is replaced (backed up), its outputs kept"; return
+    fail "installer: a niri config from before kukabara is replaced (backed up), its outputs kept"; return
   fi
   printf '// mine\n' >>"$h/.config/niri/config.kdl"
   if install_case foreignniri && tail -1 "$h/.config/niri/config.kdl" | grep -qx '// mine'; then
-    pass "installer: the user's edit of angelOS's niri config stays"
+    pass "installer: the user's edit of kukabara's niri config stays"
   else
-    fail "installer: the user's edit of angelOS's niri config stays"
+    fail "installer: the user's edit of kukabara's niri config stays"
   fi
 }
 

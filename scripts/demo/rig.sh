@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# The demo stand: a clean angelOS in a nested niri — nothing of yours gets into the frame.
+# The demo stand: a clean kukabara in a nested niri — nothing of yours gets into the frame.
 # A throw-away home made by ./install.sh (SKIP_PACKAGES=1), the user "angel" on the host "angelos",
 # generated wallpapers (scripts/demo/wallpaper.py), a private D-Bus (no service activation from the
 # host), its own XDG_RUNTIME_DIR (no PipeWire: no sound plays; no systemd --user: nothing of the live
@@ -9,8 +9,8 @@
 # opens the nested niri as a window of your session instead, for the few shots that need a real
 # pointer (move it to the test screen; it records only itself).
 #
-#   scripts/demo/rig.sh start pixel|macos [dark|light]   build the home, start niri and angelOS
-#   scripts/demo/rig.sh ipc FUNCTION [ARGS…]             angelOS's IPC in the stand
+#   scripts/demo/rig.sh start pixel|macos [dark|light]   build the home, start niri and kukabara
+#   scripts/demo/rig.sh ipc FUNCTION [ARGS…]             kukabara's IPC in the stand
 #   scripts/demo/rig.sh niri ARGS…                       `niri msg` in the stand
 #   scripts/demo/rig.sh run COMMAND…                     a program inside the nested niri
 #   scripts/demo/rig.sh shot FILE.png                    a screenshot of the stand (grim)
@@ -29,7 +29,7 @@ SIZE="${DEMO_SIZE:-1920x1080}"
 die() { printf 'rig: %s\n' "$*" >&2; exit 1; }
 home() { cat "$STATE/home" 2>/dev/null || die "not started"; }
 
-# quickshell: the system one, else the local copy angelOS installs into ~/.local/opt
+# quickshell: the system one, else the local copy kukabara installs into ~/.local/opt
 qs_env() {
   QS="$(command -v quickshell || true)" QS_LIB="" QS_QML=""
   local real="${REAL_HOME:-$HOME}"
@@ -62,7 +62,7 @@ seed_home() { # home theme palette
     "$ROOT/install.sh" </dev/null >"$STATE/install.log" 2>&1 || { tail -20 "$STATE/install.log" >&2; die "install failed"; }
   # no systemd --user for the stand's shell, nothing autostarted by niri (the stand starts it)
   printf 'off\n' >"$h/.config/angelos/service"
-  printf '// demo stand: angelOS is started by scripts/demo/rig.sh\n' >"$h/.config/niri/cfg/autostart.kdl"
+  printf '// demo stand: kukabara is started by scripts/demo/rig.sh\n' >"$h/.config/niri/cfg/autostart.kdl"
   # the stand's shell never registers a polkit agent (it would answer for your real session)
   sed -i 's/^        active: true$/        active: Quickshell.env("ANGELOS_DEMO") !== "1"/' \
     "$h/.config/quickshell/angelos/modules/polkit/PolkitDialog.qml"
@@ -84,12 +84,12 @@ old = 'askIn = 0;\n            phase = "ask";\n            askFade.restart();\n 
 if old in s:
     open(p, "w").write(s.replace(old, "go();\n            return;", 1))
 PY
-  # fastfetch in the frame: angelOS's own style (the shell writes it through
+  # fastfetch in the frame: kukabara's own style (the shell writes it through
   # scripts/fastfetch_style.py a moment after it starts, and again on every theme change), with
   # nothing about your machine that is yours — angel@angelos, no board, no local IP, no disk, no
   # gear list (scripts/gear.py: your keyboard, mouse and mic). The filter sits inside the stand's
   # copy of the style script, so every config it writes goes through it and the «written by
-  # angelOS» mark stays (a config without the mark counts as the user's own and is left alone,
+  # kukabara» mark stays (a config without the mark counts as the user's own and is left alone,
   # and fastfetch then falls back to the distro's logo).
   python3 - "$h/.config/quickshell/angelos/scripts/fastfetch_style.py" "$h/.config/fastfetch/config.jsonc" <<'PY'
 import json, re, sys

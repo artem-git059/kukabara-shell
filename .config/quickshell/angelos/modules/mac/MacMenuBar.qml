@@ -10,7 +10,7 @@ import qs.widgets
 
 // The Golden Gate menu bar: 24 pt along the top of every screen, no band of its own (the
 // wallpaper shows through; Config.mac.barBackground puts one under it), ink black or white by
-// the wallpaper under it. Leading: angelOS's emblem where the Apple logo is (its menu: About,
+// the wallpaper under it. Leading: kukabara's emblem where the Apple logo is (its menu: About,
 // Settings, Force Quit, Sleep…), the focused app's name in bold and its menus (services/AppMenu).
 // Trailing, right to left: the date and time (Notification Center), Control Center, Spotlight,
 // the input source, sound, Bluetooth, Wi-Fi, the apps' tray icons and the plugins' panel widgets

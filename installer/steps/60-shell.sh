@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 enable_services() {
   [[ "$ENABLE_SERVICES" == 1 ]] || return 0
@@ -21,9 +21,9 @@ enable_services() {
   fi
 }
 
-# angelOS: CLI on PATH, theme files for kitty/foot/gtk/niri, shell wiring.
-# On the first login angelOS opens its setup wizard and then the interface tips.
-# What was asked here is not asked again by angelOS's setup wizard: the game on or off
+# kukabara: CLI on PATH, theme files for kitty/foot/gtk/niri, shell wiring.
+# On the first login kukabara opens its setup wizard and then the interface tips.
+# What was asked here is not asked again by kukabara's setup wizard: the game on or off
 # (ANGELOS_GAME, when asked or given) → settings.json game.enabled and setup.gameAsked; the
 # keyboard layouts (asked or KB_LAYOUTS given) → setup.keyboardAsked. The rest of the file
 # stays as it is; the player's save (save.json) is never touched.
@@ -57,7 +57,7 @@ if game:
 # only before the wizard is done (an update passes the layouts on too: nothing to write then)
 if kb and not d.get("setup", {}).get("complete"):
     d.setdefault("setup", {})["keyboardAsked"] = True
-# the look: pixel = angelOS's classic skin, macos = Golden Gate; picked = the wizard won't ask
+# the look: pixel = kukabara's classic skin, macos = Golden Gate; picked = the wizard won't ask
 if theme:
     ui = d.setdefault("settingsUi", {})
     ui["skin"] = "goldengate" if theme == "macos" else "classic"
@@ -83,7 +83,7 @@ install_shell() {
   local shell_dir="$HOME_DIR/.config/quickshell/angelos"
   [[ "$DESKTOP_SHELL" != none && -d "$shell_dir" ]] || return 0
   if [[ "$DESKTOP_SHELL" == angelos ]]; then
-    say "$(_ 'Setting up angelOS…' 'Настройка angelOS…')"
+    say "$(_ 'Setting up kukabara…' 'Настройка kukabara…')"
     apply_setup_answers
     ln -sfn "$shell_dir/bin/angelos" "$HOME_DIR/.local/bin/angelos"
     mkdir -p -- "$HOME_DIR/.config/angelos"
@@ -105,7 +105,7 @@ install_shell() {
 }
 
 # The windows' own minimize buttons (GTK's yellow light, Qt's, Firefox's): niri ignores
-# xdg_toplevel.set_minimized, so extras/minimize-hook (an LD_PRELOAD library) hands it to angelOS
+# xdg_toplevel.set_minimized, so extras/minimize-hook (an LD_PRELOAD library) hands it to kukabara
 # (services/Minimize.qml) — without it the Golden Gate skin's yellow light did nothing (#56).
 # Built here for everyone, as extras/minimize-hook/install.sh does it: the library, angelos.service's
 # drop-in, cfg/angelos-minimize.kdl and its include in niri's config.kdl (the manifest isn't told:
@@ -142,13 +142,13 @@ install_minimize_hook() {
   pre="$out/\$LIB/libangelos-minimize.so"
   mkdir -p -- "${dropin%/*}" "${kdl%/*}"
   cat >"$dropin" <<UNIT
-# angelOS minimize hook (extras/minimize-hook): the windows' own minimize buttons go to angelOS.
+# kukabara minimize hook (extras/minimize-hook): the windows' own minimize buttons go to kukabara.
 # \$LIB is ld.so's (lib / lib32): systemd doesn't expand \$ in Environment=.
 [Service]
 Environment="LD_PRELOAD=$pre"
 UNIT
   cat >"$kdl" <<KDL
-// angelOS minimize hook (extras/minimize-hook): apps niri starts get the preload.
+// kukabara minimize hook (extras/minimize-hook): apps niri starts get the preload.
 environment {
     LD_PRELOAD "$pre"
 }
@@ -244,7 +244,7 @@ install_apps() {
 }
 
 # the steps of this file, in the order of the run (see step() in installer/lib/core.sh)
-step 25 install_shell "angelOS" "angelOS"
+step 25 install_shell "kukabara" "kukabara"
 step 30 install_minimize_hook "the windows' minimize button" "кнопка «свернуть» у окон"
 step 32 install_discord_shield "Discord streams with a mixer" "стрим Discord с пультом"
 step 45 install_apps "the apps" "программы"

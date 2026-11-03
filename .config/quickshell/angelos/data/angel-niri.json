@@ -1,5 +1,5 @@
 {
-  "_comment": "angel-niri, angelOS's fork of niri (scripts/angel-niri-install.sh): the build users get. A new one: ~/Work/AngelOS/tools/angel-niri-release on the author's machine rewrites this file",
+  "_comment": "angel-niri, kukabara's fork of niri (scripts/angel-niri-install.sh): the build users get. A new one: ~/Work/AngelOS/tools/angel-niri-release on the author's machine rewrites this file",
   "commit": "ce52b4a8f80b6599292ee35604d189b35da4874e",
   "smithay": "ec59eb578b44be84a5ba0e6bf6a03b3108bf069e",
   "tag": "angelos-ce52b4a8",

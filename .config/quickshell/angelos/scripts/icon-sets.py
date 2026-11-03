@@ -4,12 +4,12 @@
   icon-sets.py PIXELARTICONS_DIR HACKERNOON_DIR     (the unpacked npm packages:
       npm pack pixelarticons@2.4.1 @hackernoon/pixel-icon-library@1.1.0)
 
-Each angelOS icon name (widgets/Icons.js) gets the closest icon of each set, rendered with
+Each kukabara icon name (widgets/Icons.js) gets the closest icon of each set, rendered with
 rsvg-convert at 1:1 on its 24-unit grid (the shapes sit on whole units: no half-tones),
 cut to its ink and written as rows of '#' like ours — one cell per unit (pixelarticons draws
 mostly with 2-unit squares, but not all on one grid: halving them would bend the shapes).
 Names with no counterpart (the hearts with horns, the
-pentagram — angelOS's own) and families with a member missing (a Wi-Fi bar, "previous")
+pentagram — kukabara's own) and families with a member missing (a Wi-Fi bar, "previous")
 keep ours, so a tray icon never changes style with its state.
 
 Licences: pixelarticons — MIT, © 2019 Gerrit Halfmann; HackerNoon's Pixel Icon Library — the
@@ -24,7 +24,7 @@ from pathlib import Path
 
 from PIL import Image
 
-# angelOS name → [pixelarticons name, HackerNoon name] (None: ours in that style)
+# kukabara name → [pixelarticons name, HackerNoon name] (None: ours in that style)
 MAP = {
     "camera": ["camera", "camera"], "document": ["file-text", "notebook"], "fire": ["fire", "fire"],
     "chat": ["comment", "comment"], "cd": ["album", "disc"], "sparkleStar": ["sparkles", "sparkles"],
@@ -92,7 +92,7 @@ def main():
           "// by scripts/icon-sets.py, don't edit by hand. pixelarticons — MIT, (c) 2019 Gerrit Halfmann;",
           "// HackerNoon's Pixel Icon Library — the icons CC BY 4.0, (c) HackerNoon, changed: rendered to",
           "// bitmaps, cropped, coloured by the theme. docs/ICON-CREDITS.md has the licences and links.",
-          "// A name missing from a set is drawn in angelOS's own style.", "",
+          "// A name missing from a set is drawn in kukabara's own style.", "",
           "const sets = " + json.dumps(out, indent=1, sort_keys=True) + ";", "",
           "function get(style, name) {", "    const s = sets[style];", "    return s && s[name] ? s[name] : null;", "}", ""]
     target = Path(__file__).resolve().parent.parent / "widgets/IconSets.js"

@@ -23,7 +23,7 @@ Singleton {
         _editFrom = "";
     }
 
-    // ---- the look: angelOS's pixel windows or macOS Golden Gate cards ----
+    // ---- the look: kukabara's pixel windows or macOS Golden Gate cards ----
     // Config.desktop.widgetStyle: "auto" follows the skin (Golden Gate → cards), "pixel", "mac".
     // In hell (Theme.realm) the circle's look stays whatever the style: the built-in widgets
     // and the plugins that know it ("macLook") draw a card face of their own, the host draws
@@ -515,7 +515,7 @@ Singleton {
         if (picker.running)
             return;
         picking = uid + ":" + key;
-        picker.command = folder ? ["python3", Quickshell.shellDir + "/scripts/pick-file.py", "--dir", I18n.t("angelOS — папка для слайд-шоу", "angelOS — a folder for the slideshow")] : ["python3", Quickshell.shellDir + "/scripts/pick-file.py", I18n.t("angelOS — картинка на рабочий стол", "angelOS — a picture for the desktop"), I18n.t("Картинки и видео", "Pictures and videos"), "*.gif", "*.webp", "*.png", "*.apng", "*.mng", "*.jpg", "*.jpeg", "*.bmp", "*.svg", "*.avif", "*.mp4", "*.webm", "*.mkv", "*.mov"];
+        picker.command = folder ? ["python3", Quickshell.shellDir + "/scripts/pick-file.py", "--dir", I18n.t("kukabara — папка для слайд-шоу", "kukabara — a folder for the slideshow")] : ["python3", Quickshell.shellDir + "/scripts/pick-file.py", I18n.t("kukabara — картинка на рабочий стол", "kukabara — a picture for the desktop"), I18n.t("Картинки и видео", "Pictures and videos"), "*.gif", "*.webp", "*.png", "*.apng", "*.mng", "*.jpg", "*.jpeg", "*.bmp", "*.svg", "*.avif", "*.mp4", "*.webm", "*.mkv", "*.mov"];
         picker.running = true;
     }
     Process {
@@ -659,7 +659,7 @@ Singleton {
     }
 
     // ---- the wizard's sets (SetupAssistant, step "widgets") ----
-    // [type, size, x, y] in angelOS pixels; negative = from the right / the bottom. Picking a set
+    // [type, size, x, y] in kukabara pixels; negative = from the right / the bottom. Picking a set
     // takes away the built-in widgets of the one before on that screen (plugins stay)
     readonly property var sets: ({
             "empty": [],
@@ -719,7 +719,7 @@ Singleton {
     function snap(v) {
         return snapOn ? Math.round(v / gridPx) * gridPx : Math.round(v);
     }
-    // 0 = off, else the cell in angelOS pixels
+    // 0 = off, else the cell in kukabara pixels
     readonly property var gridLevels: [
         {
             "value": 0,

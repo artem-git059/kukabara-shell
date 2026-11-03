@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# angel-niri, angelOS's fork of niri (minimize, pixel looks, privacy looks and the pause in
+# angel-niri, kukabara's fork of niri (minimize, pixel looks, privacy looks and the pause in
 # screencasts, tearing, the game's pointer lock, windows in their places): the build pinned in
 # data/angel-niri.json for this user — downloaded from its GitHub release and checked by SHA256,
 # or built from source (MixaDoDs/angel-niri + angel-smithay beside it) when the download fails or
 # the binary doesn't run here — and made the session's niri. Nothing system-wide: the niri package
 # stays installed, a drop-in of niri.service starts ours (from the next login) and
-# ~/.local/bin/niri is it for `niri msg`. angelOS works on stock niri too, without the fork's
+# ~/.local/bin/niri is it for `niri msg`. kukabara works on stock niri too, without the fork's
 # features. A session that doesn't start: Ctrl+Alt+F3, log in, `angel-niri-install.sh off`.
 # Beside it angel-satellite, the fork of xwayland-satellite niri runs X11 apps with (drag and drop
 # into X11 apps, menus on two monitors): ~/.local/bin/xwayland-satellite, picked up from PATH.
@@ -87,7 +87,7 @@ build() {
 use() {
   local bin="$1"
   mkdir -p -- "${DROPIN%/*}" "${LINK%/*}"
-  printf '%s\n' "# angelOS: the session's niri is angel-niri (scripts/angel-niri-install.sh; off: angel-niri-install.sh off)" \
+  printf '%s\n' "# kukabara: the session's niri is angel-niri (scripts/angel-niri-install.sh; off: angel-niri-install.sh off)" \
     "[Service]" "ExecStart=" "ExecStart=$bin --session" >"$DROPIN"
   ln -sfn -- "$bin" "$LINK"
   systemctl --user daemon-reload >/dev/null 2>&1 || true
@@ -125,7 +125,7 @@ install_it() {
     if [[ "${ANGEL_NIRI_BUILD:-0}" == 1 ]] || ! download "$dir" || ! works "$dir/niri"; then
       rm -rf -- "$dir"
       build "$dir" && works "$dir/niri" ||
-        { rm -rf -- "$dir"; fail "$(_ 'angel-niri could not be downloaded or built; angelOS stays on the niri package' 'angel-niri не скачался и не собрался; angelOS остаётся на niri из пакета')"; }
+        { rm -rf -- "$dir"; fail "$(_ 'angel-niri could not be downloaded or built; kukabara stays on the niri package' 'angel-niri не скачался и не собрался; kukabara остаётся на niri из пакета')"; }
     fi
   fi
   use "$dir/niri"

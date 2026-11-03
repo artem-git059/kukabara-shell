@@ -1,6 +1,6 @@
-"""angelOS for Nautilus: «Отправить рядом» — Quick Share to LocalSend devices nearby.
+"""kukabara for Nautilus: «Отправить рядом» — Quick Share to LocalSend devices nearby.
 
-Opens angelOS's share sheet (services/QuickShare) with the selected files and folders;
+Opens kukabara's share sheet (services/QuickShare) with the selected files and folders;
 the paths go to `angelos share` as arguments, never through a shell.
 """
 import os

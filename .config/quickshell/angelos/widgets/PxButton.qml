@@ -30,7 +30,7 @@ Item {
     property color tint: Theme.accent
     readonly property string settingsSkin: root.hell ? "classic" : Theme.settingsSkinFor(root.parent)
     // the Golden Gate skin's System Settings: a Mac push button (white, a hairline, the accent when
-    // it is the default or picked), line icons where angelOS's pixel ones have a match
+    // it is the default or picked), line icons where kukabara's pixel ones have a match
     readonly property bool mac: settingsSkin === "goldengate" && !root.barInk
     // the P5 settings window: a slanted paper plate on a black shadow — black when on, the
     // accent under the pointer (P5Slant)

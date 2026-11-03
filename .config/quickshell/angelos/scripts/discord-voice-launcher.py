@@ -23,8 +23,8 @@ APPS = DATA / 'applications'
 SELF = DATA / 'angelos/discord-voice/launcher.py'
 MARK = 'X-AngelOS-DiscordVoice=true'
 FLAGS = CONFIG.parent.parent / 'vesktop-flags.conf'
-FLAGS_BEGIN = '# BEGIN angelOS Discord voice'
-FLAGS_END = '# END angelOS Discord voice'
+FLAGS_BEGIN = '# BEGIN kukabara Discord voice'
+FLAGS_END = '# END kukabara Discord voice'
 
 
 def quoted(text):
@@ -120,7 +120,7 @@ def native_desktop():
 
 def flags_text(original, port=None):
     if original.count(FLAGS_BEGIN) != original.count(FLAGS_END) or original.count(FLAGS_BEGIN) > 1:
-        raise ValueError('malformed angelOS block in vesktop-flags.conf')
+        raise ValueError('malformed kukabara block in vesktop-flags.conf')
     pattern = r'(?m)^' + re.escape(FLAGS_BEGIN) + r'\n.*?^' + re.escape(FLAGS_END) + r'(?:\n|$)'
     clean = re.sub(pattern, '', original, flags=re.DOTALL)
     if port is None:

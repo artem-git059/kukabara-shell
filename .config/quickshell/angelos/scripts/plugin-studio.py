@@ -36,7 +36,7 @@ STAMP_RE = re.compile(r"\d{8}-\d{6}(?:-\d+)?\Z")
 ENTRYPOINTS = ("main", "settings", "desktopWidget", "barWidget", "menuComponent", "launcher", "sidebarWidget")
 API_PROVIDERS = ("openai", "anthropic")
 # "Sign in with the browser": the local Claude Code / Codex CLIs, logged in with a
-# Claude or ChatGPT account. angelOS never sees their credentials.
+# Claude or ChatGPT account. kukabara never sees their credentials.
 CLI_PROVIDERS = ("claude-cli", "codex-cli")
 CODEX_DISABLE = ("shell_tool", "computer_use", "browser_use", "browser_use_external", "apps")
 EFFORTS = ("low", "medium", "high", "xhigh", "max", "ultra")
@@ -147,7 +147,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 
 def provider_request(provider, model, key, system, messages, schema, tokens, effort=""):
-    headers = {"Content-Type": "application/json", "User-Agent": "angelOS-PluginStudio/1"}
+    headers = {"Content-Type": "application/json", "User-Agent": "kukabara-PluginStudio/1"}
     if provider == "openai":
         url = "https://api.openai.com/v1/responses"
         headers["Authorization"] = "Bearer " + key
@@ -328,7 +328,7 @@ def qml_api(path, limit=40):
 
 
 def api_reference():
-    parts = ["API REFERENCE (generated from the installed angelOS sources; use only what is listed here or in the documents)"]
+    parts = ["API REFERENCE (generated from the installed kukabara sources; use only what is listed here or in the documents)"]
     parts.append("\n## qs.widgets")
     for f in sorted((ROOT / "widgets").glob("*.qml")):
         doc, decls = qml_api(f, 25)
@@ -634,7 +634,7 @@ HARNESS = """//@ pragma UseQApplication
 import QtQuick
 import Quickshell
 @IMPORTS@
-// angelOS Plugin Studio: loads each entry point of a draft the way the shell
+// kukabara Plugin Studio: loads each entry point of a draft the way the shell
 // hosts do and reports what fails. Runs offscreen inside bubblewrap.
 ShellRoot {
     Item {

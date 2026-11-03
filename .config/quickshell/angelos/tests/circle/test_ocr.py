@@ -4,7 +4,7 @@ words on coloured buttons in one picture (what the old whole-picture turn-over l
 link tesseract doubts, small UI text in both themes, columns and paragraphs in reading
 order, Russian (when its tessdata is there) and pictures without text that must give no
 words at all (the overlay shows every word it gets).
-  test_ocr.py <angelOS dir>      exit 0 = all good, 77 = no tesseract/cairo"""
+  test_ocr.py <kukabara dir>      exit 0 = all good, 77 = no tesseract/cairo"""
 import json
 import math
 import os

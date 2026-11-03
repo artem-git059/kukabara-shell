@@ -1,4 +1,4 @@
-/* angelOS for Steam (Millennium; scripts/steam-theme.py): what Steam's own colours can't say.
+/* kukabara for Steam (Millennium; scripts/steam-theme.py): what Steam's own colours can't say.
    The colours themselves are Steam's, recoloured by angelos.js onto the --ao-* variables
    (colors.css, rewritten for every palette). */
 ::selection {
@@ -23,7 +23,7 @@
 ::-webkit-scrollbar-corner {
     background: var(--ao-desk) !important;
 }
-/* buttons and fields: angelOS's square-ish corners */
+/* buttons and fields: kukabara's square-ish corners */
 .DialogButton,
 .DialogInput,
 .DialogDropDown,

@@ -7,7 +7,7 @@ import Quickshell.Io
 import qs.config
 import "../novel/NovelCore.js" as Core
 
-// The game (Story). angelOS is a story played over the real desktop: the angel in the
+// The game (Story). kukabara is a story played over the real desktop: the angel in the
 // corner, the demon who takes over when the player throws the angel down, hell's nine
 // circles. What the player sees depends on what they chose — not on a counter.
 //
@@ -709,7 +709,7 @@ Singleton {
             return "out";
         if (hell.limbo) {
             // nobody in the corner to say it: a notification (a draft line)
-            Quickshell.execDetached(["notify-send", "-a", "angelOS", I18n.t("Лимб", "Limbo"), I18n.t("Здесь никого нет. Отойди от компьютера — заблокируй экран минут на " + limboReturnMinutes + ", и ангел тебя найдёт.", "Nobody is here. Step away from the computer — lock the screen for " + limboReturnMinutes + " minutes, and the angel will find you.")]);
+            Quickshell.execDetached(["notify-send", "-a", "kukabara", I18n.t("Лимб", "Limbo"), I18n.t("Здесь никого нет. Отойди от компьютера — заблокируй экран минут на " + limboReturnMinutes + ", и ангел тебя найдёт.", "Nobody is here. Step away from the computer — lock the screen for " + limboReturnMinutes + " minutes, and the angel will find you.")]);
             return "limbo";
         }
         if (Novel.sceneBusy) {

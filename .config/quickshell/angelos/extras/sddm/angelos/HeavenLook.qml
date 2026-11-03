@@ -1,6 +1,6 @@
 import QtQuick
 
-// angelOS login, the "heaven" look: a sky of the hour (dawn pink, clear day, gold-pink
+// kukabara login, the "heaven" look: a sky of the hour (dawn pink, clear day, gold-pink
 // evening, a starry night), pixel clouds drifting in layers, the gold gate with the light of
 // the other side, and before it a plate on the clouds: the halo, the name, the password as
 // little stars. The angel dozes on a cloud by the gate. Other screens: the sky, the clock
@@ -255,7 +255,7 @@ Item {
         y: Math.round(Math.max(root.u * 12, (gate.y - height) * 0.5))
         spacing: root.u * 4
 
-        // angelOS under a halo
+        // kukabara under a halo
         Item {
             anchors.horizontalCenter: parent.horizontalCenter
             width: mark.width

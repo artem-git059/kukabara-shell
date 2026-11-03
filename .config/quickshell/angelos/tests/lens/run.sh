@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Google Lens in angelOS's own window, offline: scripts/lens/page.js reads two pages made after
+# Google Lens in kukabara's own window, offline: scripts/lens/page.js reads two pages made after
 # the spec (handoff 2026-10-20-lens-spec: roles, heading levels, href shapes — no Google page is
 # stored) in a hidden QtWebEngine view with the network off; then offscreen the window
 # (modules/lenssearch) through every state services/LensSearch can be in. Google is never asked.
 #
-#   tests/lens/run.sh [angelOS dir]      exit 0 = all good, 77 = no quickshell / qml6
+#   tests/lens/run.sh [kukabara dir]      exit 0 = all good, 77 = no quickshell / qml6
 #   ANGELOS_LENS_SHOTS=dir …             a picture of each state of the window
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 fail=0
 T="$(mktemp -d /tmp/aos-lens.XXXXXX)"
 trap 'rm -rf "$T"' EXIT

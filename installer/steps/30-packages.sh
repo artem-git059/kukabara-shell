@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # ── Packages ─────────────────────────────────────────────────────────────────
 
@@ -102,7 +102,7 @@ pacman_install() {
   # upgrade comes on top): the apps, voice input and the like are the wizard's, one by one later
   local mb
   mb="$(pacman -Sp --needed --print-format '%s' "${packages[@]}" 2>/dev/null | awk '{s+=$1} END {printf "%d", s/1048576}')"
-  [[ "${mb:-0}" -gt 0 ]] && say "$(_ "angelOS's packages: about $mb MB to download" "Пакеты angelOS: скачается около $mb МБ")"
+  [[ "${mb:-0}" -gt 0 ]] && say "$(_ "kukabara's packages: about $mb MB to download" "Пакеты kukabara: скачается около $mb МБ")"
   # -Syu, not -S: Arch does not support partial upgrades, and with a stale
   # package database a plain -S fails with 404s halfway through.
   say "$(_ 'Updating the system and installing packages (pacman -Syu)…' \
@@ -126,11 +126,11 @@ pacman_install() {
       warn "$(_ "Not installed: ${PKG_FAILED[*]}  →  sudo pacman -S ${PKG_FAILED[*]}  (it says why)" \
                 "Не поставились: ${PKG_FAILED[*]}  →  sudo pacman -S ${PKG_FAILED[*]}  (он скажет почему)")"
   fi
-  # angelOS Meta tap reads the keyboards via evdev (issue #6); the group applies after re-login
+  # kukabara Meta tap reads the keyboards via evdev (issue #6); the group applies after re-login
   [[ "$DESKTOP_SHELL" == angelos ]] && ! id -nG "$(id -un)" | grep -qw input && sudo usermod -aG input "$(id -un)" || true
   # the same group may make a virtual mouse (mouse-coalesce in games): /dev/uinput is root's alone
   # unless a rule says so (Steam brings one; without Steam nothing did)
-  # Bluetooth comes with angelOS (bluez) but a fresh system leaves its service off: the bar's
+  # Bluetooth comes with kukabara (bluez) but a fresh system leaves its service off: the bar's
   # button said «the service is off»
   if [[ "$DESKTOP_SHELL" == angelos ]] && compgen -G '/sys/class/bluetooth/*' >/dev/null &&
      ! systemctl is-enabled bluetooth.service >/dev/null 2>&1; then
@@ -138,12 +138,12 @@ pacman_install() {
   fi
   local rule=/etc/udev/rules.d/70-angelos-uinput.rules
   if [[ "$DESKTOP_SHELL" == angelos && ! -f "$rule" ]]; then
-    printf '# angelOS: the input group makes virtual input devices (mouse-coalesce)\nKERNEL=="uinput", SUBSYSTEM=="misc", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"\n' |
+    printf '# kukabara: the input group makes virtual input devices (mouse-coalesce)\nKERNEL=="uinput", SUBSYSTEM=="misc", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"\n' |
       sudo tee "$rule" >/dev/null && sudo udevadm control --reload 2>/dev/null && sudo udevadm trigger --name-match=uinput 2>/dev/null || true
   fi
 }
 
-# angelOS is tested on Quickshell 0.3.2: an older one (a stale mirror, a pinned package)
+# kukabara is tested on Quickshell 0.3.2: an older one (a stale mirror, a pinned package)
 # runs without its crash fixes, older than 0.3.0 not at all. The shell's own
 # scripts/qs-version.sh decides, the shell asks it too (Settings → System).
 QS_STATE=""
@@ -154,12 +154,12 @@ quickshell_check() {
   read -r state found want < <(sh "$script" 2>/dev/null || true) || true
   QS_STATE="$state"
   case "$state" in
-    old) warn "$(_ "Quickshell $found is older than $want: angelOS runs, but without its crash fixes — update the quickshell package" \
-                   "Quickshell $found старее $want: angelOS запустится, но без исправлений падений — обнови пакет quickshell")" ;;
-    too-old) warn "$(_ "Quickshell $found is too old for angelOS (needs $want): update the quickshell package, then log in again" \
-                       "Quickshell $found слишком старый для angelOS (нужен $want): обнови пакет quickshell и перезайди")" ;;
-    missing) warn "$(_ 'Quickshell is not installed: angelOS needs the quickshell package' \
-                       'Quickshell не установлен: angelOS нужен пакет quickshell')" ;;
+    old) warn "$(_ "Quickshell $found is older than $want: kukabara runs, but without its crash fixes — update the quickshell package" \
+                   "Quickshell $found старее $want: kukabara запустится, но без исправлений падений — обнови пакет quickshell")" ;;
+    too-old) warn "$(_ "Quickshell $found is too old for kukabara (needs $want): update the quickshell package, then log in again" \
+                       "Quickshell $found слишком старый для kukabara (нужен $want): обнови пакет quickshell и перезайди")" ;;
+    missing) warn "$(_ 'Quickshell is not installed: kukabara needs the quickshell package' \
+                       'Quickshell не установлен: kukabara нужен пакет quickshell')" ;;
   esac
   return 0
 }

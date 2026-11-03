@@ -109,7 +109,7 @@ Singleton {
         xhr.open("GET", "https://api.anthropic.com/api/oauth/usage");
         xhr.setRequestHeader("Authorization", "Bearer " + _token);
         xhr.setRequestHeader("anthropic-beta", "oauth-2025-04-20");
-        xhr.setRequestHeader("User-Agent", "angelOS-claude-companion");
+        xhr.setRequestHeader("User-Agent", "kukabara-claude-companion");
         xhr.send();
     }
 

@@ -278,9 +278,9 @@ Singleton {
         onTriggered: {
             const kept = "~/.config/angelos/settings.json.broken-…";
             if (root.repaired === "restored")
-                Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "dialog-warning", "-t", "20000", I18n.t("Настройки восстановлены", "Settings restored"), I18n.t("Файл настроек оказался повреждён (запись оборвалась). Вернулась последняя целая копия; повреждённый лежит рядом: ", "The settings file was damaged (a write was cut short). The last good copy is back; the damaged file is kept next to it: ") + kept]);
+                Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "dialog-warning", "-t", "20000", I18n.t("Настройки восстановлены", "Settings restored"), I18n.t("Файл настроек оказался повреждён (запись оборвалась). Вернулась последняя целая копия; повреждённый лежит рядом: ", "The settings file was damaged (a write was cut short). The last good copy is back; the damaged file is kept next to it: ") + kept]);
             else
-                Quickshell.execDetached(["notify-send", "-a", "angelOS", "-u", "critical", "-i", "dialog-warning", I18n.t("Настройки начаты заново", "Settings started over"), I18n.t("Файл настроек оказался повреждён, а целой копии не нашлось. Повреждённый лежит рядом: ", "The settings file was damaged and there was no good copy. The damaged file is kept next to it: ") + kept]);
+                Quickshell.execDetached(["notify-send", "-a", "kukabara", "-u", "critical", "-i", "dialog-warning", I18n.t("Настройки начаты заново", "Settings started over"), I18n.t("Файл настроек оказался повреждён, а целой копии не нашлось. Повреждённый лежит рядом: ", "The settings file was damaged and there was no good copy. The damaged file is kept next to it: ") + kept]);
         }
     }
 

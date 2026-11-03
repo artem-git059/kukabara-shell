@@ -147,7 +147,7 @@ FloatingWindow {
         skin: ""
         // a tool to read at a glance: no desktop showing through
         translucent: false
-        title: "angelOS · " + I18n.t("Редактор живых обоев", "Alive wallpaper editor")
+        title: "kukabara · " + I18n.t("Редактор живых обоев", "Alive wallpaper editor")
         icon: "layers"
         onCloseClicked: root.leave()
         onTitlePressed: root.startSystemMove()

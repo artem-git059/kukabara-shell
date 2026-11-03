@@ -1,4 +1,4 @@
-// angelOS: the downloads in progress, to the Halo (services/Downloads) through the native host
+// kukabara: the downloads in progress, to the Halo (services/Downloads) through the native host
 // org.angelos.downloads (scripts/browser-downloads-host.py). Only the file, the bytes and the
 // state go out — no address. Once a second while something downloads; the port is let go when
 // nothing does (the host then writes an empty list and ends).

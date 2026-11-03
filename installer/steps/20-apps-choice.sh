@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-# angelOS installer — sourced by install.sh in name order (see installer/README.md)
+# kukabara installer — sourced by install.sh in name order (see installer/README.md)
 
 # ── The author's apps (full profile) ─────────────────────────────────────────
 
@@ -45,8 +45,8 @@ choose_apps() {
     [[ "$def" == 1 ]] && pre+="${#labels[@]} "
   done
   tui_section "$(_ "The author's apps" 'Программы автора')" \
-    "$(_ "Everything angelOS's author has, in groups. Ticked = as the author has it; untick what you don't want. Updates later bring what the author adds to the groups you take." \
-         'Всё, что стоит у автора angelOS, по группам. Отмечено — как у автора; сними лишнее. Потом обновления доставят то, что автор добавит в выбранные группы.')"
+    "$(_ "Everything kukabara's author has, in groups. Ticked = as the author has it; untick what you don't want. Updates later bring what the author adds to the groups you take." \
+         'Всё, что стоит у автора kukabara, по группам. Отмечено — как у автора; сними лишнее. Потом обновления доставят то, что автор добавит в выбранные группы.')"
   picked="$(ui_choose_many "$(_ 'Groups' 'Группы')" "$pre" "${labels[@]}")"
   for n in $picked; do g_ids+=("${APP_GROUPS[n-1]}"); done
   APPS_ASKED=1

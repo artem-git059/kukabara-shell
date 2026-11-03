@@ -17,7 +17,7 @@ that cost more than the threshold ($100 by default), from data/premium-gear.json
 
 The prices are the point (people giggle at them): every way of printing shows them.
 
-Templates (angelOS's fastfetch styles, scripts/fastfetch_style.py): {name} {price} ("$499")
+Templates (kukabara's fastfetch styles, scripts/fastfetch_style.py): {name} {price} ("$499")
 {usd} {kind} {word} (клава / мышь / мик, --lang), {total} {count}, {tier} (a superchat
 chip's colours by the price), {say} (a word from the angel on the price, --voice angel|demon),
 {field:N} pads it to N columns, {#SGR} a colour like fastfetch's own ({#} resets) and {fill}

@@ -8,7 +8,7 @@ import qs.config
 // Cursor theme: one theme everywhere (niri, GTK, Qt, X11/XWayland, Steam, Flatpak).
 // scripts/cursors.py downloads/builds the themes and writes every config.
 // Hell: while the demon rules the pointer is Config.cursor.hell — "circle" (the default): the
-// circle's own (story/circles.json → cursor, angelOS-Circle-<Circle>), changing as she takes you
+// circle's own (story/circles.json → cursor, kukabara-Circle-<Circle>), changing as she takes you
 // from circle to circle, in the variation of the mood (`mood`: "" | "tip" | "alive" — how close
 // the player is to this circle's demon, Story.demonStep: close is the accent tip, your own a
 // rare animation); or one hell theme always. Built on first use, put on only
@@ -27,17 +27,17 @@ Singleton {
     readonly property int demonStep: Story.ready && Story.inHell ? Story.demonStep : 0
     readonly property string mood: demonStep >= 3 ? "alive" : demonStep >= 2 ? "tip" : ""
     readonly property bool byCircle: Config.cursor.hell === "circle"
-    // the circle's own theme now (hell before any circle: angelOS Hell)
+    // the circle's own theme now (hell before any circle: kukabara Hell)
     readonly property string circleTheme: {
         const c = HellLook.circle;
         if (!c || c === "base" || !catalog.some(e => e.circle === c))
-            return "angelOS-Hell";
-        const base = "angelOS-Circle-" + c.charAt(0).toUpperCase() + c.slice(1);
+            return "kukabara-Hell";
+        const base = "kukabara-Circle-" + c.charAt(0).toUpperCase() + c.slice(1);
         return base + (mood === "tip" ? "-Tip" : mood === "alive" ? "-Alive" : "");
     }
     readonly property string hellTheme: byCircle ? circleTheme : Config.cursor.hell
-    // heaven's in the angel's mood (Story.angelStep): cooling, angelOS Glitter loses its
-    // sparkle (angelOS Pixel); cold for good, angelOS's own arrow frosts over (angelOS Frost).
+    // heaven's in the angel's mood (Story.angelStep): cooling, kukabara Glitter loses its
+    // sparkle (kukabara Pixel); cold for good, kukabara's own arrow frosts over (kukabara Frost).
     // Someone else's theme stays as it is.
     readonly property int angelStep: Story.ready ? Story.angelStep : 0
     // the Golden Gate skin: macOS's black arrow — "macOS" (ful1e5/apple_cursor, redrawn, GPL-3.0,
@@ -47,22 +47,22 @@ Singleton {
     readonly property bool macInstalled: catalog.some(e => e.theme === "macOS" && e.installed)
     readonly property string macTheme: macInstalled ? "macOS" : "capitaine-cursors"
     readonly property bool macCursor: GoldenGate.on && !hellOn && (macInstalled || other.includes(macTheme))
-    // angelOS Glitter is one of heaven's things (services/Heaven): until it is earned the
-    // pick stays, angelOS Pixel is worn instead
+    // kukabara Glitter is one of heaven's things (services/Heaven): until it is earned the
+    // pick stays, kukabara Pixel is worn instead
     readonly property bool glitterOk: Heaven.has("cursor.glitter")
     function allowed(t) {
-        return t === "angelOS-Glitter" && !glitterOk ? "angelOS-Pixel" : t;
+        return t === "kukabara-Glitter" && !glitterOk ? "kukabara-Pixel" : t;
     }
     readonly property string heavenTheme: {
         if (macCursor)
             return macTheme;
-        if (theme === "angelOS-Glitter" && !glitterOk)
-            return angelStep >= 3 ? "angelOS-Frost" : "angelOS-Pixel";
-        const own = theme === "angelOS-Pixel" || theme === "angelOS-Glitter";
+        if (theme === "kukabara-Glitter" && !glitterOk)
+            return angelStep >= 3 ? "kukabara-Frost" : "kukabara-Pixel";
+        const own = theme === "kukabara-Pixel" || theme === "kukabara-Glitter";
         if (angelStep >= 3 && own)
-            return "angelOS-Frost";
-        if (angelStep >= 1 && theme === "angelOS-Glitter")
-            return "angelOS-Pixel";
+            return "kukabara-Frost";
+        if (angelStep >= 1 && theme === "kukabara-Glitter")
+            return "kukabara-Pixel";
         return theme;
     }
     readonly property string active: hellOn ? hellTheme : heavenTheme
@@ -143,7 +143,7 @@ Singleton {
         worker.command = ["python3", script, "apply", themeName, String(sz)].concat(Config.cursor.flatpak ? [] : ["--no-flatpak"]);
         worker.running = true;
     }
-    // angelOS Pixel follows the accent: rebuild, then make niri reload the files
+    // kukabara Pixel follows the accent: rebuild, then make niri reload the files
     function recolor() {
         install("angelos", true);
     }
@@ -168,7 +168,7 @@ Singleton {
         _attempt = "";
         Qt.callLater(sync);
     }
-    // older settings: "angelOS-Hell" was the default before the circles had their own — it
+    // older settings: "kukabara-Hell" was the default before the circles had their own — it
     // becomes "circle" once (a later pick is the player's own and stays). A beat after Config
     // is ready: the file's values land just after `ready`
     Timer {
@@ -177,7 +177,7 @@ Singleton {
         onTriggered: {
             if (!Config.ready || Config.cursor.hellByCircle)
                 return;
-            if (Config.cursor.hell === "angelOS-Hell")
+            if (Config.cursor.hell === "kukabara-Hell")
                 Config.cursor.hell = "circle";
             Config.cursor.hellByCircle = true;
         }
@@ -221,7 +221,7 @@ Singleton {
                 "size": sz
             };
         }
-        if (Config.cursor.theme && now !== heavenTheme && (now === Config.cursor.theme || now === "angelOS-Frost" || now === "angelOS-Pixel" || now === "angelOS-Glitter"))
+        if (Config.cursor.theme && now !== heavenTheme && (now === Config.cursor.theme || now === "kukabara-Frost" || now === "kukabara-Pixel" || now === "kukabara-Glitter"))
             return {
                 "theme": heavenTheme,
                 "size": sz

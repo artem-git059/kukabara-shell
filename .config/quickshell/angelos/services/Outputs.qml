@@ -7,7 +7,7 @@ import Quickshell.Io
 import qs.config
 
 // Monitor configuration through niri: live apply via `niri msg output`, persist to monitor.kdl.
-// The main screen: angelOS's own (Config.system.primaryScreen → Shell.primaryScreen), and
+// The main screen: kukabara's own (Config.system.primaryScreen → Shell.primaryScreen), and
 // niri focuses it at login (`focus-at-startup`, scripts/primary-output.py).
 Singleton {
     id: root
@@ -137,7 +137,7 @@ Singleton {
                 if (!names.length)
                     return;
                 const lines = names.map(n => n + ": " + r.changed[n].from + " → " + Math.round(parseFloat(r.changed[n].mode.split("@")[1])) + I18n.t(" Гц", " Hz"));
-                Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "video-display", I18n.t("Монитор на полной частоте", "The monitor at its full refresh rate"), lines.join("\n") + I18n.t("\nniri включал его на 60 Гц по умолчанию. Сменить: Настройки → Экран", "\nniri started it at 60 Hz by default. Change it: Settings → Monitor")]);
+                Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "video-display", I18n.t("Монитор на полной частоте", "The monitor at its full refresh rate"), lines.join("\n") + I18n.t("\nniri включал его на 60 Гц по умолчанию. Сменить: Настройки → Экран", "\nniri started it at 60 Hz by default. Change it: Settings → Monitor")]);
                 Qt.callLater(root.refresh);
             }
         }

@@ -281,7 +281,7 @@ CatPage {
         }
     }
     // «Помощник»: something broke → an AI agent of the user's choice, with the logs gathered and
-    // angelOS's rules (scripts/help-agent.sh). The user logs in to their own account in it
+    // kukabara's rules (scripts/help-agent.sh). The user logs in to their own account in it
     CatGroup {
         name: "helper"
         title: I18n.t("Помощник", "Helper")

@@ -95,8 +95,8 @@ Scope {
         id: win
         implicitWidth: 1920
         implicitHeight: 1080
-        // niri keeps "angelOS [dev]" windows on the side monitor, out of the screencast
-        title: "angelOS [dev] lock test"
+        // niri keeps "kukabara [dev]" windows on the side monitor, out of the screencast
+        title: "kukabara [dev] lock test"
         color: "black"
         Item {
             id: stage

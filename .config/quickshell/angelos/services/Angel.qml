@@ -1036,7 +1036,7 @@ Singleton {
             "workspaces": st.workspaces || ({})
         };
     }
-    // an older angelOS put hell into Config.wallpaper and kept heaven's in angelSaved: give
+    // an older kukabara put hell into Config.wallpaper and kept heaven's in angelSaved: give
     // heaven its wallpaper back, and what was up becomes hell's
     function untangleWall() {
         const s = Story.player.angelSaved;
@@ -1307,7 +1307,7 @@ Singleton {
         if (!Story.player.cursedUntil)
             return;
         Story.player.cursedUntil = 0;
-        Cursors.setHell(Story.player.cursedWas || "angelOS-Hell");
+        Cursors.setHell(Story.player.cursedWas || "kukabara-Hell");
         Story.player.cursedWas = "";
         if (speak && demon)
             react(tr(Lines.demonWheel.undone));
@@ -1322,7 +1322,7 @@ Singleton {
     }
 
     // ---- pranks: a real setting flips, the bubble says what it is ----
-    // Only angelOS's own settings, each with its undo (and all undone when she leaves);
+    // Only kukabara's own settings, each with its undo (and all undone when she leaves);
     // nothing that writes another program's config (niri's animations used to be one).
     function getPath(path) {
         const [a, b] = path.split(".");

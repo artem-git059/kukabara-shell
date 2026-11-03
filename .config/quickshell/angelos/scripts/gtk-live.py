@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""GTK in angelOS's colours and window decorations — live, heaven and hell.
+"""GTK in kukabara's colours and window decorations — live, heaven and hell.
 
 usage: gtk-live.py PALETTE.json      (run by render-templates.py, entry "gtk-live")
 
 GTK reads the user's gtk.css once per app, but reloads its *theme* whenever the theme
 name changes. So, with Config.decor.gtkButtons on (palette key decorGtk), the palette
 and the window buttons live in a theme of their own: adw-gtk3(-dark) underneath, the
-angelOS colours (~/.config/gtk-3.0/angelos.css, rendered just before) and the
+kukabara colours (~/.config/gtk-3.0/angelos.css, rendered just before) and the
 decorations (templates/gtk3-decor.css: the buttons as angel-niri draws its title bars — the
 glyphs × _ □ over a shadow, a plate under the pointer, red under ×, or keys
 (templates/gtk-decor-keys.css after it, palette key decorKeys); the header in the menu
-colour; obsidian and blood in hell) on top. Two copies, angelOS-a and angelOS-b, take
+colour; obsidian and blood in hell) on top. Two copies, kukabara-a and kukabara-b, take
 turns: the new look goes into the one not in use and gtk-theme switches to it, so open
 GTK 3 apps — and Helium/Chromium set to the "GTK" theme, its title bar buttons
 included — change at once. The user's own gtk-3.0/angelos.css becomes a stub then (it
@@ -41,7 +41,7 @@ SHELL = Path(__file__).resolve().parent.parent
 THEMES = HOME / ".local/share/themes"
 GTK3 = HOME / ".config/gtk-3.0"
 GTK4 = HOME / ".config/gtk-4.0"
-STUB = "/* angelOS: the colours live in the angelOS-a/b GTK theme now (gtk-live.py) */\n"
+STUB = "/* kukabara: the colours live in the kukabara-a/b GTK theme now (gtk-live.py) */\n"
 
 # angel-niri's CELL_GLYPHS (src/stacking_title.rs): one look for both
 ICONS = {
@@ -70,7 +70,7 @@ def _rects(rows, color, dx, dy):
 
 
 def frame(edge, sunken):
-    """A 12×12 nine-slice (4 px slices) of the angelOS pixel box: a 2 px outline whose corners
+    """A 12×12 nine-slice (4 px slices) of the kukabara pixel box: a 2 px outline whose corners
     step in by one 2 px art pixel, a 2 px bevel inside it — white and black at low alpha, so it
     shades whatever colour the widget paints under it (hover, accent, danger)."""
     hi, lo = ("#000000", "0.35"), ("#ffffff", "0.16")
@@ -293,14 +293,14 @@ def main():
 
     if not on or base_dir is None:
         # back to the plain theme; the user's palette CSS comes back with the next render
-        if current.startswith("angelOS-"):
+        if current.startswith("kukabara-"):
             gsettings("org.gnome.desktop.interface", "gtk-theme", base)
-        write(GTK4 / "angelos-decor.css", "/* angelOS window buttons: off */\n")
+        write(GTK4 / "angelos-decor.css", "/* kukabara window buttons: off */\n")
         version_gtk4()
         if (GTK3 / "angelos.css").exists() and (GTK3 / "angelos.css").read_text() == STUB:
             print("gtk3 palette stub stays until the next render")
         button_layout(pal, mac)
-        print(json.dumps({"live": False, "theme": base if current.startswith("angelOS-") else current}))
+        print(json.dumps({"live": False, "theme": base if current.startswith("kukabara-") else current}))
         return
 
     # GTK 4 / libadwaita: the decorations next to its user CSS
@@ -319,13 +319,13 @@ def main():
     palette4 = "\n".join(l for l in palette4.splitlines() if not l.lstrip().startswith("@import"))
     palette4 = re.sub(r"assets/v-[0-9a-f]+/", "assets/", palette4)   # the theme's own assets/ are plain
     css4 = '@import url("file://%s/gtk-4.0/gtk.css");\n\n%s\n%s' % (base_dir, palette4, render(decor4_tpl.read_text(), pal) + keys_css)
-    in_use = THEMES / current if current in ("angelOS-a", "angelOS-b") else None
+    in_use = THEMES / current if current in ("kukabara-a", "kukabara-b") else None
     if palette_css and in_use and (in_use / "gtk-3.0/gtk.css").exists() and (in_use / "gtk-3.0/gtk.css").read_text() == css3:
         print(json.dumps({"live": True, "theme": current, "changed": False}))
     else:
-        name = "angelOS-b" if current == "angelOS-a" else "angelOS-a"
+        name = "kukabara-b" if current == "kukabara-a" else "kukabara-a"
         d = THEMES / name
-        write(d / "index.theme", "[Desktop Entry]\nType=X-GNOME-Metatheme\nName=%s\nComment=angelOS (generated, %s)\nEncoding=UTF-8\n\n[X-GNOME-Metatheme]\nGtkTheme=%s\n" % (name, pal.get("realm", "heaven"), name))
+        write(d / "index.theme", "[Desktop Entry]\nType=X-GNOME-Metatheme\nName=%s\nComment=kukabara (generated, %s)\nEncoding=UTF-8\n\n[X-GNOME-Metatheme]\nGtkTheme=%s\n" % (name, pal.get("realm", "heaven"), name))
         write(d / "gtk-3.0/gtk.css", css3)
         write(d / "gtk-4.0/gtk.css", css4)
         assets(d / "gtk-3.0", pal)

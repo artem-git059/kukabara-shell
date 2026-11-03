@@ -1,8 +1,8 @@
 # Горячие клавиши по темам
 
-Каждая тема angelOS — свой профиль биндов niri (`scripts/keyprofile.py`, `services/KeyProfile.qml`):
+Каждая тема kukabara — свой профиль биндов niri (`scripts/keyprofile.py`, `services/KeyProfile.qml`):
 `~/.config/niri/cfg/keybinds.kdl` только выбирает профиль (два `include`), сам профиль — в
-`keybinds-common.kdl` (обе темы), `keybinds-pixel.kdl` (пиксельная тема, исходные бинды angelOS),
+`keybinds-common.kdl` (обе темы), `keybinds-pixel.kdl` (пиксельная тема, исходные бинды kukabara),
 `keybinds-macos.kdl` (Golden Gate, ⌘ = Super). Профиль читается после общего файла: его клавиша
 заменяет общую только в этой теме. Переключение — вместе с темой, одной атомарной заменой
 селектора после `niri validate`; Настройки → Горячие клавиши правят профиль текущей темы.
@@ -10,7 +10,7 @@
 дописанный туда руками, остаётся (для обеих тем, читается после профиля).
 Обновление (`install.sh`) не затирает и не откладывает изменённый профиль, а сливает его в три
 стороны (`keyprofile.py merge`): клавиши, которые пользователь не трогал, идут за репозиторием,
-новые клавиши angelOS добавляются, если пользователь не занял эту клавишу и не удалял её, свои —
+новые клавиши kukabara добавляются, если пользователь не занял эту клавишу и не удалял её, свои —
 остаются. Публикация владельца (`owner/dotfiles-publish.sh`) отправляет живые профили владельца в
 репозиторий и в `templates/keybinds`.
 Вне тем: `angelos-windows.kdl` (Alt+Tab, лупа Super+Alt+= / − / 0, выход из игры, мелок Super+Alt+ЛКМ — держать: мышь рисует, отпустил — тает; только angel-niri).
@@ -20,9 +20,9 @@
 | Бинд | Действие | Подпись |
 |---|---|---|
 | `Mod+Shift+ESCAPE` | `show-hotkey-overlay` |  |
-| `Mod+Shift+Return` | `angelos settings wallpaper` | angelOS: обои |
-| `Mod+S` | `angelos settings appearance` | angelOS: настройки |
-| `Mod+Shift+Q` | `angelos session` | angelOS: выключение |
+| `Mod+Shift+Return` | `angelos settings wallpaper` | kukabara: обои |
+| `Mod+S` | `angelos settings appearance` | kukabara: настройки |
+| `Mod+Shift+Q` | `angelos session` | kukabara: выключение |
 | `Mod+E` | `angelos files` | File Manager (the default one: Strata; Settings → Default apps) |
 | `XF86AudioRaiseVolume` | `angelos volumeUp` |  |
 | `XF86AudioLowerVolume` | `angelos volumeDown` |  |
@@ -53,21 +53,21 @@
 | `Mod+Shift+WheelScrollUp` | `focus-column-left` |  |
 | `Mod+CTRL+Shift+WheelScrollDown` | `move-column-right` |  |
 | `Mod+CTRL+Shift+WheelScrollUp` | `move-column-left` |  |
-| `Mod+V` | `angelos clipboard` | angelOS: буфер обмена |
+| `Mod+V` | `angelos clipboard` | kukabara: буфер обмена |
 | `Mod+Shift+S` | `angelos capture` (нет оболочки → `niri-screenshot-region`) | Скриншот: экран замирает — окно/картинка/текст, сохранить, найти, перевести |
 | `Print` | `angelos capture` (как Mod+Shift+S) | Скриншот |
 | `Mod+Shift+V` | `~/.local/bin/voxtype record toggle` | Voice: toggle dictation |
-| `CTRL+Shift+2` | `angelos ipc shotScreen` | angelOS: скриншот экрана |
-| `CTRL+Shift+3` | `angelos ipc shotWindow` | angelOS: скриншот окна |
+| `CTRL+Shift+2` | `angelos ipc shotScreen` | kukabara: скриншот экрана |
+| `CTRL+Shift+3` | `angelos ipc shotWindow` | kukabara: скриншот окна |
 | `Mod+ESCAPE` | `toggle-keyboard-shortcuts-inhibit` |  |
-| `CTRL+ALT+Delete` | `angelos session` | angelOS: выключение (как в Windows; раньше был `quit` niri) |
+| `CTRL+ALT+Delete` | `angelos session` | kukabara: выключение (как в Windows; раньше был `quit` niri) |
 | `ALT+F4` | `close-window` | Закрыть окно |
-| `CTRL+Shift+Escape` | `angelos taskManager` | angelOS: диспетчер задач |
+| `CTRL+Shift+Escape` | `angelos taskManager` | kukabara: диспетчер задач |
 | `Mod+Shift+P` | `power-off-monitors` |  |
 | `Mod+Shift+X` | `~/.local/bin/niri-cast-privacy` | Privacy: black out the listed apps on stream |
 | `Mod+Ctrl+Shift+X` | `~/.local/bin/niri-cast-privacy app toggle` | Privacy: hide / show this window's app |
-| `Mod+Alt+Y` | `angelos lyrics` | angelOS: лирика вкл/выкл |
-| `Mod+Alt+T` | `angelos theme toggle` | angelOS: светлая/тёмная |
+| `Mod+Alt+Y` | `angelos lyrics` | kukabara: лирика вкл/выкл |
+| `Mod+Alt+T` | `angelos theme toggle` | kukabara: светлая/тёмная |
 
 ## Пиксельная тема
 
@@ -75,8 +75,8 @@
 |---|---|---|
 | `Mod+T` | `kitty` | Open Terminal: kitty |
 | `Mod+B` | `angelos browser` | Open Browser |
-| `Mod+Space` | `angelos launcher` | angelOS: программы |
-| `Mod+ALT+L` | `angelos lock` | angelOS: блокировка |
+| `Mod+Space` | `angelos launcher` | kukabara: программы |
+| `Mod+ALT+L` | `angelos lock` | kukabara: блокировка |
 | `Mod+Q` | `close-window` |  |
 | `Mod+Left` | `focus-column-left` |  |
 | `Mod+H` | `focus-column-left` |  |
@@ -147,7 +147,7 @@
 |---|---|---|
 | `Mod+T` | `~/.local/bin/kitty` | Open Terminal: kitty |
 | `Mod+B` | `angelos browser` | Open Browser |
-| `Mod+Alt+Space` | `angelos launcher` | angelOS: программы (лаунчер; ⌘Пробел — Spotlight) |
+| `Mod+Alt+Space` | `angelos launcher` | kukabara: программы (лаунчер; ⌘Пробел — Spotlight) |
 | `Mod+Alt+Left` | `focus-column-left` | Фокус: колонка слева |
 | `Mod+Alt+H` | `focus-column-left` | Фокус: колонка слева |
 | `Mod+Alt+Right` | `focus-column-right` | Фокус: колонка справа |
@@ -220,7 +220,7 @@
 | `Mod+Grave` | `angelos alttab appwin` | Mac: следующее окно этой программы |
 | `Mod+Shift+Grave` | `angelos alttab appwinback` | Mac: предыдущее окно этой программы |
 | `Mod+Space` | `angelos startMenu ''` | Mac: Spotlight |
-| `Mod+Comma` | `angelos settings ''` | Mac: Системные настройки angelOS |
+| `Mod+Comma` | `angelos settings ''` | Mac: Системные настройки kukabara |
 | `Mod+Ctrl+F` | `fullscreen-window` | Mac: полноэкранный режим |
 | `Mod+Shift+3` | `mac-screenshot.sh screen` | Mac: снимок экрана |
 | `Mod+Shift+4` | `mac-screenshot.sh region` | Mac: снимок области |

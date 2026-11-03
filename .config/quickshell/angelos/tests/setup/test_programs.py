@@ -116,7 +116,7 @@ class Programs(unittest.TestCase):
         self.assertEqual(([x["name"] for x in p["remove"]], p["size"], p["refused"]), (["office", "office-libs"], 6 * 1024 ** 2, ""))
         self.assertIn("required by", self.m.plan(["pacman:toolkit"])["refused"], "what something else needs says who")
         self.assertIn("part of the system", self.m.plan(["pacman:niri"])["refused"])
-        self.assertIn("angelOS needs it", self.m.plan(["pacman:office"], base={"office"})["refused"])
+        self.assertIn("kukabara needs it", self.m.plan(["pacman:office"], base={"office"})["refused"])
         for bad in ("rm:-rf", "pacman:", "pacman:a b", "local:/etc/passwd", "local:" + str(self.t / "usr/share/applications/niri.desktop")):
             with self.assertRaises(SystemExit, msg=bad):
                 self.m.plan([bad])

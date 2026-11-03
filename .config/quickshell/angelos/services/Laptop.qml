@@ -205,7 +205,7 @@ Singleton {
 
     // ---- the lid (niri's switch-events → `angelos laptop lid close|open`) ----
     // logind suspends on its own (HandleLidSwitch=suspend, not when docked): left to it while
-    // that is what is asked; anything else and angelOS holds the lid's inhibitor and acts itself
+    // that is what is asked; anything else and kukabara holds the lid's inhibitor and acts itself
     property bool lidClosed: false
     readonly property string lidAction: Power.discharging || !Power.hasBattery ? Config.power.lidAction : Config.power.lidActionAc
     readonly property bool lidOurs: Config.ready && hasLid && (Config.power.lidAction !== "suspend" || Config.power.lidActionAc !== "suspend")
@@ -241,7 +241,7 @@ Singleton {
         id: lidHold
         running: root.lidOurs && (!Shell.dev || Quickshell.env("ANGELOS_LAPTOP_STAND") === "1")
         stdinEnabled: true           // `cat` exits with the pipe: a shell gone leaves no inhibitor behind
-        command: ["systemd-inhibit", "--what=handle-lid-switch", "--who=angelOS", "--why=" + I18n.t("крышку обрабатывает angelOS (Настройки → Питание)", "angelOS handles the lid (Settings → Power)"), "--mode=block", "cat"]
+        command: ["systemd-inhibit", "--what=handle-lid-switch", "--who=kukabara", "--why=" + I18n.t("крышку обрабатывает kukabara (Настройки → Питание)", "kukabara handles the lid (Settings → Power)"), "--mode=block", "cat"]
     }
 
     // ---- the touchpad on / off (its key; niri's `touchpad { off }`, InputConfig) ----
@@ -366,7 +366,7 @@ Singleton {
             return Power.hasBattery ? Power.percent + "% " + (Power.discharging ? "discharging" : Power.charging ? "charging" : "plugged") + " level=" + Power.level + " eco=" + Power.eco + (Power.criticalArmed ? " critical-armed" : "") : "no battery";
         case "lid":
             lid(a[1] === "close" || a[1] === "closed");
-            return "lid " + (lidClosed ? "closed" : "open") + (lidOurs ? " (angelOS: " + lidAction + (docked ? ", docked" : "") + ")" : " (logind)");
+            return "lid " + (lidClosed ? "closed" : "open") + (lidOurs ? " (kukabara: " + lidAction + (docked ? ", docked" : "") + ")" : " (logind)");
         case "touchpad":
             {
                 const on = a[1] === "on" ? true : a[1] === "off" ? false : InputConfig.touchpadOff;

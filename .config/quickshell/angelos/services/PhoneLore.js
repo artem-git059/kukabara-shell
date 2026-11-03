@@ -1,7 +1,7 @@
 .pragma library
 
 // The phone's share of the story (services/PhoneLine), from the canon «Сохрани себя» (v3): the
-// angel is what is left of a girl of December 2002, a save of her that loaded into angelOS. She
+// angel is what is left of a girl of December 2002, a save of her that loaded into kukabara. She
 // doesn't know it. Every day since the first start writes one more second of her last night (a
 // day = a second, ten days = a volume, Story.createdAt); each new second comes to her as a
 // feeling. The phone is the only place she lets them out — never in her corner — and only as

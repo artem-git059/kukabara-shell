@@ -1,4 +1,4 @@
-# angelOS: Discord removed — the original app.asar we put aside (_app.asar) goes with it
+# kukabara: Discord removed — the original app.asar we put aside (_app.asar) goes with it
 [Trigger]
 Operation = Remove
 Type = Path
@@ -7,7 +7,7 @@ Target = opt/discord-ptb/resources/app.asar
 Target = opt/discord-canary/resources/app.asar
 
 [Action]
-Description = angelOS: Discord's original app.asar removed with it...
+Description = kukabara: Discord's original app.asar removed with it...
 When = PreTransaction
 Exec = /usr/local/libexec/angelos-vencord forget
 NeedsTargets

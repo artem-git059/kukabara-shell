@@ -470,7 +470,7 @@ CatPage {
                 }
             }
         }
-        // services/QsVersion: older than the Quickshell angelOS is tested on
+        // services/QsVersion: older than the Quickshell kukabara is tested on
         CatNote {
             present: QsVersion.outdated
             text: "⚠ " + QsVersion.advice
@@ -637,7 +637,7 @@ CatPage {
             onClicked: SystemInfo.refresh()
         }
     }
-    // fastfetch in angelOS's styles (scripts/fastfetch_style.py, services/FastfetchLogo):
+    // fastfetch in kukabara's styles (scripts/fastfetch_style.py, services/FastfetchLogo):
     // a card each, the picked one run for real below — in heaven or in any circle of hell
     CatGroup {
         id: ffGroup
@@ -851,15 +851,15 @@ CatPage {
             textKind: "tiny"
             dim: true
             present: ffGroup.pick === "own"
-            text: I18n.t("Выше — «Компакт» для сравнения. Свой config.jsonc angelOS не трогает.", "Compact is above for comparison. angelOS never touches your own config.jsonc.")
+            text: I18n.t("Выше — «Компакт» для сравнения. Свой config.jsonc kukabara не трогает.", "Compact is above for comparison. kukabara never touches your own config.jsonc.")
         }
     }
     CatGroup {
         name: "angelos"
-        title: "angelOS"
+        title: "kukabara-shell"
         icon: "heart"
         CatNote {
-            text: I18n.t("angelOS — пиксельная оболочка на Quickshell для niri. Конфиг: ", "angelOS is a pixel shell built with Quickshell for niri. Config: ") + Quickshell.shellDir + I18n.t(", настройки: ", ", settings: ") + Config.dir
+            text: I18n.t("kukabara-shell — пиксельная оболочка на Quickshell для niri. Конфиг: ", "kukabara-shell is a pixel shell built with Quickshell for niri. Config: ") + Quickshell.shellDir + I18n.t(", настройки: ", ", settings: ") + Config.dir
             dim: true
         }
         CatButton {
@@ -1139,7 +1139,7 @@ CatPage {
         CatButton {
             present: !Config.game.enabled
             label: I18n.t("Игра выключена", "The game is off")
-            hint: I18n.t("angelOS без ангела, демоницы и новеллы. Включишь — ангел снова в углу.", "angelOS without the angel, the demon or the novel. Switch it on and she's back.")
+            hint: I18n.t("kukabara без ангела, демоницы и новеллы. Включишь — ангел снова в углу.", "kukabara without the angel, the demon or the novel. Switch it on and she's back.")
             icon: "heart"
             accent: true
             text: I18n.t("Включить игру", "Turn the game on")

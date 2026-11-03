@@ -4,10 +4,10 @@
 # and of EasyEffects' socket (tests/eq/fake — no sound of the user's is touched). The bridge
 # alone is tests/test_eq_bridge.py, run here too.
 #
-#   tests/eq/run.sh [angelOS dir]          exit 0 = all good, 77 = no quickshell
+#   tests/eq/run.sh [kukabara dir]          exit 0 = all good, 77 = no quickshell
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 
 fail=0
 out="$(python3 "$DIR/tests/test_eq_bridge.py" 2>&1)" || { echo "  ✕ tests/test_eq_bridge.py:"; printf '%s\n' "$out" | tail -15 | sed 's/^/      /'; fail=1; }

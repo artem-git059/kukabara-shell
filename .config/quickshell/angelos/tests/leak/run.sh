@@ -4,7 +4,7 @@
 # round builds the caches (fonts, icons, the search index); after it a page that cleans up when
 # it goes costs nothing, so the rounds after it must not grow the shell by more than the budget.
 #
-#   tests/leak/run.sh [angelOS dir]     exit 0 = within, 77 = no quickshell
+#   tests/leak/run.sh [kukabara dir]     exit 0 = within, 77 = no quickshell
 #   LEAK_ROUNDS=n LEAK_DWELL_MS=ms      rounds at most (20, at least 8), time on each page (120)
 #   LEAK_MAX_KB=kb                      growth allowed a round over the last three (3072)
 #   LEAK_PAGES=a,b,c                    only these pages (to find the one that leaves memory behind)
@@ -19,7 +19,7 @@
 # on, the last four within the budget pass at once; still over it at the last round (20) is a leak.
 set -uo pipefail
 DIR="$(cd "${1:-"$(dirname "$0")/../.."}" && pwd)"
-[[ -f "$DIR/shell.qml" ]] || { echo "no angelOS in $DIR"; exit 2; }
+[[ -f "$DIR/shell.qml" ]] || { echo "no kukabara in $DIR"; exit 2; }
 MAX_KB="${LEAK_MAX_KB:-3072}"
 # ten rounds: with 53 pages the caches are still filling in rounds 2–5 (6 rounds read 3–5 MB a
 # round for a tree that settles at 1.7; one page alone over 40 rounds: 50–80 KB a round)

@@ -2,7 +2,7 @@
   "id": "web-search",
   "name": "Веб-поиск",
   "version": "1.0.0",
-  "author": "angelOS (по мотивам notfinaldev/web-search, MIT)",
+  "author": "kukabara (по мотивам notfinaldev/web-search, MIT)",
   "description": "Поиск в интернете и любимые сайты прямо из лаунчера: «web запрос» или просто набери название сайта.",
   "icon": "search",
   "enabledByDefault": true,

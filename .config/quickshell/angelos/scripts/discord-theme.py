@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Discord and Vesktop in angelOS's pixels and colours, heaven and hell (Settings → Window
+"""Discord and Vesktop in kukabara's pixels and colours, heaven and hell (Settings → Window
 behavior → Apps follow the theme; entry "discord" of templates/templates.json).
 
   discord-theme.py build PALETTE.json   write the theme for the palette (realm, circle, mode,
@@ -15,13 +15,13 @@ behavior → Apps follow the theme; entry "discord" of templates/templates.json)
   discord-theme.py status               what is set up, as JSON
 
 With Vencord (Vesktop has it built in; Equibop and Equicord are its forks): the theme is
-~/.local/share/angelos/discord/angelOS.theme.css, copied into <client>/themes/. Vencord
+~/.local/share/angelos/discord/kukabara.theme.css, copied into <client>/themes/. Vencord
 watches that folder (its patcher.js: watch(THEMES_DIR) → "VencordThemeUpdate") and reloads
 the themes when a file there changes, so an open Discord follows every palette, light or
-dark, heaven or the demon's hell, on the fly. A file of that name angelOS did not write (no
-"written by angelOS" in its head) is left alone. Vencord does not watch its settings.json and
+dark, heaven or the demon's hell, on the fly. A file of that name kukabara did not write (no
+"written by kukabara" in its head) is left alone. Vencord does not watch its settings.json and
 writes it back from memory while it runs: `apply` only touches it with the client closed;
-with it open, Vencord → Themes → angelOS is one click.
+with it open, Vencord → Themes → kukabara is one click.
 
 Without Vencord Discord takes no themes, so `launch` starts it with
 --remote-debugging-port=<a free port> (its own chromiumSwitches in settings.json take no
@@ -34,7 +34,7 @@ the theme active is started as it is, no port.
 
 The look (data/discord/angelos.css on the --ao-* variables written here): corners a little
 round everywhere (--ao-r), squared-off avatars and server icons, Win98 bevels, hard pixel shadows, the window's top
-strip like an angelOS title bar, pixel fonts, faint pixel hearts behind the chat (embers and
+strip like an kukabara title bar, pixel fonts, faint pixel hearts behind the chat (embers and
 a pentagram in hell).
 """
 import base64
@@ -57,10 +57,10 @@ SHELL = Path(__file__).resolve().parent.parent
 SRC = SHELL / "data/discord/angelos.css"
 HELL_FONT = SHELL / "data/fonts/Jacquard12Hell-Regular.ttf"
 BASE = HOME / ".local/share/angelos/discord"
-NAME = "angelOS.theme.css"
+NAME = "kukabara.theme.css"
 THEME = BASE / NAME
 BEFORE = BASE / "before.json"
-MARK = "written by angelOS"
+MARK = "written by kukabara"
 STATE = Path(os.environ.get("XDG_RUNTIME_DIR") or BASE) / "angelos-discord.json"
 APPS = Path(os.environ.get("XDG_DATA_HOME") or HOME / ".local/share") / "applications"
 # the page Discord's app is (the tests point it at a page of their own)
@@ -132,7 +132,7 @@ def apart(c, ground, toward, need, most=1.0):
 
 def scheme(pal):
     """The --ao-* colours: the surfaces from the rail to the chat, the bevel, the text, the
-    accents. Heaven from angelOS's palette (its light or dark mode, not Discord's); hell from
+    accents. Heaven from kukabara's palette (its light or dark mode, not Discord's); hell from
     the circle the demon rules (pal["hell"]), like scripts/steam-theme.py."""
     hell = pal.get("realm") == "hell" and pal.get("hell")
     if hell:
@@ -257,7 +257,7 @@ def variables(pal, s):
 
 
 def hell_font():
-    """Jacquard 12 Hell is angelOS's own (loaded by the shell, not installed): in the theme
+    """Jacquard 12 Hell is kukabara's own (loaded by the shell, not installed): in the theme
     itself, as a data: URL (Vencord lets data: fonts through Discord's CSP; without Vencord the
     font falls back to Pixeloid)."""
     try:
@@ -271,8 +271,8 @@ def hell_font():
 def theme(pal):
     s = scheme(pal)
     realm = "hell (%s)" % pal["hell"].get("circle", "") if s["hell"] else "heaven, %s" % ("dark" if s["dark"] else "light")
-    head = ("/**\n * @name angelOS\n * @author angelOS\n"
-            " * @description Discord in angelOS's pixels: heaven and hell, light and dark — it follows the desktop on the fly.\n"
+    head = ("/**\n * @name kukabara\n * @author kukabara\n"
+            " * @description Discord in kukabara's pixels: heaven and hell, light and dark — it follows the desktop on the fly.\n"
             " * @version 1.0.0\n */\n"
             "/* %s (scripts/discord-theme.py) for %s: rewritten on every theme change, edits here are lost */\n" % (MARK, realm))
     return head + variables(pal, s) + (hell_font() if s["hell"] else "") + SRC.read_text()
@@ -319,7 +319,7 @@ def build(palette_file):
     for cid, _, data, _ in clients():
         dest = data / "themes" / NAME
         if dest.exists() and not ours(dest):
-            out["clients"][cid] = "skipped: not angelOS's"
+            out["clients"][cid] = "skipped: not kukabara's"
             continue
         out["clients"][cid] = "changed" if write(dest, text) else "same"
     print(json.dumps(out))
@@ -381,7 +381,7 @@ def write_json(path, data):
 
 
 def apply(cid):
-    """enabledThemes := [angelOS], themeLinks := [] (a linked theme is always on in Vencord and
+    """enabledThemes := [kukabara], themeLinks := [] (a linked theme is always on in Vencord and
     would paint over ours); useQuickCss and the rest stay. The two keys as they were go to
     before.json once, the whole settings.json to settings.json.angelos-before once."""
     targets = pick(cid)
@@ -498,7 +498,7 @@ def free_port():
 
 def notify(text):
     if shutil.which("notify-send") and not os.environ.get("ANGELOS_TEST"):
-        subprocess.run(["notify-send", "-a", "angelOS", "Discord", text], capture_output=True)
+        subprocess.run(["notify-send", "-a", "kukabara", "Discord", text], capture_output=True)
     print(text, file=sys.stderr)
 
 
@@ -517,7 +517,7 @@ def launch(args):
         subprocess.Popen(d["cmd"] + args, start_new_session=True)
         return 0
     if discord_running(d):
-        notify("Discord уже открыт без angelOS — тема появится, когда он будет запущен заново через angelOS "
+        notify("Discord уже открыт без kukabara — тема появится, когда он будет запущен заново через kukabara "
                "(закрой Discord и открой его снова из меню)")
         subprocess.Popen(d["cmd"] + args, start_new_session=True)
         return 0

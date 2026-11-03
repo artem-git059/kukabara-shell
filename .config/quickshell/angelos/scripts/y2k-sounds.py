@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The angelOS Y2K sound pack, synthesised on the spot (no samples, no licences).
+"""The kukabara Y2K sound pack, synthesised on the spot (no samples, no licences).
 
   y2k-sounds.py <dir> [name…]  writes startup notify error click shutdown angel
                                wallpaper open toggle screenshot volume windowClose

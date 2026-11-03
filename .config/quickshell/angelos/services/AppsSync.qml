@@ -66,7 +66,7 @@ Singleton {
         let list = apps.map(i => app(i, true));
         if (fish)
             list.push(row("fish", "fish вместо bash", "fish instead of bash", "оболочка терминала как у автора: prompt pure, fastfetch, eza", "the terminal's shell as the author has it: the pure prompt, fastfetch, eza", "terminal", true, true));
-        list = list.concat(packages.map(n => row("pkg:" + n, n, n, "системный пакет angelOS", "an angelOS system package", "package", true, true)));
+        list = list.concat(packages.map(n => row("pkg:" + n, n, n, "системный пакет kukabara", "an kukabara system package", "package", true, true)));
         // a system that never picked: the author's other apps, shown unticked
         offer = list.concat(suggest.map(i => app(i, false)));
     }
@@ -145,7 +145,7 @@ Singleton {
         // closed while it ran: say how it ended; a failure comes back to be seen
         if (!open && !Shell.dev) {
             if (allDone)
-                Quickshell.execDetached(["notify-send", "-a", "angelOS", "-i", "system-software-install", I18n.t("Программы поставлены ♡", "Apps installed ♡"), items.map(x => I18n.t(x.ru, x.en)).join(", ")]);
+                Quickshell.execDetached(["notify-send", "-a", "kukabara", "-i", "system-software-install", I18n.t("Программы поставлены ♡", "Apps installed ♡"), items.map(x => I18n.t(x.ru, x.en)).join(", ")]);
             else
                 open = true;
         }
@@ -292,7 +292,7 @@ Singleton {
         _told = key;
         const list = (fish ? [I18n.t("fish вместо bash", "fish instead of bash")] : []).concat(apps.concat(suggest).map(i => _names[i] || i), packages);
         const shown = list.slice(0, 6).join(", ") + (list.length > 6 ? I18n.t(" и ещё ", " and ") + (list.length - 6) : "");
-        notifier.command = ["notify-send", "-a", "angelOS", "-i", "system-software-install", "--wait", "-A", "install=" + I18n.t("Поставить", "Install"), "-A", "skip=" + I18n.t("Не надо", "No, thanks"), I18n.t("Как у автора angelOS", "As angelOS's author has it"), shown + I18n.t(" — как у автора. Поставить? (всё отмечено — сними лишнее; пароль спросят один раз)", " — as the author has them. Install? (all ticked: untick what you don't want; the password is asked once)")];
+        notifier.command = ["notify-send", "-a", "kukabara", "-i", "system-software-install", "--wait", "-A", "install=" + I18n.t("Поставить", "Install"), "-A", "skip=" + I18n.t("Не надо", "No, thanks"), I18n.t("Как у автора kukabara", "As kukabara's author has it"), shown + I18n.t(" — как у автора. Поставить? (всё отмечено — сними лишнее; пароль спросят один раз)", " — as the author has them. Install? (all ticked: untick what you don't want; the password is asked once)")];
         notifier.running = true;
     }
     Process {

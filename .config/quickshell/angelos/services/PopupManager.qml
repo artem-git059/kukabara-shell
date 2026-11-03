@@ -9,7 +9,7 @@ Singleton {
 
     property var active: null
     property var registered: []
-    // A popup's input grab only ends on clicks outside angelOS, so presses on the
+    // A popup's input grab only ends on clicks outside kukabara, so presses on the
     // bar itself close the open popup here. The click that follows such a press
     // must not reopen the popup it just closed (its own button toggles it).
     property var dismissed: null

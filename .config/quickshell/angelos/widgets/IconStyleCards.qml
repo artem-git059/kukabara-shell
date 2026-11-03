@@ -12,7 +12,7 @@ Column {
     readonly property var styles: [
         {
             "value": "angelos",
-            "label": "angelOS",
+            "label": "kukabara",
             "hint": I18n.t("свои, цветные, крупный пиксель", "Our own: in colour, a big pixel")
         },
         {

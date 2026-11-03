@@ -6,8 +6,8 @@ import Quickshell
 import Quickshell.Io
 import qs.config
 
-// angelOS Alt+Tab (Settings → Windows → Alt+Tab): its own switcher in the
-// angelOS, NEEDY GIRL OVERDOSE or Y2K style, or niri's native one with live
+// kukabara Alt+Tab (Settings → Windows → Alt+Tab): its own switcher in the
+// kukabara, NEEDY GIRL OVERDOSE or Y2K style, or niri's native one with live
 // previews ("niri").
 //
 // niri binds Alt+Tab / Alt+Shift+Tab to `angelos alttab next|prev` (the block
@@ -30,7 +30,7 @@ Singleton {
     readonly property var styles: [
         {
             "id": "angelos",
-            "label": "angelOS",
+            "label": "kukabara",
             "hint": I18n.t("пиксельное окошко " + I18n.exe("alt+tab") + " в цветах темы, выбранное — в розовой рамке с сердечком", "a pixel " + I18n.exe("alt+tab") + " window in the theme colours, the pick framed in pink with a heart")
         },
         {

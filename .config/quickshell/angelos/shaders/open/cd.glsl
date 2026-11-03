@@ -1,4 +1,4 @@
-// angelOS open: a CD — the window spins in as a growing disc with a rainbow rim, and the hole in the middle closes up.
+// kukabara open: a CD — the window spins in as a growing disc with a rainbow rim, and the hole in the middle closes up.
 vec3 angelos_rainbow(float h) {
     return clamp(abs(mod(h * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
 }

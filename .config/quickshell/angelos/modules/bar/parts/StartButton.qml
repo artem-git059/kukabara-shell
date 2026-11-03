@@ -182,7 +182,7 @@ Item {
         readonly property bool down: mouse.pressed || root.open
         readonly property bool hell: root.hellish || root.barInk
         // a label of the user's own (bar.startLabel, e.g. hell's "hellOS") replaces "start"
-        readonly property string label: Config.bar.startLabel && Config.bar.startLabel !== "angelOS" ? Config.bar.startLabel : I18n.t("пуск", "start")
+        readonly property string label: Config.bar.startLabel && Config.bar.startLabel !== "kukabara" ? Config.bar.startLabel : I18n.t("пуск", "start")
         readonly property color base: hell ? (down ? Theme.mix(Theme.hellFace, Theme.hellBlood, 0.45) : mouse.containsMouse ? Theme.mix(Theme.hellBlood, Theme.hellEmber, 0.2) : Theme.hellBlood) : down ? Theme.mix(Theme.accent, "#000000", 0.22) : mouse.containsMouse ? Theme.mix(Theme.accent, "#ffffff", 0.12) : Theme.accent
         readonly property color edge: hell ? Theme.hellEdge : Theme.edge
         readonly property color hi: Theme.mix(base, "#ffffff", 0.5)

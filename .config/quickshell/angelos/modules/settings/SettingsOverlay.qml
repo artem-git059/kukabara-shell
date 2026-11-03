@@ -8,7 +8,7 @@ import qs.config
 import qs.services
 import qs.widgets
 
-// angelOS settings in the P5 look: not a window but P5's pause menu — the whole monitor in focus,
+// kukabara settings in the P5 look: not a window but P5's pause menu — the whole monitor in focus,
 // the desktop seen dimmed behind it (the owner, 23.10). A window that opens while it is up (a
 // file picker, a program started from it) comes in front: the menu stands aside until that
 // window closes. Golden Gate, hell's dresses and the extra Settings windows stay windows

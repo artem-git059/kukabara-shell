@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtTest
 
-// Minimal reproducer for the Qt Quick crash angelOS works around with
+// Minimal reproducer for the Qt Quick crash kukabara works around with
 // widgets/RightClickGuard.qml (see docs/QTBUG-right-click-origin.md).
 //
 //   QT_QPA_PLATFORM=offscreen /usr/lib/qt6/bin/qmltestrunner -input tst_rightclick_origin.qml

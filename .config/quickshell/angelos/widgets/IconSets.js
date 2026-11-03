@@ -4,7 +4,7 @@
 // by scripts/icon-sets.py, don't edit by hand. pixelarticons — MIT, (c) 2019 Gerrit Halfmann;
 // HackerNoon's Pixel Icon Library — the icons CC BY 4.0, (c) HackerNoon, changed: rendered to
 // bitmaps, cropped, coloured by the theme. docs/ICON-CREDITS.md has the licences and links.
-// A name missing from a set is drawn in angelOS's own style.
+// A name missing from a set is drawn in kukabara's own style.
 
 const sets = {
  "hackernoon": {

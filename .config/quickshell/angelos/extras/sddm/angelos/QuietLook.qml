@@ -1,6 +1,6 @@
 import QtQuick
 
-// angelOS login, the "quiet" look: the wallpaper as it is (drifting a little), dimmed at the
+// kukabara login, the "quiet" look: the wallpaper as it is (drifting a little), dimmed at the
 // bottom; a big clock in the corner, the date, and under them one slim glass field — the
 // name and the password as little hearts. Power in a small pill. Other screens: the
 // wallpaper and the clock.

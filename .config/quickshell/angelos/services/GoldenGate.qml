@@ -64,7 +64,7 @@ Singleton {
     // "Reduce transparency" (Accessibility, like macOS's): solid tint, no blur, no rim effect
     readonly property bool reduceTransparency: Config.ready && Config.mac.reduceTransparency
     // niri-game-mode is on (a fullscreen window; cfg/game-mode.kdl "effects off"): it turns niri's
-    // blur off for angelOS's layers too, the glass goes solid and the shader is unloaded
+    // blur off for kukabara's layers too, the glass goes solid and the shader is unloaded
     property bool gameMode: false
     FileView {
         path: Config.home + "/.config/niri/cfg/game-mode.kdl"
@@ -140,7 +140,7 @@ Singleton {
     function resetTheme() {
         return Config.resetKeys(themeKeys);
     }
-    // the apps' own minimize buttons reach angelOS (extras/minimize-hook, Settings → Windows)
+    // the apps' own minimize buttons reach kukabara (extras/minimize-hook, Settings → Windows)
     property bool hookInstalled: false
     Process {
         running: true

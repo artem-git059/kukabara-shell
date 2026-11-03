@@ -13,8 +13,8 @@
       "icon": "heart",
       "ru": "Как у автора",
       "en": "As the author has it",
-      "hintRu": "angelOS из коробки: всё движется, светится и разговаривает",
-      "hintEn": "angelOS out of the box: everything moves, glows and talks",
+      "hintRu": "kukabara из коробки: всё движется, светится и разговаривает",
+      "hintEn": "kukabara out of the box: everything moves, glows and talks",
       "pointsRu": ["все анимации и эффекты", "живые обои с событиями", "ангел шутит и подсказывает", "паутина, блёстки, лирика на панели"],
       "pointsEn": ["every animation and effect", "live wallpapers with their events", "the angel jokes and gives tips", "cobwebs, sparkles, lyrics on the bar"],
       "set": {}

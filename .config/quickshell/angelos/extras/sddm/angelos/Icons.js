@@ -1,4 +1,4 @@
-// Pixel icons of angelOS (widgets/Icons.js), the few the login screen draws.
+// Pixel icons of kukabara (widgets/Icons.js), the few the login screen draws.
 // # ink, o fill, x fill2, y fill3, w light, f body, r bad, . nothing
 .pragma library
 

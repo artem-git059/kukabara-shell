@@ -1,6 +1,6 @@
 # Qt bug report draft: right click at a window's (0,0) crashes Qt Quick
 
-angelOS works around this with `widgets/RightClickGuard.qml` (a 1×1 MouseArea
+kukabara works around this with `widgets/RightClickGuard.qml` (a 1×1 MouseArea
 that accepts the right button in every window). Once Qt ships a fix, the guard
 and the "every window has a RightClickGuard" check in `scripts/test-ui.sh` can go.
 

@@ -1,6 +1,6 @@
 # Small everyday tools the author uses (INSTALL_TOOLS=1, asked in the interactive setup).
 # The heavy apps — browsers, Steam, games, IDEs, messengers — are not here.
-# The shell: fish, with angelOS's snippet .config/fish/conf.d/angelos-tools.fish
+# The shell: fish, with kukabara's snippet .config/fish/conf.d/angelos-tools.fish
 fish
 bash-completion
 pkgfile

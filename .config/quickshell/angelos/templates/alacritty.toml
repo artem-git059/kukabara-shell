@@ -1,4 +1,4 @@
-# angelOS {{flavor}} / {{mode}}
+# kukabara {{flavor}} / {{mode}}
 [colors.primary]
 background = '{{bg}}'
 foreground = '{{fg}}'

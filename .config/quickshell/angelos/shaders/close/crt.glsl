@@ -1,4 +1,4 @@
-// angelOS close: an old TV switching off — squashed to a bright line, then to a dot.
+// kukabara close: an old TV switching off — squashed to a bright line, then to a dot.
 vec4 close_color(vec3 coords_geo, vec3 size_geo) {
     float p = niri_clamped_progress;
     float sy = p < 0.55 ? mix(1.0, 0.006, pow(p / 0.55, 0.7)) : 0.006;

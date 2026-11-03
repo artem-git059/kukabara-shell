@@ -1,4 +1,4 @@
--- angelOS: Discord's Go Live with sound records every program's playback stream on its own and
+-- kukabara: Discord's Go Live with sound records every program's playback stream on its own and
 -- now and then crashes (SIGTRAP in its Voice thread) when one of them goes away. With a mixer
 -- set up like a RØDECaster's (the default output is a virtual mix sink, a PipeWire loopback to
 -- the device), everything that plays already reaches Discord through the mixes' loopback

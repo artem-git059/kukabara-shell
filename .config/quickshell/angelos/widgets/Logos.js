@@ -1,6 +1,6 @@
 .pragma library
 
-// angelOS logos (widgets/AngelLogo.qml; Settings → Bar → Logo). ASCII bitmaps in the
+// kukabara logos (widgets/AngelLogo.qml; Settings → Bar → Logo). ASCII bitmaps in the
 // Icons.js alphabet ('#' ink, 'o' accent, 'x' accent2, 'y' gold, 'w' white, 'f' lavender,
 // 'r' red) plus a few colours of their own that AngelLogo passes as a palette.
 

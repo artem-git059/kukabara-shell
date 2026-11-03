@@ -1,5 +1,5 @@
 Copyright 2023 The Soft Type Project Authors (https://github.com/scfried/soft-type-jacquard)
-Cyrillic (data/fonts/src/jacquard12-hell): Copyright 2026 the angelOS contributors
+Cyrillic (data/fonts/src/jacquard12-hell): Copyright 2026 the kukabara contributors
 
 "Jacquard 12 Hell" is a modified version of Jacquard 12 with Cyrillic added;
 Jacquard declares no Reserved Font Name.

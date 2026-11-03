@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""angelOS clipboard history helper (text and images).
+"""kukabara clipboard history helper (text and images).
 
   clipboard.py capture          run by `wl-paste --watch`: prints one JSON entry
                                 for the new clipboard content (or nothing). The

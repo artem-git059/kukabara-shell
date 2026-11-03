@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The Golden Gate skin's settings outside angelOS, on and off (run by render-templates.py with
+"""The Golden Gate skin's settings outside kukabara, on and off (run by render-templates.py with
 every render: templates.json entry "golden-gate"; on while the palette says skin goldengate).
 
   goldengate.py PALETTE.json     on: the system font Inter (and JetBrains Mono for code) for GTK,
