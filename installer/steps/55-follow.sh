@@ -35,6 +35,7 @@ json.dump(st, open(p, "w"), indent=1)
 PY
 }
 follow_system() {
+  [[ "$DISTRO_FAMILY" == arch ]] || return 0
   [[ "$FOLLOW_SYSTEM" == 1 && -z "$SYSROOT" && "$OWNER_HOME" == 0 && "$DESKTOP_SHELL" == angelos ]] || return 0
   [[ "$(getent passwd "$(id -un)" 2>/dev/null | cut -d: -f6)" == "$HOME_DIR" ]] || return 0
   command -v pacman >/dev/null 2>&1 && command -v python3 >/dev/null 2>&1 || return 0
@@ -142,4 +143,7 @@ PY
 }
 
 # the steps of this file, in the order of the run (see step() in installer/lib/core.sh)
-step 70 follow_system "as the author has it: packages, fish, the login screen" "как у автора: пакеты, fish, экран входа"
+# Debian keeps its own system part (the installer's steps do it); this one drives pacman and the
+# Arch package lists, so it stays Arch's until it is ported.
+[[ "$DISTRO_FAMILY" == debian ]] ||
+  step 70 follow_system "as the author has it: packages, fish, the login screen" "как у автора: пакеты, fish, экран входа"

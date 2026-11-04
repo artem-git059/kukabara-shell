@@ -1,0 +1,71 @@
+# Core niri desktop
+# Debian testing/sid has no niri package: angel-niri (scripts/angel-niri-install.sh) is the
+# session's niri, and the Debian session units start it.
+nautilus
+python3-nautilus
+eog
+mpv
+neovim
+kitty
+alacritty
+foot
+fastfetch
+fuzzel
+nwg-displays
+
+# Niri session plumbing: X11 apps (Steam, Wine), screencasting and file
+# pickers through portals, a secrets service for browsers and chat clients.
+# xwayland-satellite has no Debian package: angel-satellite comes with angel-niri.
+xwayland
+xdg-desktop-portal-gnome
+xdg-desktop-portal-gtk
+gnome-keyring
+
+# Wayland helpers
+grim
+slurp
+wf-recorder
+# screen recording and instant replay: the frame from the GPU straight into the encoder
+gpu-screen-recorder-cli
+wl-clipboard
+wtype
+libnotify-bin
+libgtk-layer-shell0
+playerctl
+brightnessctl
+cliphist
+
+# OCR and overlay dependencies
+tesseract-ocr
+# More OCR languages are added by install.sh from your keyboard layouts.
+tesseract-ocr-eng
+# Circle to Search translates what was circled: translate-shell is not packaged; the shell
+# hides the feature when it is missing.
+python3
+python3-cairo
+python3-gi
+
+# Audio/session support
+pipewire
+pipewire-pulse
+wireplumber
+
+# Fonts, icons, paths and installer tools
+fontconfig
+# Fallback glyphs (Cyrillic, symbols, emoji) the pixel fonts do not cover.
+fonts-noto-core
+fonts-noto-color-emoji
+# the author's fonts: CJK, the Nerd Font of the terminal prompt, the common Latin ones
+fonts-noto-cjk
+fonts-nerd-symbols
+fonts-jetbrains-mono
+fonts-dejavu
+fonts-liberation
+bibata-cursor-theme
+xdg-user-dirs
+xdg-utils
+curl
+git
+# the installer's interface
+gum
+chafa

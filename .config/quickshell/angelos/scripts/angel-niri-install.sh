@@ -65,8 +65,19 @@ build() {
   if ! command -v cargo >/dev/null 2>&1 || ! command -v clang >/dev/null 2>&1; then
     # the installer keeps sudo fresh; elsewhere (no password cached) this just fails
     step "$(_ 'installing Rust and clang to build it' 'ставлю Rust и clang для сборки')"
-    sudo -n pacman -S --needed --noconfirm rust clang >/dev/null 2>&1 ||
-      return 1
+    if grep -qs '^ID=debian$' /etc/os-release; then
+      # Debian testing/sid: no niri package, so this fallback is the way to a session; the
+      # list is niri's build dependencies (Rust, clang, the Wayland/X11/GBM headers)
+      sudo -n apt-get install -y rustc cargo clang libclang-dev pkg-config libxkbcommon-dev \
+        libwayland-dev libudev-dev libinput-dev libgbm-dev libdrm-dev libseat-dev \
+        libpipewire-0.3-dev libpango1.0-dev libdisplay-info-dev libpam0g-dev libsystemd-dev \
+        libegl-dev libgles-dev libglib2.0-dev libdbus-1-dev libxcb1-dev libxcb-composite0-dev \
+        libxcb-damage0-dev libxcb-res0-dev libxkbcommon-x11-dev libx11-xcb-dev libpixman-1-dev \
+        >/dev/null 2>&1 || return 1
+    else
+      sudo -n pacman -S --needed --noconfirm rust clang >/dev/null 2>&1 ||
+        return 1
+    fi
   fi
   # rustup without a default toolchain answers nothing
   cargo --version >/dev/null 2>&1 || { command -v rustup >/dev/null 2>&1 && rustup default stable >/dev/null 2>&1; } || return 1

@@ -1,0 +1,37 @@
+#!/bin/sh
+# kukabara on Debian: start niri through systemd's user session. Debian has no niri package,
+# so this launcher (and the units beside it) come with the installer; niri's own niri-session
+# is what they are modelled on (see THIRD-PARTY.md). /usr/local/share/wayland-sessions/
+# niri.desktop runs this from the login screen.
+
+# Started as the user service itself (Type=notify): become niri.
+if [ -n "${MANAGERPID:-}" ] && [ "${SYSTEMD_EXEC_PID:-}" = "$$" ]; then
+    case "$(ps -p "$MANAGERPID" -o cmd= 2>/dev/null)" in
+    *systemd*--user*) exec niri --session ;;
+    esac
+fi
+
+if ! command -v niri >/dev/null 2>&1; then
+    echo 'niri is not installed: run scripts/angel-niri-install.sh' >&2
+    exit 1
+fi
+
+# No systemd (a container, another init): niri runs on its own.
+if ! command -v systemctl >/dev/null 2>&1; then
+    exec niri
+fi
+
+if systemctl --user -q is-active niri.service; then
+    echo 'A niri session is already running.' >&2
+    exit 1
+fi
+
+systemctl --user reset-failed
+systemctl --user import-environment
+if command -v dbus-update-activation-environment >/dev/null 2>&1; then
+    dbus-update-activation-environment --all
+fi
+
+systemctl --user --wait start niri.service
+systemctl --user start --job-mode=replace-irreversibly niri-shutdown.target
+systemctl --user unset-environment WAYLAND_DISPLAY DISPLAY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP NIRI_SOCKET

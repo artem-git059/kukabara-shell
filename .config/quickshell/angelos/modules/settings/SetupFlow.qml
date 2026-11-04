@@ -28,6 +28,18 @@ Scope {
         command: ["grep", "-qi", "touchpad", "/proc/bus/input/devices"]
         onExited: code => root.touchpad = code === 0
     }
+    // Debian testing/sid: the installer brings the shell and its packages from apt, and the
+    // author's app catalog (pacman, the AUR through paru) is not there — the app questions and
+    // the app install step are skipped.
+    property bool debian: false
+    Process {
+        id: distroProbe
+        running: true
+        command: ["sh", "-c", ". /etc/os-release 2>/dev/null; [ \"$ID\" = debian ] && echo debian"]
+        stdout: StdioCollector {
+            onStreamFinished: root.debian = text.trim() === "debian"
+        }
+    }
     // Golden Gate switched on by "I come from a Mac": another answer takes it back
     property bool macByWizard: false
     // the screen the questions are on; the others say where they are
@@ -136,19 +148,22 @@ Scope {
             "id": "who",
             "icon": "heart",
             "title": I18n.t("Кто ты?", "Who are you?"),
-            "text": I18n.t("Подберу программы под то, чем ты занимаешься. На следующем шаге можно поправить список.", "I'll pick apps for what you do. You can change the list on the next step.")
+            "text": I18n.t("Подберу программы под то, чем ты занимаешься. На следующем шаге можно поправить список.", "I'll pick apps for what you do. You can change the list on the next step."),
+            "when": !root.debian
         },
         {
             "id": "browser",
             "icon": "search",
             "title": I18n.t("Какой браузер?", "Which browser?"),
-            "text": I18n.t("Он откроется по Mod+B и по ссылкам из программ. Не стоит — поставлю вместе с остальными программами. Потом поменять: Настройки → Приложения → По умолчанию.", "It opens on Mod+B and for links from apps. Not installed yet? It comes with the other apps. To change it later: Settings → Default applications.")
+            "text": I18n.t("Он откроется по Mod+B и по ссылкам из программ. Не стоит — поставлю вместе с остальными программами. Потом поменять: Настройки → Приложения → По умолчанию.", "It opens on Mod+B and for links from apps. Not installed yet? It comes with the other apps. To change it later: Settings → Default applications."),
+            "when": !root.debian
         },
         {
             "id": "apps",
             "icon": "package",
             "title": I18n.t("Какие программы поставить?", "Which apps should I install?"),
-            "text": I18n.t("Отмеченные поставятся прямо здесь, когда закончишь: пароль администратора спросят один раз, а полоска покажет, как идёт. Уже стоящие помечены ✓.", "The ticked ones get installed right here when you finish: the admin password is asked once, and a bar shows how it goes. The ones you have are marked ✓.")
+            "text": I18n.t("Отмеченные поставятся прямо здесь, когда закончишь: пароль администратора спросят один раз, а полоска покажет, как идёт. Уже стоящие помечены ✓.", "The ticked ones get installed right here when you finish: the admin password is asked once, and a bar shows how it goes. The ones you have are marked ✓."),
+            "when": !root.debian
         },
         {
             "id": "scripts",
@@ -186,7 +201,7 @@ Scope {
             "title": setupInstall.done ? (setupInstall.failed.length || setupInstall.auth ? I18n.t("Почти всё ♡", "Almost there ♡") : I18n.t("Программы стоят ♡", "The apps are in ♡")) : I18n.t("Ставлю программы…", "Installing the apps…"),
             "text": setupInstall.done ? (setupInstall.auth ? I18n.t("Без пароля администратора программы не поставить. Попробуй ещё раз или пропусти — потом: Настройки → Обновления.", "The apps can't go in without the admin password. Try again or skip: later, Settings → Updates.") : setupInstall.failed.length ? I18n.t("Не все поставились — можно повторить, а можно идти дальше.", "Not all of them made it: try again, or go on.") : I18n.t("Всё на месте. Можно начинать.", "Everything is in place. Let's start.")) : I18n.t("Пароль спросят один раз. Рабочий стол откроется, когда всё встанет.", "The password is asked once. The desktop opens when everything is in."),
             "attention": setupInstall.done ? "next" : "",
-            "when": setupInstall.active
+            "when": setupInstall.active && !root.debian
         }
     ]
     // ---- the apps (data/apps-catalog.json, scripts/apps-install.py) ----

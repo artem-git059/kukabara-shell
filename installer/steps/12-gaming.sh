@@ -8,6 +8,8 @@
 # author's repositories ([multilib] for Steam) are there by then
 install_gaming() {
   [[ "$INSTALL_GAMING" == 1 && "$SKIP_PACKAGES" != 1 ]] || return 0
+  # the gaming edition is Arch's (CachyOS's Proton, the 32-bit drivers, snapshots on btrfs)
+  [[ "$DISTRO_FAMILY" == arch ]] || return 0
   command -v pacman >/dev/null 2>&1 || return 0
   local -a run=(env HOME="$HOME_DIR" ANGELOS_LANG="$UI" bash "$ROOT/.config/quickshell/angelos/scripts/game-setup.sh")
   # without a terminal nobody answers pacman: game-setup.sh adds --noconfirm when stdin isn't one
@@ -17,4 +19,4 @@ install_gaming() {
 }
 
 # the steps of this file, in the order of the run (see step() in installer/lib/core.sh)
-step 12 install_gaming "the gaming edition" "игровая версия"
+[[ "$DISTRO_FAMILY" == debian ]] || step 12 install_gaming "the gaming edition" "игровая версия"

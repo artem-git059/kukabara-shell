@@ -49,12 +49,14 @@ ask_profile() {
     GIVEN_INSTALL_SDDM=1
   fi
   choose_main_screen
-  if ! given INSTALL_TOOLS && [[ "$SKIP_PACKAGES" != 1 && -s "$ROOT/packages/tools.txt" ]]; then
+  if ! given INSTALL_TOOLS && [[ "$SKIP_PACKAGES" != 1 && -s "$(pkg_list_dir)/tools.txt" ]]; then
     ui_confirm "$(_ 'Handy programs too: a system monitor, an archiver, file compare, phone screen mirroring and small console tools?' \
                     'И полезные программы: монитор системы, архиватор, сравнение файлов, экран телефона и консольные мелочи?')" "$( ((INSTALL_TOOLS)) && echo y || echo n)" \
       && INSTALL_TOOLS=1 || INSTALL_TOOLS=0
   fi
-  if ! given INSTALL_GAMING && [[ "$SKIP_PACKAGES" != 1 ]]; then
+  # the gaming edition is Arch's: Steam, Proton and the 32-bit drivers come from CachyOS's
+  # repositories, and scripts/game-setup.sh drives pacman
+  if ! given INSTALL_GAMING && [[ "$SKIP_PACKAGES" != 1 && "$DISTRO_FAMILY" == arch ]]; then
     ui_confirm "$(_ 'The gaming edition? (Steam, Proton, the drivers for games, a boost while one runs; snapshots of the system on btrfs)' \
                     'Игровая версия? (Steam, Proton, драйверы для игр, ускорение на время игры; снимки системы на btrfs)')" n \
       && INSTALL_GAMING=1 || INSTALL_GAMING=0
@@ -127,13 +129,23 @@ for _, name, label in sorted(rows):
 # Nothing has been touched before this screen (gum aside)
 review() {
   ((INTERACTIVE)) || return 0
-  local lines=() mb="" n=0 packs=0 id count size en ru dm answer
-  if [[ "$SKIP_PACKAGES" != 1 ]] && command -v pacman >/dev/null 2>&1; then
+  local lines=() mb="" n=0 packs=0 id count size en ru dm answer upname
+  if [[ "$SKIP_PACKAGES" != 1 ]] &&
+     { { [[ "$DISTRO_FAMILY" == debian ]] && command -v apt-get >/dev/null 2>&1; } ||
+       { [[ "$DISTRO_FAMILY" == arch ]] && command -v pacman >/dev/null 2>&1; }; }; then
     wanted_packages
-    n="$(printf '%s\n' "${PACKAGES[@]}" | xargs -r pacman -T 2>/dev/null | wc -l || true)"
-    mb="$(pacman -Sp --needed --print-format '%s' "${PACKAGES[@]}" 2>/dev/null | awk '{s+=$1} END {printf "%d", s/1048576}' || true)"
-    lines+=("$(_ "• the system is updated (pacman -Syu) and $n packages of kukabara come${mb:+ (~$mb MB)}" \
-                 "• система обновится (pacman -Syu) и встанут $n пакетов kukabara${mb:+ (~$mb МБ)}")")
+    if [[ "$DISTRO_FAMILY" == debian ]]; then
+      upname="apt full-upgrade"
+      for id in "${PACKAGES[@]}"; do pkg_installed "$id" || n=$((n + 1)); done
+      mb="$(apt-get --print-uris --yes install "${PACKAGES[@]}" 2>/dev/null |
+              awk 'NF >= 3 && $3 ~ /^[0-9]+$/ {s += $3} END {printf "%d", s / 1048576}' || true)"
+    else
+      upname="pacman -Syu"
+      n="$(printf '%s\n' "${PACKAGES[@]}" | xargs -r pacman -T 2>/dev/null | wc -l || true)"
+      mb="$(pacman -Sp --needed --print-format '%s' "${PACKAGES[@]}" 2>/dev/null | awk '{s+=$1} END {printf "%d", s/1048576}' || true)"
+    fi
+    lines+=("$(_ "• the system is updated ($upname) and $n packages of kukabara come${mb:+ (~$mb MB)}" \
+                 "• система обновится ($upname) и встанут $n пакетов kukabara${mb:+ (~$mb МБ)}")")
   fi
   [[ "$MODE" == full ]] && for id in "${WALLPAPER_LIST[@]}"; do
     IFS='|' read -r id count size en ru <<<"$id"
@@ -161,9 +173,15 @@ review() {
       [[ -n "$g" ]] && lines+=("• $(_ 'games' 'игры'): $g")
     done < <(bash "$ROOT/.config/quickshell/angelos/scripts/game-setup.sh" --plan 2>/dev/null || true)
   fi
-  [[ "${ANGEL_NIRI:-1}" == 1 ]] &&
-    lines+=("$(_ "• angel-niri, kukabara's own niri, is downloaded (~10 MB) and starts from the next login; the niri package stays" \
-                 "• скачается angel-niri, свой niri kukabara (~10 МБ), и запустится со следующего входа; niri из пакета остаётся")")
+  if [[ "${ANGEL_NIRI:-1}" == 1 ]]; then
+    if [[ "$DISTRO_FAMILY" == debian ]]; then
+      lines+=("$(_ "• angel-niri, kukabara's own niri, is downloaded (~10 MB) and becomes the session's niri from the next login (Debian has no niri package)" \
+                   "• скачается angel-niri, свой niri kukabara (~10 МБ), и со следующего входа сессия запустит его (в Debian пакета niri нет)")")
+    else
+      lines+=("$(_ "• angel-niri, kukabara's own niri, is downloaded (~10 MB) and starts from the next login; the niri package stays" \
+                   "• скачается angel-niri, свой niri kukabara (~10 МБ), и запустится со следующего входа; niri из пакета остаётся")")
+    fi
+  fi
   lines+=("$(_ "• your configs that differ are kept or backed up (*.bak.$STAMP); a log: ${INSTALL_LOG/#$HOME_DIR/\~}" \
                "• твои отличающиеся конфиги остаются или уходят в копию (*.bak.$STAMP); журнал: ${INSTALL_LOG/#$HOME_DIR/\~}")")
   lines+=("$(_ '• about 10–30 minutes, mostly the download; the admin password is asked once' \

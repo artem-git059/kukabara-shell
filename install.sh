@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installer for kukabara-shell — the pastel Niri rice (CachyOS / Arch).
+# Installer for kukabara-shell — the pastel Niri rice (CachyOS / Arch, Debian testing/sid).
 #
 # Run it with no arguments for the interactive setup: a pastel "stream" in the terminal
 # (gum menus, a hearts progress bar; gum is installed first when it is missing). Or drive it
@@ -67,7 +67,7 @@
 #                                  SKIP_PACKAGES=1)
 #   SMOOTH_MEMORY=1|0              kernel memory settings that keep the picture from freezing when
 #                                  RAM fills up (extras/smooth-memory, a sysctl file; default 1)
-#   SKIP_PACKAGES=0|1              skip `pacman -Syu`
+#   SKIP_PACKAGES=0|1              skip `pacman -Syu` (Debian: `apt full-upgrade`)
 #   ANGEL_NIRI=1|0                 angel-niri, kukabara's fork of niri (minimize, pixel looks, the
 #                                  stream's privacy looks and pause, tearing in games): downloaded
 #                                  (SHA256-checked) or built, started from the next login instead
@@ -98,7 +98,8 @@
 #                                  passes 0 and validates itself, after wiring the shell
 #   DOTFILES_STAMP=YYYYMMDD-HHMMSS suffix of this run's *.bak.<stamp> backups (default: now);
 #                                  Settings → Updates passes the stamp of its snapshot
-#   DOTFILES_FORCE_DISTRO=0|1      run on a distribution other than Arch Linux or CachyOS anyway
+#   DOTFILES_FORCE_DISTRO=0|1      run on a distribution other than Arch Linux, CachyOS or
+#                                  Debian testing/sid anyway
 #                                  (refused by default: the packages come from Arch's repositories;
 #                                  a config-only run, SKIP_PACKAGES=1 — Settings → Updates — goes on
 #                                  with a warning, since it installs no packages)

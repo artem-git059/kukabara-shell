@@ -86,6 +86,19 @@ cd kukabara-shell
 ./install.sh
 ```
 
+Для **Debian testing/sid (amd64)** — те же команды:
+
+```bash
+git clone https://github.com/artem-git059/kukabara-shell.git
+cd kukabara-shell
+./install.sh
+```
+
+Поддерживаются только Debian testing (`forky`) и unstable (`sid`) на amd64. Debian stable и производные
+дистрибутивы установщик отклонит, если не задан `DOTFILES_FORCE_DISTRO=1`. В Debian установщик ставит пакеты
+через `apt`, пропускает каталог программ автора (pacman/AUR) и игровую версию, а `angel-niri` собирает сам
+(пакета `niri` в Debian нет).
+
 ![Установщик: профиль, облик, программы, раскладки и прогресс-бар из сердечек](docs/demo/installer.gif)
 
 ![Подсказки интерфейса обводят «Пуск», рабочие столы и часы](docs/demo/tips.gif)
@@ -95,8 +108,8 @@ cd kukabara-shell
 
 <br>
 
-Перед установкой: Arch Linux или CachyOS, интернет, свой пользователь (не root) с sudo (на голом Arch сначала
-`sudo pacman -S --needed git`). Примерно 10–30 минут, в основном загрузка.
+Перед установкой: Arch Linux или CachyOS (или Debian testing/sid на amd64), интернет, свой пользователь (не root) с sudo (на голом Arch сначала
+`sudo pacman -S --needed git`, в Debian — `sudo apt install git`). Примерно 10–30 минут, в основном загрузка.
 
 Установщик — маленькое шоу прямо в терминале: раскручивается жёсткий диск, ангел машет крыльями
 ([chafa](https://hpjansson.org/chafa/) рисует настоящие картинки в kitty, foot, Konsole, WezTerm; цветными блоками —

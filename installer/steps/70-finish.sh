@@ -4,12 +4,22 @@
 # gum draws the interface; it is installed before the first question (or plain prompts stay)
 bootstrap_tui() {
   ((INTERACTIVE)) || return 0
+  local have_pm=1
+  if [[ "$DISTRO_FAMILY" == debian ]]; then
+    command -v apt-get >/dev/null 2>&1 || have_pm=0
+  else
+    command -v pacman >/dev/null 2>&1 || have_pm=0
+  fi
   if [[ "${NO_TUI:-0}" != 1 ]] && ! command -v gum >/dev/null 2>&1 && [[ "$SKIP_PACKAGES" != 1 ]] &&
-     command -v pacman >/dev/null 2>&1 && command -v sudo >/dev/null 2>&1; then
+     ((have_pm)) && command -v sudo >/dev/null 2>&1; then
     say "$(_ "The installer's menus and pictures are drawn by gum and chafa (two small tools from the official repositories)." \
              'Меню и картинки установщика рисуют gum и chafa (две маленькие утилиты из официальных репозиториев).')"
     if confirm "$(_ 'Install them now? (No = plain text prompts)' 'Поставить их сейчас? (Нет — обычные текстовые вопросы)')" y; then
-      sudo pacman -S --needed gum chafa || warn "$(_ 'gum did not install: plain prompts it is' 'gum не установился: будут обычные вопросы')"
+      if [[ "$DISTRO_FAMILY" == debian ]]; then
+        sudo apt-get -y install gum chafa || warn "$(_ 'gum did not install: plain prompts it is' 'gum не установился: будут обычные вопросы')"
+      else
+        sudo pacman -S --needed gum chafa || warn "$(_ 'gum did not install: plain prompts it is' 'gum не установился: будут обычные вопросы')"
+      fi
     fi
   fi
   tui_detect
@@ -70,8 +80,8 @@ summary() {
              "Твои изменения сохранены в $N_PARKED файл(ах) конфигов; их новые версии: ${PARKED_DIR/#$HOME_DIR/\~}/ (OVERWRITE_CONFIGS=1 заменит их, с бэкапом)")"
   fi
   ((${#PKG_FAILED[@]} == 0)) ||
-    warn "$(_ "Packages that did not install: ${PKG_FAILED[*]}  →  sudo pacman -S ${PKG_FAILED[*]}" \
-              "Не поставились пакеты: ${PKG_FAILED[*]}  →  sudo pacman -S ${PKG_FAILED[*]}")"
+    warn "$(_ "Packages that did not install: ${PKG_FAILED[*]}  →  $(pkg_install_hint "${PKG_FAILED[@]}")" \
+              "Не поставились пакеты: ${PKG_FAILED[*]}  →  $(pkg_install_hint "${PKG_FAILED[@]}")")"
   say "$(_ 'Keyboard' 'Клавиатура'): ${KB_LAYOUTS}${KB_OPTIONS:+  ($KB_OPTIONS)} — $(_ 'layouts, monitors and the look: Settings (Mod+S)' 'раскладки, мониторы и вид: Настройки (Mod+S)')"
   if [[ "$SDDM_STATUS" != skipped ]]; then
     say "$(_ "Login screen: SDDM + $SDDM_THEME ($SDDM_STATUS); it appears after a reboot" \

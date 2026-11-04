@@ -1,0 +1,16 @@
+# What LazyVim (.config/nvim) needs; the plugins install themselves on the first start of nvim.
+neovim
+git
+curl
+unzip
+gcc
+make
+ripgrep
+# Debian's fd-find installs fdfind; the installer links it as fd when LazyVim looks for it.
+fd-find
+fzf
+lazygit
+tree-sitter-cli
+nodejs
+npm
+wl-clipboard

@@ -15,11 +15,19 @@ as_root() {
 
 # The theme uses QtQuick. Only reachable with SKIP_PACKAGES=1 or a broken install.
 sddm_check_modules() {
-  local qml=/usr/lib/qt6/qml missing=()
-  [[ -d "$qml/QtQuick" ]] || missing+=(qt6-declarative)
-  ((${#missing[@]})) || return 0
-  warn "$(_ "The SDDM theme needs: ${missing[*]}  →  sudo pacman -S ${missing[*]}" \
-           "Теме SDDM не хватает: ${missing[*]}  →  sudo pacman -S ${missing[*]}")"
+  local qml found=0
+  # Arch: /usr/lib/qt6/qml; Debian: /usr/lib/<triplet>/qt6/qml
+  for qml in /usr/lib/qt6/qml /usr/lib/*/qt6/qml; do
+    [[ -d "$qml/QtQuick" ]] && { found=1; break; }
+  done
+  ((found)) && return 0
+  if [[ "$DISTRO_FAMILY" == debian ]]; then
+    warn "$(_ "The SDDM theme needs: qml6-module-qtquick qml6-module-qtquick-window  →  $(pkg_install_hint qml6-module-qtquick qml6-module-qtquick-window)" \
+             "Теме SDDM не хватает: qml6-module-qtquick qml6-module-qtquick-window  →  $(pkg_install_hint qml6-module-qtquick qml6-module-qtquick-window)")"
+  else
+    warn "$(_ "The SDDM theme needs: qt6-declarative  →  $(pkg_install_hint qt6-declarative)" \
+             "Теме SDDM не хватает: qt6-declarative  →  $(pkg_install_hint qt6-declarative)")"
+  fi
 }
 
 # Make SDDM the display manager that starts at boot.

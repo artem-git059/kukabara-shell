@@ -188,7 +188,12 @@ check_shellcheck() {
 
 check_files() {
   for file in \
-    install.sh .install installer/lib/core.sh installer/lib/tui.sh installer/lib/show.sh installer/art/angel-0.ans \
+    install.sh .install installer/lib/core.sh installer/lib/tui.sh installer/lib/show.sh installer/lib/distro.sh installer/art/angel-0.ans \
+    installer/steps/43-debian-session.sh \
+    .config/quickshell/angelos/extras/debian/niri-session \
+    .config/quickshell/angelos/extras/debian/niri.service \
+    .config/quickshell/angelos/extras/debian/niri-shutdown.target \
+    .config/quickshell/angelos/extras/debian/niri.desktop \
     .config/niri/config.kdl .config/niri/cfg/keybinds.kdl .config/niri/cfg/keybinds-common.kdl \
     .config/niri/cfg/keybinds-pixel.kdl .config/niri/cfg/keybinds-macos.kdl .config/fish/config.fish \
     packages/fish.txt packages/nvim.txt .config/quickshell/angelos/data/apps-catalog.json \
@@ -203,6 +208,8 @@ check_files() {
     .config/systemd/user/niri-game-mode.service .config/systemd/user/voxtype.service \
     .config/systemd/user/voxtype-indicator.service \
     packages/pacman.txt packages/sddm.txt \
+    packages/debian/pacman.txt packages/debian/sddm.txt packages/debian/angelos.txt \
+    packages/debian/tools.txt packages/debian/fish.txt packages/debian/nvim.txt \
     .config/quickshell/angelos/scripts/sddm-theme.py \
     .config/quickshell/angelos/extras/sddm/angelos/metadata.desktop \
     .config/quickshell/angelos/extras/sddm/angelos/Main.qml \
@@ -762,19 +769,46 @@ inst_foreignniri() {
   fi
 }
 
-# Arch Linux and CachyOS only: an install with packages on anything else is refused before
-# a file changes. pacman and sudo are stand-ins here: a refusal that slipped would reach them
+# Arch Linux and CachyOS (pacman), and Debian testing/sid on amd64 (apt): an install with
+# packages on anything else is refused before a file changes. pacman, apt and sudo are stand-ins
+# here: a refusal that slipped would reach them
 printf 'NAME="Ubuntu"\nID=ubuntu\nID_LIKE=debian\nPRETTY_NAME="Ubuntu 26.04 LTS"\n' > "$WORK/os-ubuntu"
 printf 'NAME="EndeavourOS"\nID=endeavouros\nID_LIKE=arch\nPRETTY_NAME="EndeavourOS"\n' > "$WORK/os-eos"
 printf 'NAME="Arch Linux ARM"\nID=archarm\nID_LIKE=arch\nPRETTY_NAME="Arch Linux ARM"\n' > "$WORK/os-alarm"
 printf 'NAME="Arch Linux"\nID=arch\nPRETTY_NAME="Arch Linux"\n' > "$WORK/os-arch"
+printf 'NAME="Debian GNU/Linux"\nID=debian\nPRETTY_NAME="Debian GNU/Linux (sid)"\nVERSION_CODENAME=sid\n' > "$WORK/os-debian-sid"
+printf 'NAME="Debian GNU/Linux"\nID=debian\nPRETTY_NAME="Debian GNU/Linux (forky)"\nVERSION_CODENAME=forky\n' > "$WORK/os-debian-forky"
+printf 'NAME="Debian GNU/Linux"\nID=debian\nPRETTY_NAME="Debian GNU/Linux 13 (trixie)"\nVERSION_CODENAME=trixie\n' > "$WORK/os-debian-trixie"
 mkdir -p "$WORK/nopkg"
 for c in pacman sudo; do printf '#!/bin/sh\necho "%s must not run in this test" >&2\nexit 1\n' "$c" >"$WORK/nopkg/$c"; done
 chmod +x "$WORK/nopkg"/*
 PKG=(SKIP_PACKAGES=0 PATH="$WORK/nopkg:$WORK/stubs:$PATH")
 
+# a Debian stand-in: apt says every name exists and is not installed yet, sudo runs only apt-get
+# (nothing else of packages_after may touch the real system), and the network/build tools fail
+mkdir -p "$WORK/debstubs"
+printf '#!/bin/sh\nprintf "%%s\\n" "$*" >>"%s/deb-apt.log"\nexit 0\n' "$WORK" >"$WORK/debstubs/apt-get"
+printf '#!/bin/sh\nexit 0\n' >"$WORK/debstubs/apt-cache"
+printf '#!/bin/sh\nexit 1\n' >"$WORK/debstubs/dpkg-query"
+printf '#!/bin/sh\nprintf "pacman %%s\\n" "$*" >>"%s/deb-pacman.log"\nexit 1\n' "$WORK" >"$WORK/debstubs/pacman"
+printf '#!/bin/sh\nexit 1\n' >"$WORK/debstubs/curl"
+printf '#!/bin/sh\nexit 1\n' >"$WORK/debstubs/cargo"
+printf '#!/bin/sh\nexit 1\n' >"$WORK/debstubs/rustup"
+cat >"$WORK/debstubs/sudo" <<SH
+#!/bin/sh
+case "\$1" in
+  apt-get) exec "\$@" ;;
+esac
+printf 'sudo %s\n' "\$*" >>"$WORK/deb-sudo.log"
+exit 0
+SH
+chmod +x "$WORK/debstubs"/*
+mkdir -p "$WORK/armstubs"
+printf '#!/bin/sh\nif [ "$1" = "-m" ]; then echo aarch64; else exec /usr/bin/uname "$@"; fi\n' >"$WORK/armstubs/uname"
+chmod +x "$WORK/armstubs/uname"
+
 inst_distro_ubuntu() {
-  if ! install_case distro-ubuntu "${PKG[@]}" DOTFILES_OS_RELEASE="$WORK/os-ubuntu" && grep -q 'Only Arch Linux and CachyOS are supported' "$WORK/distro-ubuntu.log" &&
+  if ! install_case distro-ubuntu "${PKG[@]}" DOTFILES_OS_RELEASE="$WORK/os-ubuntu" && grep -q 'based on Debian, but only Debian testing/sid is supported' "$WORK/distro-ubuntu.log" &&
      [[ -z "$(find "$WORK/distro-ubuntu" -mindepth 1 -print -quit)" ]]; then
     pass "installer refuses Ubuntu, nothing written"
   else
@@ -821,6 +855,64 @@ inst_distro_alarm() {
     pass "installer: no colour codes when the output is not a terminal (the Updates log)"
   else
     fail "installer: colour codes in a log that is not a terminal"
+  fi
+}
+
+inst_distro_debian_sid() {
+  if install_case distro-debian-sid DOTFILES_OS_RELEASE="$WORK/os-debian-sid" &&
+     ! grep -q 'Only Arch Linux\|is not Arch Linux, CachyOS or Debian testing/sid' "$WORK/distro-debian-sid.log" &&
+     grep -q 'SKIP_PACKAGES=1: packages skipped' "$WORK/distro-debian-sid.log" &&
+     [[ -f "$WORK/distro-debian-sid/.config/quickshell/angelos/shell.qml" ]]; then
+    pass "installer accepts Debian testing/sid (configs only)"
+  else
+    fail "installer accepts Debian testing/sid (configs only)"; sed 's/^/    /' "$WORK/distro-debian-sid.log"
+  fi
+}
+
+inst_distro_debian_forky() {
+  if install_case distro-debian-forky DOTFILES_OS_RELEASE="$WORK/os-debian-forky" &&
+     ! grep -q 'Only Arch Linux\|is not Arch Linux, CachyOS or Debian testing/sid' "$WORK/distro-debian-forky.log" &&
+     [[ -f "$WORK/distro-debian-forky/.config/quickshell/angelos/shell.qml" ]]; then
+    pass "installer accepts Debian testing (forky), configs only"
+  else
+    fail "installer accepts Debian testing (forky)"; sed 's/^/    /' "$WORK/distro-debian-forky.log"
+  fi
+}
+
+inst_distro_debian_trixie() {
+  if ! install_case distro-debian-trixie "${PKG[@]}" DOTFILES_OS_RELEASE="$WORK/os-debian-trixie" &&
+     grep -q 'is not Debian testing/sid' "$WORK/distro-debian-trixie.log" &&
+     [[ -z "$(find "$WORK/distro-debian-trixie" -mindepth 1 -print -quit)" ]]; then
+    pass "installer refuses Debian stable (trixie), nothing written"
+  else
+    fail "installer refuses Debian stable (trixie)"; sed 's/^/    /' "$WORK/distro-debian-trixie.log"
+  fi
+}
+
+inst_distro_debian_arm() {
+  if ! install_case distro-debian-arm "${PKG[@]}" DOTFILES_OS_RELEASE="$WORK/os-debian-sid" PATH="$WORK/armstubs:$WORK/nopkg:$WORK/stubs:$PATH" &&
+     grep -q 'Only Debian testing/sid on amd64 is supported' "$WORK/distro-debian-arm.log" &&
+     [[ -z "$(find "$WORK/distro-debian-arm" -mindepth 1 -print -quit)" ]]; then
+    pass "installer refuses Debian testing/sid off amd64, nothing written"
+  else
+    fail "installer refuses Debian testing/sid off amd64"; sed 's/^/    /' "$WORK/distro-debian-arm.log"
+  fi
+}
+
+inst_distro_debian_apt() {
+  if install_case distro-debian-apt DOTFILES_OS_RELEASE="$WORK/os-debian-sid" SKIP_PACKAGES=0 \
+       PATH="$WORK/debstubs:$WORK/stubs:$PATH" SYSROOT="$WORK/debroot" ANGELOS_SELF_UPDATE=0 &&
+     grep -q 'Updating the system and installing packages (apt full-upgrade)' "$WORK/distro-debian-apt.log" &&
+     grep -q ' full-upgrade' "$WORK/deb-apt.log" &&
+     grep -q ' install .*quickshell' "$WORK/deb-apt.log" &&
+     [[ ! -e "$WORK/deb-pacman.log" ]] &&
+     [[ -x "$WORK/debroot/usr/local/bin/niri-session" ]] &&
+     [[ -f "$WORK/debroot/usr/local/lib/systemd/user/niri.service" ]] &&
+     [[ -f "$WORK/debroot/usr/local/lib/systemd/user/niri-shutdown.target" ]] &&
+     [[ -f "$WORK/debroot/usr/local/share/wayland-sessions/niri.desktop" ]]; then
+    pass "installer: Debian testing/sid installs its packages with apt and the niri session files"
+  else
+    fail "installer: Debian testing/sid packages with apt"; sed 's/^/    /' "$WORK/distro-debian-apt.log"
   fi
 }
 
@@ -955,8 +1047,9 @@ check_hygiene() {
     pass "default package manifests stay rice-focused"
   fi
 
-  # Inline comments in a package list would be passed to pacman verbatim.
-  for list in pacman.txt sddm.txt angelos.txt tools.txt fish.txt nvim.txt; do
+  # Inline comments in a package list would be passed to pacman (or apt) verbatim.
+  for list in pacman.txt sddm.txt angelos.txt tools.txt fish.txt nvim.txt \
+              debian/pacman.txt debian/sddm.txt debian/angelos.txt debian/tools.txt debian/fish.txt debian/nvim.txt; do
     if grep -Ev '^[[:space:]]*(#|$)' "$ROOT/packages/$list" | grep -q '[[:space:]#]'; then
       fail "packages/$list: package lines must contain only the name"
     else
@@ -1027,8 +1120,8 @@ if [[ "${SKIP_INSTALL_TEST:-0}" != 1 ]]; then
   for c in layouts macos mackeys0 pixel hid fish single tech noshell voice sddm bad foreignniri; do
     job "installer-$c" "inst_$c"
   done
-  for c in ubuntu eos force arch alarm; do
-    job "installer-distro-$c" "inst_distro_$c"
+  for c in ubuntu eos force arch alarm debian_sid debian_forky debian_trixie debian_arm debian_apt; do
+    job "installer-distro-${c//_/-}" "inst_distro_$c"
   done
 fi
 job syntax check_syntax

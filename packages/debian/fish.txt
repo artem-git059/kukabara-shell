@@ -1,0 +1,10 @@
+# fish and its look, like on the screenshots: the pure prompt, fastfetch as the greeting,
+# eza/bat aliases, fzf. CachyOS's own fish packages are not in Debian; .config/fish/config.fish
+# sets the same look itself.
+fish
+fzf
+eza
+bat
+tealdeer
+plocate
+fastfetch

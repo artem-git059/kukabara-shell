@@ -5,7 +5,7 @@
 #   dotfiles-update.sh --check REPO           fetch; print BRANCH/UPSTREAM/BEHIND/AHEAD/DIRTY/REMOTE and IN <commit> lines
 #                                             ("ERR fetch <git's reason>" when the repository can't be reached)
 #   dotfiles-update.sh --clone DEST [URL]     first-time download of the official repository
-#   dotfiles-update.sh REPO                   fetch, update the system (pacman -Syu), snapshot, fast-forward,
+#   dotfiles-update.sh REPO                   fetch, update the system (pacman -Syu / apt full-upgrade), snapshot, fast-forward,
 #                                             run the installer non-interactively, wire niri, `niri validate`
 #   dotfiles-update.sh --restore DIR [--dry-run]   undo the update that took snapshot DIR (scripts/update-txn.py)
 #   dotfiles-update.sh --last                 the last attempt: LAST <status> <stage> <dir> <old> <new>
@@ -17,7 +17,7 @@
 # local-changes (3, the clone has uncommitted edits), untrusted (4, origin is not
 # where the system came from), local-commits (7, commits of its own: a fast-forward
 # is impossible or there is nothing to take), pull (6, no network, no upstream),
-# system (8, pacman -Syu did not finish or the password was not given), quickshell
+# system (8, the system update did not finish or the password was not given), quickshell
 # (9, the new version needs a newer Quickshell than the repositories gave), snapshot (5). After it (BACKUP given, --restore undoes it): pull (6), install
 # (10, with the installer's own error line; its whole output is in <dir>/install.log),
 # niri-integration (11), niri-validate / niri-missing (12, niri is not installed, so
@@ -54,6 +54,26 @@ TXN="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)/update-txn.py"
 NIRI_BIN="${NIRI_BIN:-niri}"   # tests point it elsewhere
 SYSTEM_UPGRADE="${SYSTEM_UPGRADE:-1}"
 PACMAN_DB="${PACMAN_DB:-/var/lib/pacman}"
+# The package manager of this system: pacman on Arch Linux/CachyOS, apt on Debian testing/sid
+# (the installer supports the two). Everything else in an update is the same.
+if [[ -r /etc/os-release ]] && grep -qx 'ID=debian' /etc/os-release; then
+  PKG_FAMILY=debian
+elif command -v apt-get >/dev/null 2>&1 && ! command -v pacman >/dev/null 2>&1; then
+  PKG_FAMILY=debian
+else
+  PKG_FAMILY=arch
+fi
+if [[ "$PKG_FAMILY" == debian ]]; then
+  PKG_LOCK=/var/lib/dpkg/lock-frontend
+  UPGRADE_NAME="apt full-upgrade"
+  SUDO_UPGRADE="sudo apt full-upgrade"
+  PYTHON_HINT="sudo apt install python3"
+else
+  PKG_LOCK="$PACMAN_DB/db.lck"
+  UPGRADE_NAME="pacman -Syu"
+  SUDO_UPGRADE="sudo pacman -Syu"
+  PYTHON_HINT="sudo pacman -S python"
+fi
 # UPDATE_UID: the tests run as a user even in CI's root container (the pkexec path)
 
 # before the snapshot: nothing was changed
@@ -113,17 +133,29 @@ find_repo() {
 }
 
 # the packages a shell runs on; changed ones mean the running shell is the old build
-qt_packages() { pacman -Q quickshell quickshell-git qt6-base qt6-declarative qt6-wayland 2>/dev/null || true; }
+qt_packages() {
+  if [[ "$PKG_FAMILY" == debian ]]; then
+    dpkg-query -W -f='${Package} ${Version}\n' quickshell libqt6core6 libqt6gui6 libqt6quick6 \
+      libqt6qml6 libqt6waylandclient6 2>/dev/null || true
+  else
+    pacman -Q quickshell quickshell-git qt6-base qt6-declarative qt6-wayland 2>/dev/null || true
+  fi
+}
 
-# pacman -Syu as root, before the snapshot: packages can't be put back by --restore,
-# so a failure here stops the update with kukabara untouched
+# The system update as root, before the snapshot: packages can't be put back by --restore,
+# so a failure here stops the update with kukabara untouched. pacman -Syu on Arch; on Debian
+# apt-get update + full-upgrade, keeping the user's conffiles.
 system_upgrade() {
   [[ "$SYSTEM_UPGRADE" == 1 ]] || { say "$(_ "SYSTEM_UPGRADE=0: the system is not updated" "SYSTEM_UPGRADE=0: система не обновляется")"; return 0; }
-  command -v pacman >/dev/null || { say "$(_ "pacman not found: only kukabara is updated" "pacman не найден: обновляется только kukabara")"; return 0; }
+  if [[ "$PKG_FAMILY" == debian ]]; then
+    command -v apt-get >/dev/null || { say "$(_ "apt-get not found: only kukabara is updated" "apt-get не найден: обновляется только kukabara")"; return 0; }
+  else
+    command -v pacman >/dev/null || { say "$(_ "pacman not found: only kukabara is updated" "pacman не найден: обновляется только kukabara")"; return 0; }
+  fi
   local root=() log code why n before after qt=0
-  if [[ -e "$PACMAN_DB/db.lck" ]]; then
-    fail_early system "$(_ "another package manager is running ($PACMAN_DB/db.lck) — wait for it to finish and press Update again. Nothing changed" \
-                           "сейчас работает другой менеджер пакетов ($PACMAN_DB/db.lck) — дождись, пока он закончит, и нажми «Обновить» ещё раз. Ничего не менялось")" 8
+  if [[ -e "$PKG_LOCK" ]]; then
+    fail_early system "$(_ "another package manager is running ($PKG_LOCK) — wait for it to finish and press Update again. Nothing changed" \
+                           "сейчас работает другой менеджер пакетов ($PKG_LOCK) — дождись, пока он закончит, и нажми «Обновить» ещё раз. Ничего не менялось")" 8
   fi
   if ((${UPDATE_UID:-$EUID} == 0)); then
     root=()
@@ -133,26 +165,42 @@ system_upgrade() {
   elif [[ -t 0 ]] && command -v sudo >/dev/null; then
     root=(sudo)
   else
-    fail_early system "$(_ "neither pkexec (polkit) nor sudo in a terminal: the system can't be updated, so kukabara was not either. Run sudo pacman -Syu, then update again" \
-                           "нет ни pkexec (polkit), ни sudo в терминале: систему не обновить, поэтому и kukabara не обновлялся. Выполни sudo pacman -Syu и обнови снова")" 8
+    fail_early system "$(_ "neither pkexec (polkit) nor sudo in a terminal: the system can't be updated, so kukabara was not either. Run $SUDO_UPGRADE, then update again" \
+                           "нет ни pkexec (polkit), ни sudo в терминале: систему не обновить, поэтому и kukabara не обновлялся. Выполни $SUDO_UPGRADE и обнови снова")" 8
   fi
-  say "$(_ "updating the system first (pacman -Syu) — it asks for the admin password" "сначала обновляю систему (pacman -Syu) — попросит пароль администратора")"
+  say "$(_ "updating the system first ($UPGRADE_NAME) — it asks for the admin password" "сначала обновляю систему ($UPGRADE_NAME) — попросит пароль администратора")"
   before="$(qt_packages)"
   log="$(mktemp)"
   code=0
-  "${root[@]}" pacman -Syu --noconfirm --color never </dev/null 2>&1 | tee "$log" || code="${PIPESTATUS[0]}"
+  if [[ "$PKG_FAMILY" == debian ]]; then
+    # the lists first: a stale Debian mirror list is the usual reason for a 404 halfway through
+    { "${root[@]}" env DEBIAN_FRONTEND=noninteractive apt-get update &&
+      "${root[@]}" env DEBIAN_FRONTEND=noninteractive apt-get -y \
+        -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold full-upgrade; } \
+      </dev/null 2>&1 | tee "$log" || code="${PIPESTATUS[0]}"
+  else
+    "${root[@]}" pacman -Syu --noconfirm --color never </dev/null 2>&1 | tee "$log" || code="${PIPESTATUS[0]}"
+  fi
   if ((code != 0)); then
-    why="$(sed -n 's/^error: //p' "$log" | tail -n 1)"
+    if [[ "$PKG_FAMILY" == debian ]]; then
+      why="$(sed -n -e 's/^E: //p' -e 's/^dpkg: error: //p' "$log" | tail -n 1)"
+    else
+      why="$(sed -n 's/^error: //p' "$log" | tail -n 1)"
+    fi
     rm -f "$log"
     # pkexec: 126 = the password dialog was closed, 127 = not authorized / no polkit agent
     if [[ "${root[*]}" == *pkexec* ]] && ((code == 126 || code == 127)); then
       fail_early system "$(_ "the admin password was not given, so the system and kukabara stay as they are. Press Update again and enter the password" \
                              "пароль администратора не введён — система и kukabara остались как были. Нажми «Обновить» ещё раз и введи пароль")" 8
     fi
-    fail_early system "$(_ "the system update (pacman -Syu) stopped${why:+: $why}. kukabara was not updated: its new version may need the new packages. Update the system in a terminal (sudo pacman -Syu), then press Update again" \
-                           "обновление системы (pacman -Syu) остановилось${why:+: $why}. kukabara не обновлялся: новой версии могут быть нужны новые пакеты. Обнови систему в терминале (sudo pacman -Syu) и нажми «Обновить» ещё раз")" 8
+    fail_early system "$(_ "the system update ($UPGRADE_NAME) stopped${why:+: $why}. kukabara was not updated: its new version may need the new packages. Update the system in a terminal ($SUDO_UPGRADE), then press Update again" \
+                           "обновление системы ($UPGRADE_NAME) остановилось${why:+: $why}. kukabara не обновлялся: новой версии могут быть нужны новые пакеты. Обнови систему в терминале ($SUDO_UPGRADE) и нажми «Обновить» ещё раз")" 8
   fi
-  n="$(sed -n 's/^Packages (\([0-9]*\)).*/\1/p' "$log" | tail -n 1)"
+  if [[ "$PKG_FAMILY" == debian ]]; then
+    n="$(sed -n 's/^\([0-9]\+\) upgraded.*/\1/p' "$log" | tail -n 1)"
+  else
+    n="$(sed -n 's/^Packages (\([0-9]*\)).*/\1/p' "$log" | tail -n 1)"
+  fi
   rm -f "$log"
   after="$(qt_packages)"
   [[ "$before" == "$after" ]] || qt=1
@@ -251,8 +299,8 @@ if [[ -n "$(git status --porcelain)" ]]; then
   fail_early local-changes "$(_ "the repository folder has edits of its own ($n files, listed above): the update would lose them, so it did not start. Commit or put them aside (git -C \"$REPO\" stash -u), or drop them, then update again" \
                                 "в папке репозитория свои правки ($n файлов, список выше): обновление их бы потеряло, поэтому не начиналось. Закоммить или отложи их (git -C \"$REPO\" stash -u) либо откати, потом обнови снова")" 3
 fi
-command -v python3 >/dev/null || fail_early snapshot "$(_ "python3 is missing: the snapshot can't be taken, the update did not start (sudo pacman -S python)" \
-                                                          "python3 не найден: снимок конфигов сделать нельзя, обновление не начато (sudo pacman -S python)")" 5
+command -v python3 >/dev/null || fail_early snapshot "$(_ "python3 is missing: the snapshot can't be taken, the update did not start ($PYTHON_HINT)" \
+                                                          "python3 не найден: снимок конфигов сделать нельзя, обновление не начато ($PYTHON_HINT)")" 5
 
 branch="$(git rev-parse --abbrev-ref HEAD)"
 say "git fetch ($branch)"

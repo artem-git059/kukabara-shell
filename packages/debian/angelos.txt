@@ -1,0 +1,81 @@
+# kukabara desktop shell (installed with DESKTOP_SHELL=angelos)
+quickshell
+# Qt 6's QML modules quickshell loads. Debian splits them: there is no qt6-declarative package.
+qml6-module-qtquick
+qml6-module-qtquick-controls
+qml6-module-qtquick-layouts
+qml6-module-qtquick-window
+qml6-module-qtquick-effects
+qml6-module-qtquick-templates
+qml6-module-qtquick-shapes
+qml6-module-qtquick-dialogs
+qml6-module-qtquick-particles
+qml6-module-qtqml
+qml6-module-qtqml-models
+qml6-module-qtqml-workerscript
+qml6-module-qtcore
+qml6-module-qtmultimedia
+qml6-module-qtwebengine
+qml6-module-qtwebchannel
+qml6-module-qtwebsockets
+qml6-module-qtnetwork
+qml6-module-qtcharts
+qml6-module-qt-labs-platform
+qml6-module-qt-labs-settings
+qml6-module-qt-labs-folderlistmodel
+qml6-module-qt5compat-graphicaleffects
+qml6-module-qttest
+qt6-svg-plugins
+qt6-image-formats-plugins
+libqt6core5compat6
+libqt6multimedia6
+# the Golden Gate skin's menu bar: GTK 3 apps' menus go there (gtk-modules, only while the
+# skin is on; .config/quickshell/angelos/docs/GLOBAL-MENU.md)
+appmenu-gtk3-module
+# the mini island (links in a small browser window: scripts/island, qml6 + QtWebEngine)
+# optional NVIDIA/Qt EGL threaded-render-loop build
+cmake
+gcc
+pkg-config
+patch
+python3
+jq
+wl-clipboard
+playerctl
+# networking, Bluetooth and input-device settings
+network-manager
+bluez
+bluez-tools
+python3-evdev
+# headsetcontrol has no Debian package: the bar's ampoules stay quiet.
+# workspace IPC, cursor theme generation and plugin runtime checks
+socat
+bubblewrap
+python3-pil
+# Y2K sounds are synthesised with numpy (ffmpeg turns them into .ogg when present)
+python3-numpy
+# spelling in notes and replies (scripts/spell.py loads libhunspell; the dictionaries are
+# downloaded per language from Settings → Devices → Spelling)
+hunspell
+# desktop widgets and plugins
+cava
+wlsunset
+speedtest-go
+# the conversion ring (modules/convert) and its sizes: pictures through ImageMagick
+imagemagick
+# what kukabara's features call (they stay quiet without them): the file chooser, the icon
+# sets, System info, Qt apps in the theme, the cursor in X11 apps, a polkit agent when the
+# shell's own is not up (polkit-agent-guard), Flathub apps themed, the user folders
+zenity
+librsvg2-bin
+pciutils
+qt6ct
+xsettingsd
+hyprpolkitagent
+flatpak
+xdg-user-dirs
+# adw-gtk-theme is not packaged in Debian: GTK apps keep their own theme.
+# the setup wizard's GitHub step and `angelos author`/recovery sign in through gh (the step
+# hid itself without it); qrencode draws the device code's QR on that step
+gh
+qrencode

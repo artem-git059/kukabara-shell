@@ -40,13 +40,28 @@ confirm() {
 # by one), and the password is asked once — kept fresh while the downloads run
 SUDO_KEEP=""
 preflight() {
-  ((INTERACTIVE)) && [[ "$SKIP_PACKAGES" != 1 ]] && command -v pacman >/dev/null 2>&1 || return 0
-  command -v sudo >/dev/null 2>&1 ||
+  ((INTERACTIVE)) && [[ "$SKIP_PACKAGES" != 1 ]] || return 0
+  if [[ "$DISTRO_FAMILY" == debian ]]; then
+    command -v apt-get >/dev/null 2>&1 || return 0
+  else
+    command -v pacman >/dev/null 2>&1 || return 0
+  fi
+  if ! command -v sudo >/dev/null 2>&1; then
+    if [[ "$DISTRO_FAMILY" == debian ]]; then
+      die "$(_ "sudo is missing: as root, apt install sudo, then add your user to the sudo group (usermod -aG sudo $(id -un)), log in again" \
+               "нет sudo: от root поставь его (apt install sudo) и добавь своего пользователя в группу sudo (usermod -aG sudo $(id -un)), войди заново")"
+    fi
     die "$(_ 'sudo is missing: as root, pacman -S sudo, then let your user in (usermod -aG wheel YOU; EDITOR=nano visudo — uncomment %wheel)' \
              'нет sudo: от root поставь его (pacman -S sudo) и пусти своего пользователя (usermod -aG wheel ИМЯ; EDITOR=nano visudo — раскомментируй %wheel)')"
+  fi
   sudo -n true 2>/dev/null || say "$(_ 'The admin password — once for the whole install:' 'Пароль администратора — один раз на всю установку:')"
-  sudo -v || die "$(_ "sudo does not let $(id -un) in: add the user to wheel (as root: usermod -aG wheel $(id -un); EDITOR=nano visudo — uncomment %wheel), log in again" \
-                      "sudo не пускает $(id -un): добавь пользователя в wheel (от root: usermod -aG wheel $(id -un); EDITOR=nano visudo — раскомментируй %wheel) и войди заново")"
+  if [[ "$DISTRO_FAMILY" == debian ]]; then
+    sudo -v || die "$(_ "sudo does not let $(id -un) in: add the user to the sudo group (as root: usermod -aG sudo $(id -un)), log in again" \
+                        "sudo не пускает $(id -un): добавь пользователя в группу sudo (от root: usermod -aG sudo $(id -un)) и войди заново")"
+  else
+    sudo -v || die "$(_ "sudo does not let $(id -un) in: add the user to wheel (as root: usermod -aG wheel $(id -un); EDITOR=nano visudo — uncomment %wheel), log in again" \
+                        "sudo не пускает $(id -un): добавь пользователя в wheel (от root: usermod -aG wheel $(id -un); EDITOR=nano visudo — раскомментируй %wheel) и войди заново")"
+  fi
   ( while kill -0 "$$" 2>/dev/null; do sleep 50; sudo -n -v 2>/dev/null || exit 0; done ) &
   SUDO_KEEP=$!
 }

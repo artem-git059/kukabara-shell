@@ -25,9 +25,15 @@ load_apps() {
 # the catalog is read with python3 — a bare Arch Linux may not have it before its packages
 need_python() {
   command -v python3 >/dev/null 2>&1 && return 0
-  [[ "$SKIP_PACKAGES" != 1 ]] && command -v pacman >/dev/null 2>&1 && command -v sudo >/dev/null 2>&1 || return 1
+  [[ "$SKIP_PACKAGES" != 1 ]] && command -v sudo >/dev/null 2>&1 || return 1
   say "$(_ 'The list of apps needs python (from the official repositories)' 'Списку программ нужен python (из официальных репозиториев)')"
-  sudo pacman -S --needed --noconfirm python >/dev/null && command -v python3 >/dev/null 2>&1
+  if [[ "$DISTRO_FAMILY" == debian ]]; then
+    command -v apt-get >/dev/null 2>&1 || return 1
+    sudo apt-get -y install python3 >/dev/null && command -v python3 >/dev/null 2>&1
+  else
+    command -v pacman >/dev/null 2>&1 || return 1
+    sudo pacman -S --needed --noconfirm python >/dev/null && command -v python3 >/dev/null 2>&1
+  fi
 }
 
 APPS_ASKED=0

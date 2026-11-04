@@ -19,6 +19,20 @@ cd kukabara-shell
 
 ./install.sh
 ```
+
+## Install for Debian testing/sid (amd64):
+```bash
+git clone https://github.com/artem-git059/kukabara-shell.git
+
+cd kukabara-shell
+
+./install.sh
+```
+
+Only Debian testing (`forky`) and unstable (`sid`) on amd64 are supported. Debian stable and Debian-based
+distributions are refused unless `DOTFILES_FORCE_DISTRO=1` is set. On Debian the installer uses `apt`, skips
+the author's Arch app catalog and the gaming edition, and builds `angel-niri` (Debian has no `niri` package).
+
 ## WARNING!
 ## The installation may not work correctly!
 
