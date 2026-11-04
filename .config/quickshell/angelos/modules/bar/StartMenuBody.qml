@@ -177,8 +177,8 @@ PxBox {
         const it = col.children[current];
         colView.contentY = Math.max(0, Math.min(colView.contentHeight - colView.height, it.y < colView.contentY ? it.y : it.y + it.height > colView.contentY + colView.height ? it.y + it.height - colView.height : colView.contentY));
     }
-    color: Qt.alpha(Theme.menuSurface, prefs.alpha)
-    edgeColor: Theme.menuBorder
+    color: Theme.xpLook ? "#ffffff" : Qt.alpha(Theme.menuSurface, prefs.alpha)
+    edgeColor: Theme.xpLook ? Theme.xpFrame : Theme.menuBorder
     flat: true
     shadow: Config.appearance.shadows && prefs.shadow
 
@@ -187,10 +187,26 @@ PxBox {
         width: parent.width
         height: root.px(27)
         color: root.prefs.accent ? Theme.mix(Theme.menuHeader, root.prefs.accentColor, 0.45) : Theme.menuHeader
-        // Aero: the brand band is the lit glass of a title bar, rounded with the pane
-        gradient: Theme.aeroLook ? aeroBrand : null
-        topLeftRadius: Theme.aeroLook ? Theme.aeroTitleRadius : 0
-        topRightRadius: Theme.aeroLook ? Theme.aeroTitleRadius : 0
+        // Aero: the brand band is the lit glass of a title bar; XP: Luna's blue gradient
+        gradient: Theme.aeroLook ? aeroBrand : Theme.xpLook ? xpBrand : null
+        topLeftRadius: Theme.aeroLook ? Theme.aeroTitleRadius : Theme.xpLook ? Theme.xpRadius : 0
+        topRightRadius: Theme.aeroLook ? Theme.aeroTitleRadius : Theme.xpLook ? Theme.xpRadius : 0
+        Gradient {
+            id: xpBrand
+            orientation: Gradient.Vertical
+            GradientStop {
+                position: 0
+                color: Theme.xpTitleTop
+            }
+            GradientStop {
+                position: 0.55
+                color: Theme.mix(Theme.xpTitleTop, Theme.xpTitleBottom, 0.55)
+            }
+            GradientStop {
+                position: 1
+                color: Theme.xpTitleBottom
+            }
+        }
         Gradient {
             id: aeroBrand
             orientation: Gradient.Vertical
@@ -216,7 +232,7 @@ PxBox {
             anchors.bottom: parent.bottom
             width: parent.width
             height: root.iu
-            color: Theme.menuBorder
+            color: Theme.xpLook ? Theme.xpFrame : Theme.menuBorder
         }
     }
 
@@ -240,7 +256,7 @@ PxBox {
             x: root.pad
             width: parent.width - root.pad * 2
             height: Math.max(1, Math.floor(root.iu / 2))
-            color: Theme.menuBorder
+            color: Theme.xpLook ? Theme.xpFrame : Theme.menuBorder
         }
     }
 

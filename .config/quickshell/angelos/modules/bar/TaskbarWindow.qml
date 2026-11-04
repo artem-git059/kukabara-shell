@@ -117,7 +117,7 @@ PanelWindow {
         height: win.vertical ? parent.height : win.thick
         x: win.edge === "left" ? -win.slide : win.edge === "right" ? win.slide : 0
         y: win.edge === "bottom" ? win.slide : win.edge === "top" ? -win.slide : 0
-        color: win.hell ? "transparent" : Theme.panel
+        color: win.hell ? "transparent" : Theme.xpLook ? Theme.xpBase.faceAlt : Theme.panel
         hell: win.hell
         outline: false
         // Aero's taskbar is glass edge to edge: no rounded ends at the screen's corners
@@ -132,7 +132,7 @@ PanelWindow {
             height: win.vertical ? parent.height : Theme.u
             x: win.edge === "left" ? box.width - box.inset - Theme.u : -box.inset
             y: win.edge === "top" ? box.height - box.inset - Theme.u : -box.inset
-            color: Theme.aeroLook ? Theme.aeroRim : Qt.alpha(Theme.text, Theme.dark ? 0.13 : 0.16)
+            color: Theme.xpLook ? Theme.xpTaskbar : Theme.aeroLook ? Theme.aeroRim : Qt.alpha(Theme.text, Theme.dark ? 0.13 : 0.16)
         }
         // hell: the ground, the plates under the widgets, the rim on top
         HellBarFrame {

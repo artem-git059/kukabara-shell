@@ -46,7 +46,8 @@ CatPage {
             onToggled: c => Config.settingsUi.p5Silhouette = c
         }
     }
-    // what the whole desktop wears: kukabara classic, Win10, Windose, Stream, or Golden Gate (macOS 27)
+    // what the whole desktop wears: kukabara classic, Win10, Aero, Windows XP, Windose, Stream,
+    // or Golden Gate (macOS 27)
     CatGroup {
         name: "skin"
         id: skinGroup
@@ -54,7 +55,7 @@ CatPage {
         icon: "window"
         CatNote {
             dim: true
-            text: I18n.t("Классика — исходный вид. Win10 — классика с плитками в «Пуске», полосками на кнопках окон и пузырями-подсказками. Aero — стекло Windows 7: синие заголовки, блики и размытие под панелями. Windose и Стрим — свои окна. Golden Gate — весь стол как macOS.", "Classic is the original look. Win10: classic with tiles in Start, strips on the window buttons and bubble tips. Aero: Windows 7's glass — blue title bars, gloss and blur under the panels. Windose and Stream have their own windows. Golden Gate: the desk as macOS.")
+            text: I18n.t("Классика — исходный вид. Win10 — классика с плитками в «Пуске», полосками на кнопках окон и пузырями-подсказками. Aero — стекло Windows 7: синие заголовки, блики и размытие под панелями. Windows XP — Luna: синие заголовки, бежевые окна и зелёная кнопка «пуск». Windose и Стрим — свои окна. Golden Gate — весь стол как macOS.", "Classic is the original look. Win10: classic with tiles in Start, strips on the window buttons and bubble tips. Aero: Windows 7's glass — blue title bars, gloss and blur under the panels. Windows XP: Luna — blue title bars, beige windows and the green Start button. Windose and Stream have their own windows. Golden Gate: the desk as macOS.")
         }
         CatCustom {
             wide: true
@@ -63,10 +64,10 @@ CatPage {
                     id: skinFlow
                     width: parent.width
                     spacing: Theme.u * 4
-                    // all six in a row while each has room for its name, else three or two
-                    readonly property int cols: width >= Theme.u * 6 * 96 ? 6 : width >= Theme.u * 3 * 96 ? 3 : 2
+                    // all seven in a row while each has room for its name, else four or two
+                    readonly property int cols: width >= Theme.u * 7 * 96 ? 7 : width >= Theme.u * 4 * 96 ? 4 : 2
                     Repeater {
-                        model: ["classic", "win10", "aero", "windose", "stream", "goldengate"]
+                        model: ["classic", "win10", "aero", "xp", "windose", "stream", "goldengate"]
                         SettingsSkinCard {
                             required property string modelData
                             skin: modelData

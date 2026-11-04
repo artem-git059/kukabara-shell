@@ -24,7 +24,8 @@ Singleton {
     // are told). dark: the interface has light text on dark surfaces — at night, and by day
     // in a day look that is dark
     readonly property bool night: Config.appearance.mode === "dark" || (Config.appearance.mode === "auto" && autoDark)
-    readonly property bool dark: night || (!!dayLook && dayLook.dark === true)
+    // Windows XP is a light skin: its beige and blue stay light in the dark mode too
+    readonly property bool dark: xpLook ? false : (night || (!!dayLook && dayLook.dark === true))
 
     // ---- the day looks (Config.appearance.dayLook): the interface by day ----
     // Each is a whole palette, the scheme's own accent aside. "scheme" = the colour scheme's
@@ -507,6 +508,11 @@ Singleton {
     // A palette of its own, as Golden Gate's — dark glass at night, frosted daylight by day —
     // and the blue that every Aero surface glows in. Hell and Golden Gate keep their own.
     readonly property bool aeroLook: Config.ready && Config.settingsUi.skin === "aero" && realm !== "hell" && !macLook
+    // ---- the Windows XP skin (Config.settingsUi.skin "xp"): Luna ----
+    // A palette of its own, as Golden Gate's and Aero's: the blue title bars, the beige surfaces,
+    // the dark-blue frame and the green Start capsule of Windows XP's default Luna theme. Light
+    // always — XP had no dark mode.
+    readonly property bool xpLook: Config.ready && Config.settingsUi.skin === "xp" && realm !== "hell" && !macLook
     // a palette with its own paper (a named scheme, a day look) over the legacy roles: what it
     // doesn't say — the outline, the shadow, the 16 colours — comes from what it does
     function baseOf(fl, isDark, isNight) {
@@ -632,6 +638,43 @@ Singleton {
             shadow: "#0b2233",
             ansi: ["#0e2740", "#b83030", "#1f7d3f", "#967d14", "#1a5fa8", "#8a3f9e", "#12788f", "#8fa9bb", "#567b96", "#d05050", "#38a85c", "#c1a32c", "#3d86d6", "#a965bd", "#2fa9c4", "#0e2740"]
         })
+    // ---- XP's Luna palette: the blue of the title bars and the taskbar, the beige of every
+    // surface, the dark-blue frame, the green of Start. Fixed light, like the theme it copies.
+    readonly property var xpBase: ({
+            desk: "#3a6ea5",
+            face: "#ece9d8",
+            faceAlt: "#d4d0c8",
+            sunken: "#ffffff",
+            text: "#000000",
+            textDim: "#4a4a4a",
+            titleText: "#ffffff",
+            hi: "#ffffff",
+            lo: "#aca899",
+            edge: "#0a246a",
+            accent: "#0058e6",
+            accent2: "#3c9a3c",
+            accent3: "#ff9c00",
+            accent4: "#ffd700",
+            title1: "#0058e6",
+            title2: "#3a93ff",
+            danger: "#c9432f",
+            ok: "#2e8b2e",
+            selectText: "#ffffff",
+            shadow: "#000000",
+            // the console's old 16 colours, as XP's cmd had them
+            ansi: ["#000000", "#800000", "#008000", "#808000", "#000080", "#800080", "#008080", "#c0c0c0", "#808080", "#ff0000", "#00ff00", "#ffff00", "#0000ff", "#ff00ff", "#00ffff", "#ffffff"]
+        })
+    // XP's Luna details: the title bar's blue gradient, the green Start capsule, the blue
+    // taskbar line, the orange of the user tile — and the frame's dark blue.
+    readonly property color xpTitleTop: "#0058e6"
+    readonly property color xpTitleBottom: "#3a93ff"
+    readonly property color xpTitleText: "#ffffff"
+    readonly property color xpFrame: "#0a246a"
+    readonly property color xpStartTop: "#4caf4c"
+    readonly property color xpStartBottom: "#2b7a2b"
+    readonly property color xpStartEdge: "#1e4d1e"
+    readonly property color xpTaskbar: "#245edb"
+    readonly property int xpRadius: Math.max(3, Math.round(u * 2))
     // Aero's glass: a rim of light on the edge, a gloss over the top, a soft blue glow under
     // the floating surfaces; the radius is Win7's gentle one, not the pixel corner.
     readonly property color aeroRim: dark ? Qt.rgba(0.76, 0.92, 1, 0.5) : Qt.rgba(1, 1, 1, 0.9)
@@ -645,7 +688,7 @@ Singleton {
     readonly property color aeroTitleMid: dark ? "#2a7db8" : "#a8d3ef"
     readonly property color aeroTitleLo: dark ? "#0a3354" : "#6aabda"
     readonly property color aeroTitleText: dark ? "#ffffff" : "#0d2b42"
-    readonly property var base: macLook ? macBase : aeroLook ? aeroBase : baseOf(flavor, dark, night)
+    readonly property var base: macLook ? macBase : aeroLook ? aeroBase : xpLook ? xpBase : baseOf(flavor, dark, night)
     readonly property color menuSurface: mix(face, accent, dark ? 0.08 : 0.04)
     readonly property color menuHeader: mix(faceAlt, accent, dark ? 0.16 : 0.10)
     readonly property color menuBorder: mix(faceAlt, accent, 0.32)
@@ -660,16 +703,16 @@ Singleton {
     readonly property color text: highContrast ? mix(base.text, dark ? "#ffffff" : "#000000", 0.6) : base.text
     readonly property color textDim: highContrast ? mix(base.textDim, text, 0.7) : base.textDim
     // on a window's title plate by day (PxWindow): the text colour if it reads there
-    readonly property color titleText: aeroLook ? aeroTitleText : zine ? inkOn(title1) : base.text
+    readonly property color titleText: xpLook ? xpTitleText : aeroLook ? aeroTitleText : zine ? inkOn(title1) : base.text
     readonly property color hi: base.hi
     readonly property color lo: highContrast ? mix(base.lo, dark ? "#ffffff" : "#000000", 0.35) : base.lo
     readonly property color edge: highContrast ? mix(base.edge, dark ? "#ffffff" : "#000000", 0.35) : base.edge
-    readonly property color accent: macLook ? macAccent : aeroLook ? aeroBase.accent : flavor.accent
-    readonly property color accent2: macLook ? macBase.accent2 : aeroLook ? aeroBase.accent2 : flavor.accent2
+    readonly property color accent: macLook ? macAccent : aeroLook ? aeroBase.accent : xpLook ? xpBase.accent : flavor.accent
+    readonly property color accent2: macLook ? macBase.accent2 : aeroLook ? aeroBase.accent2 : xpLook ? xpBase.accent2 : flavor.accent2
     readonly property color accent3: base.accent3
     readonly property color accent4: base.accent4
-    readonly property color title1: macLook ? macAccent : aeroLook ? aeroBase.title1 : flavor.title1
-    readonly property color title2: macLook ? macBase.title2 : aeroLook ? aeroBase.title2 : flavor.title2
+    readonly property color title1: macLook ? macAccent : aeroLook ? aeroBase.title1 : xpLook ? xpBase.title1 : flavor.title1
+    readonly property color title2: macLook ? macBase.title2 : aeroLook ? aeroBase.title2 : xpLook ? xpBase.title2 : flavor.title2
     readonly property color danger: base.danger
     readonly property color ok: base.ok
     readonly property color select: accent
@@ -677,12 +720,12 @@ Singleton {
     readonly property color selectText: zine ? (luminance(accent) > 0.3 ? "#17141f" : "#ffffff") : base.selectText
     readonly property color shadow: base.shadow
     // by day the interface is a zine: flat boxes (widgets/PxBox), an outline, a solid shadow
-    readonly property bool zine: !night && !macLook && !aeroLook
+    readonly property bool zine: !night && !macLook && !aeroLook && !xpLook
     readonly property real shadowAlpha: zine ? (dayLook && dayLook.shadowAlpha || 1) : dark ? 0.55 : 0.35
     // the Win10 skin (Config.settingsUi.skin "win10", the 2026-10-27 references): kukabara classic
     // with Windows 10's taskbar buttons, RetroUI's bubbles, hard shadows and striped progress, and
     // Start as tiles (StartTiles); the paradise only — hell and Golden Gate keep their own
-    readonly property bool win10: Config.ready && Config.settingsUi.skin === "win10" && !hell && !macLook
+    readonly property bool win10: Config.ready && Config.settingsUi.skin === "win10" && !hell && !macLook && !xpLook
     // the shell's own windows and menus (PxWindow, MenuLook): Win10's is a hard shadow stepped off
     // down-right, solid like RetroUI's; else the soft one
     readonly property color popShadow: win10 ? shadow : Qt.alpha(shadow, shadowAlpha)

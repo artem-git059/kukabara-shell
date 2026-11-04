@@ -126,7 +126,7 @@ Item {
     // Classic stays the default; Windose and Stream are optional settings skins. Golden Gate is
     // the whole desktop's skin (services/GoldenGate): here it is macOS's System Settings — its
     // own view (views/MacView.qml), the Windows 11 look's cards drawn as a Mac's grouped rows
-    readonly property string skin: ["classic", "windose", "stream", "goldengate"].includes(Config.settingsUi.skin) ? Config.settingsUi.skin : "classic"
+    readonly property string skin: ["classic", "xp", "windose", "stream", "goldengate"].includes(Config.settingsUi.skin) ? Config.settingsUi.skin : "classic"
     readonly property bool mac: skin === "goldengate" && !hellDress
     readonly property string settingsSkin: hellDress ? "classic" : mac ? "goldengate" : fluent ? "classic" : skin
     readonly property var macHost: mac ? win.Window.window : null

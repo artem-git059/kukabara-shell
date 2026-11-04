@@ -15,6 +15,7 @@ Item {
             "classic": [I18n.t("Классика kukabara", "kukabara classic"), I18n.t("пиксельные окна Win98", "Win98 pixel windows")],
             "win10": ["Win10", I18n.t("классика с плитками Windows 10", "classic with Windows 10's tiles")],
             "aero": ["Aero", I18n.t("стекло Windows 7", "Windows 7's glass")],
+            "xp": ["Windows XP", I18n.t("Luna: синие заголовки и зелёный «пуск»", "Luna: blue title bars and the green Start")],
             "windose": ["Windose ♡", I18n.t("ОС из NEEDY GIRL OVERDOSE", "NEEDY GIRL OVERDOSE's OS")],
             "stream": [I18n.t("Стрим", "Stream"), I18n.t("как эфир Ame: LIVE и чат", "like Ame's stream: LIVE and chat")],
             "goldengate": ["Golden Gate", I18n.t("весь стол как macOS 27", "the whole desktop like macOS 27")]
@@ -24,8 +25,8 @@ Item {
 
     PxBox {
         anchors.fill: parent
-        color: root.skin === "windose" ? root.checked ? Theme.mix(Theme.windosePaper, Theme.windoseRose, 0.18) : Theme.windosePaper : root.checked ? Theme.mix(Theme.face, Theme.accent, 0.25) : mouse.containsMouse ? Theme.mix(Theme.face, Theme.accent, 0.1) : Theme.face
-        edgeColor: root.skin === "windose" ? Theme.windoseLine : Theme.edge
+        color: root.skin === "windose" ? root.checked ? Theme.mix(Theme.windosePaper, Theme.windoseRose, 0.18) : Theme.windosePaper : root.skin === "xp" ? root.checked ? Theme.mix(Theme.face, Theme.accent, 0.22) : mouse.containsMouse ? Theme.mix(Theme.face, Theme.accent, 0.1) : Theme.face : root.checked ? Theme.mix(Theme.face, Theme.accent, 0.25) : mouse.containsMouse ? Theme.mix(Theme.face, Theme.accent, 0.1) : Theme.face
+        edgeColor: root.skin === "windose" ? Theme.windoseLine : root.skin === "xp" ? Theme.xpFrame : Theme.edge
         hiColor: root.skin === "windose" ? Theme.windosePaper : Theme.hi
         loColor: root.skin === "windose" ? Theme.windoseLine : Theme.lo
         sunken: root.checked
@@ -242,6 +243,137 @@ Item {
                             color: index === 0 ? Qt.rgba(1, 1, 1, 0.42) : Qt.rgba(1, 1, 1, 0.2)
                             border.width: 1
                             border.color: Qt.rgba(1, 1, 1, 0.35)
+                        }
+                    }
+                }
+            }
+        }
+        // xp: the Luna desktop — the blue ground, a beige window with a blue title bar, the
+        // blue taskbar and the green Start pill
+        Rectangle {
+            visible: root.skin === "xp"
+            anchors.fill: parent
+            gradient: Gradient {
+                orientation: Gradient.Vertical
+                GradientStop {
+                    position: 0
+                    color: "#4a8fd6"
+                }
+                GradientStop {
+                    position: 1
+                    color: "#2f6bb0"
+                }
+            }
+            // the window
+            Rectangle {
+                x: parent.width * 0.08
+                y: parent.height * 0.1
+                width: parent.width * 0.64
+                height: parent.height * 0.6
+                color: "#ece9d8"
+                border.width: 1
+                border.color: "#0a246a"
+                Rectangle {
+                    width: parent.width
+                    height: parent.height * 0.2
+                    topLeftRadius: Math.max(2, Theme.xpRadius / 2)
+                    topRightRadius: Math.max(2, Theme.xpRadius / 2)
+                    gradient: Gradient {
+                        orientation: Gradient.Vertical
+                        GradientStop {
+                            position: 0
+                            color: "#0058e6"
+                        }
+                        GradientStop {
+                            position: 1
+                            color: "#3a93ff"
+                        }
+                    }
+                    Row {
+                        anchors.right: parent.right
+                        anchors.rightMargin: Math.max(1, pic.width * 0.015)
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: Math.max(1, pic.width * 0.012)
+                        Repeater {
+                            model: 3
+                            Rectangle {
+                                required property int index
+                                width: Math.max(2, pic.width * 0.035)
+                                height: width
+                                radius: Math.max(1, width * 0.2)
+                                color: index === 2 ? "#c9432f" : "#2f7be0"
+                                border.width: 1
+                                border.color: index === 2 ? "#7a1e14" : "#0a246a"
+                            }
+                        }
+                    }
+                }
+                // the window's content
+                Column {
+                    x: parent.width * 0.1
+                    y: parent.height * 0.32
+                    spacing: Math.max(2, pic.height * 0.06)
+                    Repeater {
+                        model: 3
+                        Rectangle {
+                            required property int index
+                            width: pic.width * (0.4 - index * 0.06)
+                            height: Math.max(1, pic.height * 0.04)
+                            color: "#aca899"
+                        }
+                    }
+                }
+            }
+            // the taskbar and the green Start pill
+            Rectangle {
+                anchors.bottom: parent.bottom
+                width: parent.width
+                height: parent.height * 0.17
+                gradient: Gradient {
+                    orientation: Gradient.Vertical
+                    GradientStop {
+                        position: 0
+                        color: "#3f8cf3"
+                    }
+                    GradientStop {
+                        position: 1
+                        color: "#245edb"
+                    }
+                }
+                Rectangle {
+                    x: parent.width * 0.04
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: parent.height * 1.9
+                    height: parent.height * 0.7
+                    radius: height / 2
+                    gradient: Gradient {
+                        orientation: Gradient.Vertical
+                        GradientStop {
+                            position: 0
+                            color: "#4caf4c"
+                        }
+                        GradientStop {
+                            position: 1
+                            color: "#2b7a2b"
+                        }
+                    }
+                    border.width: 1
+                    border.color: "#1e4d1e"
+                }
+                Row {
+                    x: parent.width * 0.3
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: Math.max(2, pic.width * 0.025)
+                    Repeater {
+                        model: 3
+                        Rectangle {
+                            required property int index
+                            width: Math.max(2, pic.width * 0.08)
+                            height: Math.max(2, pic.height * 0.09)
+                            radius: Math.max(1, height * 0.15)
+                            color: index === 0 ? "#4a93ef" : "#3a7bd8"
+                            border.width: 1
+                            border.color: "#1b4a9e"
                         }
                     }
                 }

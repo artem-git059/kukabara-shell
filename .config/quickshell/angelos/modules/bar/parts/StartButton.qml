@@ -22,7 +22,9 @@ Item {
     // in hell (Y2K → Angel or demon → Start in hell) the button is hers: the circle's dark
     // colours and the Hell wordmark, still
     readonly property bool hellish: Angel.demon && !!Config.y2k.hellStart
-    readonly property bool capsule: Config.bar.startButtonStyle === "capsule"
+    // XP's Luna Start: always the capsule, in the green of the original
+    readonly property bool xp: Theme.xpLook && !root.hellish
+    readonly property bool capsule: Config.bar.startButtonStyle === "capsule" || root.xp
     // Aero's Start orb (Theme.aeroLook): a glass ball with the emblem, not the bevelled face
     // or the XP capsule — the skin's own button, as Windows 7 had
     readonly property bool aero: Theme.aeroLook && !root.hellish
@@ -183,8 +185,8 @@ Item {
         readonly property bool hell: root.hellish || root.barInk
         // a label of the user's own (bar.startLabel, e.g. hell's "hellOS") replaces "start"
         readonly property string label: Config.bar.startLabel && Config.bar.startLabel !== "kukabara" ? Config.bar.startLabel : I18n.t("пуск", "start")
-        readonly property color base: hell ? (down ? Theme.mix(Theme.hellFace, Theme.hellBlood, 0.45) : mouse.containsMouse ? Theme.mix(Theme.hellBlood, Theme.hellEmber, 0.2) : Theme.hellBlood) : down ? Theme.mix(Theme.accent, "#000000", 0.22) : mouse.containsMouse ? Theme.mix(Theme.accent, "#ffffff", 0.12) : Theme.accent
-        readonly property color edge: hell ? Theme.hellEdge : Theme.edge
+        readonly property color base: hell ? (down ? Theme.mix(Theme.hellFace, Theme.hellBlood, 0.45) : mouse.containsMouse ? Theme.mix(Theme.hellBlood, Theme.hellEmber, 0.2) : Theme.hellBlood) : root.xp ? (down ? Theme.xpStartBottom : mouse.containsMouse ? Theme.xpStartTop : Theme.mix(Theme.xpStartTop, Theme.xpStartBottom, 0.5)) : down ? Theme.mix(Theme.accent, "#000000", 0.22) : mouse.containsMouse ? Theme.mix(Theme.accent, "#ffffff", 0.12) : Theme.accent
+        readonly property color edge: hell ? Theme.hellEdge : root.xp ? Theme.xpStartEdge : Theme.edge
         readonly property color hi: Theme.mix(base, "#ffffff", 0.5)
         readonly property color lo: Theme.mix(base, "#000000", 0.45)
         readonly property int cols: Math.floor(width / u)

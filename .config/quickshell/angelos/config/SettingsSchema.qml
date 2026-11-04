@@ -875,7 +875,7 @@ JsonAdapter {
         property string view: "win11"
         property bool win11Once: false      // an install still on the old default (sidebar) moved to win11 once
         property string viewPicked: ""      // the view picked in the setup wizard — the player's first choice, kept when changed later
-        property string skin: "classic"     // classic kukabara | win10 (classic + Windows 10 tiles, Theme.win10) | aero (Windows 7 glass, Theme.aeroLook) | Windose desktop | stream studio | goldengate
+        property string skin: "classic"     // classic kukabara | win10 (classic + Windows 10 tiles, Theme.win10) | aero (Windows 7 glass, Theme.aeroLook) | xp (Windows XP's Luna, Theme.xpLook) | Windose desktop | stream studio | goldengate
         // the Settings window's look (services/SettingsLook): win11 (the Windows 11 view, the default
         // while P5 is being redone) | p5 (the P5 window over the desk); asked once (SettingsLookPrompt)
         property string look: "win11"
