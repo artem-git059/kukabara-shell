@@ -379,6 +379,15 @@ Singleton {
     onBarWallsChanged: probeNext()
     property var _probing: null
     property var _probed: ({})                    // path -> lightness
+    function sameLight(a, b) {
+        const ka = Object.keys(a);
+        if (ka.length !== Object.keys(b).length)
+            return false;
+        for (const k of ka)
+            if (a[k] !== b[k])
+                return false;
+        return true;
+    }
     function probeNext() {
         if (probe.running)
             return;
@@ -390,7 +399,10 @@ Singleton {
             else if (!todo)
                 todo = [name, path];
         }
-        barLight = next;
+        // the bar's colours are bound to barLight: don't make every menu bar redo its ink
+        // when the probe found the same lightness again (a workspace switch to the same wall)
+        if (!sameLight(barLight, next))
+            barLight = next;
         if (todo) {
             _probing = todo;
             probe.command = ["python3", Quickshell.shellDir + "/scripts/wallpaper-color.py", todo[1], "--bar"];

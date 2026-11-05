@@ -13,10 +13,29 @@ Item {
         id: inst
         onObjectAdded: (i, o) => {
             o.parent = root;
-            const e = root.entries.slice();
-            e.splice(i, 0, o);
-            root.entries = e;
+            scheduleSync();
         }
-        onObjectRemoved: (i, o) => root.entries = root.entries.filter(x => x !== o)
+        onObjectRemoved: (i, o) => scheduleSync()
+    }
+    // `entries` feeds a Repeater in the catalog page: changing it from inside the Instantiator's
+    // own add/remove (that is, while it is clearing or populating) rebuilds that Repeater under
+    // it and aborts Quickshell (QQmlInstantiatorPrivate::clear → Repeater::setModel, seen on the
+    // Mac page). Gather the instances after the Instantiator has settled, once.
+    property bool syncQueued: false
+    function scheduleSync() {
+        if (syncQueued)
+            return;
+        syncQueued = true;
+        Qt.callLater(syncEntries);
+    }
+    function syncEntries() {
+        syncQueued = false;
+        const e = [];
+        for (let i = 0; i < inst.count; i++) {
+            const o = inst.objectAt(i);
+            if (o)
+                e.push(o);
+        }
+        entries = e;
     }
 }

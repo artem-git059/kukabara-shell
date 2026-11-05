@@ -16,6 +16,11 @@ Item {
     readonly property var activeWs: Niri.activeWorkspace(screenName)
     readonly property string target: Wallpapers.resolve(screenName, activeWs ? activeWs.idx : 1)
     property string shown: ""
+    // the still under the scene is decoded: a card blurring the wallpaper waits for it
+    readonly property bool pictureReady: toImg.status === Image.Ready
+    // the scene over the still moves (the live effects or a layered scene's wind and parallax):
+    // a card's blurred backdrop follows it on a slow timer
+    readonly property bool animating: live.running || sceneWall.running
     // decoded at the screen's real pixels: Qt reads sourceSize as physical
     // pixels, so logical ones blur the picture on a scaled monitor (issue #18)
     readonly property real dpr: Screen.devicePixelRatio > 0 ? Screen.devicePixelRatio : 1
@@ -207,9 +212,14 @@ Item {
         onStatusChanged: {
             if (status === Image.Error)
                 Wallpapers.fit(path);
-            else if (status === Image.Ready && root.waitingForLoad) {
-                root.waitingForLoad = false;
-                anim.start();
+            else if (status === Image.Ready) {
+                // the still is a frozen texture (`live: false`): a decoded picture has to ask
+                // for its grab, or the new wallpaper would never reach the screen
+                toSrc.scheduleUpdate();
+                if (root.waitingForLoad) {
+                    root.waitingForLoad = false;
+                    anim.start();
+                }
             }
         }
     }
@@ -227,7 +237,10 @@ Item {
         textureSize: Qt.size(Math.ceil(root.width * root.dpr), Math.ceil(root.height * root.dpr))
         sourceItem: toImg
         hideSource: true
-        live: true
+        // a still: `live` re-rendered it every frame, so the whole wallpaper window drew at the
+        // screen's rate (50 fps here) even with the scene on its 24 fps clock and nothing moving.
+        // The texture follows the Image when it loads or changes; the live shader animates over it.
+        live: false
         visible: false
     }
 

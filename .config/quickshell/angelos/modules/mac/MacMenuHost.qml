@@ -19,7 +19,7 @@ PanelWindow {
     required property var modelData
     readonly property string screenName: modelData.name
     readonly property bool open: MacMenus.isOpen && MacMenus.screen === screenName
-    property var levels: []          // [{items, handle, x, y}]
+    property var levels: []          // [{handle, y, itemId, rowY, owner}]
 
     screen: modelData
     visible: open
@@ -81,10 +81,11 @@ PanelWindow {
     readonly property var menu: open ? MacMenus.menu : null
     readonly property string menuKey: open && menu ? screenName + "|" + MacMenus.index + "|" + (menu.id || "tray") : ""
     onMenuKeyChanged: reset()
-    // the same menu with new items (Undo became available, a submenu refreshed): update in place,
-    // the open submenus stay open
+    // the same menu with new items (Undo became available, a live status menu's value changed):
+    // the views read the items through itemsForLevel, so only the rows change — the levels (and
+    // an open submenu) stay as they are. A submenu that went away closes, as on a Mac.
     onMenuChanged: if (menu && levels.length && menuKey !== "")
-        refreshLevels()
+        pruneLevels()
     function reset() {
         for (const l of levels)
             if (l.owner)
@@ -103,7 +104,6 @@ PanelWindow {
             AppMenu.opened(menu.owner);
         levels = [
             {
-                "items": menu.items || [],
                 "handle": menu.tray || null,
                 "y": GoldenGate.barHeight + GoldenGate.px(3),
                 "owner": menu.owner || null
@@ -116,22 +116,37 @@ PanelWindow {
             keys.forceActiveFocus();
         });
     }
-    function refreshLevels() {
-        const out = [];
-        let items = menu.items || [];
-        for (let i = 0; i < levels.length; i++) {
-            const l = levels[i];
-            if (i > 0) {
-                const sub = items.find(it => it.id === l.itemId);
-                if (!sub || sub.type !== "submenu")
-                    break;
-                items = sub.children || [];
-            }
-            out.push(Object.assign({}, l, {
-                "items": items
-            }));
+    // the items a level shows now: the menu is rebuilt by the app (or by a live status item)
+    // whenever something changes, so read them through the current menu instead of storing them
+    // in `levels` (a new array there would rebuild every view and restart its animation)
+    function itemsForLevel(i) {
+        let items = menu ? menu.items || [] : [];
+        for (let n = 1; n <= i; n++) {
+            const id = levels[n] ? levels[n].itemId : null;
+            const sub = items.find(it => it.id === id);
+            if (!sub || sub.type !== "submenu")
+                return [];
+            items = sub.children || [];
         }
-        levels = out;
+        return items;
+    }
+    // only the levels that still lead to a submenu stay open (no rebuild when all do)
+    function pruneLevels() {
+        let items = menu ? menu.items || [] : [];
+        let keep = 1;
+        for (let i = 1; i < levels.length; i++) {
+            const sub = items.find(it => it.id === levels[i].itemId);
+            if (!sub || sub.type !== "submenu")
+                break;
+            items = sub.children || [];
+            keep++;
+        }
+        if (keep !== levels.length) {
+            for (const l of levels.slice(keep))
+                if (l.owner)
+                    AppMenu.closed(l.owner);
+            levels = levels.slice(0, keep);
+        }
     }
 
     function openSub(level, item, rowY) {
@@ -155,7 +170,6 @@ PanelWindow {
             if (owner)
                 AppMenu.opened(owner);
             deeper.push({
-                "items": item.children || [],
                 "handle": item.entry || null,
                 "parentLevel": level,
                 "itemId": item.id,
@@ -231,7 +245,7 @@ PanelWindow {
                 id: opener
                 menu: level.modelData.handle
             }
-            readonly property var items: level.modelData.handle ? win.trayItems(opener.children ? opener.children.values : []) : level.modelData.items
+            readonly property var items: level.modelData.handle ? win.trayItems(opener.children ? opener.children.values : []) : win.itemsForLevel(level.index)
             readonly property real wantX: {
                 if (!parentItem) {
                     if (MacMenus.side)

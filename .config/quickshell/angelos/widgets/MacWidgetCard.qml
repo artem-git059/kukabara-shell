@@ -59,10 +59,28 @@ Item {
             id: wallTex
             visible: false
             sourceItem: root.blurred ? root.backdrop : null
-            live: true
+            // `live` re-rendered the whole wallpaper (and, through niri's blur, the Dock) every
+            // frame — 50 a second with nothing moving, for a picture that is blurred anyway.
+            live: false
             smooth: true
             readonly property real s: root.backdropScale
             sourceRect: Qt.rect(root.backdropOrigin.x - root.reach * s, root.backdropOrigin.y - root.reach * s, (root.width + root.reach * 2) * s, (root.height + root.reach * 2) * s)
+        }
+        // the wallpaper under the card: at once when it changes (a new picture, its transition,
+        // a ready decode), and a few times a second while the scene lives — the glass is blurred,
+        // a still of it reads the same and costs a fraction
+        readonly property string backdropShown: root.backdrop ? root.backdrop.shown : ""
+        readonly property real backdropProgress: root.backdrop ? root.backdrop.progress : 1
+        readonly property bool backdropReady: root.backdrop ? root.backdrop.pictureReady === true : false
+        readonly property bool backdropLive: root.backdrop ? root.backdrop.animating === true : false
+        onBackdropShownChanged: wallTex.scheduleUpdate()
+        onBackdropProgressChanged: wallTex.scheduleUpdate()
+        onBackdropReadyChanged: wallTex.scheduleUpdate()
+        Timer {
+            interval: 250
+            repeat: true
+            running: root.blurred && glass.backdropLive
+            onTriggered: wallTex.scheduleUpdate()
         }
         MultiEffect {
             visible: root.blurred
