@@ -290,12 +290,12 @@ CatPage {
         advanced: true
         icon: "layers"
         CatNote {
-            text: I18n.t("Перетаскивай элементы между частями панели. Виджеты новых плагинов появляются справа сами.", "Drag items between the bar's parts. New plugins' widgets appear on the right by themselves.")
+            text: I18n.t("Перетаскивай элементы между частями панели. Глаз скрывает виджет, но оставляет его место — включишь обратно, и он встанет как был; «Скрыто» убирает из раскладки, вернуть можно перетаскиванием. Виджеты новых плагинов появляются справа сами.", "Drag items between the bar's parts. The eye hides a widget but keeps its place: switch it back on and it returns where it was; Hidden takes it out of the layout, drag it back to place it again. New plugins' widgets appear on the right by themselves.")
             dim: true
         }
         CatNote {
             present: Theme.barLook === "statusbar"
-            text: I18n.t("Статус-бар раскладывает модули сам: столы и окна слева, часы в центре, процессор, память, сеть, громкость и трей справа. Перетаскивание ниже меняет «Стандарт» и «Пузыри»; «Скрыто» действует на все виды.", "The status bar arranges its modules itself: desks and windows on the left, the clock in the centre, CPU, memory, network, volume and the tray on the right. Dragging below changes Standard and Bubbles; Hidden applies to every look.")
+            text: I18n.t("Статус-бар раскладывает модули сам: столы и окна слева, часы в центре, процессор, память, сеть, громкость и трей справа. Перетаскивание ниже меняет «Стандарт» и «Пузыри»; глаз и «Скрыто» действуют на все виды.", "The status bar arranges its modules itself: desks and windows on the left, the clock in the centre, CPU, memory, network, volume and the tray on the right. Dragging below changes Standard and Bubbles; the eye and Hidden apply to every look.")
             dim: true
         }
         CatCustom {

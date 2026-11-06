@@ -86,7 +86,8 @@ JsonAdapter {
         property int metaTapMs: 400         // longer presses are holds, not taps
         property bool metaTapFullscreen: false // also over fullscreen windows / games
         property var layout: ({})           // {left:[], center:[], right:[]}; empty = defaults
-        property var hidden: []             // widget ids removed from the bar
+        property var hidden: []             // widget ids removed from the bar (their place is forgotten)
+        property var disabled: []           // widget ids hidden on the bar but kept in their place (the eye in Settings → Bar → Layout)
         property string trayTint: "accent"  // off | mono | accent — recolor tray icons to the theme
         property string trayDensity: "normal" // tray grid: compact | normal | airy | spacious (fewer, bigger cells)
         property string rightDensity: "normal" // the right side of the bar (tray, bell, clock…): compact | normal | airy

@@ -29,8 +29,8 @@ Singleton {
     // sound and tray modules right. The layout editor keeps editing the standard/bubbles
     // layout; "Hidden" still applies to every look.
     readonly property var statusbar: {
-        const hid = Config.bar.hidden || [];
-        const put = ids => ids.filter(id => !hid.includes(id));
+        const off = id => (Config.bar.hidden || []).includes(id) || (Config.bar.disabled || []).includes(id);
+        const put = ids => ids.filter(id => !off(id));
         return {
             "left": put(["start", "workspaces", "tasks"]),
             "center": put(["runner", "clock"]),
@@ -139,6 +139,7 @@ Singleton {
 
     readonly property var pluginIds: Plugins.barWidgets.map(p => "plugin:" + p.id)
     readonly property var hidden: (Config.bar.hidden || []).filter(id => valid(id))
+    readonly property var disabled: (Config.bar.disabled || []).filter(id => valid(id))
 
     function valid(id) {
         // the equalizer: not with a RØDECaster plugged in (services/Eq, `offered`)
@@ -162,7 +163,9 @@ Singleton {
         };
     }
 
-    readonly property var effective: {
+    // every widget in its lane, the disabled ones too: the layout editor shows them dimmed in
+    // place, so switching one back on (the eye) puts it exactly where it was
+    readonly property var arranged: {
         const cfg = Config.bar.layout || {};
         const base = cfg.left || cfg.center || cfg.right ? cfg : defaults;
         const hid = Config.bar.hidden || [];
@@ -194,32 +197,52 @@ Singleton {
         }
         return out;
     }
+    // what the bar actually draws: the arranged lanes without the disabled widgets
+    readonly property var effective: {
+        const dis = Config.bar.disabled || [];
+        const out = {};
+        for (const s of sections)
+            out[s] = arranged[s].filter(id => !dis.includes(id));
+        return out;
+    }
     readonly property var all: effective.left.concat(effective.center, effective.right)
     function has(id) {
         return all.includes(id);
     }
 
+    // the eye in the layout editor: hide a widget on the bar, but keep its lane and place
+    function setEnabled(id, on) {
+        let dis = (Config.bar.disabled || []).filter(x => x !== id);
+        if (!on)
+            dis.push(id);
+        Config.bar.disabled = dis;
+    }
+
     // move `id` to `section` ("left" | "center" | "right" | "hidden") at `index`
     function move(id, section, index) {
         const cur = {
-            "left": effective.left.slice(),
-            "center": effective.center.slice(),
-            "right": effective.right.slice()
+            "left": arranged.left.slice(),
+            "center": arranged.center.slice(),
+            "right": arranged.right.slice()
         };
         for (const s of sections)
             cur[s] = cur[s].filter(x => x !== id);
         let hid = (Config.bar.hidden || []).filter(x => x !== id);
-        if (section === "hidden")
+        let dis = Config.bar.disabled || [];
+        if (section === "hidden") {
             hid.push(id);
-        else {
+            dis = dis.filter(x => x !== id);
+        } else {
             const list = cur[section];
             list.splice(Math.max(0, Math.min(index, list.length)), 0, id);
         }
         Config.bar.layout = cur;
         Config.bar.hidden = hid;
+        Config.bar.disabled = dis;
     }
     function reset() {
         Config.bar.layout = ({});
         Config.bar.hidden = [];
+        Config.bar.disabled = [];
     }
 }

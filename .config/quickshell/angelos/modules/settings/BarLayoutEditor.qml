@@ -28,7 +28,9 @@ Item {
         }
     ]
     function listFor(col) {
-        return col === "hidden" ? BarLayout.hidden : BarLayout.effective[col];
+        // the lanes keep their disabled widgets (dimmed, the eye switches them back on); only
+        // "Hidden" takes a widget out of the layout for good
+        return col === "hidden" ? BarLayout.hidden : BarLayout.arranged[col];
     }
 
     property string dragId: ""
@@ -104,6 +106,8 @@ Item {
                             required property string modelData
                             required property int index
                             readonly property var info: BarLayout.info(modelData)
+                            // the eye: off = on the bar, on = hidden but still in its lane
+                            readonly property bool off: BarLayout.disabled.includes(modelData)
                             width: list.width
                             height: Theme.u * 15
 
@@ -117,7 +121,7 @@ Item {
                             }
                             PxBox {
                                 anchors.fill: parent
-                                opacity: root.dragId === chip.modelData ? 0.35 : 1
+                                opacity: root.dragId === chip.modelData ? 0.35 : chip.off ? 0.45 : 1
                                 color: cm.containsMouse ? Theme.mix(Theme.face, Theme.accent, 0.15) : Theme.face
                                 Row {
                                     anchors.left: parent.left
@@ -172,6 +176,33 @@ Item {
                                     root.dragId = "";
                                     root.dropCol = "";
                                     root.dropIndex = -1;
+                                }
+                            }
+                            // the eye: hide the widget on the bar, keep its lane and place
+                            Item {
+                                visible: colBox.colId !== "hidden"
+                                anchors.right: parent.right
+                                anchors.rightMargin: Theme.u * 2
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: Theme.u * 13
+                                height: Theme.u * 13
+                                PxIcon {
+                                    anchors.centerIn: parent
+                                    name: "eye"
+                                    opacity: chip.off ? 0.3 : 1
+                                }
+                                Rectangle {
+                                    visible: chip.off
+                                    anchors.centerIn: parent
+                                    width: parent.width * 0.8
+                                    height: Math.max(1, Math.round(Theme.u / 2))
+                                    color: Theme.danger
+                                    rotation: -45
+                                }
+                                MouseArea {
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: BarLayout.setEnabled(chip.modelData, chip.off)
                                 }
                             }
                         }
