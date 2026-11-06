@@ -21,6 +21,10 @@ Item {
     // cell; the icon is its outline in the icon colour, the accent only for a state (open, on,
     // the strike of "off")
     property bool barInk: false
+    // the standard theme's taskbar look (BarItem binds it): statusbar | bubbles make the face a
+    // flat pill that appears only under the pointer or while on — no Win98 bevel on the bar
+    property string barLook: "standard"
+    readonly property bool barStyled: barLook === "statusbar" || barLook === "bubbles"
     // no face of its own at all (its host draws one: the taskbar's Win10-like buttons)
     property bool bare: false
     // the face while pressed or on (classic skin): unset = the accent-tinted one; the Start
@@ -76,13 +80,16 @@ Item {
     }
     PxBox {
         anchors.fill: parent
-        visible: !root.barInk && !root.bare && root.settingsSkin === "classic" && (!root.flat || mouse.containsMouse || root.checked)
+        visible: !root.barInk && !root.bare && root.settingsSkin === "classic" && (root.barStyled ? (mouse.containsMouse || root.checked) : (!root.flat || mouse.containsMouse || root.checked))
         sunken: root.down
         hell: root.hell
+        forceFlat: root.barStyled
+        pill: root.barStyled
+        outline: !root.barStyled
         // the light theme: a raised button stands on a one-pixel ink shadow, a pressed one sits on the paper
-        shadow: Theme.zine && !root.hell && !root.flat && !root.compact && !root.down
+        shadow: Theme.zine && !root.hell && !root.flat && !root.compact && !root.down && !root.barStyled
         shadowSize: Theme.u
-        color: root.down && root.downColor.a > 0 && !root.hell && !root.accent && !root.danger ? root.downColor : root.hell ? (root.accent ? (mouse.containsMouse ? Qt.lighter(Theme.hellBlood, 1.15) : Theme.hellBlood) : root.checked ? Theme.mix(Theme.hellFace, Theme.hellBlood, 0.45) : mouse.containsMouse ? Theme.mix(Theme.hellFace, Theme.hellEmber, 0.2) : Theme.hellFace) : root.accent ? (mouse.containsMouse ? Qt.lighter(root.tint, 1.08) : root.tint) : root.danger && mouse.containsMouse ? Theme.danger : root.checked ? Theme.mix(Theme.face, root.tint, Theme.dark ? 0.4 : 0.3) : mouse.containsMouse ? Theme.mix(Theme.face, root.tint, 0.12) : Theme.face
+        color: root.barStyled ? Qt.alpha(root.danger ? Theme.danger : root.tint, root.checked ? 0.30 : 0.18) : root.down && root.downColor.a > 0 && !root.hell && !root.accent && !root.danger ? root.downColor : root.hell ? (root.accent ? (mouse.containsMouse ? Qt.lighter(Theme.hellBlood, 1.15) : Theme.hellBlood) : root.checked ? Theme.mix(Theme.hellFace, Theme.hellBlood, 0.45) : mouse.containsMouse ? Theme.mix(Theme.hellFace, Theme.hellEmber, 0.2) : Theme.hellFace) : root.accent ? (mouse.containsMouse ? Qt.lighter(root.tint, 1.08) : root.tint) : root.danger && mouse.containsMouse ? Theme.danger : root.checked ? Theme.mix(Theme.face, root.tint, Theme.dark ? 0.4 : 0.3) : mouse.containsMouse ? Theme.mix(Theme.face, root.tint, 0.12) : Theme.face
     }
 
     P5Slant {

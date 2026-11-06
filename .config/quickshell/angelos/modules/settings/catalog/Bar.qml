@@ -13,11 +13,44 @@ CatPage {
     // the Start looks that fill the screen (no position, no size)
     readonly property bool startFull: ["fullscreen", "xmb"].includes(StartPrefs.current)
     heading: I18n.t("Панель и «Пуск»", "Bar and Start")
-    subtitle: I18n.t("Таскбар как в Win98 — снизу, сверху или сбоку. Всё остальное — по ссылкам ниже.", "A Win98 taskbar — at the bottom, on top or on a side. Everything else is behind the links below.")
+    subtitle: I18n.t("Таскбар как в Win98 — снизу, сверху или сбоку. Вид — стандартный, плоский или пузырями; всё остальное — по ссылкам ниже.", "A Win98 taskbar — at the bottom, on top or on a side. Its look: standard, flat or bubbles; everything else is behind the links below.")
     CatGroup {
         name: "style"
-        title: I18n.t("Положение", "Position")
+        title: I18n.t("Вид и положение", "Look and position")
         icon: "window"
+        // the standard theme's own taskbar: Win98 as it always was, a flat waybar-like strip,
+        // or every element in its own pill (the other skins keep their bar)
+        CatChoice {
+            present: Theme.barLookable
+            label: I18n.t("Вид панели", "Taskbar look")
+            hint: {
+                const v = Config.bar.look || "standard";
+                if (v === "statusbar")
+                    return I18n.t("плоская полоса во всю ширину, как waybar: без фаски, кнопки подсвечиваются мягко", "A flat full-width strip, waybar-like: no bevel, buttons glow softly");
+                if (v === "bubbles")
+                    return I18n.t("каждый элемент — в своём пузыре, панель прозрачная: «Пуск», столы, окна, трей и часы отдельными пилюлями", "Every element in its own pill on a transparent bar: Start, desks, windows, tray and clock apart");
+                return I18n.t("как в Win98: объёмная панель с фаской и объёмными кнопками", "The Win98 bar: raised, with a bevel and raised buttons");
+            }
+            model: [
+                {
+                    "label": I18n.t("Стандарт", "Standard"),
+                    "value": "standard",
+                    "icon": "window"
+                },
+                {
+                    "label": I18n.t("Статус-бар", "Status bar"),
+                    "value": "statusbar",
+                    "icon": "strip"
+                },
+                {
+                    "label": I18n.t("Пузыри", "Bubbles"),
+                    "value": "bubbles",
+                    "icon": "pill"
+                }
+            ]
+            currentValue: Config.bar.look || "standard"
+            onActivated: v => Config.bar.look = v
+        }
         // like Windows 10: the taskbar on any edge; on the left or the right it stands upright
         CatChoice {
             label: I18n.t("Положение на экране", "Position on screen")

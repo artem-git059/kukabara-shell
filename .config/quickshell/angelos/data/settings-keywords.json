@@ -304,7 +304,13 @@
     "панель снизу",
     "автоскрытие",
     "taskbar",
-    "autohide"
+    "autohide",
+    "вид панели",
+    "look",
+    "statusbar",
+    "waybar",
+    "пузыри",
+    "bubbles"
   ],
   "bar/contents": [
     "часы",
@@ -691,6 +697,27 @@
     "taskbar position",
     "taskbar left",
     "vertical taskbar"
+  ],
+  "bar/style/Вид панели": [
+    "вид панели",
+    "стиль панели",
+    "как выглядит панель",
+    "плоская панель",
+    "статус бар",
+    "статусбар",
+    "как waybar",
+    "пузыри",
+    "пилюли",
+    "круглые кнопки",
+    "прозрачная панель",
+    "taskbar look",
+    "taskbar style",
+    "status bar",
+    "statusbar",
+    "waybar",
+    "bubbles",
+    "pills",
+    "floating taskbar"
   ],
   "vault/managers": [
     "пароли",

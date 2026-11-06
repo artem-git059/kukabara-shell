@@ -18,6 +18,8 @@ Item {
     // the bar's grid (BarItem): the emblem stands bare like the icons beside it, the face only
     // under the pointer or while Start is open
     property bool barGrid: false
+    // the standard theme's taskbar look (BarItem): statusbar | bubbles make the face a flat pill
+    property string barLook: "standard"
 
     // in hell (Y2K → Angel or demon → Start in hell) the button is hers: the circle's dark
     // colours and the Hell wordmark, still
@@ -43,6 +45,7 @@ Item {
         icon: ""
         hell: root.hellish
         barInk: root.barInk
+        barLook: root.barLook
         flat: root.barGrid
         // pushed in (or Start open): a darker face, not the accent tint the logo's own colours vanish into
         downColor: Theme.mix(Theme.face, Theme.lo, Theme.dark ? 0.6 : 0.45)

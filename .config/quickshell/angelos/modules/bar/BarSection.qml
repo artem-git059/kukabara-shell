@@ -22,9 +22,10 @@ GridLayout {
     rows: vertical ? -1 : 1
     columns: vertical ? 1 : -1
     // the bar's keys stand apart (BarItem): even "compact" leaves a seam between two of them;
-    // the hell bar keeps its own steps
+    // the hell bar keeps its own steps; bubbles need room between the pills
     readonly property bool hell: !!bar && bar.hellInk === true
-    readonly property real gap: hell ? (density === "compact" ? Math.max(1, Theme.u / 2) : density === "airy" ? Theme.u * 6 : Theme.u * 3) : density === "compact" ? Theme.u * 2 : density === "airy" ? Theme.u * 5 : Theme.u * 3
+    readonly property bool bubbles: !!bar && bar.bubbles === true
+    readonly property real gap: bubbles ? (density === "compact" ? Theme.u * 3 : density === "airy" ? Theme.u * 6 : Theme.u * 4) : hell ? (density === "compact" ? Math.max(1, Theme.u / 2) : density === "airy" ? Theme.u * 6 : Theme.u * 3) : density === "compact" ? Theme.u * 2 : density === "airy" ? Theme.u * 5 : Theme.u * 3
     // the grid's cell along the run: the density narrows or widens it, the icon stays in its middle
     readonly property real cell: !bar ? 0 : density === "compact" ? bar.itemHeight - Theme.u * 3 : density === "airy" ? bar.itemHeight + Theme.u * 2 : bar.itemHeight
     rowSpacing: gap

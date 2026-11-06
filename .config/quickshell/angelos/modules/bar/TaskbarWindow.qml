@@ -54,6 +54,10 @@ PanelWindow {
     readonly property int peek: Math.max(2, Theme.u)
 
     readonly property bool hell: BarLayout.hell
+    // the standard theme's taskbar look (Settings → Taskbar → Look)
+    readonly property string look: Theme.barLook
+    readonly property bool flatBar: look !== "standard"
+    readonly property bool bubbleBar: look === "bubbles"
     readonly property int barHeight: Theme.barHeight
     // how deep the bar is from its edge: its height across, its width upright (room for the
     // icons, the clock and the tray's arrow)
@@ -95,7 +99,7 @@ PanelWindow {
         key: "taskbar"
     }
 
-    BackgroundEffect.blurRegion: Config.appearance.blur ? blurRegion : null
+    BackgroundEffect.blurRegion: Config.appearance.blur && !win.bubbleBar ? blurRegion : null
     Region {
         id: blurRegion
         item: box
@@ -117,9 +121,12 @@ PanelWindow {
         height: win.vertical ? parent.height : win.thick
         x: win.edge === "left" ? -win.slide : win.edge === "right" ? win.slide : 0
         y: win.edge === "bottom" ? win.slide : win.edge === "top" ? -win.slide : 0
-        color: win.hell ? "transparent" : Theme.xpLook ? Theme.xpBase.faceAlt : Theme.panel
+        color: win.hell ? "transparent" : win.bubbleBar ? "transparent" : Theme.xpLook ? Theme.xpBase.faceAlt : Theme.panel
         hell: win.hell
         outline: false
+        // statusbar / bubbles: no bevels (the flat strip, or the transparent ground under the pills);
+        // the other skins keep PxBox's own flat rule (windose, Aero, the light theme)
+        forceFlat: win.flatBar
         // Aero's taskbar is glass edge to edge: no rounded ends at the screen's corners
         radius: 0
 
@@ -127,7 +134,7 @@ PanelWindow {
             // a thin see-through line on the side facing the desktop, like Windows 11's: it
             // parts the wallpaper from the bar without standing out (the text colour, faint).
             // Aero: the lit rim of the glass instead, brighter, as Win7's taskbar had
-            visible: !win.hell
+            visible: !win.hell && !win.bubbleBar
             width: win.vertical ? Theme.u : parent.width
             height: win.vertical ? parent.height : Theme.u
             x: win.edge === "left" ? box.width - box.inset - Theme.u : -box.inset
@@ -148,8 +155,8 @@ PanelWindow {
         BarContent {
             id: taskbarContent
             anchors.fill: parent
-            anchors.leftMargin: win.vertical ? 0 : Theme.u
-            anchors.rightMargin: win.vertical ? 0 : Theme.u
+            anchors.leftMargin: win.vertical ? 0 : win.bubbleBar ? Theme.u * 2 : Theme.u
+            anchors.rightMargin: win.vertical ? 0 : win.bubbleBar ? Theme.u * 2 : Theme.u
             screenName: win.modelData.name
             barWindow: win
             vertical: win.vertical

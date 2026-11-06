@@ -26,6 +26,9 @@ Item {
     property int itemHeight: Theme.u * 15
     readonly property bool above: BarLayout.edge === "bottom"
     readonly property bool hellInk: BarLayout.hell
+    // the standard theme's taskbar look (Theme.barLook): standard | statusbar | bubbles
+    readonly property string look: Theme.barLook
+    readonly property bool bubbles: look === "bubbles"
     // where a section's widgets really are, in its own coordinates: [from, to] or null (a
     // stretched "Windows" counts as wide as its buttons)
     function usedRange(sec) {

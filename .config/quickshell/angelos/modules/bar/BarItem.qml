@@ -21,6 +21,10 @@ Loader {
     // that can (barInk: PxButton and the bar's parts, hellBar: plugins that draw it) are told
     // so, the rest goes through HellBarTint
     readonly property bool hellBar: !!bar && bar.hellInk
+    // the standard theme's taskbar look (BarContent.look): statusbar | bubbles
+    readonly property string barLook: !!bar && bar.look !== undefined ? bar.look : "standard"
+    readonly property bool barStyled: barLook !== "standard"
+    readonly property bool bubbles: !!bar && bar.bubbles === true
     // a taskbar on the left or the right edge (BarContent.vertical): the widgets in a column
     readonly property bool vertical: !!bar && bar.vertical === true
     // the bar's grid (not on the hell bar, which keeps its own): every button in a cell as tall
@@ -41,6 +45,8 @@ Loader {
             item.barInk = Qt.binding(() => root.hellBar);
         if (item && item.barGrid !== undefined)
             item.barGrid = Qt.binding(() => root.gridded);
+        if (item && item.barLook !== undefined)
+            item.barLook = Qt.binding(() => root.barLook);
     }
     // an icon without words takes a square cell on the hell bar: one grid, equal steps
     // (a plugin drawn as one square — the eye — is an icon too: one cell, its margin may spill into the gap)
@@ -95,6 +101,32 @@ Loader {
     // themselves (PxButton does, barInk): the pointer on it → hellBarHover, open or on (the
     // widget's `barOpen`) → hellBarActive; as tall as the cell
     readonly property bool itemOpen: !!item && item.barOpen === true
+    // bubbles: the widget's own pill on the transparent bar ("tasks" draws one per window
+    // button instead — its run stretches and would become a slab)
+    Rectangle {
+        id: bubble
+        z: -2
+        anchors.fill: parent
+        visible: root.bubbles && root.wid !== "tasks"
+        radius: Math.round(Math.min(width, height) / 2)
+        color: Theme.panel
+        border.width: Math.max(1, Math.round(Theme.u / 2))
+        border.color: Qt.alpha(Theme.text, Theme.dark ? 0.10 : 0.12)
+    }
+    // statusbar / bubbles: a soft rounded plate under the pointer or an open widget, for the
+    // widgets that don't draw their own (PxButton ones do: barLook)
+    Rectangle {
+        id: lookPlate
+        z: -1
+        anchors.fill: parent
+        visible: root.barStyled && root.wid !== "tasks" && !!root.item && root.item.barLook === undefined && (lookHover.hovered || root.itemOpen)
+        radius: Math.round(Math.min(width, height) / 2)
+        color: Qt.alpha(Theme.accent, root.itemOpen ? 0.24 : 0.14)
+    }
+    HoverHandler {
+        id: lookHover
+        enabled: root.barStyled
+    }
     Rectangle {
         z: -1
         anchors.fill: parent

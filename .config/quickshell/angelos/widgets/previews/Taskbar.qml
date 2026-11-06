@@ -9,6 +9,10 @@ Scene {
 
     readonly property string edge: ["bottom", "top", "left", "right"].includes(variant) ? variant : "bottom"
     readonly property bool upright: edge === "left" || edge === "right"
+    // Settings → Taskbar → Look: standard | statusbar | bubbles (Theme.barLook)
+    readonly property string look: Theme.barLook
+    readonly property bool bubbles: look === "bubbles"
+    readonly property bool flatBar: look === "statusbar"
     readonly property int thick: Theme.u * 9
     readonly property int s: Math.max(1, Math.round(Theme.u / 2))
     readonly property real slide: 1 - ease(seg(0, 0.25))
@@ -32,8 +36,8 @@ Scene {
         y: root.edge === "bottom" ? root.height - height + root.slide * height : root.edge === "top" ? -root.slide * height : 0
         Rectangle {
             anchors.fill: parent
-            color: Theme.face
-            border.width: root.s
+            color: root.bubbles ? "transparent" : Theme.face
+            border.width: root.flatBar || root.bubbles ? 0 : root.s
             border.color: Theme.lo
         }
         // Start, two windows, the one that opens; the clock at the far end
@@ -49,7 +53,8 @@ Scene {
                 width: root.upright || index === 0 ? cell : cell * 3
                 height: cell
                 color: index === 0 ? Theme.accent : index === 3 ? Theme.mix(Theme.faceAlt, Theme.accent, 0.35) : Theme.faceAlt
-                border.width: root.s
+                radius: root.bubbles ? Math.round(height / 2) : 0
+                border.width: root.flatBar || root.bubbles ? 0 : root.s
                 border.color: Theme.lo
             }
         }
@@ -60,7 +65,8 @@ Scene {
             width: root.upright ? cell : cell * 2.4
             height: cell
             color: Theme.sunken
-            border.width: root.s
+            radius: root.bubbles ? Math.round(height / 2) : 0
+            border.width: root.flatBar || root.bubbles ? 0 : root.s
             border.color: Theme.lo
         }
     }

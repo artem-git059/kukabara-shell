@@ -20,7 +20,10 @@ Item {
     property int bevel: settingsSkin === "windose" ? Math.max(1, Math.floor(Theme.u / 2)) : Theme.u
     property bool sunken: false
     property bool outline: true
-    property bool flat: settingsSkin === "windose" || p5 || aero || (Theme.zine && !hell)
+    property bool forceFlat: false
+    // a pill: the face rounded to its shorter side (the standard theme's status-bar/bubbles look)
+    property bool pill: false
+    property bool flat: forceFlat || settingsSkin === "windose" || p5 || aero || (Theme.zine && !hell)
     property bool shadow: false
     property int shadowSize: Theme.u * 2
     property color shadowColor: Qt.alpha(Theme.shadow, Theme.shadowAlpha)
@@ -30,7 +33,7 @@ Item {
     readonly property int ob: outline ? bevel : 0
     readonly property int inset: ob + (flat ? 0 : bevel)
     // the glass corner; a bar or a full-width strip sets 0 to keep the screen's edge clean
-    property int radius: aero ? Theme.aeroRadius : 0
+    property int radius: pill ? Math.round(Math.min(width, height) / 2) : aero ? Theme.aeroRadius : 0
     default property alias content: inner.data
 
     // hard pixel shadow (right + bottom strips so translucent boxes stay clean)

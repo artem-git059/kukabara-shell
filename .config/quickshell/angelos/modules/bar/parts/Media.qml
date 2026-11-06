@@ -12,6 +12,8 @@ Row {
     property bool showTitle: true
     // the hell bar (BarItem): its buttons and words in the circle's colours
     property bool barInk: false
+    // the standard theme's taskbar look (BarItem): statusbar | bubbles make the buttons flat pills
+    property string barLook: "standard"
     readonly property var player: Lyrics.player
 
     visible: !!player && Lyrics.title !== "" && Config.bar.showMedia
@@ -21,6 +23,7 @@ Row {
         compact: true
         flat: true
         barInk: root.barInk
+        barLook: root.barLook
         icon: "prev"
         iconPixel: Math.max(1, Theme.u - 1)
         onClicked: root.player.previous()
@@ -29,6 +32,7 @@ Row {
         compact: true
         flat: true
         barInk: root.barInk
+        barLook: root.barLook
         icon: root.player && root.player.isPlaying ? "pause" : "play"
         iconPixel: Math.max(1, Theme.u - 1)
         onClicked: root.player.togglePlaying()
@@ -37,6 +41,7 @@ Row {
         compact: true
         flat: true
         barInk: root.barInk
+        barLook: root.barLook
         icon: "next"
         iconPixel: Math.max(1, Theme.u - 1)
         onClicked: root.player.next()

@@ -30,6 +30,10 @@ Item {
     // the hell bar (BarItem): flat buttons with the one plate rule, the focused window's the
     // active plate, app icons in the circle's ramp
     property bool barInk: false
+    // the standard theme's taskbar look (BarItem): statusbar | bubbles — flat buttons, and in
+    // bubbles each window button gets its own pill
+    property string barLook: "standard"
+    readonly property bool bubbles: barLook === "bubbles"
     readonly property var ws: Niri.activeWorkspace(screenName)
     // the windows of the desktop in front, and the ones minimized on this screen (dimmed, a click
     // brings one back — as Windows' taskbar keeps them); in Desktop every desk's of this screen;
@@ -410,11 +414,22 @@ Item {
                     width: root.buttonWidth
                     height: root.vertical ? root.cellH : flick.height
                     barInk: root.barInk
+                    barLook: root.barLook
                     checked: !!win && win.is_focused
                     // the Win10 skin: Windows 10's buttons in pixels — flat, the one in front a shade
                     // lighter on a wide accent strip, a running one a short dim strip, a minimized
                     // one dimmed (below), a pinned one not running none
                     bare: !root.barInk && Theme.win10
+                    // bubbles: every window button on its own pill (the run itself stretches)
+                    Rectangle {
+                        z: -1
+                        anchors.fill: parent
+                        visible: root.bubbles
+                        radius: Math.round(Math.min(width, height) / 2)
+                        color: Theme.panel
+                        border.width: Math.max(1, Math.round(Theme.u / 2))
+                        border.color: Qt.alpha(Theme.text, Theme.dark ? 0.10 : 0.12)
+                    }
                     Rectangle {
                         visible: btn.bare && (btn.checked || btn.hovered)
                         anchors.fill: parent

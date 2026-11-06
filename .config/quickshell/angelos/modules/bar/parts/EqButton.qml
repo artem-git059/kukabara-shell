@@ -14,6 +14,9 @@ Item {
     property bool above: true
     property bool barInk: false
     property bool vertical: false
+    // the standard theme's taskbar look (BarItem): statusbar | bubbles hide the Win98 face
+    property string barLook: "standard"
+    readonly property bool barStyled: barLook !== "standard"
     readonly property var levels: Eq.levels
     readonly property var frequencies: Eq.frequencies
     readonly property string preset: Eq.preset
@@ -89,9 +92,17 @@ Item {
 
     PxBox {
         anchors.fill: parent
+        visible: !root.barStyled
         sunken: pop.visible
         hell: root.barInk
         color: root.barInk ? Theme.hellFace : Theme.face
+    }
+    Rectangle {
+        z: -1
+        anchors.fill: parent
+        visible: root.barStyled && (hot.containsMouse || pop.visible)
+        radius: Math.round(Math.min(width, height) / 2)
+        color: Qt.alpha(Theme.accent, pop.visible ? 0.24 : 0.14)
     }
     PxText {
         id: mark
