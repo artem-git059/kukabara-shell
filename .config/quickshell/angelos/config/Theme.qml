@@ -988,7 +988,7 @@ Singleton {
     // the bars (taskbar, top bar, island…): a two-line clock and the Start wordmark fit
     readonly property int barHeight: fit(20)
     // ---- the standard theme's taskbar look (Settings → Taskbar → Look) ----
-    // standard (the Win98 bar as it always was) | statusbar (a flat strip, waybar-like) |
+    // standard (the Win98 bar as it always was) | statusbar (a waybar-like module panel) |
     // bubbles (every bar element in its own pill on a transparent bar). The skins with a bar of
     // their own (Aero, XP, Win10, Golden Gate) and hell keep their look whatever is stored.
     readonly property bool barLookable: Config.ready && Config.settingsUi.skin === "classic" && !hell

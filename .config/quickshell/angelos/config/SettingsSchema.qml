@@ -37,7 +37,7 @@ JsonAdapter {
 
     property JsonObject bar: JsonObject {
         // the standard theme's taskbar look: standard (Win98, raised, as it always was) |
-        // statusbar (a flat full-width strip, waybar-like) | bubbles (every widget in its own pill)
+        // statusbar (a waybar-like module panel) | bubbles (every widget in its own pill)
         property string look: "standard"
         property bool autoHide: false       // taskbar: slides away below the screen edge, back on the pointer at the edge
         property string edge: "bottom"      // taskbar: the screen edge it sits on, like Windows 10 — bottom | top | left | right (BarLayout.edge)

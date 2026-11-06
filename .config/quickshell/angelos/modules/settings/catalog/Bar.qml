@@ -13,7 +13,7 @@ CatPage {
     // the Start looks that fill the screen (no position, no size)
     readonly property bool startFull: ["fullscreen", "xmb"].includes(StartPrefs.current)
     heading: I18n.t("Панель и «Пуск»", "Bar and Start")
-    subtitle: I18n.t("Таскбар как в Win98 — снизу, сверху или сбоку. Вид — стандартный, плоский или пузырями; всё остальное — по ссылкам ниже.", "A Win98 taskbar — at the bottom, on top or on a side. Its look: standard, flat or bubbles; everything else is behind the links below.")
+    subtitle: I18n.t("Таскбар как в Win98 — снизу, сверху или сбоку. Вид — стандартный, статус-бар с модулями или пузырями; всё остальное — по ссылкам ниже.", "A Win98 taskbar — at the bottom, on top or on a side. Its look: standard, a status bar with modules, or bubbles; everything else is behind the links below.")
     CatGroup {
         name: "style"
         title: I18n.t("Вид и положение", "Look and position")
@@ -26,7 +26,7 @@ CatPage {
             hint: {
                 const v = Config.bar.look || "standard";
                 if (v === "statusbar")
-                    return I18n.t("плоская полоса во всю ширину, как waybar: без фаски, кнопки подсвечиваются мягко", "A flat full-width strip, waybar-like: no bevel, buttons glow softly");
+                    return I18n.t("как waybar: плоская полоса, слева столы и окна, в центре часы, справа процессор, память, сеть, громкость и трей", "Waybar-like: a flat strip with desks and windows on the left, the clock in the centre, CPU, memory, network, volume and the tray on the right");
                 if (v === "bubbles")
                     return I18n.t("каждый элемент — в своём пузыре, панель прозрачная: «Пуск», столы, окна, трей и часы отдельными пилюлями", "Every element in its own pill on a transparent bar: Start, desks, windows, tray and clock apart");
                 return I18n.t("как в Win98: объёмная панель с фаской и объёмными кнопками", "The Win98 bar: raised, with a bevel and raised buttons");
@@ -291,6 +291,11 @@ CatPage {
         icon: "layers"
         CatNote {
             text: I18n.t("Перетаскивай элементы между частями панели. Виджеты новых плагинов появляются справа сами.", "Drag items between the bar's parts. New plugins' widgets appear on the right by themselves.")
+            dim: true
+        }
+        CatNote {
+            present: Theme.barLook === "statusbar"
+            text: I18n.t("Статус-бар раскладывает модули сам: столы и окна слева, часы в центре, процессор, память, сеть, громкость и трей справа. Перетаскивание ниже меняет «Стандарт» и «Пузыри»; «Скрыто» действует на все виды.", "The status bar arranges its modules itself: desks and windows on the left, the clock in the centre, CPU, memory, network, volume and the tray on the right. Dragging below changes Standard and Bubbles; Hidden applies to every look.")
             dim: true
         }
         CatCustom {

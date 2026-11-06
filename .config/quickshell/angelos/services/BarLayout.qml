@@ -24,6 +24,19 @@ Singleton {
             "center": ["runner", "lyrics"],
             "right": ["media", "tray", "layout", "wired", "wifi", "bluetooth", "battery", "peripherals", "eq", "winmode", "awake", "volume", "bell", "clock", "showdesk"]
         })
+    // The status bar look's own module run (Settings → Taskbar → Look → Status bar): a
+    // waybar-like panel — desks and windows left, the clock centred, the system, network,
+    // sound and tray modules right. The layout editor keeps editing the standard/bubbles
+    // layout; "Hidden" still applies to every look.
+    readonly property var statusbar: {
+        const hid = Config.bar.hidden || [];
+        const put = ids => ids.filter(id => !hid.includes(id));
+        return {
+            "left": put(["start", "workspaces", "tasks"]),
+            "center": put(["runner", "clock"]),
+            "right": put(["media", "sysmon", "layout", "wired", "wifi", "bluetooth", "battery", "volume", "bell", "tray"])
+        };
+    }
     readonly property var meta: ({
             "start": {
                 "label": I18n.t("Пуск", "Start"),

@@ -25,7 +25,8 @@ GridLayout {
     // the hell bar keeps its own steps; bubbles need room between the pills
     readonly property bool hell: !!bar && bar.hellInk === true
     readonly property bool bubbles: !!bar && bar.bubbles === true
-    readonly property real gap: bubbles ? (density === "compact" ? Theme.u * 3 : density === "airy" ? Theme.u * 6 : Theme.u * 4) : hell ? (density === "compact" ? Math.max(1, Theme.u / 2) : density === "airy" ? Theme.u * 6 : Theme.u * 3) : density === "compact" ? Theme.u * 2 : density === "airy" ? Theme.u * 5 : Theme.u * 3
+    readonly property bool statusbar: !!bar && bar.look === "statusbar"
+    readonly property real gap: bubbles ? (density === "compact" ? Theme.u * 3 : density === "airy" ? Theme.u * 6 : Theme.u * 4) : hell ? (density === "compact" ? Math.max(1, Theme.u / 2) : density === "airy" ? Theme.u * 6 : Theme.u * 3) : statusbar ? (density === "compact" ? Theme.u * 2 : density === "airy" ? Theme.u * 6 : Theme.u * 4) : density === "compact" ? Theme.u * 2 : density === "airy" ? Theme.u * 5 : Theme.u * 3
     // the grid's cell along the run: the density narrows or widens it, the icon stays in its middle
     readonly property real cell: !bar ? 0 : density === "compact" ? bar.itemHeight - Theme.u * 3 : density === "airy" ? bar.itemHeight + Theme.u * 2 : bar.itemHeight
     rowSpacing: gap

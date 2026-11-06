@@ -62,7 +62,7 @@ Loader {
     Layout.maximumWidth: !vertical && wid === "tasks" && (centered || (fillTasks && Config.bar.tasksWidth === "compact")) && item ? Math.max(Theme.u * 16, item.naturalWidth) : Number.POSITIVE_INFINITY
     Layout.minimumWidth: !vertical && wid === "tasks" ? Theme.u * 16 : !vertical && gridded && !!section ? section.cell : vertical && gridded && !!bar ? bar.itemHeight : -1
     // upright: the keys as wide as the bar's cell, one under another
-    Layout.preferredWidth: vertical ? (gridded && wid !== "tasks" && !!bar ? bar.itemHeight : -1) : wid === "tasks" ? (centered && item ? Math.max(Theme.u * 16, item.naturalWidth) : fillTasks ? Theme.u * 16 : Theme.u * 120) : hellBar && iconOnly ? bar.itemHeight : gridded && iconOnly && !!section ? section.cell : -1
+    Layout.preferredWidth: vertical ? (gridded && wid !== "tasks" && wid !== "sysmon" && !!bar ? bar.itemHeight : -1) : wid === "tasks" ? (centered && item ? Math.max(Theme.u * 16, item.naturalWidth) : fillTasks ? Theme.u * 16 : Theme.u * 120) : hellBar && iconOnly ? bar.itemHeight : gridded && iconOnly && !!section ? section.cell : -1
     Layout.minimumHeight: vertical && wid === "tasks" ? Theme.u * 16 : vertical && gridded && !!section ? section.cell : -1
     // the hell bar: every widget as tall as the bar's cell, so the state plates are one height
     Layout.preferredHeight: vertical ? (wid === "tasks" ? ((fillTasks && Config.bar.tasksWidth !== "compact") || !item ? Theme.u * 16 : Math.max(Theme.u * 16, item.naturalHeight)) : -1) : tall || hellBar || gridded ? bar.itemHeight : -1
@@ -227,6 +227,8 @@ Loader {
             return peripheralsC;
         case "clock":
             return clockC;
+        case "sysmon":
+            return sysmonC;
         default:
             return wid.startsWith("plugin:") ? pluginC : null;
         }
@@ -361,6 +363,12 @@ Loader {
             above: root.bar.above
             showDate: !root.vertical
             narrow: root.vertical
+        }
+    }
+    Component {
+        id: sysmonC
+        Sysmon {
+            screenName: root.bar.screenName
         }
     }
     Component {

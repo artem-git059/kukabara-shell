@@ -86,8 +86,10 @@ Item {
         }
         return out;
     }
-    readonly property var layout: BarLayout.effective
-    readonly property bool lyricsShown: BarLayout.has("lyrics") && Config.lyrics.enabled && Lyrics.visibleToggle && Lyrics.hasLyrics && Lyrics.placeOn(screenName) === "bar"
+    // the status bar look has a module run of its own (BarLayout.statusbar); the other looks
+    // follow the layout edited in Settings → Bar
+    readonly property var layout: look === "statusbar" ? BarLayout.statusbar : BarLayout.effective
+    readonly property bool lyricsShown: look !== "statusbar" && BarLayout.has("lyrics") && Config.lyrics.enabled && Lyrics.visibleToggle && Lyrics.hasLyrics && Lyrics.placeOn(screenName) === "bar"
     readonly property int gap: Theme.u * 4
 
     Component.onCompleted: Shell.barViews[screenName] = root

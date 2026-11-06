@@ -19,12 +19,15 @@ Item {
     // a taskbar on the left or the right edge (BarItem): the hearts in a column, no name badge
     // beside them (it would run off the bar)
     property bool vertical: false
+    // the standard theme's taskbar look (BarItem): statusbar draws numbered desks, waybar-like
+    property string barLook: "standard"
+    readonly property bool statusbar: barLook === "statusbar"
 
     // the badge only takes room while it is shown: the slot opens, then closes again
     readonly property real badgeWidth: Math.min(Theme.u * 64, badgeMetrics.advanceWidth("✧ " + flashText) + Theme.u * 10)
     property real slot: 0
-    implicitWidth: row.implicitWidth + slot
-    implicitHeight: row.implicitHeight
+    implicitWidth: statusbar ? statusbarRow.implicitWidth : row.implicitWidth + slot
+    implicitHeight: statusbar ? statusbarRow.implicitHeight : row.implicitHeight
     // the active cell before the switch: the animation starts there (niri updates
     // the workspace list before it reports the activation)
     readonly property int activeIndex: list.findIndex(w => w.is_active)
@@ -40,8 +43,48 @@ Item {
         font: badgeText.font
     }
 
+    // statusbar: waybar-like numbered desks — the active one lit, an occupied one bright, an
+    // empty one dim; the number is niri's idx (1..9 by default), not the heart sprite
+    Grid {
+        id: statusbarRow
+        visible: root.statusbar
+        columns: root.vertical ? 1 : Math.max(1, root.list.length)
+        spacing: Theme.u * 2
+        Repeater {
+            model: root.list.length
+            Rectangle {
+                id: numCell
+                required property int index
+                readonly property var modelData: root.list[index] || ({})
+                readonly property bool active: modelData.is_active === true
+                readonly property bool occupied: Niri.windowsOn(modelData.id).length > 0
+                width: Math.max(Theme.u * 11, numText.implicitWidth + Theme.u * 7)
+                height: Theme.u * 11
+                radius: Math.round(Theme.u * 2)
+                color: active ? Qt.alpha(Theme.accent, 0.26) : numMouse.containsMouse ? Qt.alpha(Theme.accent, 0.14) : "transparent"
+                border.width: active ? Math.max(1, Theme.u / 2) : 0
+                border.color: Theme.accent
+                PxText {
+                    id: numText
+                    anchors.centerIn: parent
+                    text: String(numCell.modelData.idx !== undefined ? numCell.modelData.idx : numCell.index + 1)
+                    color: numCell.modelData.is_urgent ? Theme.danger : numCell.active ? Theme.accent : numCell.occupied ? Theme.text : Theme.textDim
+                    font.bold: numCell.active || numCell.modelData.is_urgent
+                }
+                MouseArea {
+                    id: numMouse
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: numCell.modelData.output === Niri.focusedOutput ? WorkspaceAnim.go(String(numCell.modelData.idx)) : Niri.focusWorkspace(numCell.modelData.id)
+                }
+            }
+        }
+    }
+
     Grid {
         id: row
+        visible: !root.statusbar
         columns: root.vertical ? 1 : Math.max(1, root.list.length)
         spacing: Theme.u * 2
 
@@ -169,6 +212,7 @@ Item {
     }
     WsAnimator {
         id: anim
+        visible: !root.statusbar
         x: row.x
         y: row.y
         width: row.width
@@ -198,7 +242,7 @@ Item {
             if (ws.output !== root.screenName)
                 return;
             anim.play(root.previousIndex, root.list.findIndex(w => w.id === ws.id));
-            if (Config.workspaces.popupMode !== "bar" || root.vertical)
+            if (Config.workspaces.popupMode !== "bar" || root.vertical || root.statusbar)
                 return;
             const names = Config.workspaces.names || {};
             root.flashText = names[ws.output + ":" + ws.idx] || ws.name || String(ws.idx);
@@ -208,7 +252,7 @@ Item {
     PxBox {
         id: badge
         z: 10
-        visible: opacity > 0
+        visible: opacity > 0 && !root.statusbar
         opacity: 0
         x: row.width + Theme.u * 3
         anchors.verticalCenter: parent.verticalCenter
