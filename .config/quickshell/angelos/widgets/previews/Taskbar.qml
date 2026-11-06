@@ -59,6 +59,7 @@ Scene {
             }
         }
         Rectangle {
+            id: clock
             readonly property real cell: root.thick - root.s * 4
             x: root.upright ? root.s * 2 : bar.width - width - root.s * 2
             y: root.upright ? bar.height - height - root.s * 2 : root.s * 2
@@ -68,6 +69,42 @@ Scene {
             radius: root.bubbles ? Math.round(height / 2) : 0
             border.width: root.flatBar || root.bubbles ? 0 : root.s
             border.color: Theme.lo
+        }
+        // statusbar: the system modules beside the clock (CPU, memory, network) — small
+        // blocks on the flat strip, so the preview reads as a module panel, not a bare bar
+        Row {
+            visible: root.flatBar && !root.upright
+            x: clock.x - width - root.s * 2
+            y: root.s * 2
+            spacing: root.s * 2
+            Repeater {
+                model: 3
+                Rectangle {
+                    required property int index
+                    width: root.thick - root.s * 4
+                    height: width
+                    radius: Math.round(root.s)
+                    color: index === 0 ? Theme.accent : index === 1 ? Theme.accent4 : Theme.ok
+                    opacity: 0.85
+                }
+            }
+        }
+        Column {
+            visible: root.flatBar && root.upright
+            x: root.s * 2
+            y: clock.y - height - root.s * 2
+            spacing: root.s * 2
+            Repeater {
+                model: 3
+                Rectangle {
+                    required property int index
+                    width: root.thick - root.s * 4
+                    height: Math.round(width * 0.55)
+                    radius: Math.round(root.s)
+                    color: index === 0 ? Theme.accent : index === 1 ? Theme.accent4 : Theme.ok
+                    opacity: 0.85
+                }
+            }
         }
     }
 }
