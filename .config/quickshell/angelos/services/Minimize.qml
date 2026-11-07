@@ -329,6 +329,11 @@ Singleton {
     // is narrower by the zone of a Dock on the left or right. Otherwise: no snapshot.
     property var dockZone: ({})             // output -> the Dock's exclusive zone, px
     property var dockEdge: ({})             // output -> the edge it stands on: bottom | left | right
+    property var dockOwner: ({})            // output -> the Dock that wrote the two above (MacDock)
+    property int _dockTokens: 0
+    function newDockToken() {
+        return "dock" + (++_dockTokens);
+    }
     function tiledPos(w, s) {
         const l = w.layout;
         const ws = Niri.workspaceById(w.workspace_id);
@@ -337,8 +342,8 @@ Singleton {
         const size = l.tile_size;
         if (size[0] >= s.width && size[1] >= s.height)
             return [0, 0];
-        const edge = dockEdge[ws.output] || "bottom";
-        const zone = dockZone[ws.output] || 0;
+        const edge = GoldenGate.on ? dockEdge[ws.output] || "bottom" : "bottom";
+        const zone = GoldenGate.on ? dockZone[ws.output] || 0 : 0;
         const zl = edge === "left" ? zone : 0, zr = edge === "right" ? zone : 0, zb = edge === "bottom" ? zone : 0;
         if (WindowConfig.center !== "always" || size[0] > s.width - zl - zr)
             return null;

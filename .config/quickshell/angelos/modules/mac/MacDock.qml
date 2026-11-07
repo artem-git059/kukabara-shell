@@ -145,6 +145,59 @@ PanelWindow {
         // the held app is gone (it quit and wasn't kept): the drag ends
         if (dragKey && keys.indexOf(dragKey) < 0)
             endDrag();
+        pruneSlots();
+    }
+
+    // ---- what services/Minimize knows of this Dock: its zone and edge (where a tiled window
+    // stands, for its snapshot), and where its items are (the minimize flight) ----
+    // A Dock that is gone — another skin chosen, its screen unplugged — must leave nothing behind:
+    // a stale zone would lift every tiled window's snapshot, a stale slot would send a window
+    // flying to where no Dock is. The token keeps the Dock that replaces this one (a reload)
+    // from losing the values it has just written.
+    property string dockToken: ""           // this Dock's mark on Minimize's maps, set once at start
+    property var reportedSlots: ({})        // slot key -> true: the places this Dock wrote
+    function claimDock() {
+        // whatever stood on this screen before — the pixel skins' taskbar, a previous Dock — its
+        // slots are stale: this Dock reports its own places (a window would fly to a button that
+        // is no longer there)
+        for (const k of Object.keys(Minimize.dockSlots))
+            if (k.startsWith(screenName + "|"))
+                delete Minimize.dockSlots[k];
+        reportedSlots = ({});
+        Minimize.dockOwner[screenName] = dockToken;
+        Minimize.dockZone[screenName] = exclusiveZone;
+        Minimize.dockEdge[screenName] = dockSide;
+    }
+    function releaseDock() {
+        if (Minimize.dockOwner[screenName] !== dockToken)
+            return;
+        delete Minimize.dockOwner[screenName];
+        delete Minimize.dockZone[screenName];
+        delete Minimize.dockEdge[screenName];
+        forgetSlots();
+    }
+    function forgetSlots() {
+        for (const k of Object.keys(reportedSlots)) {
+            delete Minimize.dockSlots[k];
+            delete reportedSlots[k];
+        }
+    }
+    // the slots of items that are gone (a minimized window brought back, an app quit): they would
+    // pile up for the session, and a hidden app's window could fly to one of them
+    function pruneSlots() {
+        const live = {};
+        for (const it of items) {
+            if (it.kind === "window" || it.kind === "downloads")
+                live[screenName + "|" + it.id] = true;
+            else if (it.kind === "app")
+                for (const w of it.windows || [])
+                    live[screenName + "|@app:" + w.app_id] = true;
+        }
+        for (const k of Object.keys(reportedSlots))
+            if (!live[k]) {
+                delete Minimize.dockSlots[k];
+                delete reportedSlots[k];
+            }
     }
 
     // ---- dragging an app (MacDockModel.setOrder / setKept) ----
@@ -330,13 +383,16 @@ PanelWindow {
     implicitHeight: vertical ? modelData.height : thick
     exclusiveZone: Shell.dev || autohide ? 0 : slabH + margin
     // services/Minimize works out where a tiled window stands from the zone the Dock keeps
-    onExclusiveZoneChanged: Minimize.dockZone[screenName] = exclusiveZone
-    onDockSideChanged: Minimize.dockEdge[screenName] = dockSide
+    onExclusiveZoneChanged: if (Minimize.dockOwner[screenName] === dockToken)
+        Minimize.dockZone[screenName] = exclusiveZone
+    onDockSideChanged: if (Minimize.dockOwner[screenName] === dockToken)
+        Minimize.dockEdge[screenName] = dockSide
     Component.onCompleted: {
-        Minimize.dockZone[screenName] = exclusiveZone;
-        Minimize.dockEdge[screenName] = dockSide;
+        dockToken = Minimize.newDockToken();
+        claimDock();
         syncRows();
     }
+    Component.onDestruction: releaseDock()
     exclusionMode: Shell.dev ? ExclusionMode.Ignore : ExclusionMode.Normal
     color: "transparent"
     WlrLayershell.namespace: "angelos-macdock"
@@ -534,16 +590,23 @@ PanelWindow {
         // (and a running app's icon: where its windows fly when the app hides, ⌘H)
         readonly property bool reports: isWin || item.kind === "downloads" || item.kind === "app"
         function report() {
-            if (!reports || !cell.parent)
+            // (an icon that is being removed may still take a last layout step: its item is no
+            // longer in the Dock — don't write a place for what is gone)
+            if (!reports || !cell.parent || win.byKey[item.id] === undefined)
                 return;
             const p = win.toScreen(cell, cell.width / 2, cell.height / 2);
             const at = [p.x, p.y, cell.width];
             if (item.kind === "app") {
-                for (const w of item.windows || [])
-                    Minimize.dockSlots[win.screenName + "|@app:" + w.app_id] = at;
+                for (const w of item.windows || []) {
+                    const k = win.screenName + "|@app:" + w.app_id;
+                    win.reportedSlots[k] = true;
+                    Minimize.dockSlots[k] = at;
+                }
                 return;
             }
-            Minimize.dockSlots[win.screenName + "|" + item.id] = at;
+            const k = win.screenName + "|" + item.id;
+            win.reportedSlots[k] = true;
+            Minimize.dockSlots[k] = at;
         }
         onSizeChanged: report()
         onYChanged: report()
